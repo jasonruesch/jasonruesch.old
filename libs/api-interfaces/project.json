@@ -11,5 +11,5 @@
       }
     }
   },
-  "tags": []
+  "tags": ["type:data", "scope:shared"]
 }
