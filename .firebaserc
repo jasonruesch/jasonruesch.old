@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "jasonruesch"
-  }
+    "default": "jasonruesch",
+    "staging": "jasonruesch---staging"
+  },
+  "targets": {}
 }

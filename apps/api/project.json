@@ -45,8 +45,21 @@
     "deploy": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {
-        "commands": ["nx run api:build", "firebase deploy --only functions"],
         "parallel": false
+      },
+      "configurations": {
+        "production": {
+          "commands": [
+            "nx run api:build",
+            "firebase -P default deploy --only functions"
+          ]
+        },
+        "staging": {
+          "commands": [
+            "nx run api:build",
+            "firebase -P staging deploy --only functions"
+          ]
+        }
       }
     },
     "lint": {

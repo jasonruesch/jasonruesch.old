@@ -83,8 +83,21 @@
     "deploy": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {
-        "commands": ["nx run web:build", "firebase deploy --only hosting"],
         "parallel": false
+      },
+      "configurations": {
+        "production": {
+          "commands": [
+            "nx run web:build",
+            "firebase -P default deploy --only hosting"
+          ]
+        },
+        "staging": {
+          "commands": [
+            "nx run web:build",
+            "firebase -P staging deploy --only hosting"
+          ]
+        }
       }
     },
     "extract-i18n": {
