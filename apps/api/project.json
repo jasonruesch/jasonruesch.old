@@ -24,14 +24,20 @@
               "with": "apps/api/src/environments/environment.prod.ts"
             }
           ]
+        },
+        "development": {
+          "optimization": false,
+          "extractLicenses": false,
+          "assets": ["apps/api/src/assets", "apps/api/src/.runtimeconfig.json"]
         }
-      }
+      },
+      "defaultConfiguration": "production"
     },
     "serve": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {
         "commands": [
-          "nx run api:build --watch",
+          "nx run api:build:development --watch",
           "firebase -P default emulators:start --only functions --inspect-functions"
         ]
       }
