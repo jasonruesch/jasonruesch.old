@@ -66,6 +66,13 @@
         "proxyConfig": "apps/web/proxy.conf.json"
       }
     },
+    "deploy": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": ["nx run web:build", "firebase deploy --only hosting"],
+        "parallel": false
+      }
+    },
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {

@@ -1,0 +1,29 @@
+{
+  "functions": {
+    "runtime": "nodejs12",
+    "source": "dist/apps/api",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
+  },
+  "hosting": {
+    "public": "dist/apps/web",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "rewrites": [
+      {
+        "source": "/api/**",
+        "function": "api"
+      },
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  },
+  "emulators": {
+    "functions": {
+      "port": 5001
+    },
+    "ui": {
+      "enabled": true
+    }
+  }
+}

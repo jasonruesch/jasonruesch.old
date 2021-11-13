@@ -37,3 +37,7 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# Firebase
+ui-debug.log
+firebase-debug.log
