@@ -8,7 +8,10 @@
     "start": "nx run-many --target=serve --all --parallel",
     "build": "nx run-many --target=build --all --parallel --max-parallel=3",
     "test": "nx run-many --target=test --all --parallel --max-parallel=2",
-    "lint": "nx run-many --target=lint --all --parallel --max-parallel=3"
+    "lint": "nx run-many --target=lint --all --parallel --max-parallel=3",
+    "extract-i18n": "ng extract-i18n --out-file messages.en.xlf --output-path apps/web/src/locale",
+    "merge-i18n": "cross-env API_KEY_FILE=.apikey xliffmerge --profile xliffmerge.json",
+    "i18n": "npm run extract-i18n && npm run merge-i18n"
   },
   "private": true,
   "dependencies": {
@@ -17,6 +20,7 @@
     "@angular/compiler": "^12.2.0",
     "@angular/core": "^12.2.0",
     "@angular/forms": "^12.2.0",
+    "@angular/localize": "^12.2.0",
     "@angular/platform-browser": "^12.2.0",
     "@angular/platform-browser-dynamic": "^12.2.0",
     "@angular/router": "^12.2.0",
@@ -26,6 +30,7 @@
     "@nrwl/angular": "13.1.4",
     "firebase-admin": "^10.0.0",
     "firebase-functions": "^3.16.0",
+    "ngx-i18nsupport": "^0.17.1",
     "reflect-metadata": "^0.1.13",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
@@ -55,6 +60,7 @@
     "@types/node": "14.14.33",
     "@typescript-eslint/eslint-plugin": "~4.33.0",
     "@typescript-eslint/parser": "~4.33.0",
+    "cross-env": "^7.0.3",
     "cypress": "^8.3.0",
     "eslint": "7.32.0",
     "eslint-config-prettier": "8.1.0",

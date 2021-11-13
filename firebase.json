@@ -13,10 +13,41 @@
         "function": "api"
       },
       {
+        "source": "/de/**",
+        "destination": "/de/index.html"
+      },
+      {
+        "source": "/es/**",
+        "destination": "/es/index.html"
+      },
+      {
+        "source": "/fr/**",
+        "destination": "/fr/index.html"
+      },
+      {
+        "source": "/nl/**",
+        "destination": "/nl/index.html"
+      },
+      {
+        "source": "/pt/**",
+        "destination": "/pt/index.html"
+      },
+      {
+        "source": "/ru/**",
+        "destination": "/ru/index.html"
+      },
+      {
+        "source": "/zh/**",
+        "destination": "/zh/index.html"
+      },
+      {
         "source": "**",
-        "destination": "/index.html"
+        "destination": "/en/index.html"
       }
-    ]
+    ],
+    "i18n": {
+      "root": "/"
+    }
   },
   "emulators": {
     "functions": {

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="ng2.template" target-language="zh">
+    <body>
+      <trans-unit id="7bf36f8b83e13b4e71ff893d5ff7fd368ab73202" datatype="html">
+        <source>Welcome to web!</source>
+        <target state="translated">欢迎来到网络！</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">apps/web/src/app/app.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f5c20a29e225fa015e92435d69bd0012f86206b9" datatype="html">
+        <source>Nx - Smart, Extensible Build Framework</source>
+        <target state="translated">Nx - 智能、可扩展的构建框架</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">apps/web/src/app/app.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="dbdfabaccd0e6191b301e6d2da81c3edc8d36c8e" datatype="html">
+        <source>Message: <x id="INTERPOLATION" equiv-text="{{ hello$ | async | json }}"/></source>
+        <target state="translated">消息：<x id="INTERPOLATION"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">apps/web/src/app/app.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
