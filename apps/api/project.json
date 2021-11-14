@@ -50,14 +50,24 @@
       "configurations": {
         "production": {
           "commands": [
-            "nx run api:build",
-            "firebase -P default deploy --only functions"
+            {
+              "command": "nx run api:build",
+              "forwardAllArgs": false
+            },
+            {
+              "command": "firebase -P default deploy --only functions"
+            }
           ]
         },
         "staging": {
           "commands": [
-            "nx run api:build",
-            "firebase -P staging deploy --only functions"
+            {
+              "command": "nx run api:build",
+              "forwardAllArgs": false
+            },
+            {
+              "command": "firebase -P staging deploy --only functions"
+            }
           ]
         }
       }

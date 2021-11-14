@@ -6,10 +6,6 @@ on:
   pull_request:
   workflow_dispatch:
 
-# env:
-#   NX_CLOUD_DISTRIBUTED_EXECUTION: true
-#   NX_CLOUD_AUTH_TOKEN: ${{ secrets.NX_CLOUD_AUTH_TOKEN }}
-
 jobs:
   main:
     runs-on: ubuntu-latest
@@ -28,25 +24,16 @@ jobs:
         with:
           node-version: '12'
       - run: npm install
-      # - run: npx nx-cloud start-ci-run
-      # - name: Build
-      #   run: npx nx affected --target=build --parallel --max-parallel=3
-      # - run: npx nx affected --target=test --parallel --max-parallel=2
-      # - name: E2E
-      #   run: npx nx affected --target=e2e --parallel --max-parallel=2
       - name: Deploy
         run: |
           npx nx affected --target=deploy --token=${{ secrets.FIREBASE_TOKEN }} --configuration=staging
+      # TODO: Only increment version if anything was deployed (maybe use build artifact to determine this)
       - name: Increment version
         run: |
           git config user.name "GitHub Actions Bot"
           git config user.email "<>"
           npx standard-version
           git push --follow-tags origin main
-      # - run: npx nx-cloud stop-all-agents
-      # - name: Tag main branch if all jobs succeed
-      #   if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
-      #   uses: nrwl/nx-tag-successful-ci-run@v1
   pr:
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'pull_request' }}
@@ -64,28 +51,5 @@ jobs:
         with:
           node-version: '12'
       - run: npm install
-      # - run: npx nx-cloud start-ci-run
       - name: Build
         run: npx nx affected --target=build --parallel --max-parallel=3
-      # - run: npx nx affected --target=test --parallel --max-parallel=2
-      # - name: E2E
-      #   run: npx nx affected --target=e2e --parallel --max-parallel=2
-      # - run: npx nx-cloud stop-all-agents
-  # agents:
-  #   runs-on: ubuntu-latest
-  #   name: Agent
-  #   timeout-minutes: 10
-  #   strategy:
-  #     matrix:
-  #       agent: [1, 2, 3]
-  #   concurrency:
-  #     group: agent-${{ matrix.agent }}
-  #     cancel-in-progress: true
-  #   steps:
-  #     - uses: actions/checkout@v2
-  #     - uses: actions/setup-node@v1
-  #       with:
-  #         node-version: '12'
-  #     - run: npm install
-  #     - name: Start Nx Agent ${{ matrix.agent }}
-  #       run: npx nx-cloud start-agent

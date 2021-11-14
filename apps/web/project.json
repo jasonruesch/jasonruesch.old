@@ -88,14 +88,24 @@
       "configurations": {
         "production": {
           "commands": [
-            "nx run web:build",
-            "firebase -P default deploy --only hosting"
+            {
+              "command": "nx run web:build",
+              "forwardAllArgs": false
+            },
+            {
+              "command": "firebase -P default deploy --only hosting"
+            }
           ]
         },
         "staging": {
           "commands": [
-            "nx run web:build",
-            "firebase -P staging deploy --only hosting"
+            {
+              "command": "nx run web:build",
+              "forwardAllArgs": false
+            },
+            {
+              "command": "firebase -P staging deploy --only hosting"
+            }
           ]
         }
       }
