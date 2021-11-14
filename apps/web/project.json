@@ -2,7 +2,7 @@
   "projectType": "application",
   "root": "apps/web",
   "sourceRoot": "apps/web/src",
-  "prefix": "jasonruesch",
+  "prefix": "jr",
   "i18n": {
     "sourceLocale": "en",
     "locales": {
