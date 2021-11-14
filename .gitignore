@@ -42,6 +42,7 @@ Thumbs.db
 ui-debug.log
 firebase-debug.log
 .apikey
+.firebase/hosting.*.cache
 
 # Nx
 nx-cloud.env
