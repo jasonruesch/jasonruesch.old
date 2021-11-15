@@ -35,7 +35,19 @@
           "apps/web/src/google-touch-icon.png",
           "apps/web/src/assets"
         ],
-        "styles": ["apps/web/src/styles.scss"],
+        "styles": [
+          "apps/web/src/styles.scss",
+          {
+            "inject": false,
+            "input": "apps/web/src/dark-theme.scss",
+            "bundleName": "dark-theme"
+          },
+          {
+            "inject": false,
+            "input": "apps/web/src/light-theme.scss",
+            "bundleName": "light-theme"
+          }
+        ],
         "scripts": []
       },
       "configurations": {
