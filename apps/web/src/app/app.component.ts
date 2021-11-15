@@ -9,7 +9,7 @@ import pkg from '../../../../package.json';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  @HostBinding('[attr.jr-version]') version = `v${pkg?.version}`;
+  @HostBinding('[attr.jr-version]') version = pkg?.version;
 
   constructor(private http: HttpClient) {
     this.http.get<Message>('/api/hello').subscribe(console.log);
