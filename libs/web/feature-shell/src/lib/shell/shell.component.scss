@@ -1,0 +1,121 @@
+@import '~@angular/material/core/style/variables';
+@import '~@angular/material/toolbar/toolbar-variables';
+
+$small: 959px;
+$row-padding: 16px;
+
+:host {
+  display: block;
+}
+
+.toolbar {
+  padding-left: calc(#{$row-padding} + env(safe-area-inset-left));
+  padding-right: calc(#{$row-padding} + env(safe-area-inset-right));
+  position: fixed;
+  /* Make sure the toolbar will stay on top of the content as it scrolls past. */
+  z-index: 2;
+
+  &.transparent {
+    background-color: transparent;
+    color: var(--text-color);
+    position: relative;
+    // transition: background-color 0.2s linear;
+  }
+
+  a.app-name {
+    display: block;
+    height: calc(#{$mat-toolbar-minimum-height} - 1rem);
+    margin-left: 0.5rem;
+  }
+
+  .spacer {
+    flex: 1 1 auto;
+  }
+
+  .mat-nav-list {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    margin-left: 1rem;
+    padding-top: 0;
+
+    .mat-list-item {
+      height: auto;
+    }
+  }
+}
+
+.container {
+  bottom: calc(0 - env(safe-area-inset-bottom));
+  height: 100%;
+  left: calc(0 - env(safe-area-inset-left));
+  position: absolute;
+  right: calc(0 - env(safe-area-inset-right));
+  top: calc(0 - env(safe-area-inset-top));
+  width: 100%;
+}
+
+.sidenav-container {
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin-top: -$mat-toolbar-height-desktop;
+
+  @media ($mat-xsmall) {
+    margin-top: -$mat-toolbar-height-mobile;
+  }
+
+  .container.has-transparent-toolbar &.mat-drawer-container-has-open {
+    margin-top: 0;
+  }
+
+  .container:not(.has-transparent-toolbar) & {
+    height: calc(100% - #{$mat-toolbar-height-desktop});
+    margin-top: $mat-toolbar-height-desktop;
+
+    @media ($mat-xsmall) {
+      height: calc(100% - #{$mat-toolbar-height-mobile});
+      margin-top: $mat-toolbar-height-mobile;
+    }
+  }
+}
+
+.sidenav {
+  min-width: 260px;
+  top: $mat-toolbar-height-desktop !important;
+
+  @media ($mat-xsmall) {
+    top: $mat-toolbar-height-mobile !important;
+  }
+
+  .mat-nav-list .mat-list-item {
+    &.active {
+      background: var(--primary-color);
+      color: var(--primary-contrast-color);
+    }
+
+    .text {
+      padding-left: calc(0.5rem + env(safe-area-inset-left));
+    }
+  }
+}
+
+.content {
+  align-self: center;
+  box-sizing: border-box;
+  max-width: $small;
+  padding: 1.5rem;
+  padding-left: calc(1.5rem + env(safe-area-inset-left));
+  padding-right: calc(1.5rem + env(safe-area-inset-right));
+  width: 100%;
+
+  .container:not(.has-transparent-toolbar) .mat-drawer-container-has-open & {
+    padding-left: 1.5rem;
+  }
+
+  .container.has-transparent-toolbar & {
+    height: auto;
+    margin: auto 0;
+  }
+}

@@ -36,15 +36,15 @@
           "apps/web/src/assets"
         ],
         "styles": [
-          "apps/web/src/styles.scss",
+          "apps/web/src/styles/styles.scss",
           {
             "inject": false,
-            "input": "apps/web/src/dark-theme.scss",
+            "input": "apps/web/src/styles/dark-theme.scss",
             "bundleName": "dark-theme"
           },
           {
             "inject": false,
-            "input": "apps/web/src/light-theme.scss",
+            "input": "apps/web/src/styles/light-theme.scss",
             "bundleName": "light-theme"
           }
         ],

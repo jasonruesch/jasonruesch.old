@@ -15,7 +15,14 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@jasonruesch/api-interfaces": ["libs/api-interfaces/src/index.ts"]
+      "@jasonruesch/api-interfaces": ["libs/api-interfaces/src/index.ts"],
+      "@jasonruesch/web/feature-about": ["libs/web/feature-about/src/index.ts"],
+      "@jasonruesch/web/feature-contact": [
+        "libs/web/feature-contact/src/index.ts"
+      ],
+      "@jasonruesch/web/feature-home": ["libs/web/feature-home/src/index.ts"],
+      "@jasonruesch/web/feature-shell": ["libs/web/feature-shell/src/index.ts"],
+      "@jasonruesch/web/ui": ["libs/web/ui/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

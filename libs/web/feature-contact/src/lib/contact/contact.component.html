@@ -1,0 +1,52 @@
+<h1 i18n>Contact Me</h1>
+<form [formGroup]="contactForm" (ngSubmit)="onSubmit($event)">
+  <div class="form-row">
+    <mat-form-field appearance="outline">
+      <mat-label i18n>Name</mat-label>
+      <input matInput formControlName="name" required />
+      <mat-error *ngIf="contactForm.get('name')?.hasError('required')" i18n>
+        Name is required
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label i18n>Email</mat-label>
+      <input
+        type="email"
+        matInput
+        formControlName="email"
+        i18n-placeholder
+        placeholder="Ex. pat@example.com"
+        required
+        autocomplete="off"
+      />
+      <mat-error *ngIf="contactForm.get('email')?.hasError('required')" i18n>
+        Email is required
+      </mat-error>
+      <mat-error *ngIf="contactForm.get('email')?.hasError('email')" i18n>
+        Email is invalid
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <mat-form-field appearance="outline">
+    <mat-label i18n>Message</mat-label>
+    <textarea
+      matInput
+      formControlName="message"
+      i18n-placeholder
+      placeholder="Ex. I would like to discuss..."
+      required
+    ></textarea>
+    <mat-error *ngIf="contactForm.get('message')?.hasError('required')" i18n>
+      Message is required
+    </mat-error>
+  </mat-form-field>
+  <button
+    type="submit"
+    mat-raised-button
+    color="primary"
+    [disabled]="sending || !contactForm.valid"
+  >
+    <mat-spinner class="spinner" [diameter]="20" *ngIf="sending"></mat-spinner>
+    <span [class.hidden]="sending" i18n>Send</span>
+  </button>
+</form>

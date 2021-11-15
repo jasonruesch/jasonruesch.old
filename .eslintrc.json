@@ -26,11 +26,11 @@
               },
               {
                 "sourceTag": "type:app",
-                "onlyDependOnLibsWithTags": ["type:feature", "type:ui", "type:util", "type:data"]
+                "onlyDependOnLibsWithTags": ["type:feature", "type:data"]
               },
               {
                 "sourceTag": "type:feature",
-                "onlyDependOnLibsWithTags": ["type:ui", "type:util"]
+                "onlyDependOnLibsWithTags": ["type:feature", "type:ui", "type:util", "type:data"]
               },
               {
                 "sourceTag": "type:ui",
