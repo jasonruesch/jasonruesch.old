@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.8](https://github.com/jasonruesch/jasonruesch/compare/v0.0.7...v0.0.8) (2021-11-16)
+
+
+### Features
+
+* add social media external links to contact page ([ebb65f0](https://github.com/jasonruesch/jasonruesch/commit/ebb65f0a67ce45e618ab11225f9c8b180ed11f85))
+
 ### [0.0.7](https://github.com/jasonruesch/jasonruesch/compare/v0.0.6...v0.0.7) (2021-11-16)
 
 
