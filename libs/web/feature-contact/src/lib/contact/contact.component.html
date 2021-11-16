@@ -40,13 +40,49 @@
       Message is required
     </mat-error>
   </mat-form-field>
-  <button
-    type="submit"
-    mat-raised-button
-    color="primary"
-    [disabled]="sending || !contactForm.valid"
-  >
-    <mat-spinner class="spinner" [diameter]="20" *ngIf="sending"></mat-spinner>
-    <span [class.hidden]="sending" i18n>Send</span>
-  </button>
+  <div class="form-row">
+    <button
+      type="submit"
+      mat-raised-button
+      color="primary"
+      [disabled]="sending || !contactForm.valid"
+    >
+      <mat-spinner
+        class="spinner"
+        [diameter]="20"
+        *ngIf="sending"
+      ></mat-spinner>
+      <span [class.hidden]="sending" i18n>Send</span>
+    </button>
+    <span class="spacer"></span>
+    <div class="external-icons">
+      <a
+        mat-icon-button
+        href="https://twitter.com/jasonruesch"
+        target="_blank"
+        title="Twitter"
+        aria-label="Jason Ruesch on twitter"
+      >
+        <mat-icon svgIcon="logos:twitter"></mat-icon>
+      </a>
+      <a
+        mat-icon-button
+        href="https://github.com/jasonruesch"
+        target="_blank"
+        title="GitHub"
+        aria-label="Jason Ruesch on github"
+      >
+        <mat-icon svgIcon="logos:github"></mat-icon>
+      </a>
+      <a
+        mat-icon-button
+        href="https://www.linkedin.com/in/jasonruesch/"
+        target="_blank"
+        title="LinkedIn"
+        aria-label="Jason Ruesch on LinkedIn"
+      >
+        <mat-icon svgIcon="logos:linkedin"></mat-icon>
+      </a>
+    </div>
+  </div>
 </form>

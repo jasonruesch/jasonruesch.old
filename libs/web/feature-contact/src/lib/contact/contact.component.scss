@@ -36,3 +36,9 @@
 .hidden {
   visibility: hidden;
 }
+
+.external-icons {
+  @media ($mat-xsmall) {
+    margin-top: 1rem;
+  }
+}
