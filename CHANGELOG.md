@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.7](https://github.com/jasonruesch/jasonruesch/compare/v0.0.6...v0.0.7) (2021-11-16)
+
+
+### Features
+
+* translations ([2b84fba](https://github.com/jasonruesch/jasonruesch/commit/2b84fba7e4f3df5bb0238d4f720c8ee2fcd25d26))
+
 ### [0.0.6](https://github.com/jasonruesch/jasonruesch/compare/v0.0.5...v0.0.6) (2021-11-16)
 
 ### [0.0.5](https://github.com/jasonruesch/jasonruesch/compare/v0.0.4...v0.0.5) (2021-11-16)
