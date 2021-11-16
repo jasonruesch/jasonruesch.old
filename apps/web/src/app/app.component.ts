@@ -12,6 +12,7 @@ export class AppComponent {
   @HostBinding('[attr.jr-version]') version = pkg?.version;
 
   constructor(private http: HttpClient) {
+    // Test the API
     this.http.get<Message>('/api/hello').subscribe(console.log);
   }
 }

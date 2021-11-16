@@ -29,7 +29,6 @@
         "assets": [
           "apps/web/src/favicon.ico",
           "apps/web/src/favicon.svg",
-          "apps/web/src/mask-icon.svg",
           "apps/web/src/apple-touch-icon.png",
           "apps/web/src/manifest.json",
           "apps/web/src/google-touch-icon.png",
