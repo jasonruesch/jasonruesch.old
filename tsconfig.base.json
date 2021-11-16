@@ -19,6 +19,7 @@
       "@jasonruesch/shared/environment": [
         "libs/shared/environment/src/index.ts"
       ],
+      "@jasonruesch/shared/utilities": ["libs/shared/utilities/src/index.ts"],
       "@jasonruesch/web/feature-about": ["libs/web/feature-about/src/index.ts"],
       "@jasonruesch/web/feature-contact": [
         "libs/web/feature-contact/src/index.ts"

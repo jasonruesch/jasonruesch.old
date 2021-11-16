@@ -12,7 +12,7 @@
       i18n-aria-label
       aria-label="Toggle the menu"
     >
-      <mat-icon>menu</mat-icon>
+      <mat-icon svgIcon="menu"></mat-icon>
     </button>
     <a class="app-name" routerLink="/">
       <jr-icon
@@ -41,9 +41,9 @@
       i18n-title
       title="Toggle the theme between light and dark"
     >
-      <mat-icon>{{
-        themeService.darkMode ? 'light_mode' : 'dark_mode'
-      }}</mat-icon>
+      <mat-icon
+        [svgIcon]="themeService.darkMode ? 'light_mode' : 'dark_mode'"
+      ></mat-icon>
     </button>
     <button
       mat-icon-button
@@ -53,7 +53,7 @@
       title="Language options"
       [matMenuTriggerFor]="languageMenu"
     >
-      <mat-icon>translate</mat-icon>
+      <mat-icon svgIcon="translate"></mat-icon>
     </button>
   </mat-toolbar>
 

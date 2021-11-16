@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule, RouterOutlet } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { ShellComponent } from './shell/shell.component';
-import { MatIconModule } from '@angular/material/icon';
+import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -10,6 +10,10 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatMenuModule } from '@angular/material/menu';
 import { MATERIAL_SANITY_CHECKS } from '@angular/material/core';
 import { WebUiModule } from '@jasonruesch/web/ui';
+import {
+  CustomIconRegistry,
+  svgIconProviders,
+} from '@jasonruesch/shared/utilities';
 
 @NgModule({
   imports: [
@@ -58,7 +62,9 @@ import { WebUiModule } from '@jasonruesch/web/ui';
       provide: MATERIAL_SANITY_CHECKS,
       useValue: false,
     },
+    svgIconProviders,
+    { provide: MatIconRegistry, useClass: CustomIconRegistry },
   ],
-  exports: [ShellComponent, RouterOutlet],
+  exports: [ShellComponent],
 })
 export class WebFeatureShellModule {}

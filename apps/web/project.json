@@ -30,7 +30,7 @@
           "apps/web/src/favicon.ico",
           "apps/web/src/favicon.svg",
           "apps/web/src/apple-touch-icon.png",
-          "apps/web/src/manifest.json",
+          "apps/web/src/manifest.webmanifest",
           "apps/web/src/google-touch-icon.png",
           "apps/web/src/assets"
         ],
@@ -47,7 +47,9 @@
             "bundleName": "light-theme"
           }
         ],
-        "scripts": []
+        "scripts": [],
+        "serviceWorker": true,
+        "ngswConfigPath": "apps/web/ngsw-config.json"
       },
       "configurations": {
         "production": {

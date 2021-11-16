@@ -4,6 +4,7 @@
     "api": "apps/api",
     "api-interfaces": "libs/api-interfaces",
     "shared-environment": "libs/shared/environment",
+    "shared-utilities": "libs/shared/utilities",
     "web": "apps/web",
     "web-e2e": "apps/web-e2e",
     "web-feature-about": "libs/web/feature-about",
