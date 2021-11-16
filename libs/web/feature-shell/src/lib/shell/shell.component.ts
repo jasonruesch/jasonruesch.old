@@ -12,6 +12,7 @@ import { NavigationEnd, Router } from '@angular/router';
 import { filter, map } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 import { ThemeService } from '@jasonruesch/web/ui';
+import { environment } from '@jasonruesch/shared/environment';
 
 @Component({
   selector: 'jr-shell',
@@ -67,16 +68,16 @@ export class ShellComponent implements OnInit, OnDestroy {
     this.themeService.toggleDarkMode();
   }
 
-  getLanguageUrl(localeId: string): string {
+  setLanguage(localeId: string): void {
     const origin = document.location.origin;
     // Switching language is not allowed when developing locally.
     // To test a different language, change the `localize` value for the
     // `development` configuration in this project's `project.json` file.
     // TODO: Replace with shared environment variable
-    if (origin.includes('localhost')) {
-      return this.router.url;
+    if (!environment.production) {
+      return;
     }
-    return `${origin}/${localeId}${this.router.url}`;
+    document.location.href = `${origin}/${localeId}${this.router.url}`;
   }
 
   private handleBreakpoint(event: MediaQueryListEvent) {

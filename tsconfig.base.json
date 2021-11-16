@@ -16,6 +16,9 @@
     "baseUrl": ".",
     "paths": {
       "@jasonruesch/api-interfaces": ["libs/api-interfaces/src/index.ts"],
+      "@jasonruesch/shared/environment": [
+        "libs/shared/environment/src/index.ts"
+      ],
       "@jasonruesch/web/feature-about": ["libs/web/feature-about/src/index.ts"],
       "@jasonruesch/web/feature-contact": [
         "libs/web/feature-contact/src/index.ts"

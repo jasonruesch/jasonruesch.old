@@ -4,7 +4,7 @@ import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handleba
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { environment } from './../environments/environment';
+import { environment } from '@jasonruesch/shared/environment';
 import { join } from 'path';
 import * as functions from 'firebase-functions';
 
