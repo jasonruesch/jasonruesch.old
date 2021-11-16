@@ -114,7 +114,6 @@ export class ShellComponent implements OnInit, OnDestroy {
     }
 
     const themeColor = document.querySelector(
-      // '[name="theme-color"]'
       '#jr-theme-color'
     ) as HTMLMetaElement;
     const primaryColor = getComputedStyle(
