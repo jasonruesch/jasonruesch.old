@@ -1,1 +1,13 @@
-{}
+{
+  "mail": {
+    "transport": {
+      "host": "localhost",
+      "port": 1025,
+      "ignoreTLS": true
+    },
+    "defaults": {
+      "from": "\"No Reply\" <no.reply@jasonruesch.dev>",
+      "to": "\"Jason Ruesch\" <jason.ruesch@me.com>"
+    }
+  }
+}
