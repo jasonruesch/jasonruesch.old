@@ -2,17 +2,7 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-### [0.0.11](https://github.com/jasonruesch/jasonruesch/compare/v0.0.8...v0.0.11) (2021-11-17)
-
-
-### Features
-
-* add angular pwa ([679c51e](https://github.com/jasonruesch/jasonruesch/commit/679c51e6d3d77c42ae39f6d700b4e9f2b092718a))
-
-
-### Bug Fixes
-
-* keep user in standalone app when switching language ([4755273](https://github.com/jasonruesch/jasonruesch/commit/4755273b11849a1bd34ba35156f321294c0d4b88))
+### [0.0.11](https://github.com/jasonruesch/jasonruesch/compare/v0.0.10...v0.0.11) (2021-11-17)
 
 ### [0.0.10](https://github.com/jasonruesch/jasonruesch/compare/v0.0.9...v0.0.10) (2021-11-17)
 
