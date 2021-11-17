@@ -17,13 +17,13 @@ export class AppComponent {
     this.http.get<Message>('/api/hello').subscribe(console.log);
 
     updates.available.subscribe((event) => {
-      console.log('current version is', event.current);
-      console.log('available version is', event.available);
+      console.log('Current version is', event.current);
+      console.log('Available version is', event.available);
       updates.activateUpdate().then(() => document.location.reload());
     });
     updates.activated.subscribe((event) => {
-      console.log('old version was', event.previous);
-      console.log('new version is', event.current);
+      console.log('Previous version was', event.previous);
+      console.log('Current version is', event.current);
     });
   }
 }
