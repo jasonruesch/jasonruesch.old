@@ -1,0 +1,104 @@
+name: CD
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+env:
+  NX_BRANCH: ${{ github.ref }}
+  NX_RUN_GROUP: ${{ github.run_id }}
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    concurrency:
+      group: main
+      cancel-in-progress: true
+    steps:
+      - uses: actions/checkout@v2
+        name: Checkout [main]
+        with:
+          fetch-depth: 0
+      - name: Derive appropriate SHAs for base and head for `nx affected` commands
+        uses: nrwl/nx-set-shas@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12'
+      - run: npm install
+      - name: Build
+        run: |
+          npx nx affected --target=build --parallel --max-parallel=3
+      - name: Publish Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: jasonruesch
+          path: dist
+
+  deploy_to_staging:
+    needs: build
+    name: Deploy to Staging
+    environment:
+      name: Staging
+      url: https://staging.jasonruesch.dev
+    concurrency:
+      group: Staging
+      cancel-in-progress: true
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        name: Checkout [main]
+        with:
+          fetch-depth: 0
+      - name: Derive appropriate SHAs for base and head for `nx affected` commands
+        uses: nrwl/nx-set-shas@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12'
+      - name: Download artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: jasonruesch
+          path: dist
+      - run: npm install
+      - name: Increment version
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+          git fetch --tags
+          npx standard-version
+          git push --follow-tags origin main
+      - name: Deploy
+        run: |
+          npx nx affected --target=deploy --token=${{ secrets.FIREBASE_TOKEN }} --configuration=staging
+
+  deploy_to_production:
+    needs: deploy_to_staging
+    name: Deploy to Production
+    environment:
+      name: Production
+      url: https://jasonruesch.dev
+    concurrency:
+      group: Production
+      cancel-in-progress: true
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        name: Checkout [main]
+        with:
+          fetch-depth: 0
+      - name: Derive appropriate SHAs for base and head for `nx affected` commands
+        uses: nrwl/nx-set-shas@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12'
+      - name: Download artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: jasonruesch
+          path: dist
+      - run: npm install
+      - name: Deploy
+        run: |
+          npx nx affected --target=deploy --token=${{ secrets.FIREBASE_TOKEN }} --configuration=production
