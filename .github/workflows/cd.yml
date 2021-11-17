@@ -47,12 +47,6 @@ jobs:
       cancel-in-progress: true
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-        name: Checkout [main]
-        with:
-          fetch-depth: 0
-      - name: Derive appropriate SHAs for base and head for `nx affected` commands
-        uses: nrwl/nx-set-shas@v2
       - uses: actions/setup-node@v1
         with:
           node-version: '12'
@@ -61,17 +55,25 @@ jobs:
         with:
           name: jasonruesch
           path: dist
-      - run: npm install
-      - name: Increment version
+      - name: Check for API build artifact
+        id: check_api
+        uses: andstor/file-existence-action@v1
+        with:
+          files: 'dist/apps/api'
+      - name: Deploy API
+        if: ${{ steps.check_api.outputs.files_exists == 'true' }}
         run: |
-          git config user.name "GitHub Actions Bot"
-          git config user.email "<>"
-          git fetch --tags
-          npx standard-version
-          git push --follow-tags origin main
-      - name: Deploy
+          npm install firebase-tools
+          npx firebase deploy -P staging --token=${{ secrets.FIREBASE_TOKEN }} --only functions
+      - name: Check for Web build artifact
+        id: check_web
+        uses: andstor/file-existence-action@v1
+        with:
+          files: 'dist/apps/web'
+      - name: Deploy Web
         run: |
-          npx nx affected --target=deploy --token=${{ secrets.FIREBASE_TOKEN }} --configuration=staging
+          npm install firebase-tools
+          npx firebase deploy -P staging --token=${{ secrets.FIREBASE_TOKEN }} --only hosting
 
   deploy_to_production:
     needs: deploy_to_staging
@@ -84,12 +86,6 @@ jobs:
       cancel-in-progress: true
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-        name: Checkout [main]
-        with:
-          fetch-depth: 0
-      - name: Derive appropriate SHAs for base and head for `nx affected` commands
-        uses: nrwl/nx-set-shas@v2
       - uses: actions/setup-node@v1
         with:
           node-version: '12'
@@ -98,7 +94,22 @@ jobs:
         with:
           name: jasonruesch
           path: dist
-      - run: npm install
-      - name: Deploy
+      - name: Check for API build artifact
+        id: check_api
+        uses: andstor/file-existence-action@v1
+        with:
+          files: 'dist/apps/api'
+      - name: Deploy API
+        if: ${{ steps.check_api.outputs.files_exists == 'true' }}
         run: |
-          npx nx affected --target=deploy --token=${{ secrets.FIREBASE_TOKEN }} --configuration=production
+          npm install firebase-tools
+          npx firebase deploy -P default --token=${{ secrets.FIREBASE_TOKEN }} --only functions
+      - name: Check for Web build artifact
+        id: check_web
+        uses: andstor/file-existence-action@v1
+        with:
+          files: 'dist/apps/web'
+      - name: Deploy Web
+        run: |
+          npm install firebase-tools
+          npx firebase deploy -P default --token=${{ secrets.FIREBASE_TOKEN }} --only hosting
