@@ -4,7 +4,9 @@ on:
     branches:
       - main
     paths:
-      - '**/*.*(html|scss|ts)'
+      - '**.ts'
+      - '**.scss'
+      - '**.html'
 
 env:
   NX_BRANCH: ${{ github.ref }}
