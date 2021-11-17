@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.10](https://github.com/jasonruesch/jasonruesch/compare/v0.0.9...v0.0.10) (2021-11-17)
+
+
+### Features
+
+* add angular pwa ([679c51e](https://github.com/jasonruesch/jasonruesch/commit/679c51e6d3d77c42ae39f6d700b4e9f2b092718a))
+
 ### [0.0.9](https://github.com/jasonruesch/jasonruesch/compare/v0.0.8...v0.0.9) (2021-11-16)
 
 
