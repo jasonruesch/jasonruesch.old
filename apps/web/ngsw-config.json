@@ -9,11 +9,14 @@
         "files": [
           "/favicon.ico",
           "/favicon.svg",
-          "/apple-touch-icon.png",
           "/index.html",
           "/manifest.webmanifest",
           "/*.css",
           "/*.js"
+        ],
+        "urls": [
+          "https://fonts.gstatic.com/**",
+          "https://fonts.googleapis.com/**"
         ]
       }
     },
@@ -26,6 +29,18 @@
           "/assets/**",
           "/*.(eot|svg|cur|jpg|png|webp|gif|otf|ttf|woff|woff2|ani)"
         ]
+      }
+    }
+  ],
+  "dataGroups": [
+    {
+      "name": "api",
+      "urls": ["/api"],
+      "cacheConfig": {
+        "maxSize": 20,
+        "maxAge": "1h",
+        "timeout": "5s",
+        "strategy": "performance"
       }
     }
   ]
