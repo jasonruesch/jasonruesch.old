@@ -3,5 +3,20 @@
     "default": "jasonruesch",
     "staging": "jasonruesch---staging"
   },
-  "targets": {}
+  "targets": {
+    "jasonruesch": {
+      "hosting": {
+        "web": [
+          "jasonruesch"
+        ]
+      }
+    },
+    "jasonruesch---staging": {
+      "hosting": {
+        "web": [
+          "jasonruesch---staging"
+        ]
+      }
+    }
+  }
 }
