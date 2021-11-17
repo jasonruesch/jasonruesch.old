@@ -1,50 +1,23 @@
 name: CI
 on:
-  push:
-    branches:
-      - main
   pull_request:
   workflow_dispatch:
 
+env:
+  NX_BRANCH: ${{ github.head_ref }}
+  NX_RUN_GROUP: ${{ github.run_id }}
+
 jobs:
-  main:
+  build_and_test:
+    name: Build & Test
     runs-on: ubuntu-latest
-    if: ${{ github.event_name != 'pull_request' }}
     concurrency:
-      group: main
-      cancel-in-progress: true
-    steps:
-      - uses: actions/checkout@v2
-        name: Checkout [main]
-        with:
-          fetch-depth: 0
-      - name: Derive appropriate SHAs for base and head for `nx affected` commands
-        uses: nrwl/nx-set-shas@v2
-      - uses: actions/setup-node@v1
-        with:
-          node-version: '12'
-      - run: npm install
-      - name: Deploy
-        run: |
-          npx nx affected --target=deploy --token=${{ secrets.FIREBASE_TOKEN }} --configuration=staging
-      # TODO: Only increment version if anything was deployed (maybe use build artifact to determine this)
-      - name: Increment version
-        run: |
-          git config user.name "GitHub Actions Bot"
-          git config user.email "<>"
-          git fetch --tags
-          npx standard-version
-          git push --follow-tags origin main
-  pr:
-    runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'pull_request' }}
-    concurrency:
-      group: ${{ github.event.pull_request.head.ref }}
+      group: ${{ github.head_ref }}
       cancel-in-progress: true
     steps:
       - uses: actions/checkout@v2
         with:
-          ref: ${{ github.event.pull_request.head.ref }}
+          ref: ${{ github.head_ref }}
           fetch-depth: 0
       - name: Derive appropriate SHAs for base and head for `nx affected` commands
         uses: nrwl/nx-set-shas@v2
