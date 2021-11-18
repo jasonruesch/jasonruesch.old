@@ -5,6 +5,7 @@ on:
       - main
     paths:
       - '**.ts'
+      - '!**.spec.ts'
       - '**.scss'
       - '**.html'
 
@@ -38,9 +39,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: jasonruesch
-          path: |
-            dist
-            firebase.json
+          path: dist
 
   deploy_to_staging:
     needs: build
@@ -53,13 +52,13 @@ jobs:
       cancel-in-progress: true
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
+        name: Checkout [main]
       - name: Download artifacts
         uses: actions/download-artifact@v2
         with:
           name: jasonruesch
-          path: |
-            dist
-            firebase.json
+          path: dist
       - name: Check for API build artifact
         id: check_api
         uses: andstor/file-existence-action@v1
@@ -91,13 +90,13 @@ jobs:
       cancel-in-progress: true
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
+        name: Checkout [main]
       - name: Download artifacts
         uses: actions/download-artifact@v2
         with:
           name: jasonruesch
-          path: |
-            dist
-            firebase.json
+          path: dist
       - name: Check for API build artifact
         id: check_api
         uses: andstor/file-existence-action@v1
