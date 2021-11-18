@@ -20,7 +20,7 @@ jobs:
         with:
           node-version: '12'
           cache: 'npm'
-      - run: npm install
+      - run: npm ci
       - name: Build
         run: |
           npx nx run-many --target=build --all --parallel --max-parallel=3
@@ -52,7 +52,7 @@ jobs:
         with:
           name: jasonruesch
           path: dist
-      - run: npm install
+      - run: npm ci
       - name: Deploy API
         run: npx firebase deploy -P staging --token=${{ secrets.FIREBASE_TOKEN }} --only functions
       - name: Deploy Web
@@ -80,7 +80,7 @@ jobs:
   #       with:
   #         name: jasonruesch
   #         path: dist
-  #     - run: npm install
+  #     - run: npm ci
   #     - name: Deploy API
   #       run: npx firebase deploy -P default --token=${{ secrets.FIREBASE_TOKEN }} --only functions
   #     - name: Deploy Web
