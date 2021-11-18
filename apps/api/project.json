@@ -37,8 +37,12 @@
       "executor": "@nrwl/workspace:run-commands",
       "options": {
         "commands": [
-          "nx run api:build:development --watch",
-          "firebase -P default emulators:start --only functions --inspect-functions"
+          {
+            "command": "nx run api:build:development --watch"
+          },
+          {
+            "command": "firebase -P default emulators:start --only functions --inspect-functions"
+          }
         ]
       }
     },

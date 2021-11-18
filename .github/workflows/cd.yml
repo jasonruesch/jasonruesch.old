@@ -8,6 +8,7 @@ on:
       - '!**.spec.ts'
       - '**.scss'
       - '**.html'
+      - '**.json'
 
 env:
   NX_BRANCH: ${{ github.ref }}

@@ -47,9 +47,7 @@
             "bundleName": "light-theme"
           }
         ],
-        "scripts": [],
-        "serviceWorker": true,
-        "ngswConfigPath": "apps/web/ngsw-config.json"
+        "scripts": []
       },
       "configurations": {
         "production": {

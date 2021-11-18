@@ -5,6 +5,7 @@ on:
       - '**.ts'
       - '**.scss'
       - '**.html'
+      - '**.json'
 
 env:
   NX_BRANCH: ${{ github.head_ref }}
