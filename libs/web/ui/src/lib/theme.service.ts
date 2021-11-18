@@ -22,18 +22,18 @@ export class ThemeService {
       this.media.addEventListener('change', this.handleColorScheme.bind(this));
       this.darkMode = this.media.matches;
     }
-    this.darkModeChange.next(this.darkMode);
+    this.updateTheme(this.darkMode);
   }
 
   toggleDarkMode(): void {
-    // TODO: Figure out why this isn't working
+    // TODO: Figure out why removing the event listener isn't working
     this.media?.removeEventListener(
       'change',
       this.handleColorScheme.bind(this)
     );
     this.darkMode = !this.darkMode;
     localStorage.setItem('jr-theme', this.darkMode ? 'dark' : 'light');
-    this.darkModeChange.next(this.darkMode);
+    this.updateTheme(this.darkMode);
   }
 
   private getThemePreference(): Theme | null {
@@ -48,6 +48,49 @@ export class ThemeService {
 
   private handleColorScheme(event: MediaQueryListEvent): void {
     this.darkMode = event.matches;
-    this.darkModeChange.next(this.darkMode);
+    this.updateTheme(this.darkMode);
+  }
+
+  private updateTheme(darkMode: boolean): void {
+    this.updateThemeStylesheet(darkMode);
+    this.updateThemeColor(darkMode);
+    this.darkModeChange.next(darkMode);
+  }
+
+  private updateThemeStylesheet(darkMode: boolean): void {
+    const initialTheme = document.querySelector('#jr-initial-theme');
+    if (initialTheme) {
+      initialTheme.remove();
+    }
+
+    let themeLink = document.querySelector(
+      '#jr-custom-theme'
+    ) as HTMLLinkElement | null;
+    if (!themeLink) {
+      themeLink = document.createElement('link');
+      themeLink.id = 'jr-custom-theme';
+      themeLink.rel = 'stylesheet';
+      document.head.appendChild(themeLink);
+    }
+    themeLink.href = darkMode ? 'dark-theme.css' : 'light-theme.css';
+  }
+
+  private updateThemeColor(darkMode: boolean): void {
+    const darkThemeColor = document.querySelector('#jr-dark-theme-color');
+    if (darkThemeColor) {
+      darkThemeColor.remove();
+    }
+
+    const themeColor = document.querySelector(
+      '#jr-theme-color'
+    ) as HTMLMetaElement;
+    const primaryColor = getComputedStyle(
+      document.documentElement
+    ).getPropertyValue(
+      darkMode ? '--dark-primary-color' : '--light-primary-color'
+    );
+    themeColor.removeAttribute('media');
+    // NOTE: light mode color isn't working when system is dark mode
+    themeColor.content = primaryColor;
   }
 }

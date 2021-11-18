@@ -10,7 +10,6 @@ import {
 import { MatSidenav } from '@angular/material/sidenav';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter, map } from 'rxjs/operators';
-import { Subscription } from 'rxjs';
 import { ThemeService } from '@jasonruesch/web/ui';
 import { environment } from '@jasonruesch/shared/environment';
 
@@ -26,8 +25,7 @@ export class ShellComponent implements OnInit, OnDestroy {
   transparentToolbar = false;
   xsmall = false;
 
-  private media!: MediaQueryList;
-  private darkModeSubscription?: Subscription;
+  private media?: MediaQueryList;
 
   constructor(
     public themeService: ThemeService,
@@ -53,15 +51,10 @@ export class ShellComponent implements OnInit, OnDestroy {
     this.media = this.mediaMatcher.matchMedia(Breakpoints.XSmall);
     this.media.addEventListener('change', this.handleBreakpoint.bind(this));
     this.xsmall = this.media.matches;
-
-    this.darkModeSubscription = this.themeService.darkModeChange.subscribe(
-      (darkMode: boolean) => this.updateTheme(darkMode)
-    );
   }
 
   ngOnDestroy() {
-    this.media.removeEventListener('change', this.handleBreakpoint.bind(this));
-    this.darkModeSubscription?.unsubscribe();
+    this.media?.removeEventListener('change', this.handleBreakpoint.bind(this));
   }
 
   toggleTheme(): void {
@@ -83,47 +76,5 @@ export class ShellComponent implements OnInit, OnDestroy {
   private handleBreakpoint(event: MediaQueryListEvent) {
     this.xsmall = event.matches;
     this.changeDetector.detectChanges();
-  }
-
-  private updateTheme(darkMode: boolean): void {
-    this.updateThemeStylesheet(darkMode);
-    this.updateThemeColor(darkMode);
-  }
-
-  private updateThemeStylesheet(darkMode: boolean): void {
-    const initialTheme = document.querySelector('#jr-initial-theme');
-    if (initialTheme) {
-      initialTheme.remove();
-    }
-
-    let themeLink = document.querySelector(
-      '#jr-custom-theme'
-    ) as HTMLLinkElement | null;
-    if (!themeLink) {
-      themeLink = document.createElement('link');
-      themeLink.id = 'jr-custom-theme';
-      themeLink.rel = 'stylesheet';
-      document.head.appendChild(themeLink);
-    }
-    themeLink.href = darkMode ? 'dark-theme.css' : 'light-theme.css';
-  }
-
-  private updateThemeColor(darkMode: boolean): void {
-    const darkThemeColor = document.querySelector('#jr-dark-theme-color');
-    if (darkThemeColor) {
-      darkThemeColor.remove();
-    }
-
-    const themeColor = document.querySelector(
-      '#jr-theme-color'
-    ) as HTMLMetaElement;
-    const primaryColor = getComputedStyle(
-      document.documentElement
-    ).getPropertyValue(
-      darkMode ? '--dark-primary-color' : '--light-primary-color'
-    );
-    themeColor.removeAttribute('media');
-    // NOTE: light mode color isn't working when system is dark mode
-    themeColor.content = primaryColor;
   }
 }
