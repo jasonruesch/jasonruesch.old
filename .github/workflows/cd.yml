@@ -54,12 +54,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '12'
+          cache: 'npm'
         name: Checkout [main]
       - name: Download artifacts
         uses: actions/download-artifact@v2
         with:
           name: jasonruesch
           path: dist
+      - run: npm install
       - name: Check for API build artifact
         id: check_api
         uses: andstor/file-existence-action@v1
@@ -101,12 +106,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '12'
+          cache: 'npm'
         name: Checkout [main]
       - name: Download artifacts
         uses: actions/download-artifact@v2
         with:
           name: jasonruesch
           path: dist
+      - run: npm install
       - name: Check for API build artifact
         id: check_api
         uses: andstor/file-existence-action@v1
