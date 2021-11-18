@@ -1,0 +1,89 @@
+name: Manual Deployment
+on:
+  workflow_dispatch:
+    branches:
+      - main
+
+env:
+  NX_BRANCH: ${{ github.ref }}
+  NX_RUN_GROUP: ${{ github.run_id }}
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    concurrency:
+      group: main
+      cancel-in-progress: true
+    steps:
+      - uses: actions/checkout@v2
+        name: Checkout [main]
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '12'
+          cache: 'npm'
+      - run: npm install
+      - name: Build
+        run: |
+          npx nx run-many --target=build --all --parallel --max-parallel=3
+      - name: Publish Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: jasonruesch
+          path: dist
+
+  deploy_to_staging:
+    needs: build
+    name: Deploy to Staging
+    environment:
+      name: Staging
+      url: https://staging.jasonruesch.dev
+    concurrency:
+      group: Staging
+      cancel-in-progress: true
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '12'
+          cache: 'npm'
+        name: Checkout [main]
+      - name: Download artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: jasonruesch
+          path: dist
+      - run: npm install
+      - name: Deploy API
+        run: npx firebase deploy -P staging --token=${{ secrets.FIREBASE_TOKEN }} --only functions
+      - name: Deploy Web
+        run: npx firebase deploy -P staging --token=${{ secrets.FIREBASE_TOKEN }} --only hosting
+
+  deploy_to_production:
+    needs: deploy_to_staging
+    name: Deploy to Production
+    environment:
+      name: Production
+      url: https://jasonruesch.dev
+    concurrency:
+      group: Production
+      cancel-in-progress: true
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '12'
+          cache: 'npm'
+        name: Checkout [main]
+      - name: Download artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: jasonruesch
+          path: dist
+      - run: npm install
+      - name: Deploy API
+        run: npx firebase deploy -P default --token=${{ secrets.FIREBASE_TOKEN }} --only functions
+      - name: Deploy Web
+        run: npx firebase deploy -P default --token=${{ secrets.FIREBASE_TOKEN }} --only hosting
