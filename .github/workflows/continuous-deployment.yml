@@ -90,42 +90,42 @@ jobs:
         if: ${{ steps.check_web.outputs.files_exists == 'true' }}
         run: npx firebase deploy -P staging --token=${{ secrets.FIREBASE_TOKEN }} --only hosting
 
-  deploy_to_production:
-    needs: deploy_to_staging
-    name: Deploy to Production
-    environment:
-      name: Production
-      url: https://jasonruesch.dev
-    concurrency:
-      group: Production
-      cancel-in-progress: true
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '12'
-          cache: 'npm'
-        name: Checkout [main]
-      - name: Download artifacts
-        uses: actions/download-artifact@v2
-        with:
-          name: jasonruesch
-          path: dist
-      - run: npm install
-      - name: Check for API build artifact
-        id: check_api
-        uses: andstor/file-existence-action@v1
-        with:
-          files: 'dist/apps/api'
-      - name: Check for Web build artifact
-        id: check_web
-        uses: andstor/file-existence-action@v1
-        with:
-          files: 'dist/apps/web'
-      - name: Deploy API
-        if: ${{ steps.check_api.outputs.files_exists == 'true' }}
-        run: npx firebase deploy -P default --token=${{ secrets.FIREBASE_TOKEN }} --only functions
-      - name: Deploy Web
-        if: ${{ steps.check_web.outputs.files_exists == 'true' }}
-        run: npx firebase deploy -P default --token=${{ secrets.FIREBASE_TOKEN }} --only hosting
+  # deploy_to_production:
+  #   needs: deploy_to_staging
+  #   name: Deploy to Production
+  #   environment:
+  #     name: Production
+  #     url: https://jasonruesch.dev
+  #   concurrency:
+  #     group: Production
+  #     cancel-in-progress: true
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - uses: actions/setup-node@v2
+  #       with:
+  #         node-version: '12'
+  #         cache: 'npm'
+  #       name: Checkout [main]
+  #     - name: Download artifacts
+  #       uses: actions/download-artifact@v2
+  #       with:
+  #         name: jasonruesch
+  #         path: dist
+  #     - run: npm install
+  #     - name: Check for API build artifact
+  #       id: check_api
+  #       uses: andstor/file-existence-action@v1
+  #       with:
+  #         files: 'dist/apps/api'
+  #     - name: Check for Web build artifact
+  #       id: check_web
+  #       uses: andstor/file-existence-action@v1
+  #       with:
+  #         files: 'dist/apps/web'
+  #     - name: Deploy API
+  #       if: ${{ steps.check_api.outputs.files_exists == 'true' }}
+  #       run: npx firebase deploy -P default --token=${{ secrets.FIREBASE_TOKEN }} --only functions
+  #     - name: Deploy Web
+  #       if: ${{ steps.check_web.outputs.files_exists == 'true' }}
+  #       run: npx firebase deploy -P default --token=${{ secrets.FIREBASE_TOKEN }} --only hosting
