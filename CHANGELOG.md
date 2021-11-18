@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.0.13 (2021-11-18)
+
+
+### Bug Fixes
+
+* remove pwa since it was not working right ([7ac0e2f](https://github.com/jasonruesch/jasonruesch/commit/7ac0e2fbefd36e5735795e42276c76274b89e13f))
+
 ### 0.0.12 (2021-11-18)
 
 ### [0.0.11](https://github.com/jasonruesch/jasonruesch/compare/v0.0.10...v0.0.11) (2021-11-17)
