@@ -31,7 +31,7 @@ jobs:
           path: dist
 
   deploy_to_preview:
-    if: ${{ github.ref !== 'refs/heads/main' }}
+    if: ${{ github.ref != 'refs/heads/main' }}
     needs: build
     name: Deploy to Preview
     environment:
@@ -57,7 +57,7 @@ jobs:
         run: npx firebase hosting:channel:deploy -P staging preview --token=${{ secrets.FIREBASE_TOKEN }}
 
   deploy_to_staging:
-    if: ${{ github.ref === 'refs/heads/main' }}
+    if: ${{ github.ref == 'refs/heads/main' }}
     needs: build
     name: Deploy to Staging
     environment:
