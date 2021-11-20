@@ -35,8 +35,7 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - name: Build
-        run: |
-          npx nx affected --target=build --parallel --max-parallel=3
+        run: npx nx affected --target=build --parallel --max-parallel=3
       - name: Publish Artifacts
         uses: actions/upload-artifact@v2
         with:
