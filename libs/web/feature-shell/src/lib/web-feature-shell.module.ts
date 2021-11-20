@@ -39,6 +39,13 @@ import {
               ),
           },
           {
+            path: 'work',
+            loadChildren: () =>
+              import('@jasonruesch/web/feature-work').then(
+                (m) => m.WebFeatureWorkModule
+              ),
+          },
+          {
             path: 'contact',
             loadChildren: () =>
               import('@jasonruesch/web/feature-contact').then(

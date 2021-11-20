@@ -1,17 +1,18 @@
-import { Breakpoints, MediaMatcher } from '@angular/cdk/layout';
 import {
   Component,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
-  OnDestroy,
-  OnInit,
   ViewChild,
+  OnInit,
+  OnDestroy,
 } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter, map } from 'rxjs/operators';
 import { ThemeService } from '@jasonruesch/web/ui';
 import { environment } from '@jasonruesch/shared/environment';
+import { LayoutService } from '@jasonruesch/shared/utilities';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'jr-shell',
@@ -23,14 +24,13 @@ export class ShellComponent implements OnInit, OnDestroy {
   @ViewChild('sidenav', { static: true }) sidenav!: MatSidenav;
 
   transparentToolbar = false;
-  xsmall = false;
 
-  private media?: MediaQueryList;
+  private breakpointSubscription?: Subscription;
 
   constructor(
+    public layoutService: LayoutService,
     public themeService: ThemeService,
     private router: Router,
-    private mediaMatcher: MediaMatcher,
     private changeDetector: ChangeDetectorRef
   ) {
     this.router.events
@@ -41,20 +41,20 @@ export class ShellComponent implements OnInit, OnDestroy {
       .subscribe((event: NavigationEnd) => {
         this.transparentToolbar = event.url === '/';
 
-        if (this.transparentToolbar || this.xsmall) {
+        if (this.transparentToolbar || this.layoutService.xsmall) {
           this.sidenav.close();
         }
       });
   }
 
   ngOnInit(): void {
-    this.media = this.mediaMatcher.matchMedia(Breakpoints.XSmall);
-    this.media.addEventListener('change', this.handleBreakpoint.bind(this));
-    this.xsmall = this.media.matches;
+    this.breakpointSubscription = this.layoutService.breakpointChange.subscribe(
+      () => this.changeDetector.detectChanges()
+    );
   }
 
-  ngOnDestroy() {
-    this.media?.removeEventListener('change', this.handleBreakpoint.bind(this));
+  ngOnDestroy(): void {
+    this.breakpointSubscription?.unsubscribe();
   }
 
   toggleTheme(): void {
@@ -70,10 +70,5 @@ export class ShellComponent implements OnInit, OnDestroy {
       return this.router.url;
     }
     return `${origin}/${localeId}${this.router.url}`;
-  }
-
-  private handleBreakpoint(event: MediaQueryListEvent) {
-    this.xsmall = event.matches;
-    this.changeDetector.detectChanges();
   }
 }

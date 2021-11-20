@@ -8,7 +8,7 @@
     <button
       mat-icon-button
       (click)="sidenav.toggle()"
-      *ngIf="xsmall"
+      *ngIf="layoutService.xsmall"
       i18n-aria-label
       aria-label="Toggle the menu"
     >
@@ -17,19 +17,29 @@
     <a class="app-name" routerLink="/">
       <jr-icon
         [solid]="true"
-        *ngIf="transparentToolbar && !sidenav.opened && !xsmall"
+        *ngIf="
+          transparentToolbar || layoutService.small || layoutService.xsmall
+        "
       ></jr-icon>
       <jr-logo
         [solid]="true"
-        *ngIf="!transparentToolbar || sidenav.opened"
+        *ngIf="
+          !transparentToolbar && !layoutService.small && !layoutService.xsmall
+        "
       ></jr-logo>
     </a>
-    <mat-nav-list *ngIf="!xsmall">
+    <mat-nav-list *ngIf="!layoutService.xsmall">
       <a mat-list-item routerLink="/about" routerLinkActive="active">
         <div class="text" i18n>About</div>
       </a>
+      <a mat-list-item routerLink="/work" routerLinkActive="active">
+        <div class="text" i18n>Work</div>
+      </a>
       <a mat-list-item routerLink="/contact" routerLinkActive="active">
         <div class="text" i18n>Contact</div>
+      </a>
+      <a mat-list-item href="https://blog.jasonruesch.dev">
+        <div class="text" i18n>Blog</div>
       </a>
     </mat-nav-list>
     <span class="spacer"></span>
@@ -64,7 +74,7 @@
     <mat-sidenav
       #sidenav
       class="sidenav"
-      [mode]="xsmall ? 'over' : 'side'"
+      [mode]="layoutService.xsmall ? 'over' : 'side'"
       [fixedInViewport]="true"
     >
       <mat-nav-list>
@@ -73,15 +83,21 @@
           routerLink="/"
           routerLinkActive="active"
           [routerLinkActiveOptions]="{ exact: true }"
-          *ngIf="xsmall"
+          *ngIf="layoutService.xsmall"
         >
           <div class="text" i18n>Home</div>
         </a>
         <a mat-list-item routerLink="/about" routerLinkActive="active">
           <div class="text" i18n>About</div>
         </a>
+        <a mat-list-item routerLink="/work" routerLinkActive="active">
+          <div class="text" i18n>Work</div>
+        </a>
         <a mat-list-item routerLink="/contact" routerLinkActive="active">
           <div class="text" i18n>Contact</div>
+        </a>
+        <a mat-list-item href="https://blog.jasonruesch.dev">
+          <div class="text" i18n>Blog</div>
         </a>
       </mat-nav-list>
     </mat-sidenav>

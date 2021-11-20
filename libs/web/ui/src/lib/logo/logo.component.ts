@@ -6,6 +6,7 @@ import {
   OnDestroy,
   ChangeDetectorRef,
   Input,
+  HostBinding,
 } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ThemeService } from '../theme.service';
@@ -18,6 +19,8 @@ import { ThemeService } from '../theme.service';
 })
 export class LogoComponent implements OnInit, OnDestroy {
   @Input() solid = false;
+
+  @HostBinding('class.jr-logo') className = true;
 
   primaryColor!: string;
   accentColor!: string;

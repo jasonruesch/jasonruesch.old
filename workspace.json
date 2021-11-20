@@ -12,6 +12,7 @@
     "web-feature-contact": "libs/web/feature-contact",
     "web-feature-home": "libs/web/feature-home",
     "web-feature-shell": "libs/web/feature-shell",
+    "web-feature-work": "libs/web/feature-work",
     "web-ui": "libs/web/ui"
   }
 }

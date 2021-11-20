@@ -1,0 +1,17 @@
+<h1 i18n>My Work</h1>
+<mat-grid-list
+  cols="4"
+  [rowHeight]="layoutService.xsmall ? '1:1' : '228px'"
+  gutterSize="0.5rem"
+>
+  <mat-grid-tile
+    *ngFor="let tile of tiles"
+    [colspan]="layoutService.xsmall ? 4 : tile.cols"
+    [rowspan]="layoutService.xsmall ? 4 : tile.rows"
+    [style.background]="tile.color"
+  >
+    <mat-grid-tile-header>
+      {{ tile.text }}
+    </mat-grid-tile-header>
+  </mat-grid-tile>
+</mat-grid-list>

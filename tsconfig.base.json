@@ -27,6 +27,7 @@
       ],
       "@jasonruesch/web/feature-home": ["libs/web/feature-home/src/index.ts"],
       "@jasonruesch/web/feature-shell": ["libs/web/feature-shell/src/index.ts"],
+      "@jasonruesch/web/feature-work": ["libs/web/feature-work/src/index.ts"],
       "@jasonruesch/web/ui": ["libs/web/ui/src/index.ts"]
     }
   },
