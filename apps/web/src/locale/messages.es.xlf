@@ -188,11 +188,23 @@
         <target state="translated">Sobre</target>
         <context-group purpose="location">
           <context context-type="sourcefile">libs/web/feature-shell/src/lib/shell/shell.component.html</context>
-          <context context-type="linenumber">29</context>
+          <context context-type="linenumber">33</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">libs/web/feature-shell/src/lib/shell/shell.component.html</context>
-          <context context-type="linenumber">81</context>
+          <context context-type="linenumber">91</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4c57ac0d5f8599114795f0b5e6f478befbe15966" datatype="html">
+        <source>Work</source>
+        <target state="translated">Trabaja</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/web/feature-shell/src/lib/shell/shell.component.html</context>
+          <context context-type="linenumber">36</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/web/feature-shell/src/lib/shell/shell.component.html</context>
+          <context context-type="linenumber">94</context>
         </context-group>
       </trans-unit>
       <trans-unit id="34746fb1c7f3d2194d99652bdff89e6e14c9c4f4" datatype="html">
@@ -200,11 +212,23 @@
         <target state="translated">Contacto</target>
         <context-group purpose="location">
           <context context-type="sourcefile">libs/web/feature-shell/src/lib/shell/shell.component.html</context>
-          <context context-type="linenumber">32</context>
+          <context context-type="linenumber">39</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">libs/web/feature-shell/src/lib/shell/shell.component.html</context>
-          <context context-type="linenumber">84</context>
+          <context context-type="linenumber">97</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="013acfd8797bf5ade4a15c71fa24178f913c4cae" datatype="html">
+        <source>Blog</source>
+        <target state="translated">Blog</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/web/feature-shell/src/lib/shell/shell.component.html</context>
+          <context context-type="linenumber">42</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/web/feature-shell/src/lib/shell/shell.component.html</context>
+          <context context-type="linenumber">100</context>
         </context-group>
       </trans-unit>
       <trans-unit id="b0babc2605f3b9609caf7b451e47ffca381b7bfa" datatype="html">
@@ -212,11 +236,11 @@
         <target state="translated">Alternar el tema entre claro y oscuro</target>
         <context-group purpose="location">
           <context context-type="sourcefile">libs/web/feature-shell/src/lib/shell/shell.component.html</context>
-          <context context-type="linenumber">40</context>
+          <context context-type="linenumber">50</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">libs/web/feature-shell/src/lib/shell/shell.component.html</context>
-          <context context-type="linenumber">42</context>
+          <context context-type="linenumber">52</context>
         </context-group>
       </trans-unit>
       <trans-unit id="79a2a94df75face5217690ef19711730f954b639" datatype="html">
@@ -224,11 +248,11 @@
         <target state="translated">Opciones de lenguaje</target>
         <context-group purpose="location">
           <context context-type="sourcefile">libs/web/feature-shell/src/lib/shell/shell.component.html</context>
-          <context context-type="linenumber">51</context>
+          <context context-type="linenumber">61</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">libs/web/feature-shell/src/lib/shell/shell.component.html</context>
-          <context context-type="linenumber">53</context>
+          <context context-type="linenumber">63</context>
         </context-group>
       </trans-unit>
       <trans-unit id="92eee6be6de0b11c924e3ab27db30257159c0a7c" datatype="html">
@@ -236,7 +260,15 @@
         <target state="translated">Hogar</target>
         <context-group purpose="location">
           <context context-type="sourcefile">libs/web/feature-shell/src/lib/shell/shell.component.html</context>
-          <context context-type="linenumber">78</context>
+          <context context-type="linenumber">88</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="88fd39f8823f4e5b76af127587899c5848793eaf" datatype="html">
+        <source>My Work</source>
+        <target state="translated">Mi trabajo</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/web/feature-work/src/lib/work/work.component.html</context>
+          <context context-type="linenumber">1</context>
         </context-group>
       </trans-unit>
     </body>
