@@ -7,7 +7,32 @@ env:
   NX_RUN_GROUP: ${{ github.run_id }}
 
 jobs:
+  deploy_to_preview:
+    if: ${{ github.ref != 'refs/heads/main' }}
+    needs: build
+    name: Deploy to Preview
+    environment:
+      name: Preview
+    concurrency:
+      group: Preview
+      cancel-in-progress: true
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        name: Checkout [${{ github.ref }}]
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '12'
+          cache: 'npm'
+      - run: npm ci
+      - name: Build
+        run: |
+          npx nx build web
+      - name: Deploy Web
+        run: npx firebase hosting:channel:deploy -P staging preview --token=${{ secrets.FIREBASE_TOKEN }}
+
   build:
+    if: ${{ github.ref == 'refs/heads/main' }}
     name: Build
     runs-on: ubuntu-latest
     concurrency:
@@ -30,34 +55,7 @@ jobs:
           name: jasonruesch
           path: dist
 
-  deploy_to_preview:
-    if: ${{ github.ref != 'refs/heads/main' }}
-    needs: build
-    name: Deploy to Preview
-    environment:
-      name: Preview
-    concurrency:
-      group: Preview
-      cancel-in-progress: true
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '12'
-          cache: 'npm'
-        name: Checkout
-      - name: Download artifacts
-        uses: actions/download-artifact@v2
-        with:
-          name: jasonruesch
-          path: dist
-      - run: npm ci
-      - name: Deploy Web
-        run: npx firebase hosting:channel:deploy -P staging preview --token=${{ secrets.FIREBASE_TOKEN }}
-
   deploy_to_staging:
-    if: ${{ github.ref == 'refs/heads/main' }}
     needs: build
     name: Deploy to Staging
     environment:
