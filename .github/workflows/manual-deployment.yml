@@ -9,7 +9,6 @@ env:
 jobs:
   deploy_to_preview:
     if: ${{ github.ref != 'refs/heads/main' }}
-    needs: build
     name: Deploy to Preview
     environment:
       name: Preview
