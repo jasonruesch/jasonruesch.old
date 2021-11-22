@@ -78,9 +78,7 @@ jobs:
         with:
           files: 'dist/apps/web'
       - name: Generate config file
-        run: |
-        'find dist/apps/web -type d -mindepth 1 -maxdepth 1 -exec sh -c 'for dir in "$@" ; do echo "$CONFIG" > "$dir/assets/config.json" ; done' sh {} +'
-        'echo "$CONFIG" > dist/apps/web/config.json'
+        run: $(find dist/apps/web -type d -mindepth 1 -maxdepth 1 -exec sh -c 'for dir in "$@" ; do echo "$CONFIG" > "$dir/assets/config.json" ; done' sh {} +)
         shell: bash
         env:
           CONFIG: ${{ secrets.CONFIG }}
