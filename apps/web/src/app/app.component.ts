@@ -21,11 +21,9 @@ export class AppComponent {
     // Test the API
     this.http.get<Message>('/api/hello').subscribe(console.log);
 
-    // Set the title to environment if not production
-    if (
-      this.configService.config.environmentName.toLowerCase() !== 'production'
-    ) {
-      this.title.setTitle(this.configService.config.environmentName);
+    // Set the title from the config, if provided
+    if (this.configService.config.title) {
+      this.title.setTitle(this.configService.config.title);
     }
   }
 }

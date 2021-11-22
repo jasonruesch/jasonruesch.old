@@ -1,7 +1,7 @@
 import { InjectionToken } from '@angular/core';
 
 export interface Config {
-  environmentName: string;
+  title?: string;
   firebase?: {
     projectId: string;
     appId?: string;
