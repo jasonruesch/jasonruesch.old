@@ -19,8 +19,5 @@ function configListener(this: XMLHttpRequest) {
 const request = new XMLHttpRequest();
 request.addEventListener('load', configListener);
 request.addEventListener('error', (err) => console.error(err));
-request.open(
-  'GET',
-  (environment.production ? '../' : './assets/') + 'config.json'
-);
+request.open('GET', './assets/config.json');
 request.send();
