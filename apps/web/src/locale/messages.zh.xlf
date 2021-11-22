@@ -231,9 +231,9 @@
           <context context-type="linenumber">100</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="b0babc2605f3b9609caf7b451e47ffca381b7bfa" datatype="html">
-        <source>Toggle the theme between light and dark</source>
-        <target state="translated">在明暗之间切换主题</target>
+      <trans-unit id="d2764aafbf6c22a02fd609257805eca54a91c06a" datatype="html">
+        <source>Switch between light and dark mode</source>
+        <target state="translated">在明暗模式之间切换</target>
         <context-group purpose="location">
           <context context-type="sourcefile">libs/web/feature-shell/src/lib/shell/shell.component.html</context>
           <context context-type="linenumber">50</context>
