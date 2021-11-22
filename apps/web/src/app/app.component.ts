@@ -4,7 +4,6 @@ import { Message } from '@jasonruesch/api-interfaces';
 import pkg from '../../../../package.json';
 import { ConfigService } from '@jasonruesch/shared/config';
 import { Title } from '@angular/platform-browser';
-import { environment } from '@jasonruesch/shared/environment';
 
 @Component({
   selector: 'jr-root',
@@ -22,8 +21,10 @@ export class AppComponent {
     // Test the API
     this.http.get<Message>('/api/hello').subscribe(console.log);
 
-    // Set the title
-    if (!environment.production) {
+    // Set the title to environment if not production
+    if (
+      this.configService.config.environmentName.toLowerCase() !== 'production'
+    ) {
       this.title.setTitle(this.configService.config.environmentName);
     }
   }
