@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.16](https://github.com/jasonruesch/jasonruesch/compare/v0.0.15...v0.0.16) (2021-11-24)
+
+
+### Features
+
+* add google analytics ([a9e6909](https://github.com/jasonruesch/jasonruesch/commit/a9e69096e65345fddd6a8e703ec5920beaa024cd))
+
 ### [0.0.15](https://github.com/jasonruesch/jasonruesch/compare/v0.0.14...v0.0.15) (2021-11-24)
 
 
