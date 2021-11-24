@@ -1,5 +1,5 @@
 {
-  "title": "Development",
+  "title": "non-production_environment_name (omit for production environment)",
   "firebase": {
     "apiKey": "your_firebase_project_api_key",
     "authDomain": "your_firebase_project_auth_domain",
