@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.19](https://github.com/jasonruesch/jasonruesch/compare/v0.0.18...v0.0.19) (2021-11-24)
+
+
+### Features
+
+* use version from config ([f3dc700](https://github.com/jasonruesch/jasonruesch/commit/f3dc700f7d31621810d0abeaaedbedfdb238a141))
+
+
+### Bug Fixes
+
+* only include version from package if not already in config ([d05774a](https://github.com/jasonruesch/jasonruesch/commit/d05774a48e94dea007ffecc12806a8b470708a47))
+
 ### [0.0.18](https://github.com/jasonruesch/jasonruesch/compare/v0.0.16...v0.0.18) (2021-11-24)
 
 
