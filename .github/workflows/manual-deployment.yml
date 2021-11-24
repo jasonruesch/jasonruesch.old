@@ -55,7 +55,7 @@ jobs:
       - run: npm ci
       - name: Generate config file
         run: |
-          VERSION: $(echo "`cat package.json | jq '.version'`" | sed -e 's/^"//' -e 's/"$//')
+          VERSION=$(echo "`cat package.json | jq '.version'`" | sed -e 's/^"//' -e 's/"$//')
           CONFIG=$(echo "$CONFIG" | jq --arg version $VERSION '.version=$version')
           $(find dist/apps/web -type d -mindepth 1 -maxdepth 1 -exec sh -c 'for dir in "$@" ; do echo "$CONFIG" > "$dir/assets/config.json" ; done' sh {} +)
         shell: bash
@@ -96,7 +96,7 @@ jobs:
         run: npx firebase deploy -P staging --token=${{ secrets.FIREBASE_TOKEN }} --only functions
       - name: Generate config file
         run: |
-          VERSION: $(echo "`cat package.json | jq '.version'`" | sed -e 's/^"//' -e 's/"$//')
+          VERSION=$(echo "`cat package.json | jq '.version'`" | sed -e 's/^"//' -e 's/"$//')
           CONFIG=$(echo "$CONFIG" | jq --arg version $VERSION '.version=$version')
           $(find dist/apps/web -type d -mindepth 1 -maxdepth 1 -exec sh -c 'for dir in "$@" ; do echo "$CONFIG" > "$dir/assets/config.json" ; done' sh {} +)
         shell: bash
@@ -138,7 +138,7 @@ jobs:
         run: npx firebase deploy -P default --token=${{ secrets.FIREBASE_TOKEN }} --only functions
       - name: Generate config file
         run: |
-          VERSION: $(echo "`cat package.json | jq '.version'`" | sed -e 's/^"//' -e 's/"$//')
+          VERSION=$(echo "`cat package.json | jq '.version'`" | sed -e 's/^"//' -e 's/"$//')
           CONFIG=$(echo "$CONFIG" | jq --arg version $VERSION '.version=$version')
           $(find dist/apps/web -type d -mindepth 1 -maxdepth 1 -exec sh -c 'for dir in "$@" ; do echo "$CONFIG" > "$dir/assets/config.json" ; done' sh {} +)
         shell: bash

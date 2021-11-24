@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.17](https://github.com/jasonruesch/jasonruesch/compare/v0.0.16...v0.0.17) (2021-11-24)
+
+
+### Features
+
+* use anchor tags instead of buttons to switch language ([104d502](https://github.com/jasonruesch/jasonruesch/commit/104d5028e2d54101728727c3e4833a63a4898d35))
+
 ### [0.0.16](https://github.com/jasonruesch/jasonruesch/compare/v0.0.15...v0.0.16) (2021-11-24)
 
 
