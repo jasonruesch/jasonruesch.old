@@ -91,7 +91,12 @@ jobs:
         run: npx firebase deploy -P staging --token=${{ secrets.FIREBASE_TOKEN }} --only functions
       - name: Deploy Web
         if: ${{ steps.check_web.outputs.files_exists == 'true' }}
-        run: npx firebase deploy -P staging --token=${{ secrets.FIREBASE_TOKEN }} --only hosting
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}'
+          projectId: jasonruesch---staging
+          channelId: live
 
   deploy_to_production:
     if: ${{ false }} # Disable for now
@@ -132,4 +137,9 @@ jobs:
         run: npx firebase deploy -P default --token=${{ secrets.FIREBASE_TOKEN }} --only functions
       - name: Deploy Web
         if: ${{ steps.check_web.outputs.files_exists == 'true' }}
-        run: npx firebase deploy -P default --token=${{ secrets.FIREBASE_TOKEN }} --only hosting
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}'
+          projectId: jasonruesch
+          channelId: live
