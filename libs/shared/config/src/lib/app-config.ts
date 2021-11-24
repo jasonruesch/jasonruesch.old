@@ -3,7 +3,7 @@ import { FirebaseOptions } from 'firebase/app';
 
 export interface AppConfig {
   title?: string;
-  firebase: FirebaseOptions;
+  firebase?: FirebaseOptions;
   // {
   //   apiKey: string;
   //   authDomain: string;
