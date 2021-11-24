@@ -25,9 +25,67 @@ jobs:
           fetch-depth: 0
       - name: Derive appropriate SHAs for base and head for `nx affected` commands
         uses: nrwl/nx-set-shas@v2
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v2
         with:
           node-version: '12'
+          cache: 'npm'
+      - name: Cache Cypress
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-cypress
+        with:
+          path: ~/.cache/Cypress
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
       - run: npm ci
       - name: Build
         run: npx nx affected --target=build --parallel --max-parallel=3
+      # - name: Test
+      - name: Publish Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: jasonruesch
+          path: dist
+
+  deploy_to_preview:
+    needs: build_and_test
+    name: Deploy to Preview
+    environment:
+      name: Preview
+    concurrency:
+      group: Preview
+      cancel-in-progress: true
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        name: Checkout [${{ github.ref }}]
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '12'
+          cache: 'npm'
+      - name: Download artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: jasonruesch
+          path: dist
+      - run: npm ci
+      - name: Check for Web build artifact
+        id: check_web
+        uses: andstor/file-existence-action@v1
+        with:
+          files: 'dist/apps/web'
+      - name: Generate config file
+        run: $(find dist/apps/web -type d -mindepth 1 -maxdepth 1 -exec sh -c 'for dir in "$@" ; do echo "$CONFIG" > "$dir/assets/config.json" ; done' sh {} +)
+        shell: bash
+        env:
+          CONFIG: ${{ secrets.CONFIG }}
+      - name: Deploy Web
+        if: ${{ steps.check_web.outputs.files_exists == 'true' }}
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}'
+          projectId: jasonruesch---staging

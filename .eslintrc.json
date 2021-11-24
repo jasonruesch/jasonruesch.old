@@ -26,7 +26,7 @@
               },
               {
                 "sourceTag": "type:app",
-                "onlyDependOnLibsWithTags": ["type:feature", "type:data"]
+                "onlyDependOnLibsWithTags": ["type:feature", "type:util", "type:data"]
               },
               {
                 "sourceTag": "type:feature",

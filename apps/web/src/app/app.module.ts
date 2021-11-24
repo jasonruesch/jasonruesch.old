@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { WebFeatureShellModule } from '@jasonruesch/web/feature-shell';
 import { RouterModule } from '@angular/router';
+import { SharedConfigModule } from '@jasonruesch/shared/config';
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,6 +16,7 @@ import { RouterModule } from '@angular/router';
     BrowserAnimationsModule,
     RouterModule,
     WebFeatureShellModule,
+    SharedConfigModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

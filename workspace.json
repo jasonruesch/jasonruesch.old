@@ -3,6 +3,7 @@
   "projects": {
     "api": "apps/api",
     "api-interfaces": "libs/api-interfaces",
+    "shared-config": "libs/shared/config",
     "shared-environment": "libs/shared/environment",
     "shared-utilities": "libs/shared/utilities",
     "web": "apps/web",
