@@ -1,18 +1,9 @@
 import { InjectionToken } from '@angular/core';
+import { FirebaseOptions } from 'firebase/app';
 
-export interface Config {
+export interface AppConfig {
   title?: string;
-  firebase?: {
-    projectId: string;
-    appId?: string;
-    databaseURL?: string;
-    storageBucket?: string;
-    locationId?: string;
-    apiKey?: string;
-    authDomain?: string;
-    messagingSenderId?: string;
-    measurementId?: string;
-  };
+  firebase?: FirebaseOptions;
 }
 
-export const CONFIG = new InjectionToken<Config>('APP_CONFIG');
+export const APP_CONFIG = new InjectionToken<AppConfig>('APP_CONFIG');
