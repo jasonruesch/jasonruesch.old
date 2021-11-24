@@ -79,7 +79,10 @@ jobs:
           files: 'dist/apps/web'
       - name: Generate config file
         if: ${{ steps.check_web.outputs.files_exists == 'true' }}
-        run: $(find dist/apps/web -type d -mindepth 1 -maxdepth 1 -exec sh -c 'for dir in "$@" ; do echo "$CONFIG" > "$dir/assets/config.json" ; done' sh {} +)
+        run: |
+          VERSION: $(echo "`cat package.json | jq '.version'`" | sed -e 's/^"//' -e 's/"$//')
+          CONFIG=$(echo "$CONFIG" | jq --arg version $VERSION '.version=$version')
+          $(find dist/apps/web -type d -mindepth 1 -maxdepth 1 -exec sh -c 'for dir in "$@" ; do echo "$CONFIG" > "$dir/assets/config.json" ; done' sh {} +)
         shell: bash
         env:
           CONFIG: ${{ secrets.CONFIG }}
