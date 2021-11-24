@@ -61,16 +61,15 @@ export class ShellComponent implements OnInit, OnDestroy {
     this.themeService.toggleDarkMode();
   }
 
-  setLanguage(localeId: string): void {
+  getLanguageUrl(localeId: string): string {
     const origin = document.location.origin;
     // Switching language is not allowed when developing locally.
     // To test a different language, change the `localize` value for the
     // `development` configuration in this project's `project.json` file.
-    // TODO: Replace with shared environment variable
     if (!environment.production) {
-      return;
+      return this.router.url;
     }
-    document.location.href = `${origin}/${localeId}${this.router.url}`;
+    return `${origin}/${localeId}${this.router.url}`;
   }
 
   private handleBreakpoint(event: MediaQueryListEvent) {

@@ -93,12 +93,12 @@
 </div>
 
 <mat-menu #languageMenu="matMenu">
-  <button mat-menu-item (click)="setLanguage('de')">Deutsch</button>
-  <button mat-menu-item (click)="setLanguage('en')">English</button>
-  <button mat-menu-item (click)="setLanguage('es')">Español</button>
-  <button mat-menu-item (click)="setLanguage('fr')">français</button>
-  <button mat-menu-item (click)="setLanguage('nl')">Nederlands</button>
-  <button mat-menu-item (click)="setLanguage('pt')">português</button>
-  <button mat-menu-item (click)="setLanguage('ru')">русский</button>
-  <button mat-menu-item (click)="setLanguage('zh')">中国人</button>
+  <a mat-menu-item [href]="getLanguageUrl('de')">Deutsch</a>
+  <a mat-menu-item [href]="getLanguageUrl('en')">English</a>
+  <a mat-menu-item [href]="getLanguageUrl('es')">Español</a>
+  <a mat-menu-item [href]="getLanguageUrl('fr')">français</a>
+  <a mat-menu-item [href]="getLanguageUrl('nl')">Nederlands</a>
+  <a mat-menu-item [href]="getLanguageUrl('pt')">português</a>
+  <a mat-menu-item [href]="getLanguageUrl('ru')">русский</a>
+  <a mat-menu-item [href]="getLanguageUrl('zh')">中国人</a>
 </mat-menu>
