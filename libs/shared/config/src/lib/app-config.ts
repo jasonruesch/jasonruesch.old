@@ -3,6 +3,7 @@ import { FirebaseOptions } from 'firebase/app';
 
 export interface AppConfig {
   title?: string;
+  version?: string;
   firebase?: FirebaseOptions;
   // {
   //   apiKey: string;

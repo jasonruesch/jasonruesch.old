@@ -1,7 +1,6 @@
 import { Component, HostBinding } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Message } from '@jasonruesch/api-interfaces';
-import pkg from '../../../../package.json';
 import { ConfigService } from '@jasonruesch/shared/config';
 import { Title } from '@angular/platform-browser';
 import { environment } from '@jasonruesch/shared/environment';
@@ -12,7 +11,8 @@ import { environment } from '@jasonruesch/shared/environment';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  @HostBinding('[attr.jr-version]') version = pkg?.version;
+  @HostBinding('[attr.jr-version]') version =
+    this.configService.config?.version;
 
   private config = this.configService.config;
 
