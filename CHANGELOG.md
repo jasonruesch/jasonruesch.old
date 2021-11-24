@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.15](https://github.com/jasonruesch/jasonruesch/compare/v0.0.14...v0.0.15) (2021-11-24)
+
+
+### Features
+
+* add config library and provide at runtime ([#6](https://github.com/jasonruesch/jasonruesch/issues/6)) ([d6be255](https://github.com/jasonruesch/jasonruesch/commit/d6be2559cdfbe0743e3e8374bc60e4ae824420cc))
+
 ### [0.0.14](https://github.com/jasonruesch/jasonruesch/compare/v0.0.13...v0.0.14) (2021-11-18)
 
 ### [0.0.13](https://github.com/jasonruesch/jasonruesch/compare/v0.0.12...v0.0.13) (2021-11-18)
