@@ -7,31 +7,7 @@ env:
   NX_RUN_GROUP: ${{ github.run_id }}
 
 jobs:
-  deploy_to_preview:
-    if: ${{ github.ref != 'refs/heads/main' }}
-    name: Deploy to Preview
-    environment:
-      name: Preview
-    concurrency:
-      group: Preview
-      cancel-in-progress: true
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-        name: Checkout [${{ github.ref }}]
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '12'
-          cache: 'npm'
-      - run: npm ci
-      - name: Build
-        run: |
-          npx nx build web
-      - name: Deploy Web
-        run: npx firebase hosting:channel:deploy -P staging preview --token=${{ secrets.FIREBASE_TOKEN }}
-
   build:
-    if: ${{ github.ref == 'refs/heads/main' }}
     name: Build
     runs-on: ubuntu-latest
     concurrency:
@@ -54,7 +30,42 @@ jobs:
           name: jasonruesch
           path: dist
 
+  deploy_to_preview:
+    if: ${{ github.ref != 'refs/heads/main' }}
+    name: Deploy to Preview
+    environment:
+      name: Preview
+    concurrency:
+      group: Preview
+      cancel-in-progress: true
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        name: Checkout [${{ github.ref }}]
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '12'
+          cache: 'npm'
+      - name: Download artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: jasonruesch
+          path: dist
+      - run: npm ci
+      - name: Generate config file
+        run: $(find dist/apps/web -type d -mindepth 1 -maxdepth 1 -exec sh -c 'for dir in "$@" ; do echo "$CONFIG" > "$dir/assets/config.json" ; done' sh {} +)
+        shell: bash
+        env:
+          CONFIG: ${{ secrets.CONFIG }}
+      - name: Deploy Web
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}'
+          projectId: jasonruesch---staging
+
   deploy_to_staging:
+    if: ${{ github.ref == 'refs/heads/main' }}
     needs: build
     name: Deploy to Staging
     environment:
@@ -79,8 +90,18 @@ jobs:
       - run: npm ci
       - name: Deploy API
         run: npx firebase deploy -P staging --token=${{ secrets.FIREBASE_TOKEN }} --only functions
+      - name: Generate config file
+        run: $(find dist/apps/web -type d -mindepth 1 -maxdepth 1 -exec sh -c 'for dir in "$@" ; do echo "$CONFIG" > "$dir/assets/config.json" ; done' sh {} +)
+        shell: bash
+        env:
+          CONFIG: ${{ secrets.CONFIG }}
       - name: Deploy Web
-        run: npx firebase deploy -P staging --token=${{ secrets.FIREBASE_TOKEN }} --only hosting
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}'
+          projectId: jasonruesch---staging
+          channelId: live
 
   deploy_to_production:
     if: ${{ false }} # Disable for now
@@ -108,5 +129,15 @@ jobs:
       - run: npm ci
       - name: Deploy API
         run: npx firebase deploy -P default --token=${{ secrets.FIREBASE_TOKEN }} --only functions
+      - name: Generate config file
+        run: $(find dist/apps/web -type d -mindepth 1 -maxdepth 1 -exec sh -c 'for dir in "$@" ; do echo "$CONFIG" > "$dir/assets/config.json" ; done' sh {} +)
+        shell: bash
+        env:
+          CONFIG: ${{ secrets.CONFIG }}
       - name: Deploy Web
-        run: npx firebase deploy -P default --token=${{ secrets.FIREBASE_TOKEN }} --only hosting
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}'
+          projectId: jasonruesch
+          channelId: live
