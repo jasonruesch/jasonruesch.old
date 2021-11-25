@@ -111,7 +111,6 @@ jobs:
           channelId: live
 
   deploy_to_production:
-    if: ${{ false }} # Disable for now
     needs: deploy_to_staging
     name: Deploy to Production
     environment:
