@@ -27,6 +27,12 @@ export class AppComponent {
     // Set the title from the config, if provided
     if (this.config.title) {
       this.title.setTitle(this.config.title);
+      document.head
+        .querySelector('meta[name="title"]')
+        ?.setAttribute('content', this.config.title);
+      document.head
+        .querySelector('meta[name="apple-mobile-web-app-title"]')
+        ?.setAttribute('content', this.config.title);
     }
 
     if (environment.production) {
