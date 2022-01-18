@@ -47,6 +47,9 @@
             "bundleName": "light-theme"
           }
         ],
+        "stylePreprocessorOptions": {
+          "includePaths": ["node_modules"]
+        },
         "scripts": []
       },
       "configurations": {
