@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/jasonruesch/jasonruesch/compare/v1.0.1...v1.1.0) (2022-02-09)
+
+
+### Features
+
+* update to angular 13 via nx migrate ([#7](https://github.com/jasonruesch/jasonruesch/issues/7)) ([d9d24c7](https://github.com/jasonruesch/jasonruesch/commit/d9d24c79ac75360733ca44d597c5f132fb1286c9))
+
 ### [1.0.1](https://github.com/jasonruesch/jasonruesch/compare/v1.0.0...v1.0.1) (2021-11-26)
 
 ## [1.0.0](https://github.com/jasonruesch/jasonruesch/compare/v0.0.19...v1.0.0) (2021-11-25)
