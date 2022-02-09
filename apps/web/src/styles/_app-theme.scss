@@ -1,7 +1,7 @@
 @use 'sass:map';
-@use '~@angular/material' as mat;
-@import '~@angular/material/core/style/variables';
-@import '~@angular/material/toolbar/toolbar-variables';
+@use '@angular/material' as mat;
+@import '@angular/material/core/style/variables';
+@import '@angular/material/toolbar/toolbar-variables';
 @import './variables';
 
 $spacing-margin: 24px;

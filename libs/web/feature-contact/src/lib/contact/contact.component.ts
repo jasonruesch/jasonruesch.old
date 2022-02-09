@@ -5,8 +5,8 @@ import {
   ChangeDetectorRef,
 } from '@angular/core';
 import { Validators, FormBuilder } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { filter, switchMap } from 'rxjs/operators';
+import { EMPTY, Observable } from 'rxjs';
+import { catchError, filter, switchMap } from 'rxjs/operators';
 import { ContactService } from './contact.service';
 import { NavigationEnd, Router } from '@angular/router';
 import '@angular/localize/init';
@@ -43,22 +43,23 @@ export class ContactComponent {
     this.sending = true;
 
     this.send()
-      .pipe(switchMap(() => this.sendConfirmation()))
-      .subscribe(
-        () => {
-          (event.target as HTMLFormElement).reset();
-          this.sending = false;
-          this.changeDetector.detectChanges();
-          this.showSuccessSnackBar($localize`Thank you for contacting me!`);
-        },
-        () => {
+      .pipe(
+        switchMap(() => this.sendConfirmation()),
+        catchError(() => {
           this.sending = false;
           this.changeDetector.detectChanges();
           this.showWarningSnackBar(
             $localize`Your message could not be delivered. Please try again.`
           );
-        }
-      );
+          return EMPTY;
+        })
+      )
+      .subscribe(() => {
+        (event.target as HTMLFormElement).reset();
+        this.sending = false;
+        this.changeDetector.detectChanges();
+        this.showSuccessSnackBar($localize`Thank you for contacting me!`);
+      });
   }
 
   private send(): Observable<unknown> {
