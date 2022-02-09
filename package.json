@@ -2,6 +2,10 @@
   "name": "jasonruesch",
   "version": "1.0.1",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jasonruesch/jasonruesch.git"
+  },
   "scripts": {
     "ng": "nx",
     "postinstall": "node ./decorate-angular-cli.js && ngcc --properties es2015 browser module main",
@@ -12,6 +16,7 @@
     "extract-i18n": "ng extract-i18n --out-file messages.en.xlf --output-path apps/web/src/locale",
     "merge-i18n": "cross-env API_KEY_FILE=.apikey xliffmerge --profile xliffmerge.json",
     "i18n": "npm run extract-i18n && npm run merge-i18n",
+    "maildev": "maildev --ip 127.0.0.1",
     "temp-script-to-remember-rebase-autostash": "git pull --rebase --autostash"
   },
   "private": true,
@@ -68,7 +73,7 @@
     "@typescript-eslint/eslint-plugin": "5.3.1",
     "@typescript-eslint/parser": "5.3.1",
     "cross-env": "^7.0.3",
-    "cypress": "^8.3.0",
+    "cypress": "^9.1.0",
     "eslint": "8.2.0",
     "eslint-config-prettier": "8.1.0",
     "eslint-plugin-cypress": "^2.10.3",

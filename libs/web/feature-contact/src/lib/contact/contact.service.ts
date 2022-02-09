@@ -11,7 +11,7 @@ export class ContactService {
     return this.http.post<unknown>('/api/send-mail', {
       from: `"${name}" <${email}>`,
       subject: '[Jason Ruesch]' + $localize`Contact`,
-      template: './contact.html',
+      template: './assets/templates/contact.html',
       context: {
         name,
         email,
@@ -24,7 +24,7 @@ export class ContactService {
     return this.http.post<unknown>('/api/send-mail', {
       to: `"${name}" <${email}>`,
       subject: '[Jason Ruesch]' + $localize`Contact Confirmation`,
-      template: './contact-confirmation.html',
+      template: './assets/templates/contact-confirmation.html',
       context: {
         name,
       },
