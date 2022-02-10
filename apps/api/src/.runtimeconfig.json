@@ -9,5 +9,8 @@
       "from": "\"No Reply\" <no.reply@jasonruesch.dev>",
       "to": "\"Jason Ruesch\" <jason.ruesch@me.com>"
     }
+  },
+  "recaptcha": {
+    "secretkey": "6LelnpYUAAAAACMEX58IuEbOakVg3FNzyaNk4r3g"
   }
 }

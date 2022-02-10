@@ -10,6 +10,7 @@ import { catchError, filter, switchMap } from 'rxjs/operators';
 import { ContactService } from './contact.service';
 import { NavigationEnd, Router } from '@angular/router';
 import '@angular/localize/init';
+import { ReCaptchaV3Service } from 'ng-recaptcha';
 
 @Component({
   selector: 'jr-contact',
@@ -30,7 +31,8 @@ export class ContactComponent {
     private changeDetector: ChangeDetectorRef,
     private contactService: ContactService,
     private snackBar: MatSnackBar,
-    private router: Router
+    private router: Router,
+    private recaptchaV3Service: ReCaptchaV3Service
   ) {
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
@@ -63,18 +65,32 @@ export class ContactComponent {
   }
 
   private send(): Observable<unknown> {
-    return this.contactService.send(
-      this.contactForm.value.name,
-      this.contactForm.value.email,
-      this.contactForm.value.message
-    );
+    return this.recaptchaV3Service
+      .execute('send_contact')
+      .pipe(
+        switchMap((token) =>
+          this.contactService.send(
+            this.contactForm.value.name,
+            this.contactForm.value.email,
+            this.contactForm.value.message,
+            token
+          )
+        )
+      );
   }
 
   private sendConfirmation(): Observable<unknown> {
-    return this.contactService.sendConfirmation(
-      this.contactForm.value.name,
-      this.contactForm.value.email
-    );
+    return this.recaptchaV3Service
+      .execute('send_contact_confirmation')
+      .pipe(
+        switchMap((token) =>
+          this.contactService.sendConfirmation(
+            this.contactForm.value.name,
+            this.contactForm.value.email,
+            token
+          )
+        )
+      );
   }
 
   private showSuccessSnackBar(message: string) {

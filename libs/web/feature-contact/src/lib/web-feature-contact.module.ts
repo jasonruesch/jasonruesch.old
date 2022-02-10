@@ -14,6 +14,8 @@ import {
   CustomIconRegistry,
   svgIconProviders,
 } from '@jasonruesch/shared/utilities';
+import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from 'ng-recaptcha';
+import { environment } from '@jasonruesch/shared/environment';
 
 @NgModule({
   imports: [
@@ -28,12 +30,17 @@ import {
     MatProgressSpinnerModule,
     MatSnackBarModule,
     MatIconModule,
+    RecaptchaV3Module,
   ],
   declarations: [ContactComponent],
   providers: [
     ContactService,
     svgIconProviders,
     { provide: MatIconRegistry, useClass: CustomIconRegistry },
+    {
+      provide: RECAPTCHA_V3_SITE_KEY,
+      useValue: environment.recaptcha.siteKey,
+    },
   ],
 })
 export class WebFeatureContactModule {}

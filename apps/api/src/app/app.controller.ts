@@ -1,8 +1,9 @@
 import { ISendMailOptions } from '@nestjs-modules/mailer';
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
 
 import { Message } from '@jasonruesch/api-interfaces';
 import { AppService } from './app.service';
+import { RecaptchaGuard } from '../recaptcha/recaptcha.guard';
 
 @Controller()
 export class AppController {
@@ -14,7 +15,11 @@ export class AppController {
   }
 
   @Post('send-mail')
-  sendMail(@Body() options: ISendMailOptions): Promise<unknown> {
+  @UseGuards(RecaptchaGuard)
+  sendMail(
+    @Body()
+    { options }: { recaptchaToken: string; options: ISendMailOptions }
+  ): Promise<unknown> {
     return this.appService.sendMail(options);
   }
 }

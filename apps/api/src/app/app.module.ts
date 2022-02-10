@@ -4,15 +4,16 @@ import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handleba
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { environment } from '@jasonruesch/shared/environment';
 import { join } from 'path';
 import * as functions from 'firebase-functions';
+import { HttpModule } from '@nestjs/axios';
+// import { environment } from '@jasonruesch/shared/environment';
 
 @Module({
   imports: [
     MailerModule.forRoot({
       ...functions.config().mail,
-      preview: !environment.production,
+      // preview: !environment.production,
       template: {
         dir: join(__dirname, 'assets/templates'),
         adapter: new HandlebarsAdapter(),
@@ -21,6 +22,7 @@ import * as functions from 'firebase-functions';
         },
       },
     }),
+    HttpModule,
   ],
   controllers: [AppController],
   providers: [AppService],
