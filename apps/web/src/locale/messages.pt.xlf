@@ -120,7 +120,7 @@
         <target state="translated">Obrigado por entrar em contato comigo!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">libs/web/feature-contact/src/lib/contact/contact.component.ts</context>
-          <context context-type="linenumber">52</context>
+          <context context-type="linenumber">61</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5150677118864781094" datatype="html">
@@ -128,7 +128,7 @@
         <target state="translated">Não foi possível entregar sua mensagem. Por favor, tente novamente.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">libs/web/feature-contact/src/lib/contact/contact.component.ts</context>
-          <context context-type="linenumber">58</context>
+          <context context-type="linenumber">52</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7819314041543176992" datatype="html">
@@ -136,11 +136,11 @@
         <target state="translated">Fechar</target>
         <context-group purpose="location">
           <context context-type="sourcefile">libs/web/feature-contact/src/lib/contact/contact.component.ts</context>
-          <context context-type="linenumber">80</context>
+          <context context-type="linenumber">81</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">libs/web/feature-contact/src/lib/contact/contact.component.ts</context>
-          <context context-type="linenumber">86</context>
+          <context context-type="linenumber">87</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7922989125096435449" datatype="html">

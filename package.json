@@ -16,8 +16,7 @@
     "extract-i18n": "ng extract-i18n --out-file messages.en.xlf --output-path apps/web/src/locale",
     "merge-i18n": "cross-env API_KEY_FILE=.apikey xliffmerge --profile xliffmerge.json",
     "i18n": "npm run extract-i18n && npm run merge-i18n",
-    "maildev": "maildev --ip 127.0.0.1",
-    "temp-script-to-remember-rebase-autostash": "git pull --rebase --autostash"
+    "maildev": "maildev --ip 127.0.0.1"
   },
   "private": true,
   "dependencies": {
