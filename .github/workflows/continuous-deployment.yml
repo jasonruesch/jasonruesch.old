@@ -9,6 +9,7 @@ on:
       - '**.scss'
       - '**.html'
       - '**.json'
+      - '!package.json'
 
 env:
   NX_BRANCH: ${{ github.ref }}
@@ -54,6 +55,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        name: Checkout [main]
         with:
           ref: ${{ github.head_ref }}
           fetch-depth: 0
@@ -61,7 +63,6 @@ jobs:
         with:
           node-version: '12'
           cache: 'npm'
-        name: Checkout [main]
       - name: Download artifacts
         uses: actions/download-artifact@v2
         with:
@@ -106,6 +107,12 @@ jobs:
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}'
           projectId: jasonruesch---staging
           channelId: live
+      - name: Publish Artifacts
+        if: ${{ steps.check_api.outputs.files_exists == 'true' || steps.check_web.outputs.files_exists == 'true' }}
+        uses: actions/upload-artifact@v2
+        with:
+          name: jasonruesch
+          path: dist
 
   deploy_to_production:
     needs: deploy_to_staging
@@ -119,11 +126,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        name: Checkout [main]
       - uses: actions/setup-node@v2
         with:
           node-version: '12'
           cache: 'npm'
-        name: Checkout [main]
       - name: Download artifacts
         uses: actions/download-artifact@v2
         with:

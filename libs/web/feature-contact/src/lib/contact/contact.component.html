@@ -3,7 +3,7 @@
   <div class="form-row">
     <mat-form-field appearance="outline">
       <mat-label i18n>Name</mat-label>
-      <input matInput formControlName="name" required />
+      <input matInput formControlName="name" placeholder="Your Name" required />
       <mat-error *ngIf="contactForm.get('name')?.hasError('required')" i18n>
         Name is required
       </mat-error>
@@ -62,6 +62,7 @@
         target="_blank"
         title="Twitter"
         aria-label="Jason Ruesch on twitter"
+        rel="noopener noreferrer"
       >
         <mat-icon svgIcon="logos:twitter"></mat-icon>
       </a>
@@ -71,6 +72,7 @@
         target="_blank"
         title="GitHub"
         aria-label="Jason Ruesch on github"
+        rel="noopener noreferrer"
       >
         <mat-icon svgIcon="logos:github"></mat-icon>
       </a>
@@ -80,6 +82,7 @@
         target="_blank"
         title="LinkedIn"
         aria-label="Jason Ruesch on LinkedIn"
+        rel="noopener noreferrer"
       >
         <mat-icon svgIcon="logos:linkedin"></mat-icon>
       </a>
