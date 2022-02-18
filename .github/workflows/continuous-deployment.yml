@@ -109,7 +109,7 @@ jobs:
         with:
           name: staging
           path: |
-            dist
+            dist/
             package.json
 
   deploy_to_production:
@@ -133,9 +133,6 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: staging
-          path: |
-            dist
-            package.json
       - run: npm ci
       - name: Check for API build artifact
         id: check_api
