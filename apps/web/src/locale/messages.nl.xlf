@@ -10,8 +10,8 @@
           <context context-type="linenumber">1</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5f83b5eba95e4e567e10fbb9e7750544b886d08d" datatype="html">
-        <source> I’ve spent the last <x id="INTERPOLATION" equiv-text="{{ yearsOfExperience }}"/> years learning everything there is to know about the software development industry--from website design to application development. I’m currently applying this knowledge in my role as Frontend Developer for Degreed, where I’m responsible for determining the structure and design of web pages, striking a balance between functional and aesthetic design and ensuring web design is optimized for mobile and desktop devices.
+      <trans-unit id="fabb9e38d178f8a26e56e5caaf0fbdb7ad2e5267" datatype="html">
+        <source> I've spent the last <x id="INTERPOLATION" equiv-text="{{ yearsOfExperience }}"/> years learning everything there is to know about the software development industry--from website design to application development. I'm currently applying this knowledge in my role as Frontend Developer for Degreed, where I'm responsible for determining the structure and design of web pages, striking a balance between functional and aesthetic design and ensuring web design is optimized for mobile and desktop devices.
 </source>
         <target state="translated">Ik heb de afgelopen <x id="INTERPOLATION"/> jaar alles geleerd wat er te weten valt over de softwareontwikkelingsindustrie, van website-ontwerp tot applicatie-ontwikkeling. Ik pas deze kennis momenteel toe in mijn rol als Frontend Developer voor Degreed, waar ik verantwoordelijk ben voor het bepalen van de structuur en het ontwerp van webpagina's, het vinden van een balans tussen functioneel en esthetisch ontwerp en ervoor zorgen dat het webontwerp wordt geoptimaliseerd voor mobiele en desktop-apparaten .</target>
         <context-group purpose="location">
@@ -19,9 +19,9 @@
           <context context-type="linenumber">2,10</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="986e5322b41ba67a68bed8d317a918e35702398a" datatype="html">
-        <source> If you would like to contact me, <x id="START_LINK" ctype="x-a" equiv-text="&lt;a routerLink=&quot;/contact&quot;>"/>head on over here.<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a>"/></source>
-        <target state="translated">Als je contact met me wilt opnemen, <x id="START_LINK" ctype="x-a" equiv-text="&lt;a>"/>ga dan hierheen.<x id="CLOSE_LINK" ctype="x-a"/></target>
+      <trans-unit id="13d8e3f81cf5fc4176aa97763738b44e2b559b2b" datatype="html">
+        <source> If you would like to contact me, <x id="START_LINK" ctype="x-a" equiv-text="&lt;a routerLink=&quot;/contact&quot;>"/>please visit my contact page.<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a>"/></source>
+        <target state="translated">Wilt u contact met mij opnemen, <x id="START_LINK" ctype="x-a" equiv-text="&lt;a>"/>bezoek dan mijn contactpagina.<x id="CLOSE_LINK" ctype="x-a"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">libs/web/feature-about/src/lib/about/about.component.html</context>
           <context context-type="linenumber">11,13</context>

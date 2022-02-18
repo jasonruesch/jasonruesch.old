@@ -10,18 +10,18 @@
           <context context-type="linenumber">1</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5f83b5eba95e4e567e10fbb9e7750544b886d08d" datatype="html">
-        <source> I’ve spent the last <x id="INTERPOLATION" equiv-text="{{ yearsOfExperience }}"/> years learning everything there is to know about the software development industry--from website design to application development. I’m currently applying this knowledge in my role as Frontend Developer for Degreed, where I’m responsible for determining the structure and design of web pages, striking a balance between functional and aesthetic design and ensuring web design is optimized for mobile and desktop devices.
+      <trans-unit id="fabb9e38d178f8a26e56e5caaf0fbdb7ad2e5267" datatype="html">
+        <source> I've spent the last <x id="INTERPOLATION" equiv-text="{{ yearsOfExperience }}"/> years learning everything there is to know about the software development industry--from website design to application development. I'm currently applying this knowledge in my role as Frontend Developer for Degreed, where I'm responsible for determining the structure and design of web pages, striking a balance between functional and aesthetic design and ensuring web design is optimized for mobile and desktop devices.
 </source>
-        <target state="translated">Ich habe die letzten <x id="INTERPOLATION"/> Jahre damit verbracht, alles über die Softwareentwicklungsbranche zu lernen – vom Website-Design bis zur Anwendungsentwicklung. Dieses Wissen wende ich derzeit in meiner Rolle als Frontend-Entwickler bei Degreed an, wo ich dafür verantwortlich bin, den Aufbau und das Design von Webseiten festzulegen, die Balance zwischen funktionalem und ästhetischem Design zu finden und sicherzustellen, dass das Webdesign für mobile und Desktop-Geräte optimiert ist .</target>
+        <target state="translated">Ich habe die letzten <x id="INTERPOLATION"/> Jahre damit verbracht, alles Wissenswerte über die Softwareentwicklungsbranche zu lernen – vom Website-Design bis zur Anwendungsentwicklung. Dieses Wissen wende ich derzeit in meiner Rolle als Frontend-Entwickler für Degreed an, wo ich dafür verantwortlich bin, die Struktur und das Design von Webseiten zu bestimmen, ein Gleichgewicht zwischen funktionalem und ästhetischem Design zu finden und sicherzustellen, dass das Webdesign für mobile und Desktop-Geräte optimiert ist .</target>
         <context-group purpose="location">
           <context context-type="sourcefile">libs/web/feature-about/src/lib/about/about.component.html</context>
           <context context-type="linenumber">2,10</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="986e5322b41ba67a68bed8d317a918e35702398a" datatype="html">
-        <source> If you would like to contact me, <x id="START_LINK" ctype="x-a" equiv-text="&lt;a routerLink=&quot;/contact&quot;>"/>head on over here.<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a>"/></source>
-        <target state="translated">Wenn Sie mit mir in Kontakt treten möchten, gehen <x id="START_LINK" ctype="x-a" equiv-text="&lt;a>"/>Sie hier vorbei.<x id="CLOSE_LINK" ctype="x-a"/></target>
+      <trans-unit id="13d8e3f81cf5fc4176aa97763738b44e2b559b2b" datatype="html">
+        <source> If you would like to contact me, <x id="START_LINK" ctype="x-a" equiv-text="&lt;a routerLink=&quot;/contact&quot;>"/>please visit my contact page.<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a>"/></source>
+        <target state="translated">Wenn Sie mich kontaktieren möchten, besuchen Sie <x id="START_LINK" ctype="x-a" equiv-text="&lt;a>"/>bitte meine Kontaktseite.<x id="CLOSE_LINK" ctype="x-a"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">libs/web/feature-about/src/lib/about/about.component.html</context>
           <context context-type="linenumber">11,13</context>
