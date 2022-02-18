@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 1.1.4 (2022-02-18)
+
+
+### Bug Fixes
+
+* lint errors ([bec5a99](https://github.com/jasonruesch/jasonruesch/commit/bec5a99b813fc778c17b2acaaa6e1e756105133c))
+
 ### [1.1.3](https://github.com/jasonruesch/jasonruesch/compare/v1.1.2...v1.1.3) (2022-02-18)
 
 ### [1.1.2](https://github.com/jasonruesch/jasonruesch/compare/v1.1.1...v1.1.2) (2022-02-17)
