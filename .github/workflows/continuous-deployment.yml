@@ -40,7 +40,7 @@ jobs:
       - name: Publish Artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: jasonruesch
+          name: build
           path: dist
 
   deploy_to_staging:
@@ -56,9 +56,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         name: Checkout [main]
-        with:
-          ref: ${{ github.head_ref }}
-          fetch-depth: 0
       - uses: actions/setup-node@v2
         with:
           node-version: '12'
@@ -66,7 +63,7 @@ jobs:
       - name: Download artifacts
         uses: actions/download-artifact@v2
         with:
-          name: jasonruesch
+          name: build
           path: dist
       - run: npm ci
       - name: Check for API build artifact
@@ -107,6 +104,13 @@ jobs:
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}'
           projectId: jasonruesch---staging
           channelId: live
+      - name: Publish Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: staging
+          path: |
+            dist
+            package.json
 
   deploy_to_production:
     needs: deploy_to_staging
@@ -125,13 +129,13 @@ jobs:
         with:
           node-version: '12'
           cache: 'npm'
-      - name: Pull latest
-        run: git pull
       - name: Download artifacts
         uses: actions/download-artifact@v2
         with:
-          name: jasonruesch
-          path: dist
+          name: staging
+          path: |
+            dist
+            package.json
       - run: npm ci
       - name: Check for API build artifact
         id: check_api
