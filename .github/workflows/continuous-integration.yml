@@ -3,13 +3,6 @@ on:
   pull_request:
     branches:
       - main
-    paths:
-      - '**.ts'
-      - '!**.spec.ts'
-      - '**.scss'
-      - '**.html'
-      - '**.json'
-      - '!package.json'
 
 env:
   NX_BRANCH: ${{ github.head_ref }}
