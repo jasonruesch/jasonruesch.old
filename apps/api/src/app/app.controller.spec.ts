@@ -1,3 +1,4 @@
+import { MailerService } from '@nestjs-modules/mailer';
 import { Test, TestingModule } from '@nestjs/testing';
 
 import { AppController } from './app.controller';
@@ -6,10 +7,18 @@ import { AppService } from './app.service';
 describe('AppController', () => {
   let app: TestingModule;
 
+  const mockMailerService = {};
+
   beforeAll(async () => {
     app = await Test.createTestingModule({
       controllers: [AppController],
-      providers: [AppService],
+      providers: [
+        AppService,
+        {
+          provide: MailerService,
+          useValue: mockMailerService,
+        },
+      ],
     }).compile();
   });
 
