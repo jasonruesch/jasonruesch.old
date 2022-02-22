@@ -1,6 +1,8 @@
 name: Continuous Integration
 on:
   pull_request:
+    branches:
+      - main
     paths:
       - '**.ts'
       - '**.scss'
@@ -44,6 +46,10 @@ jobs:
       - name: Build
         run: npx nx affected --target=build --parallel --max-parallel=3
       # - name: Test
+      - name: Coverage
+        uses: coverallsapp/github-actions@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Publish Artifacts
         uses: actions/upload-artifact@v2
         with:
