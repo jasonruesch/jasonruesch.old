@@ -46,7 +46,7 @@ jobs:
       - name: Build
         run: npx nx affected --target=build --parallel --max-parallel=3
       - name: Test
-        run: npx nx affected --target=test --projects=api --coverageReporters=lcov && node ./tools/coverageMerger.js
+        run: npx nx run-many --target=test --projects=api --coverage --coverageReporters=lcov && node ./tools/coverageMerger.js
       - name: Coverage
         uses: coverallsapp/github-action@master
         with:
