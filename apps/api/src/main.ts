@@ -9,7 +9,11 @@ import 'firebase-admin';
 const API_PREFIX = '/api';
 const server = express();
 
-function proxyUrl(req: express.Request, _, next: express.NextFunction) {
+function proxyUrl(
+  req: express.Request,
+  _: unknown,
+  next: express.NextFunction
+) {
   // Fix rewriting for hosting on Firebase
   if (req.url.indexOf(API_PREFIX) === 0) {
     req.url = req.url.replace(API_PREFIX, '');
