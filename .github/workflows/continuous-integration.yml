@@ -1,11 +1,8 @@
 name: Continuous Integration
 on:
   pull_request:
-    paths:
-      - '**.ts'
-      - '**.scss'
-      - '**.html'
-      - '**.json'
+    branches:
+      - main
 
 env:
   NX_BRANCH: ${{ github.head_ref }}
@@ -43,7 +40,13 @@ jobs:
       - run: npm ci
       - name: Build
         run: npx nx affected --target=build --parallel --max-parallel=3
-      # - name: Test
+      - name: Test
+        run: npx nx run-many --target=test --projects=api --coverage --coverageReporters=lcov && node ./tools/coverageMerger.js
+      - name: Coverage
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          git-commit: ${{ env.NX_HEAD }}
       - name: Publish Artifacts
         uses: actions/upload-artifact@v2
         with:
