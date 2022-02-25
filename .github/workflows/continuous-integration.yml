@@ -41,8 +41,14 @@ jobs:
       - name: Build
         run: npx nx affected --target=build --parallel --max-parallel=3
       - name: Test
-        run: npx nx run-many --target=test --projects=api --coverage --coverageReporters=lcov && node ./tools/coverageMerger.js
+        run: npx nx affected --target=test --coverage --coverageReporters=lcov && node ./tools/coverageMerger.js
+      - name: Check for coverage report
+        id: check_coverage
+        uses: andstor/file-existence-action@v1
+        with:
+          files: 'coverage/lcov.info'
       - name: Coverage
+        if: ${{ steps.check_coverage.outputs.files_exists == 'true' }}
         uses: coverallsapp/github-action@master
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
