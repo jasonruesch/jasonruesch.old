@@ -1,0 +1,91 @@
+<h1 i18n>Contact Me</h1>
+<form [formGroup]="contactForm" (ngSubmit)="onSubmit($event)">
+  <div class="form-row">
+    <mat-form-field appearance="outline">
+      <mat-label i18n>Name</mat-label>
+      <input matInput formControlName="name" placeholder="Your Name" required />
+      <mat-error *ngIf="contactForm.get('name')?.hasError('required')" i18n>
+        Name is required
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label i18n>Email</mat-label>
+      <input
+        type="email"
+        matInput
+        formControlName="email"
+        i18n-placeholder
+        placeholder="Ex. pat@example.com"
+        required
+        autocomplete="off"
+      />
+      <mat-error *ngIf="contactForm.get('email')?.hasError('required')" i18n>
+        Email is required
+      </mat-error>
+      <mat-error *ngIf="contactForm.get('email')?.hasError('email')" i18n>
+        Email is invalid
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <mat-form-field appearance="outline">
+    <mat-label i18n>Message</mat-label>
+    <textarea
+      matInput
+      formControlName="message"
+      i18n-placeholder
+      placeholder="Ex. I would like to discuss..."
+      required
+    ></textarea>
+    <mat-error *ngIf="contactForm.get('message')?.hasError('required')" i18n>
+      Message is required
+    </mat-error>
+  </mat-form-field>
+  <div class="form-row">
+    <button
+      type="submit"
+      mat-raised-button
+      color="primary"
+      [disabled]="sending || !contactForm.valid"
+    >
+      <mat-spinner
+        class="spinner"
+        [diameter]="20"
+        *ngIf="sending"
+      ></mat-spinner>
+      <span [class.hidden]="sending" i18n>Send</span>
+    </button>
+    <span class="spacer"></span>
+    <div class="external-icons">
+      <a
+        mat-icon-button
+        href="https://twitter.com/jasonruesch"
+        target="_blank"
+        title="Twitter"
+        aria-label="Jason Ruesch on twitter"
+        rel="noopener noreferrer"
+      >
+        <mat-icon svgIcon="logos:twitter"></mat-icon>
+      </a>
+      <a
+        mat-icon-button
+        href="https://github.com/jasonruesch"
+        target="_blank"
+        title="GitHub"
+        aria-label="Jason Ruesch on github"
+        rel="noopener noreferrer"
+      >
+        <mat-icon svgIcon="logos:github"></mat-icon>
+      </a>
+      <a
+        mat-icon-button
+        href="https://www.linkedin.com/in/jasonruesch/"
+        target="_blank"
+        title="LinkedIn"
+        aria-label="Jason Ruesch on LinkedIn"
+        rel="noopener noreferrer"
+      >
+        <mat-icon svgIcon="logos:linkedin"></mat-icon>
+      </a>
+    </div>
+  </div>
+</form>

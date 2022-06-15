@@ -1,0 +1,6 @@
+@use '@angular/material' as mat;
+@use './app-theme' as app;
+@import './variables';
+
+@include mat.all-component-themes($light-theme);
+@include app.theme($light-theme);

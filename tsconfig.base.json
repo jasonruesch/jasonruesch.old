@@ -1,0 +1,34 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2017", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@jasonruesch/api-interfaces": ["libs/api-interfaces/src/index.ts"],
+      "@jasonruesch/shared/config": ["libs/shared/config/src/index.ts"],
+      "@jasonruesch/shared/environment": [
+        "libs/shared/environment/src/index.ts"
+      ],
+      "@jasonruesch/shared/utilities": ["libs/shared/utilities/src/index.ts"],
+      "@jasonruesch/web/feature-about": ["libs/web/feature-about/src/index.ts"],
+      "@jasonruesch/web/feature-contact": [
+        "libs/web/feature-contact/src/index.ts"
+      ],
+      "@jasonruesch/web/feature-home": ["libs/web/feature-home/src/index.ts"],
+      "@jasonruesch/web/feature-shell": ["libs/web/feature-shell/src/index.ts"],
+      "@jasonruesch/web/ui": ["libs/web/ui/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

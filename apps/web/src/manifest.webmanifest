@@ -1,0 +1,17 @@
+{
+  "name": "Jason Ruesch",
+  "short_name": "Jason Ruesch",
+  "theme_color": "#0097a7",
+  "background_color": "#303030",
+  "display": "standalone",
+  "scope": "./",
+  "start_url": "./",
+  "icons": [
+    {
+      "src": "assets/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "projects": {
+    "api": "apps/api",
+    "api-interfaces": "libs/api-interfaces",
+    "shared-config": "libs/shared/config",
+    "shared-environment": "libs/shared/environment",
+    "shared-utilities": "libs/shared/utilities",
+    "web": "apps/web",
+    "web-e2e": "apps/web-e2e",
+    "web-feature-about": "libs/web/feature-about",
+    "web-feature-contact": "libs/web/feature-contact",
+    "web-feature-home": "libs/web/feature-home",
+    "web-feature-shell": "libs/web/feature-shell",
+    "web-ui": "libs/web/ui"
+  }
+}

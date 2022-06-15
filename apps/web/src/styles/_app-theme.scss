@@ -1,0 +1,111 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+@import '@angular/material/core/style/variables';
+@import '@angular/material/toolbar/toolbar-variables';
+@import './variables';
+
+$spacing-margin: 24px;
+
+@mixin theme($theme) {
+  $is-dark-theme: map.get($theme, is-dark);
+
+  $success: mat.define-palette(mat.$green-palette);
+
+  $background: map.get($theme, 'background');
+  $foreground: map.get($theme, 'foreground');
+  $primary: map.get($theme, primary);
+  $accent: map.get($theme, accent);
+  $warn: map.get($theme, warn);
+
+  $background-color: mat.get-color-from-palette($background, 'background');
+  $text-color: mat.get-color-from-palette($foreground, 'text');
+  $secondary-text-color: mat.get-color-from-palette(
+    $foreground,
+    'secondary-text'
+  );
+  $primary-color: mat.get-color-from-palette($primary);
+  $primary-color-alternative: mat.get-color-from-palette(
+    $primary,
+    if($is-dark-theme, A200, A400)
+  );
+  $primary-contrast-color: mat.get-color-from-palette(
+    $primary,
+    'default-contrast'
+  );
+  $accent-color: mat.get-color-from-palette($accent);
+  $warn-color: mat.get-color-from-palette($warn);
+  $warn-contrast-color: mat.get-color-from-palette($warn, 'default-contrast');
+  $success-color: mat.get-color-from-palette($success);
+  $success-contrast-color: mat.get-color-from-palette(
+    $success,
+    'default-contrast'
+  );
+
+  :root {
+    --accent-color: #{$accent-color};
+    --background-color: #{$background-color};
+    --primary-color: #{$primary-color};
+    --primary-color-alternative: #{$primary-color-alternative};
+    --primary-contrast-color: #{$primary-contrast-color};
+    --text-color: #{$text-color};
+    --secondary-text-color: #{$secondary-text-color};
+  }
+
+  /* Rules for snack bar */
+  .mat-snack-bar-container {
+    margin-bottom: calc(
+      #{$spacing-margin} + env(safe-area-inset-bottom)
+    ) !important;
+
+    @media ($mat-xsmall) {
+      margin-bottom: calc(
+        #{$spacing-margin} + env(safe-area-inset-bottom)
+      ) !important;
+    }
+
+    &.success {
+      background: $success-color;
+
+      &,
+      .mat-button-wrapper {
+        color: $success-contrast-color;
+      }
+    }
+
+    &.warn {
+      background: $warn-color;
+
+      &,
+      .mat-button-wrapper {
+        color: $warn-contrast-color;
+      }
+    }
+
+    .mat-snack-bar-handset & {
+      margin-left: 1.5rem !important;
+      margin-right: 1.5rem !important;
+    }
+  }
+
+  /* Rules for webkit autofill */
+  input:-webkit-autofill,
+  textarea:-webkit-autofill,
+  select:-webkit-autofill {
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-box-shadow: 0 0 0px 1000px $background-color inset;
+    box-shadow: 0 0 0px 1000px $background-color inset;
+    -webkit-text-fill-color: $text-color;
+    transition: background-color 5000s ease-in-out 0s;
+
+    &::first-line {
+      @include mat.typography-level($custom-typography, 'body-1');
+    }
+  }
+
+  /* Rules for 1Password autofill */
+  input[data-com-onepassword-filled='light'],
+  select[data-com-onepassword-filled='light'] {
+    background-color: transparent !important;
+  }
+}

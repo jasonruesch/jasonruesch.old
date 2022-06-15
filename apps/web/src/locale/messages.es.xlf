@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="ng2.template" target-language="es">
+    <body>
+      <trans-unit id="f15d71e375c722198504e904535b1bf37dc6806f" datatype="html">
+        <source>About Me</source>
+        <target state="translated">Sobre mí</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/web/feature-about/src/lib/about/about.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="fabb9e38d178f8a26e56e5caaf0fbdb7ad2e5267" datatype="html">
+        <source> I've spent the last <x id="INTERPOLATION" equiv-text="{{ yearsOfExperience }}"/> years learning everything there is to know about the software development industry--from website design to application development. I'm currently applying this knowledge in my role as Frontend Developer for Degreed, where I'm responsible for determining the structure and design of web pages, striking a balance between functional and aesthetic design and ensuring web design is optimized for mobile and desktop devices.
+</source>
+        <target state="translated">Pasé los últimos <x id="INTERPOLATION"/> años aprendiendo todo lo que hay que saber sobre la industria del desarrollo de software, desde el diseño de sitios web hasta el desarrollo de aplicaciones. Actualmente estoy aplicando este conocimiento en mi rol como Desarrollador Frontend para Degreed, donde soy responsable de determinar la estructura y el diseño de las páginas web, logrando un equilibrio entre el diseño funcional y estético y asegurando que el diseño web esté optimizado para dispositivos móviles y de escritorio. .</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/web/feature-about/src/lib/about/about.component.html</context>
+          <context context-type="linenumber">2,10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="13d8e3f81cf5fc4176aa97763738b44e2b559b2b" datatype="html">
+        <source> If you would like to contact me, <x id="START_LINK" ctype="x-a" equiv-text="&lt;a routerLink=&quot;/contact&quot;>"/>please visit my contact page.<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a>"/></source>
+        <target state="translated">Si desea ponerse en contacto conmigo, <x id="START_LINK" ctype="x-a" equiv-text="&lt;a>"/>por favor visite mi página de contacto.<x id="CLOSE_LINK" ctype="x-a"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/web/feature-about/src/lib/about/about.component.html</context>
+          <context context-type="linenumber">11,13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6b69e1379c4d2954c1266f0f19bdb6f899e3e2b9" datatype="html">
+        <source>Contact Me</source>
+        <target state="translated">Contáctame</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/web/feature-contact/src/lib/contact/contact.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cff1428d10d59d14e45edec3c735a27b5482db59" datatype="html">
+        <source>Name</source>
+        <target state="translated">Nombre</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/web/feature-contact/src/lib/contact/contact.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="762305ed70a870898505bb670bbdb556abcb179c" datatype="html">
+        <source> Name is required </source>
+        <target state="translated">Se requiere el nombre</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/web/feature-contact/src/lib/contact/contact.component.html</context>
+          <context context-type="linenumber">7,9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="244aae9346da82b0922506c2d2581373a15641cc" datatype="html">
+        <source>Email</source>
+        <target state="translated">Correo electrónico</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/web/feature-contact/src/lib/contact/contact.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="b695a5da109c93ef1aa7318ebba3a5c22c0eb6c0" datatype="html">
+        <source>Ex. pat@example.com</source>
+        <target state="translated">Ex. pat@example.com</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/web/feature-contact/src/lib/contact/contact.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="723a1eb1e4e2e7505203cbd915391cd13cbfa3a9" datatype="html">
+        <source> Email is required </source>
+        <target state="translated">correo electronico es requerido</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/web/feature-contact/src/lib/contact/contact.component.html</context>
+          <context context-type="linenumber">22,24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6093ea59f51e1d1bad8d8cb9793c5178907396ad" datatype="html">
+        <source> Email is invalid </source>
+        <target state="translated">el correo electrónico es invalido</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/web/feature-contact/src/lib/contact/contact.component.html</context>
+          <context context-type="linenumber">25,27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ccac601bf473fa28c9ac46794f1cd40542f74347" datatype="html">
+        <source>Message</source>
+        <target state="translated">Mensaje</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/web/feature-contact/src/lib/contact/contact.component.html</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="944796fd37c18432e9022b547fbd60a071ee5e96" datatype="html">
+        <source>Ex. I would like to discuss...</source>
+        <target state="translated">Ex. Me gustaría discutir...</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/web/feature-contact/src/lib/contact/contact.component.html</context>
+          <context context-type="linenumber">36</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c759c46df747ac932e953fa358a8fcdf6636ceb4" datatype="html">
+        <source> Message is required </source>
+        <target state="translated">Se requiere mensaje</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/web/feature-contact/src/lib/contact/contact.component.html</context>
+          <context context-type="linenumber">39,41</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2c5ff8fa9c9aaec93f97e37c9a0edcd797194573" datatype="html">
+        <source>Send</source>
+        <target state="translated">Enviar</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/web/feature-contact/src/lib/contact/contact.component.html</context>
+          <context context-type="linenumber">55</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1322243246377984305" datatype="html">
+        <source>Thank you for contacting me!</source>
+        <target state="translated">¡Gracias por contactarme!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/web/feature-contact/src/lib/contact/contact.component.ts</context>
+          <context context-type="linenumber">61</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5150677118864781094" datatype="html">
+        <source>Your message could not be delivered. Please try again.</source>
+        <target state="translated">No se pudo entregar su mensaje. Inténtalo de nuevo.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/web/feature-contact/src/lib/contact/contact.component.ts</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7819314041543176992" datatype="html">
+        <source>Close</source>
+        <target state="translated">Cerrar</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/web/feature-contact/src/lib/contact/contact.component.ts</context>
+          <context context-type="linenumber">81</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/web/feature-contact/src/lib/contact/contact.component.ts</context>
+          <context context-type="linenumber">87</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7922989125096435449" datatype="html">
+        <source>Contact</source>
+        <target state="translated">Contacto</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/web/feature-contact/src/lib/contact/contact.service.ts</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8089864002977889614" datatype="html">
+        <source>Contact Confirmation</source>
+        <target state="translated">Confirmación de contacto</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/web/feature-contact/src/lib/contact/contact.service.ts</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="40180d49bbb8b91c88976ac0a8d079d96cbb2a46" datatype="html">
+        <source>Hi, I'm <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span hidden>"/>Jason Ruesch.<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span>"/></source>
+        <target state="translated">Hola, soy <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span>"/>Jason Ruesch.<x id="CLOSE_TAG_SPAN" ctype="x-span"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/web/feature-home/src/lib/home/home.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="52bf154f0ed1cfded4644845c655db2cf8f4ac51" datatype="html">
+        <source> I'm a Frontend Developer, currently working for Degreed, and I'm insanely passionate about improving and applying my skills. <x id="START_LINK" ctype="x-a" equiv-text="&lt;a routerLink=&quot;/about&quot;>"/>Find out more here.<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a>"/></source>
+        <target state="translated">Soy un desarrollador de frontend, actualmente trabajo para Degreed, y me apasiona increíblemente mejorar y aplicar mis habilidades. <x id="START_LINK" ctype="x-a" equiv-text="&lt;a>"/>Descubra más aquí.<x id="CLOSE_LINK" ctype="x-a"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/web/feature-home/src/lib/home/home.component.html</context>
+          <context context-type="linenumber">5,8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="55e96ff92a4c5e90533d9c23a0cbd0de73e02aaf" datatype="html">
+        <source>Toggle the menu</source>
+        <target state="translated">Alternar el menú</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/web/feature-shell/src/lib/shell/shell.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="004b222ff9ef9dd4771b777950ca1d0e4cd4348a" datatype="html">
+        <source>About</source>
+        <target state="translated">Sobre</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/web/feature-shell/src/lib/shell/shell.component.html</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/web/feature-shell/src/lib/shell/shell.component.html</context>
+          <context context-type="linenumber">81</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="34746fb1c7f3d2194d99652bdff89e6e14c9c4f4" datatype="html">
+        <source>Contact</source>
+        <target state="translated">Contacto</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/web/feature-shell/src/lib/shell/shell.component.html</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/web/feature-shell/src/lib/shell/shell.component.html</context>
+          <context context-type="linenumber">84</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="b0babc2605f3b9609caf7b451e47ffca381b7bfa" datatype="html">
+        <source>Toggle the theme between light and dark</source>
+        <target state="translated">Alternar el tema entre claro y oscuro</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/web/feature-shell/src/lib/shell/shell.component.html</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/web/feature-shell/src/lib/shell/shell.component.html</context>
+          <context context-type="linenumber">42</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="79a2a94df75face5217690ef19711730f954b639" datatype="html">
+        <source>Language options</source>
+        <target state="translated">Opciones de lenguaje</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/web/feature-shell/src/lib/shell/shell.component.html</context>
+          <context context-type="linenumber">51</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/web/feature-shell/src/lib/shell/shell.component.html</context>
+          <context context-type="linenumber">53</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="92eee6be6de0b11c924e3ab27db30257159c0a7c" datatype="html">
+        <source>Home</source>
+        <target state="translated">Hogar</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/web/feature-shell/src/lib/shell/shell.component.html</context>
+          <context context-type="linenumber">78</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

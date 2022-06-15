@@ -1,0 +1,22 @@
+{
+  "projects": {
+    "default": "jasonruesch",
+    "staging": "jasonruesch---staging"
+  },
+  "targets": {
+    "jasonruesch": {
+      "hosting": {
+        "web": [
+          "jasonruesch"
+        ]
+      }
+    },
+    "jasonruesch---staging": {
+      "hosting": {
+        "web": [
+          "jasonruesch---staging"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,43 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+@import './variables';
+
+@include mat.core($custom-typography);
+
+:root {
+  --light-primary-color: #{$light-primary-color};
+  --light-primary-color-alternative: #{$light-primary-color-alternative};
+  --light-text-color: #{$light-text-color};
+  --dark-primary-color: #{$dark-primary-color};
+  --dark-primary-color-alternative: #{$dark-primary-color-alternative};
+  --dark-text-color: #{$dark-text-color};
+}
+
+html {
+  height: calc(100% + env(safe-area-inset-top));
+}
+
+body {
+  background: var(--background-color);
+  color: var(--text-color);
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+  height: 100%;
+  margin: 0;
+}
+
+:any-link {
+  color: var(--accent-color);
+
+  &:not(:hover) {
+    text-decoration: none;
+  }
+}
+
+p {
+  color: var(--secondary-text-color);
+}
+
+.spacer {
+  flex: 1 1 auto;
+}

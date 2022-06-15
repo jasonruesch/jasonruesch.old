@@ -1,0 +1,43 @@
+@import '@angular/material/core/style/variables';
+
+:host {
+  display: block;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: row;
+
+  .mat-form-field + .mat-form-field {
+    margin-left: 1rem;
+  }
+
+  @media ($mat-xsmall) {
+    flex-direction: column;
+
+    .mat-form-field + .mat-form-field {
+      margin-left: 0;
+    }
+  }
+}
+
+.spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.external-icons {
+  @media ($mat-xsmall) {
+    margin-top: 1rem;
+  }
+}

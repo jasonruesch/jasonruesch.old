@@ -1,0 +1,26 @@
+{
+  "projectType": "library",
+  "root": "libs/web/feature-contact",
+  "sourceRoot": "libs/web/feature-contact/src",
+  "prefix": "jr",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/web/feature-contact"],
+      "options": {
+        "jestConfig": "libs/web/feature-contact/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/web/feature-contact/src/**/*.ts",
+          "libs/web/feature-contact/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": ["type:feature", "scope:web"]
+}

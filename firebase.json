@@ -1,0 +1,80 @@
+{
+  "functions": {
+    "runtime": "nodejs12",
+    "source": "dist/apps/api",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
+  },
+  "hosting": {
+    "public": "dist/apps/web",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "headers": [
+      {
+        "source": "*.[0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f].+(css|js)",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "public,max-age=31536000,immutable"
+          }
+        ]
+      },
+      {
+        "source": "/@(ngsw-worker.js|ngsw.json)",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "no-cache"
+          }
+        ]
+      }
+    ],
+    "rewrites": [
+      {
+        "source": "/api/**",
+        "function": "api"
+      },
+      {
+        "source": "/de/**",
+        "destination": "/de/index.html"
+      },
+      {
+        "source": "/es/**",
+        "destination": "/es/index.html"
+      },
+      {
+        "source": "/fr/**",
+        "destination": "/fr/index.html"
+      },
+      {
+        "source": "/nl/**",
+        "destination": "/nl/index.html"
+      },
+      {
+        "source": "/pt/**",
+        "destination": "/pt/index.html"
+      },
+      {
+        "source": "/ru/**",
+        "destination": "/ru/index.html"
+      },
+      {
+        "source": "/zh/**",
+        "destination": "/zh/index.html"
+      },
+      {
+        "source": "**",
+        "destination": "/en/index.html"
+      }
+    ],
+    "i18n": {
+      "root": "/"
+    }
+  },
+  "emulators": {
+    "functions": {
+      "port": 5001
+    },
+    "ui": {
+      "enabled": true
+    }
+  }
+}

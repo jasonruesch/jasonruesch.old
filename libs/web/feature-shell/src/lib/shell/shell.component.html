@@ -1,0 +1,104 @@
+<div class="container" [class.has-transparent-toolbar]="transparentToolbar">
+  <mat-toolbar
+    color="primary"
+    class="toolbar transparent"
+    [class.transparent]="transparentToolbar && !sidenav.opened"
+    [class.mat-elevation-z6]="!transparentToolbar || sidenav.opened"
+  >
+    <button
+      mat-icon-button
+      (click)="sidenav.toggle()"
+      *ngIf="xsmall"
+      i18n-aria-label
+      aria-label="Toggle the menu"
+    >
+      <mat-icon svgIcon="menu"></mat-icon>
+    </button>
+    <a class="app-name" routerLink="/">
+      <jr-icon
+        [solid]="true"
+        *ngIf="transparentToolbar && !sidenav.opened && !xsmall"
+      ></jr-icon>
+      <jr-logo
+        [solid]="true"
+        *ngIf="!transparentToolbar || sidenav.opened"
+      ></jr-logo>
+    </a>
+    <mat-nav-list *ngIf="!xsmall">
+      <a mat-list-item routerLink="/about" routerLinkActive="active">
+        <div class="text" i18n>About</div>
+      </a>
+      <a mat-list-item routerLink="/contact" routerLinkActive="active">
+        <div class="text" i18n>Contact</div>
+      </a>
+    </mat-nav-list>
+    <span class="spacer"></span>
+    <button
+      mat-icon-button
+      (click)="toggleTheme()"
+      i18n-aria-label
+      aria-label="Toggle the theme between light and dark"
+      i18n-title
+      title="Toggle the theme between light and dark"
+    >
+      <mat-icon
+        [svgIcon]="themeService.darkMode ? 'light_mode' : 'dark_mode'"
+      ></mat-icon>
+    </button>
+    <button
+      mat-icon-button
+      i18n-aria-label
+      aria-label="Language options"
+      i18n-title
+      title="Language options"
+      [matMenuTriggerFor]="languageMenu"
+    >
+      <mat-icon svgIcon="translate"></mat-icon>
+    </button>
+  </mat-toolbar>
+
+  <mat-sidenav-container
+    class="sidenav-container"
+    [class.mat-drawer-container-has-open]="sidenav.opened"
+  >
+    <mat-sidenav
+      #sidenav
+      class="sidenav"
+      [mode]="xsmall ? 'over' : 'side'"
+      [fixedInViewport]="true"
+    >
+      <mat-nav-list>
+        <a
+          mat-list-item
+          routerLink="/"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          *ngIf="xsmall"
+        >
+          <div class="text" i18n>Home</div>
+        </a>
+        <a mat-list-item routerLink="/about" routerLinkActive="active">
+          <div class="text" i18n>About</div>
+        </a>
+        <a mat-list-item routerLink="/contact" routerLinkActive="active">
+          <div class="text" i18n>Contact</div>
+        </a>
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content class="content">
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
+
+<mat-menu #languageMenu="matMenu">
+  <a mat-menu-item [href]="getLanguageUrl('de')">Deutsch</a>
+  <a mat-menu-item [href]="getLanguageUrl('en')">English</a>
+  <a mat-menu-item [href]="getLanguageUrl('es')">Español</a>
+  <a mat-menu-item [href]="getLanguageUrl('fr')">français</a>
+  <a mat-menu-item [href]="getLanguageUrl('nl')">Nederlands</a>
+  <a mat-menu-item [href]="getLanguageUrl('pt')">português</a>
+  <a mat-menu-item [href]="getLanguageUrl('ru')">русский</a>
+  <a mat-menu-item [href]="getLanguageUrl('zh')">中国人</a>
+</mat-menu>
