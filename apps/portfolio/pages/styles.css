@@ -2,5 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
-.app {
+:root,
+.light {
+  --color-background: theme('colors.neutral.50');
+  --color-on-background: theme('colors.neutral.800');
+}
+
+.dark {
+  --color-background: theme('colors.neutral.900');
+  --color-on-background: theme('colors.white');
 }
