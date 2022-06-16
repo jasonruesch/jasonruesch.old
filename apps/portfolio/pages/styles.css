@@ -4,11 +4,100 @@
 
 :root,
 .light {
-  --color-background: theme('colors.neutral.50');
-  --color-on-background: theme('colors.neutral.800');
+  /*** Theme colors ***/
+  /* Primary */
+  --color-primary-50: theme('colors.cyan.50'); /* Black */
+  --color-primary-100: theme('colors.cyan.100'); /* Black */
+  --color-primary-200: theme('colors.cyan.200'); /* Black */
+  --color-primary-300: theme('colors.cyan.300'); /* Black */
+  --color-primary-400: theme('colors.cyan.400'); /* Black */
+  --color-primary-500: theme('colors.cyan.500'); /* Black */
+  --color-primary-600: theme('colors.cyan.600'); /* Black */
+  --color-primary-700: theme('colors.cyan.700'); /* White */
+  --color-primary-800: theme('colors.cyan.800'); /* White */
+  --color-primary-900: theme('colors.cyan.900'); /* White */
+  --color-primary: var(--color-primary-500);
+  /* Secondary */
+  --color-secondary-50: theme('colors.amber.50'); /* Black */
+  --color-secondary-100: theme('colors.amber.100'); /* Black */
+  --color-secondary-200: theme('colors.amber.200'); /* Black */
+  --color-secondary-300: theme('colors.amber.300'); /* Black */
+  --color-secondary-400: theme('colors.amber.400'); /* Black */
+  --color-secondary-500: theme('colors.amber.500'); /* Black */
+  --color-secondary-600: theme('colors.amber.600'); /* Black */
+  --color-secondary-700: theme('colors.amber.700'); /* White */
+  --color-secondary-800: theme('colors.amber.800'); /* White */
+  --color-secondary-900: theme('colors.amber.900'); /* White */
+  --color-secondary: var(--color-secondary-500);
+  /* Neutral */
+  --color-neutral: theme('colors.neutral.500');
+  /* Surface, Background and Error */
+  --color-background: theme('colors.neutral.100'); /* Black */
+  --color-surface: theme('colors.neutral.50'); /* Black */
+  --color-error: theme('colors.red.500'); /* White */
+  --color-success: theme('colors.green.500'); /* Black */
+  /* "On" Colors */
+  --color-on-primary: theme('colors.black');
+  --color-on-primary-inverse: theme('colors.white');
+  --color-on-secondary: theme('colors.black');
+  --color-on-secondary-inverse: theme('colors.white');
+  --color-on-background: theme('colors.black');
+  --color-on-surface: theme('colors.black');
+  --color-on-error: theme('colors.white');
+  --color-on-success: theme('colors.black');
+  /* Ring */
+  --color-ring-on-background-5: theme('colors.black' / 5%);
+  --color-ring-on-background-75: theme('colors.black' / 75%);
+  --color-ring-on-surface-5: theme('colors.black' / 5%);
+  --color-ring-on-surface-75: theme('colors.black' / 75%);
+  /* Divide */
+  --color-divide-on-background: theme('colors.black' / 5%);
+  --color-divide-on-surface: theme('colors.black' / 5%);
 }
 
 .dark {
-  --color-background: theme('colors.neutral.900');
+  /*** Theme colors ***/
+  /* Primary */
+  --color-primary-50: theme('colors.violet.50'); /* Black */
+  --color-primary-100: theme('colors.violet.100'); /* Black */
+  --color-primary-200: theme('colors.violet.200'); /* Black */
+  --color-primary-300: theme('colors.violet.300'); /* Black */
+  --color-primary-400: theme('colors.violet.400'); /* Black */
+  --color-primary-500: theme('colors.violet.500'); /* Black */
+  --color-primary-600: theme('colors.violet.600'); /* White */
+  --color-primary-700: theme('colors.violet.700'); /* White */
+  --color-primary-800: theme('colors.violet.800'); /* White */
+  --color-primary-900: theme('colors.violet.900'); /* White */
+  --color-primary: var(--color-primary-400);
+  /* Secondary */
+  --color-secondary-50: theme('colors.teal.50'); /* Black */
+  --color-secondary-100: theme('colors.teal.100'); /* Black */
+  --color-secondary-200: theme('colors.teal.200'); /* Black */
+  --color-secondary-300: theme('colors.teal.300'); /* Black */
+  --color-secondary-400: theme('colors.teal.400'); /* Black */
+  --color-secondary-500: theme('colors.teal.500'); /* Black */
+  --color-secondary-600: theme('colors.teal.600'); /* Black */
+  --color-secondary-700: theme('colors.teal.700'); /* White */
+  --color-secondary-800: theme('colors.teal.800'); /* White */
+  --color-secondary-900: theme('colors.teal.900'); /* White */
+  --color-secondary: var(--color-secondary-400);
+  /* Neutral */
+  --color-neutral: theme('colors.neutral.400');
+  /* Surface, Background and Error */
+  --color-background: theme('colors.neutral.900'); /* White */
+  --color-surface: theme('colors.neutral.800'); /* White */
+  --color-error: theme('colors.red.400'); /* Black */
+  --color-success: theme('colors.green.400'); /* Black */
+  /* "On" Colors */
   --color-on-background: theme('colors.white');
+  --color-on-surface: theme('colors.white');
+  --color-on-error: theme('colors.black');
+  /* Ring */
+  --color-ring-on-background-75: theme('colors.white' / 75%);
+  --color-ring-on-surface-75: theme('colors.white' / 75%);
+  --color-ring-on-background-5: theme('colors.white' / 5%);
+  --color-ring-on-surface-5: theme('colors.white' / 5%);
+  /* Divide */
+  --color-divide-on-background: theme('colors.white' / 5%);
+  --color-divide-on-surface: theme('colors.white' / 5%);
 }

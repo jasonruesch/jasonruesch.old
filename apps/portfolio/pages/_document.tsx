@@ -31,17 +31,17 @@ export default function Document() {
         <NextScript />
 
         {/* Global notification live region rendered permanently at the end of the document */}
-        {/* <div
+        <div
           aria-live="assertive"
-          className="pointer-events-none fixed inset-0 z-20 flex items-end px-4 py-6 lg:items-start lg:px-6 lg:py-20 sm-max-h:items-end sm-max-h:px-4 sm-max-h:py-6"
+          className="pointer-events-none fixed inset-0 z-20 flex items-end px-4 py-6 sm:items-start sm:px-6 sm:py-20 sm-max-h:items-end sm-max-h:px-4 sm-max-h:py-6"
         >
           <div
             id="live"
-            className="flex w-full flex-col items-center space-y-4 lg:items-end sm-max-h:items-center"
-          > */}
-        {/* Notification panel is dynamically inserted into this live region when it needs to be displayed */}
-        {/* </div>
-        </div> */}
+            className="flex w-full flex-col items-center space-y-4 sm:items-end sm-max-h:items-center"
+          >
+            {/* Notification panel is dynamically inserted into this live region when it needs to be displayed */}
+          </div>
+        </div>
       </body>
     </Html>
   );

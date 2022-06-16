@@ -9,14 +9,18 @@
   },
   "private": true,
   "dependencies": {
+    "@headlessui/react": "^1.6.4",
+    "@heroicons/react": "^1.0.6",
     "@nrwl/next": "14.3.2",
     "core-js": "^3.6.5",
+    "formik": "^2.2.9",
     "next": "^12.1.6",
     "next-themes": "^0.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "regenerator-runtime": "0.13.7",
-    "tslib": "^2.3.0"
+    "tslib": "^2.3.0",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@nrwl/cli": "14.3.2",

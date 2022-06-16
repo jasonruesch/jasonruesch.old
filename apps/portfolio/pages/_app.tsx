@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react';
 
 import { ThemeProvider } from 'next-themes';
 
+import { Navbar } from '../components';
+
 import './styles.css';
 
 function CustomApp({ Component, pageProps }: AppProps) {
@@ -22,7 +24,12 @@ function CustomApp({ Component, pageProps }: AppProps) {
         attribute="class"
         forcedTheme={pageProps.theme || null}
       >
-        {isHydrated && <Component {...pageProps} />}
+        {isHydrated && (
+          <>
+            <Navbar />
+            <Component {...pageProps} />
+          </>
+        )}
       </ThemeProvider>
     </>
   );
