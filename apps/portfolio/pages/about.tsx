@@ -2,8 +2,8 @@ import Link from 'next/link';
 
 export function About() {
   return (
-    <main className="h-screen flex flex-col max-w-screen-sm mx-auto space-y-4 justify-center items-center px-4 sm:px-6 lg:px-8">
-      <h1 className="font-heading font-bold text-4xl">About Me</h1>
+    <main className="mx-auto flex h-screen max-w-screen-sm flex-col items-center justify-center space-y-4 px-4 sm:px-6 lg:px-8">
+      <h1 className="font-heading text-4xl font-bold">About Me</h1>
       <p className="text-justify">
         My name is Jason Ruesch. I enjoy creating software that not only looks
         amazing, but is also easy to use! I have a passion for learning new

@@ -63,8 +63,8 @@ export function Contact() {
 
   return (
     <>
-      <main className="h-screen flex flex-col space-y-4 justify-center items-center px-4 sm:px-6 lg:px-8">
-        <h1 className="font-heading font-bold text-4xl">Get In Touch</h1>
+      <main className="flex h-screen flex-col items-center justify-center space-y-4 px-4 sm:px-6 lg:px-8">
+        <h1 className="font-heading text-4xl font-bold">Get In Touch</h1>
 
         <form className="space-y-4" onSubmit={handleSubmit}>
           <div>
@@ -82,7 +82,7 @@ export function Contact() {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     autoComplete="name"
-                    className={`bg-input placeholder-input border-input block w-full rounded-md shadow-sm focus:bg-input-focus focus:text-input-focus focus:placeholder-input-focus focus:border-input-focus focus:ring-input-focus focus:outline-none focus:ring-1 dark:shadow-black dark:focus:ring-0 sm:text-sm ${
+                    className={`bg-input placeholder-input border-input focus:bg-input-focus focus:text-input-focus focus:placeholder-input-focus focus:border-input-focus focus:ring-input-focus block w-full rounded-md shadow-sm focus:outline-none focus:ring-1 dark:shadow-black dark:focus:ring-0 sm:text-sm ${
                       !!errors.name && touched.name
                         ? '!border-input-error !text-input-error !placeholder-input-error pr-10'
                         : ''
@@ -128,7 +128,7 @@ export function Contact() {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     autoComplete="email"
-                    className={`bg-input placeholder-input border-input block w-full rounded-md shadow-sm focus:bg-input-focus focus:text-input-focus focus:placeholder-input-focus focus:border-input-focus focus:ring-input-focus focus:outline-none focus:ring-1 dark:shadow-black dark:focus:ring-0 sm:text-sm ${
+                    className={`bg-input placeholder-input border-input focus:bg-input-focus focus:text-input-focus focus:placeholder-input-focus focus:border-input-focus focus:ring-input-focus block w-full rounded-md shadow-sm focus:outline-none focus:ring-1 dark:shadow-black dark:focus:ring-0 sm:text-sm ${
                       !!errors.email && touched.email
                         ? '!border-input-error !text-input-error !placeholder-input-error pr-10'
                         : ''
@@ -172,7 +172,7 @@ export function Contact() {
                     value={values.message}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    className={`bg-input placeholder-input border-input block w-full rounded-md shadow-sm focus:bg-input-focus focus:text-input-focus focus:placeholder-input-focus focus:border-input-focus focus:ring-input-focus focus:outline-none focus:ring-1 dark:shadow-black dark:focus:ring-0 sm:text-sm ${
+                    className={`bg-input placeholder-input border-input focus:bg-input-focus focus:text-input-focus focus:placeholder-input-focus focus:border-input-focus focus:ring-input-focus block w-full rounded-md shadow-sm focus:outline-none focus:ring-1 dark:shadow-black dark:focus:ring-0 sm:text-sm ${
                       !!errors.message && touched.message
                         ? '!border-input-error !text-input-error !placeholder-input-error pr-10'
                         : ''

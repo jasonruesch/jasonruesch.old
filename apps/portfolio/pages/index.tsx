@@ -3,8 +3,8 @@ import Link from 'next/link';
 
 export function Index() {
   return (
-    <main className="h-screen flex flex-col justify-center items-center px-4 sm:px-6 lg:px-8">
-      <h1 className="font-heading font-bold text-4xl text-center">
+    <main className="flex h-screen flex-col items-center justify-center px-4 sm:px-6 lg:px-8">
+      <h1 className="text-center font-heading text-4xl font-bold">
         Hi! I&apos;m
         <br />
         <span className="text-primary">Jason Ruesch</span>

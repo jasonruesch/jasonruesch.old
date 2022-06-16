@@ -18,7 +18,7 @@ export const ThemeSelector = () => {
           <Menu.Button
             className={`${
               theme === 'system' ? 'text-neutral' : 'text-on-background'
-            } p-2 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-on-background-75`}
+            } focus-visible:ring-on-background-75 rounded-md p-2 focus:outline-none focus-visible:ring-2`}
           >
             <span className="sr-only">Open theme menu</span>
             {resolvedTheme === 'light' ? (
@@ -37,7 +37,7 @@ export const ThemeSelector = () => {
           leaveFrom="transform opacity-100 scale-100"
           leaveTo="transform opacity-0 scale-95"
         >
-          <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-on-surface rounded-md bg-surface shadow-lg ring-1 ring-on-background-5 focus:outline-none">
+          <Menu.Items className="divide-on-surface bg-surface ring-on-background-5 absolute right-0 mt-2 w-56 origin-top-right divide-y rounded-md shadow-lg ring-1 focus:outline-none">
             <div className="px-1 py-1 ">
               <Menu.Item>
                 {({ active }) => (
