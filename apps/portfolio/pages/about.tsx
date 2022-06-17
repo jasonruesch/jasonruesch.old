@@ -2,9 +2,7 @@ import Link from 'next/link';
 
 export function About({ className }) {
   return (
-    <main
-      className={`mx-auto flex h-screen max-w-screen-sm flex-col items-center justify-center space-y-4 p-4 sm:px-6 lg:px-8 ${className}`}
-    >
+    <>
       <h1 className="font-heading text-4xl font-bold">About Me</h1>
       <p className="text-justify">
         My name is Jason Ruesch. I enjoy creating software that not only looks
@@ -28,7 +26,7 @@ export function About({ className }) {
           </a>
         </Link>
       </div>
-    </main>
+    </>
   );
 }
 

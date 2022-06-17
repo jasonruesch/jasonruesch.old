@@ -1,29 +1,10 @@
-import Image from 'next/image';
 import Link from 'next/link';
 
 import { ChevronRightIcon } from '@heroicons/react/outline';
 
 export function Index({ className }) {
-  const isHome = true;
-
   return (
-    <main
-      className={`mx-auto flex h-screen max-w-screen-sm flex-col items-center justify-center space-y-4 p-4 sm:px-6 lg:px-8 ${className}`}
-    >
-      <div
-        className={`relative h-[150px] w-[150px] rounded-full ${
-          isHome ? 'md:h-[300px] md:w-[300px]' : ''
-        }`}
-      >
-        <Image
-          priority
-          src="/images/profile.png"
-          className="bg-primary rounded-full"
-          layout="fill"
-          alt="Jason Ruesch"
-        />
-      </div>
-
+    <>
       <h1 className="text-center font-heading text-4xl font-bold">
         Hi! I&apos;m
         <br />
@@ -50,7 +31,7 @@ export function Index({ className }) {
           </a>
         </Link>
       </div>
-    </main>
+    </>
   );
 }
 

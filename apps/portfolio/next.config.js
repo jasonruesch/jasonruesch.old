@@ -11,6 +11,9 @@ const nextConfig = {
     svgr: false,
   },
   reactStrictMode: true,
+  serverRuntimeConfig: {
+    PROJECT_ROOT: __dirname,
+  },
 };
 
 module.exports = withNx(nextConfig);
