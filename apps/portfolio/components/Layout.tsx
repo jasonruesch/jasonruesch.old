@@ -8,11 +8,11 @@ export const Layout = ({ children }) => {
 
   return (
     <main
-      className={`mx-auto flex max-w-screen-sm flex-col items-center justify-center space-y-4 p-4 sm-max-h:pt-20 sm:px-6 lg:px-8 ${
+      className={`mx-auto flex max-w-screen-sm flex-col items-center justify-center p-4 sm-max-h:pt-20 sm:px-6 lg:px-8 ${
         isHome ? 'h-screen sm-max-h:h-auto' : 'pt-20'
       }`}
     >
-      <ProfileImage isHome={isHome} />
+      <ProfileImage isHome={isHome} className="mb-4" />
 
       {children}
     </main>

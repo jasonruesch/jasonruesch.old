@@ -18,19 +18,17 @@ export function Index({ className }) {
         Web Development and Design
       </h1>
 
-      <div className="mx-auto w-24">
-        <Link href="/about" scroll={false}>
-          <a
-            className="text-primary flex justify-end text-sm font-medium"
-            aria-label="Learn more about me."
-          >
-            <ChevronRightIcon
-              className="h-12 w-12 -translate-x-6"
-              aria-hidden="true"
-            />
-          </a>
-        </Link>
-      </div>
+      <Link href="/about">
+        <a
+          className="text-link hover:text-link-hover mx-auto mt-4 flex w-24 justify-end text-sm font-medium"
+          aria-label="Learn more about me"
+        >
+          <ChevronRightIcon
+            className="h-12 w-12 -translate-x-6"
+            aria-hidden="true"
+          />
+        </a>
+      </Link>
     </>
   );
 }

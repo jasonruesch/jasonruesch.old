@@ -73,7 +73,7 @@ export function Contact({ className }) {
         <div>
           <div className="grid grid-cols-1 gap-y-1 gap-x-4 sm:grid-cols-6">
             <div className="sm:col-span-3">
-              <label htmlFor="name" className="block text-sm font-medium">
+              <label htmlFor="name" className="block text-sm font-bold">
                 Name
               </label>
               <div className="relative mt-1">
@@ -82,10 +82,12 @@ export function Contact({ className }) {
                   name="name"
                   id="name"
                   autoComplete="name"
-                  className={`bg-surface text-on-surface block w-full rounded-md shadow-sm sm:text-sm ${
+                  className={`input ${
                     !!errors.name && touched.name
-                      ? 'border-error text-error placeholder-error focus:border-error focus:ring-error pr-10'
-                      : 'focus:ring-primary focus:border-primary border-neutral placeholder-neutral'
+                      ? `
+                          text-input-error placeholder-input-error border-input-error focus:border-input-error-focus focus:ring-input-error-focus
+                          pr-10 focus:outline-none`
+                      : ''
                   }`}
                   placeholder="Jane Doe"
                   required
@@ -94,19 +96,22 @@ export function Contact({ className }) {
                     !!errors.name && touched.name ? 'name-error' : ''
                   }
                   value={values.name}
-                  onBlur={handleBlur}
                   onChange={handleChange}
+                  onBlur={handleBlur}
                 />
                 {!!errors.name && touched.name && (
                   <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
                     <ExclamationCircleIcon
-                      className="text-error h-5 w-5"
+                      className="text-input-error-icon h-5 w-5"
                       aria-hidden="true"
                     />
                   </div>
                 )}
               </div>
-              <p className="text-error mt-1 h-5 text-sm" id="name-error">
+              <p
+                className="text-input-error-message mt-1 h-5 text-sm"
+                id="name-error"
+              >
                 {!!errors.name && touched.name && errors.name}
               </p>
             </div>
@@ -117,14 +122,16 @@ export function Contact({ className }) {
               </label>
               <div className="relative mt-1">
                 <input
-                  type="text"
+                  type="email"
                   name="email"
                   id="email"
                   autoComplete="email"
-                  className={`bg-surface text-on-surface block w-full rounded-md shadow-sm sm:text-sm ${
+                  className={`input ${
                     !!errors.email && touched.email
-                      ? 'border-error text-error placeholder-error focus:border-error focus:ring-error pr-10'
-                      : 'focus:ring-primary focus:border-primary border-neutral placeholder-neutral'
+                      ? `
+                          text-input-error placeholder-input-error border-input-error focus:border-input-error-focus focus:ring-input-error-focus
+                          pr-10 focus:outline-none`
+                      : ''
                   }`}
                   placeholder="you@example.com"
                   required
@@ -133,19 +140,22 @@ export function Contact({ className }) {
                     !!errors.email && touched.email ? 'email-error' : ''
                   }
                   value={values.email}
-                  onBlur={handleBlur}
                   onChange={handleChange}
+                  onBlur={handleBlur}
                 />
                 {!!errors.email && touched.email && (
                   <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
                     <ExclamationCircleIcon
-                      className="text-error h-5 w-5"
+                      className="text-input-error-icon h-5 w-5"
                       aria-hidden="true"
                     />
                   </div>
                 )}
               </div>
-              <p className="text-error mt-1 h-5 text-sm" id="email-error">
+              <p
+                className="text-input-error-message mt-1 h-5 text-sm"
+                id="email-error"
+              >
                 {!!errors.email && touched.email && errors.email}
               </p>
             </div>
@@ -156,13 +166,15 @@ export function Contact({ className }) {
               </label>
               <div className="relative mt-1">
                 <textarea
+                  rows={2}
                   name="message"
                   id="message"
-                  autoComplete="message"
-                  className={`bg-surface text-on-surface block w-full rounded-md shadow-sm sm:text-sm ${
+                  className={`input ${
                     !!errors.message && touched.message
-                      ? 'border-error text-error placeholder-error focus:border-error focus:ring-error pr-10'
-                      : 'focus:ring-primary focus:border-primary border-neutral placeholder-neutral'
+                      ? `
+                          text-input-error placeholder-input-error border-input-error focus:border-input-error-focus focus:ring-input-error-focus
+                          pr-10 focus:outline-none`
+                      : ''
                   }`}
                   placeholder="Your message"
                   required
@@ -171,34 +183,36 @@ export function Contact({ className }) {
                     !!errors.message && touched.message ? 'message-error' : ''
                   }
                   value={values.message}
-                  onBlur={handleBlur}
                   onChange={handleChange}
+                  onBlur={handleBlur}
                 ></textarea>
                 {!!errors.message && touched.message && (
                   <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
                     <ExclamationCircleIcon
-                      className="text-error h-5 w-5"
+                      className="text-input-error-icon h-5 w-5"
                       aria-hidden="true"
                     />
                   </div>
                 )}
               </div>
-              <p className="text-error mt-1 h-5 text-sm" id="message-error">
+              <p
+                className="text-input-error-message mt-1 h-5 text-sm"
+                id="message-error"
+              >
                 {!!errors.message && touched.message && errors.message}
               </p>
             </div>
           </div>
         </div>
+
         <div>
           <div className="flex justify-end">
             <Link href="/">
-              <a className="border-neutral bg-surface text-on-surface focus:ring-primary rounded-md border py-2 px-4 text-sm font-medium shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2">
-                Cancel
-              </a>
+              <a className="button-secondary">Cancel</a>
             </Link>
             <button
               type="submit"
-              className="bg-primary text-on-primary focus:ring-primary disabled:bg-primary-300 ml-3 inline-flex justify-center rounded-md border border-transparent py-2 px-4 text-sm font-medium shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:text-neutral-600"
+              className="button-primary ml-3"
               disabled={!dirty || !isValid || isSubmitting}
             >
               {isSubmitting ? (
