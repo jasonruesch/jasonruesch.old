@@ -142,8 +142,8 @@
     --color-ring-on-background-5: theme('colors.white' / 5%);
     --color-ring-on-surface-5: theme('colors.white' / 5%);
     /* Divide */
-    --color-divide-on-background: theme('colors.white' / 5%);
-    --color-divide-on-surface: theme('colors.white' / 5%);
+    --color-divide-on-background: theme('colors.white' / 20%);
+    --color-divide-on-surface: theme('colors.white' / 20%);
 
     /*** Buttons ***/
     /* Primary */

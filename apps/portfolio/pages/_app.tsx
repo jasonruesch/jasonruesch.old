@@ -27,7 +27,7 @@ function CustomApp({ Component, pageProps }: AppProps) {
         {isHydrated && (
           <>
             {/* Beams */}
-            <div className="pointer-events-none absolute inset-x-0 top-0 z-10 flex h-full justify-center overflow-hidden">
+            <div className="pointer-events-none absolute inset-x-0 top-0 z-10 flex justify-center">
               <div className="flex w-[108rem] flex-none justify-end">
                 <picture>
                   <source
