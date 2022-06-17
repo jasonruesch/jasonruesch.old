@@ -7,11 +7,7 @@ export const Layout = ({ children }) => {
   const isHome = route === '/';
 
   return (
-    <main
-      className={`mx-auto flex max-w-screen-sm flex-col items-center justify-center p-4 sm-max-h:pt-20 sm:px-6 lg:px-8 ${
-        isHome ? 'h-screen sm-max-h:h-auto' : 'pt-20'
-      }`}
-    >
+    <main className="mx-auto flex h-full min-h-screen max-w-screen-sm flex-col items-center justify-center px-4 py-20 sm:px-6 lg:px-8">
       <ProfileImage isHome={isHome} className="mb-4" />
 
       {children}

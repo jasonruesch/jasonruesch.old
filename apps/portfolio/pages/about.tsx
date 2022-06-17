@@ -3,7 +3,7 @@ import Link from 'next/link';
 export function About({ className }) {
   return (
     <>
-      <h1 className="font-heading text-4xl font-bold">About Me</h1>
+      <h1 className="font-heading text-3xl font-bold sm:text-4xl">About Me</h1>
       <div className="mt-4 space-y-4">
         <p className="text-justify">
           My name is Jason Ruesch. I enjoy creating software that not only looks

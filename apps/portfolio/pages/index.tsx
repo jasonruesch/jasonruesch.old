@@ -5,7 +5,7 @@ import { ChevronRightIcon } from '@heroicons/react/outline';
 export function Index({ className }) {
   return (
     <>
-      <h1 className="text-center font-heading text-4xl font-bold">
+      <h1 className="text-center font-heading text-3xl font-bold sm:text-4xl">
         Hi! I&apos;m
         <br />
         <span className="text-primary">Jason Ruesch</span>
