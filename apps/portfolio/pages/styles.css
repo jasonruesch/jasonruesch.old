@@ -84,8 +84,8 @@
   /* Neutral */
   --color-neutral: theme('colors.neutral.400');
   /* Surface, Background and Error */
-  --color-background: theme('colors.neutral.900'); /* White */
-  --color-surface: theme('colors.neutral.800'); /* White */
+  --color-background: theme('colors.neutral.800'); /* White */
+  --color-surface: theme('colors.neutral.900'); /* White */
   --color-error: theme('colors.red.400'); /* Black */
   --color-success: theme('colors.green.400'); /* Black */
   /* "On" Colors */

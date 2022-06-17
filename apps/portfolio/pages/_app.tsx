@@ -27,7 +27,10 @@ function CustomApp({ Component, pageProps }: AppProps) {
         {isHydrated && (
           <>
             <Navbar />
-            <Component {...pageProps} />
+            <Component
+              {...pageProps}
+              className="sm-max-h:h-auto sm-max-h:pt-16"
+            />
           </>
         )}
       </ThemeProvider>

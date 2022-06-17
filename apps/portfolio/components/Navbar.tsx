@@ -1,7 +1,9 @@
-import { Disclosure } from '@headlessui/react';
-import { MenuAlt1Icon, XIcon } from '@heroicons/react/outline';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
+
+import { Disclosure } from '@headlessui/react';
+import { MenuAlt1Icon, XIcon } from '@heroicons/react/outline';
 
 import { Logo } from './Logo';
 import { Mark } from './Mark';
@@ -12,19 +14,44 @@ export const Navbar = () => {
   const isHome = route === '/';
   const isAbout = route === '/about';
   const isContact = route === '/contact';
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = (e) => {
+      if (e.target.scrollingElement.scrollTop > 0) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   return (
     <Disclosure as="header" className="fixed top-0 z-30 w-full">
       {({ open }) => (
-        <div className={`${open ? 'bg-surface shadow' : 'bg-background'}`}>
+        <div
+          className={`${
+            open || isScrolled
+              ? 'bg-surface text-on-surface shadow'
+              : 'bg-background text-on-background'
+          }`}
+        >
           <div className="px-2 sm:px-6 lg:px-8">
             <div className="relative flex h-16 justify-between">
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 {/* Mobile menu button */}
                 <Disclosure.Button
                   className={`${
-                    open ? 'focus:ring-on-surface' : 'focus:ring-on-background'
-                  } text-neutral inline-flex items-center justify-center rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-inset`}
+                    open || isScrolled
+                      ? 'focus:ring-on-surface-75'
+                      : 'focus:ring-on-background-75'
+                  } text-neutral inline-flex items-center justify-center rounded-md p-2 focus:outline-none focus-visible:ring-2`}
                 >
                   <span className="sr-only">Open main menu</span>
                   {open ? (
@@ -47,8 +74,8 @@ export const Navbar = () => {
                     <a
                       className={`inline-flex h-10 items-center border-b-2 px-1 pt-1 text-sm font-medium ${
                         isHome
-                          ? 'border-primary text-on-background'
-                          : 'hover:border-neutral text-neutral hover:text-on-background border-transparent'
+                          ? 'border-primary'
+                          : 'hover:border-neutral text-neutral border-transparent hover:text-current'
                       }`}
                     >
                       Home
@@ -58,8 +85,8 @@ export const Navbar = () => {
                     <a
                       className={`inline-flex h-10 items-center border-b-2 px-1 pt-1 text-sm font-medium ${
                         isAbout
-                          ? 'border-primary text-on-background'
-                          : 'hover:border-neutral text-neutral hover:text-on-background border-transparent'
+                          ? 'border-primary'
+                          : 'hover:border-neutral text-neutral border-transparent hover:text-current'
                       }`}
                     >
                       About
@@ -69,8 +96,8 @@ export const Navbar = () => {
                     <a
                       className={`inline-flex h-10 items-center border-b-2 px-1 pt-1 text-sm font-medium ${
                         isContact
-                          ? 'border-primary text-on-background'
-                          : 'hover:border-neutral text-neutral hover:text-on-background border-transparent'
+                          ? 'border-primary'
+                          : 'hover:border-neutral text-neutral border-transparent hover:text-current'
                       }`}
                     >
                       Contact
@@ -79,47 +106,58 @@ export const Navbar = () => {
                 </nav>
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                <ThemeSelector />
+                <ThemeSelector
+                  className={`${
+                    open || isScrolled
+                      ? 'focus-visible:ring-on-surface-75'
+                      : 'focus-visible:ring-on-background-75'
+                  }`}
+                />
               </div>
             </div>
           </div>
 
           <Disclosure.Panel className="sm:hidden">
-            <nav className="space-y-1 px-2 pt-2 pb-4">
-              <Disclosure.Button as={Link} href="/">
-                <a
-                  className={`block border-l-4 py-2 pl-3 pr-4 text-base font-medium ${
-                    isHome
-                      ? 'border-primary text-on-background'
-                      : 'text-neutral hover:border-neutral hover:text-on-background border-transparent'
-                  }`}
-                >
-                  Home
-                </a>
-              </Disclosure.Button>
-              <Disclosure.Button as={Link} href="/about">
-                <a
-                  className={`block border-l-4 py-2 pl-3 pr-4 text-base font-medium ${
-                    isAbout
-                      ? 'border-primary text-on-background'
-                      : 'text-neutral hover:border-neutral hover:text-on-background border-transparent'
-                  }`}
-                >
-                  About
-                </a>
-              </Disclosure.Button>
-              <Disclosure.Button as={Link} href="/contact">
-                <a
-                  className={`block border-l-4 py-2 pl-3 pr-4 text-base font-medium ${
-                    isContact
-                      ? 'border-primary text-on-background'
-                      : 'text-neutral hover:border-neutral hover:text-on-background border-transparent'
-                  }`}
-                >
-                  Contact
-                </a>
-              </Disclosure.Button>
-            </nav>
+            {({ close }) => (
+              <nav className="space-y-1 px-2 pt-2 pb-4">
+                <Disclosure.Button as={Link} href="/">
+                  <a
+                    className={`block border-l-4 py-2 pl-3 pr-4 font-medium ${
+                      isHome
+                        ? 'border-primary'
+                        : 'text-neutral hover:border-neutral border-transparent hover:text-current'
+                    }`}
+                    onClick={() => close()}
+                  >
+                    Home
+                  </a>
+                </Disclosure.Button>
+                <Disclosure.Button as={Link} href="/about">
+                  <a
+                    className={`block border-l-4 py-2 pl-3 pr-4 font-medium ${
+                      isAbout
+                        ? 'border-primary'
+                        : 'text-neutral hover:border-neutral border-transparent hover:text-current'
+                    }`}
+                    onClick={() => close()}
+                  >
+                    About
+                  </a>
+                </Disclosure.Button>
+                <Disclosure.Button as={Link} href="/contact">
+                  <a
+                    className={`block border-l-4 py-2 pl-3 pr-4 font-medium ${
+                      isContact
+                        ? 'border-primary'
+                        : 'text-neutral hover:border-neutral border-transparent hover:text-current'
+                    }`}
+                    onClick={() => close()}
+                  >
+                    Contact
+                  </a>
+                </Disclosure.Button>
+              </nav>
+            )}
           </Disclosure.Panel>
         </div>
       )}

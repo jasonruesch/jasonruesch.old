@@ -1,9 +1,29 @@
-import { ChevronRightIcon } from '@heroicons/react/outline';
+import Image from 'next/image';
 import Link from 'next/link';
 
-export function Index() {
+import { ChevronRightIcon } from '@heroicons/react/outline';
+
+export function Index({ className }) {
+  const isHome = true;
+
   return (
-    <main className="flex h-screen flex-col items-center justify-center px-4 sm:px-6 lg:px-8">
+    <main
+      className={`mx-auto flex h-screen max-w-screen-sm flex-col items-center justify-center space-y-4 p-4 sm:px-6 lg:px-8 ${className}`}
+    >
+      <div
+        className={`relative h-[150px] w-[150px] rounded-full ${
+          isHome ? 'md:h-[300px] md:w-[300px]' : ''
+        }`}
+      >
+        <Image
+          priority
+          src="/images/profile.png"
+          className="bg-primary rounded-full"
+          layout="fill"
+          alt="Jason Ruesch"
+        />
+      </div>
+
       <h1 className="text-center font-heading text-4xl font-bold">
         Hi! I&apos;m
         <br />
@@ -17,7 +37,7 @@ export function Index() {
         Web Development and Design
       </h1>
 
-      <div className="mx-auto mt-4 w-24">
+      <div className="mx-auto w-24">
         <Link href="/about" scroll={false}>
           <a
             className="text-primary flex justify-end text-sm font-medium"

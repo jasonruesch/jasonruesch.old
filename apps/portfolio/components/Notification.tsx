@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import { Fragment, ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 
 import { Transition } from '@headlessui/react';
@@ -13,7 +13,7 @@ export function Notification({
   show = false,
   onHide,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
   type: NotificatonType;
   show: boolean;

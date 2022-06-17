@@ -8,7 +8,7 @@ import {
   SunIcon as SunOutlineIcon,
 } from '@heroicons/react/outline';
 
-export const ThemeSelector = () => {
+export const ThemeSelector = ({ className }) => {
   const { theme, resolvedTheme, setTheme, forcedTheme } = useTheme();
 
   return (
@@ -17,8 +17,8 @@ export const ThemeSelector = () => {
         <div>
           <Menu.Button
             className={`${
-              theme === 'system' ? 'text-neutral' : 'text-on-background'
-            } focus-visible:ring-on-background-75 rounded-md p-2 focus:outline-none focus-visible:ring-2`}
+              theme === 'system' ? 'text-neutral' : 'text-primary'
+            } rounded-md p-2 focus:outline-none focus-visible:ring-2 ${className}`}
           >
             <span className="sr-only">Open theme menu</span>
             {resolvedTheme === 'light' ? (
