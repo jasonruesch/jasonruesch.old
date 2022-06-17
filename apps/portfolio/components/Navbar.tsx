@@ -39,7 +39,7 @@ export const Navbar = () => {
           className={`${
             open || isScrolled
               ? 'bg-surface text-on-surface shadow'
-              : 'bg-background text-on-background'
+              : 'text-on-background bg-transparent'
           }`}
         >
           <div className="px-2 sm:px-6 lg:px-8">
