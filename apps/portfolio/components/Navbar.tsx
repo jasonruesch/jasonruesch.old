@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
-import { Disclosure } from '@headlessui/react';
+import { Disclosure, Transition } from '@headlessui/react';
 import { MenuAlt1Icon, XIcon } from '@heroicons/react/outline';
 
 import { Logo } from './Logo';
@@ -117,48 +117,58 @@ export const Navbar = () => {
             </div>
           </div>
 
-          <Disclosure.Panel className="sm:hidden">
-            {({ close }) => (
-              <nav className="space-y-1 px-2 pt-2 pb-4">
-                <Disclosure.Button as={Link} href="/">
-                  <a
-                    className={`block border-l-4 py-2 pl-3 pr-4 font-medium ${
-                      isHome
-                        ? 'border-primary'
-                        : 'text-neutral hover:border-neutral border-transparent hover:text-current'
-                    }`}
-                    onClick={() => close()}
-                  >
-                    Home
-                  </a>
-                </Disclosure.Button>
-                <Disclosure.Button as={Link} href="/about">
-                  <a
-                    className={`block border-l-4 py-2 pl-3 pr-4 font-medium ${
-                      isAbout
-                        ? 'border-primary'
-                        : 'text-neutral hover:border-neutral border-transparent hover:text-current'
-                    }`}
-                    onClick={() => close()}
-                  >
-                    About
-                  </a>
-                </Disclosure.Button>
-                <Disclosure.Button as={Link} href="/contact">
-                  <a
-                    className={`block border-l-4 py-2 pl-3 pr-4 font-medium ${
-                      isContact
-                        ? 'border-primary'
-                        : 'text-neutral hover:border-neutral border-transparent hover:text-current'
-                    }`}
-                    onClick={() => close()}
-                  >
-                    Contact
-                  </a>
-                </Disclosure.Button>
-              </nav>
-            )}
-          </Disclosure.Panel>
+          <Transition
+            show={open}
+            enter="transition duration-100 ease-out"
+            enterFrom="transform scale-95 opacity-0"
+            enterTo="transform scale-100 opacity-100"
+            leave="transition duration-75 ease-out"
+            leaveFrom="transform scale-100 opacity-100"
+            leaveTo="transform scale-95 opacity-0"
+          >
+            <Disclosure.Panel className="sm:hidden">
+              {({ close }) => (
+                <nav className="space-y-1 px-2 pt-2 pb-4">
+                  <Disclosure.Button as={Link} href="/">
+                    <a
+                      className={`block border-l-4 py-2 pl-3 pr-4 font-medium ${
+                        isHome
+                          ? 'border-primary'
+                          : 'text-neutral hover:border-neutral border-transparent hover:text-current'
+                      }`}
+                      onClick={() => close()}
+                    >
+                      Home
+                    </a>
+                  </Disclosure.Button>
+                  <Disclosure.Button as={Link} href="/about">
+                    <a
+                      className={`block border-l-4 py-2 pl-3 pr-4 font-medium ${
+                        isAbout
+                          ? 'border-primary'
+                          : 'text-neutral hover:border-neutral border-transparent hover:text-current'
+                      }`}
+                      onClick={() => close()}
+                    >
+                      About
+                    </a>
+                  </Disclosure.Button>
+                  <Disclosure.Button as={Link} href="/contact">
+                    <a
+                      className={`block border-l-4 py-2 pl-3 pr-4 font-medium ${
+                        isContact
+                          ? 'border-primary'
+                          : 'text-neutral hover:border-neutral border-transparent hover:text-current'
+                      }`}
+                      onClick={() => close()}
+                    >
+                      Contact
+                    </a>
+                  </Disclosure.Button>
+                </nav>
+              )}
+            </Disclosure.Panel>
+          </Transition>
         </div>
       )}
     </Disclosure>
