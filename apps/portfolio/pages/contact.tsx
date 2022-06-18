@@ -9,7 +9,7 @@ import { Notification } from '../components';
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
-export function Contact({ className }) {
+export function Contact() {
   const validationSchema = Yup.object({
     name: Yup.string().required('Your name is required.'),
     email: Yup.string()

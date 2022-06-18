@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-export function About({ className }) {
+export function About() {
   return (
     <div className="flex w-full flex-col space-y-4">
       <h1 className="font-heading text-3xl font-bold sm:text-4xl">About Me</h1>
