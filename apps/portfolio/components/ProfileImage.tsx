@@ -11,7 +11,7 @@ export const ProfileImage = ({
     <div
       className={`relative h-[150px] w-[150px] rounded-full ${
         isHome ? 'md:h-[300px] md:w-[300px]' : ''
-      } ${className}`}
+      } ${className} ${isHome ? '' : 'sm-max-h:hidden'}`}
     >
       <Image
         priority
