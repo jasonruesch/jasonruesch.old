@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 
 import { ThemeProvider } from 'next-themes';
 
-import { Beams, Layout, Navbar } from '../components';
+import { Beams, Layout, Navbar, PageTransitions } from '../components';
 
 import './styles.css';
 
@@ -28,9 +28,11 @@ function CustomApp({ Component, pageProps }: AppProps) {
           <>
             <Beams />
             <Navbar />
-            <Layout>
-              <Component {...pageProps} />
-            </Layout>
+            <PageTransitions>
+              <Layout>
+                <Component {...pageProps} />
+              </Layout>
+            </PageTransitions>
           </>
         )}
       </ThemeProvider>

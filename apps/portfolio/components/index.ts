@@ -6,3 +6,4 @@ export * from './Notification';
 export * from './ProfileImage';
 export * from './Layout';
 export * from './Beams';
+export * from './PageTransitions';

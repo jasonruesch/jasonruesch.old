@@ -4,7 +4,7 @@ import { ChevronRightIcon } from '@heroicons/react/outline';
 
 export function Index({ className }) {
   return (
-    <>
+    <div className="space-y-4">
       <h1 className="text-center font-heading text-3xl font-bold sm:text-4xl">
         Hi! I&apos;m
         <br />
@@ -20,7 +20,7 @@ export function Index({ className }) {
 
       <Link href="/about">
         <a
-          className="text-link hover:text-link-hover mx-auto mt-4 flex w-24 justify-end text-sm font-medium"
+          className="text-link hover:text-link-hover mx-auto flex w-24 justify-end text-sm font-medium sm-max-h:hidden"
           aria-label="Learn more about me"
         >
           <ChevronRightIcon
@@ -29,7 +29,7 @@ export function Index({ className }) {
           />
         </a>
       </Link>
-    </>
+    </div>
   );
 }
 

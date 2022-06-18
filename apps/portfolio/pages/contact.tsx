@@ -66,12 +66,12 @@ export function Contact({ className }) {
   });
 
   return (
-    <>
+    <div className="flex w-full flex-col space-y-4">
       <h1 className="font-heading text-3xl font-bold sm:text-4xl">
         Get In Touch
       </h1>
 
-      <form className="w-full space-y-4" onSubmit={handleSubmit}>
+      <form className="w-full space-y-2" onSubmit={handleSubmit}>
         <div>
           <div className="grid grid-cols-1 gap-y-1 gap-x-4 sm:grid-cols-6">
             <div className="sm:col-span-3">
@@ -259,7 +259,7 @@ export function Contact({ className }) {
       >
         Something went wrong. Please try again.
       </Notification>
-    </>
+    </div>
   );
 }
 
