@@ -6,29 +6,50 @@ import gsap from 'gsap';
 
 import { useOnScreen } from '../hooks';
 
+const sleepUntil = async (f, timeoutMs) => {
+  return new Promise<void>((resolve, reject) => {
+    const timeWas = new Date().getTime();
+    const wait = setInterval(function () {
+      if (f()) {
+        clearInterval(wait);
+        resolve();
+      } else if (new Date().getTime() - timeWas > timeoutMs) {
+        // Timed out
+        clearInterval(wait);
+        reject();
+      }
+    }, 20);
+  });
+};
+
 export function Index() {
   const tl = useRef<gsap.core.Timeline>(null);
   const el = useRef<HTMLDivElement>(null);
   const isOnScreen = useOnScreen(el);
 
-  const handlePointerEnter = useCallback(() => {
+  const handlePointerEnter = useCallback(async () => {
+    await sleepUntil(() => tl.current.progress() === 1, 1000);
     tl.current.pause();
   }, []);
 
-  const handlePointerLeave = useCallback(() => {
-    tl.current.play();
+  const handlePointerLeave = useCallback(async () => {
+    await sleepUntil(
+      () => !tl.current.isActive() || tl.current.progress() === 1,
+      1000
+    );
+    tl.current.resume();
   }, []);
 
   useEffect(() => {
     tl.current = gsap
       .timeline({
         repeat: -1,
-        repeatDelay: 0.7,
-        delay: 0.7,
+        repeatDelay: 0.5,
+        delay: 0.5,
       })
-      .to(el.current, { x: -24, ease: 'back.out', duration: 0.3 })
-      .to(el.current, { x: 24, duration: 0.1 })
-      .to(el.current, { x: 0, ease: 'back.out(5)' });
+      .to(el.current, { x: -24, ease: 'power1.out', duration: 0.25 })
+      .to(el.current, { x: 24, duration: 0.125 })
+      .to(el.current, { x: 0, ease: 'back.out(5)', duration: 0.375 });
 
     return () => {
       tl.current.kill();
@@ -36,8 +57,10 @@ export function Index() {
   }, []);
 
   useEffect(() => {
-    if (isOnScreen && !tl.current.isActive()) {
-      tl.current.restart(true);
+    if (isOnScreen) {
+      if (!tl.current.isActive()) {
+        tl.current.restart(true);
+      }
     } else {
       tl.current.pause();
     }
