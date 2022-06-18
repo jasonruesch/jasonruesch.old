@@ -66,8 +66,12 @@ export const Navbar = () => {
               </div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex flex-shrink-0 items-center">
-                  <Mark className="block h-8 w-auto lg:hidden" />
-                  <Logo className="hidden h-8 w-auto lg:block" />
+                  <Link href="/">
+                    <a>
+                      <Mark className="block h-8 w-auto lg:hidden" />
+                      <Logo className="hidden h-8 w-auto lg:block" />
+                    </a>
+                  </Link>
                 </div>
                 <nav className="hidden sm:ml-6 sm:flex sm:items-center sm:space-x-8">
                   <Link href="/">
@@ -107,8 +111,8 @@ export const Navbar = () => {
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 <ThemeSelector
-                  className={`${
-                    open || isScrolled
+                  className={`${open ? 'hidden' : ''} ${
+                    isScrolled
                       ? 'focus-visible:ring-on-surface-75'
                       : 'focus-visible:ring-on-background-75'
                   }`}
