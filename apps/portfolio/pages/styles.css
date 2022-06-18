@@ -2,102 +2,206 @@
 @tailwind components;
 @tailwind utilities;
 
-:root,
-.light {
-  /*** Theme colors ***/
-  /* Primary */
-  --color-primary-50: theme('colors.cyan.50'); /* Black */
-  --color-primary-100: theme('colors.cyan.100'); /* Black */
-  --color-primary-200: theme('colors.cyan.200'); /* Black */
-  --color-primary-300: theme('colors.cyan.300'); /* Black */
-  --color-primary-400: theme('colors.cyan.400'); /* Black */
-  --color-primary-500: theme('colors.cyan.500'); /* Black */
-  --color-primary-600: theme('colors.cyan.600'); /* Black */
-  --color-primary-700: theme('colors.cyan.700'); /* White */
-  --color-primary-800: theme('colors.cyan.800'); /* White */
-  --color-primary-900: theme('colors.cyan.900'); /* White */
-  --color-primary: var(--color-primary-500);
-  /* Secondary */
-  --color-secondary-50: theme('colors.amber.50'); /* Black */
-  --color-secondary-100: theme('colors.amber.100'); /* Black */
-  --color-secondary-200: theme('colors.amber.200'); /* Black */
-  --color-secondary-300: theme('colors.amber.300'); /* Black */
-  --color-secondary-400: theme('colors.amber.400'); /* Black */
-  --color-secondary-500: theme('colors.amber.500'); /* Black */
-  --color-secondary-600: theme('colors.amber.600'); /* Black */
-  --color-secondary-700: theme('colors.amber.700'); /* White */
-  --color-secondary-800: theme('colors.amber.800'); /* White */
-  --color-secondary-900: theme('colors.amber.900'); /* White */
-  --color-secondary: var(--color-secondary-500);
-  /* Neutral */
-  --color-neutral: theme('colors.neutral.500');
-  /* Surface, Background and Error */
-  --color-background: theme('colors.neutral.100'); /* Black */
-  --color-surface: theme('colors.neutral.50'); /* Black */
-  --color-error: theme('colors.red.500'); /* White */
-  --color-success: theme('colors.green.500'); /* Black */
-  /* "On" Colors */
-  --color-on-primary: theme('colors.black');
-  --color-on-primary-inverse: theme('colors.white');
-  --color-on-secondary: theme('colors.black');
-  --color-on-secondary-inverse: theme('colors.white');
-  --color-on-background: theme('colors.black');
-  --color-on-surface: theme('colors.black');
-  --color-on-error: theme('colors.white');
-  --color-on-success: theme('colors.black');
-  /* Ring */
-  --color-ring-on-background-5: theme('colors.black' / 5%);
-  --color-ring-on-background-75: theme('colors.black' / 75%);
-  --color-ring-on-surface-5: theme('colors.black' / 5%);
-  --color-ring-on-surface-75: theme('colors.black' / 75%);
-  /* Divide */
-  --color-divide-on-background: theme('colors.black' / 5%);
-  --color-divide-on-surface: theme('colors.black' / 5%);
+@layer base {
+  :root,
+  .light {
+    /*** Theme Colors ***/
+    /* Primary */
+    --color-primary-50: theme('colors.cyan.50'); /* Black */
+    --color-primary-100: theme('colors.cyan.100'); /* Black */
+    --color-primary-200: theme('colors.cyan.200'); /* Black */
+    --color-primary-300: theme('colors.cyan.300'); /* Black */
+    --color-primary-400: theme('colors.cyan.400'); /* Black */
+    --color-primary-500: theme('colors.cyan.500'); /* Black */
+    --color-primary-600: theme('colors.cyan.600'); /* Black */
+    --color-primary-700: theme('colors.cyan.700'); /* White */
+    --color-primary-800: theme('colors.cyan.800'); /* White */
+    --color-primary-900: theme('colors.cyan.900'); /* White */
+    --color-primary: var(--color-primary-500);
+    /* Secondary */
+    --color-secondary-50: theme('colors.amber.50'); /* Black */
+    --color-secondary-100: theme('colors.amber.100'); /* Black */
+    --color-secondary-200: theme('colors.amber.200'); /* Black */
+    --color-secondary-300: theme('colors.amber.300'); /* Black */
+    --color-secondary-400: theme('colors.amber.400'); /* Black */
+    --color-secondary-500: theme('colors.amber.500'); /* Black */
+    --color-secondary-600: theme('colors.amber.600'); /* Black */
+    --color-secondary-700: theme('colors.amber.700'); /* White */
+    --color-secondary-800: theme('colors.amber.800'); /* White */
+    --color-secondary-900: theme('colors.amber.900'); /* White */
+    --color-secondary: var(--color-secondary-500);
+    /* Neutral */
+    --color-neutral: theme('colors.neutral.500');
+    /* Surface, Background and Error */
+    --color-background: theme('colors.neutral.100'); /* Black */
+    --color-surface: theme('colors.white'); /* Black */
+    --color-error: theme('colors.red.500'); /* White */
+    --color-success: theme('colors.green.500'); /* Black */
+    /* "On" Colors */
+    --color-on-primary: theme('colors.black');
+    --color-on-primary-inverse: theme('colors.white');
+    --color-on-secondary: theme('colors.black');
+    --color-on-secondary-inverse: theme('colors.white');
+    --color-on-background: theme('colors.black');
+    --color-on-surface: theme('colors.black');
+    --color-on-error: theme('colors.white');
+    --color-on-success: theme('colors.black');
+    /* Ring */
+    --color-ring-on-background-5: theme('colors.black' / 5%);
+    --color-ring-on-background-75: theme('colors.black' / 75%);
+    --color-ring-on-surface-5: theme('colors.black' / 5%);
+    --color-ring-on-surface-75: theme('colors.black' / 75%);
+    /* Divide */
+    --color-divide-on-background: theme('colors.black' / 5%);
+    --color-divide-on-surface: theme('colors.black' / 5%);
+
+    /*** Buttons ***/
+    /* Primary */
+    --color-bg-button-primary: theme('colors.cyan.600');
+    --color-bg-button-primary-hover: theme('colors.cyan.700');
+    --color-bg-button-primary-disabled: theme('colors.cyan.300');
+    --color-text-button-primary: theme('colors.black');
+    --color-text-button-primary-hover: theme('colors.white');
+    --color-text-button-primary-disabled: theme('colors.neutral.600');
+    --color-border-button-primary: theme('colors.transparent');
+    --color-ring-button-primary-focus: theme('colors.cyan.500');
+    /* Secondary */
+    --color-bg-button-secondary: theme('colors.white');
+    --color-bg-button-secondary-hover: theme('colors.neutral.50');
+    --color-bg-button-secondary-disabled: theme('colors.neutral.300');
+    --color-text-button-secondary: theme('colors.neutral.700');
+    --color-text-button-secondary-hover: theme('colors.neutral.700');
+    --color-text-button-secondary-disabled: theme('colors.neutral.600');
+    --color-border-button-secondary: theme('colors.neutral.300');
+    --color-ring-button-secondary-focus: theme('colors.cyan.500');
+
+    /*** Inputs ***/
+    --color-bg-input: theme('colors.white');
+    --color-bg-input-focus: theme('colors.white');
+    --color-text-input: theme('colors.black');
+    --color-text-input-focus: theme('colors.black');
+    --color-placeholder-input: theme('colors.neutral.500');
+    --color-placeholder-input-focus: theme('colors.neutral.400');
+    --color-border-input: theme('colors.neutral.300');
+    --color-border-input-focus: theme('colors.cyan.500');
+    --color-ring-input-focus: theme('colors.cyan.500');
+    /* Error */
+    --color-text-input-error: theme('colors.red.500');
+    --color-text-input-error-icon: theme('colors.red.500');
+    --color-text-input-error-message: theme('colors.red.600');
+    --color-placeholder-input-error: theme('colors.red.300');
+    --color-border-input-error: theme('colors.red.300');
+    --color-border-input-error-focus: theme('colors.red.500');
+    --color-ring-input-error-focus: theme('colors.red.500');
+
+    /*** Links ***/
+    --color-text-link: theme('colors.cyan.500');
+    --color-text-link-hover: theme('colors.cyan.600');
+  }
+
+  .dark {
+    /*** Theme Colors ***/
+    /* Primary */
+    --color-primary-50: theme('colors.violet.50'); /* Black */
+    --color-primary-100: theme('colors.violet.100'); /* Black */
+    --color-primary-200: theme('colors.violet.200'); /* Black */
+    --color-primary-300: theme('colors.violet.300'); /* Black */
+    --color-primary-400: theme('colors.violet.400'); /* Black */
+    --color-primary-500: theme('colors.violet.500'); /* Black */
+    --color-primary-600: theme('colors.violet.600'); /* White */
+    --color-primary-700: theme('colors.violet.700'); /* White */
+    --color-primary-800: theme('colors.violet.800'); /* White */
+    --color-primary-900: theme('colors.violet.900'); /* White */
+    --color-primary: var(--color-primary-400);
+    /* Secondary */
+    --color-secondary-50: theme('colors.teal.50'); /* Black */
+    --color-secondary-100: theme('colors.teal.100'); /* Black */
+    --color-secondary-200: theme('colors.teal.200'); /* Black */
+    --color-secondary-300: theme('colors.teal.300'); /* Black */
+    --color-secondary-400: theme('colors.teal.400'); /* Black */
+    --color-secondary-500: theme('colors.teal.500'); /* Black */
+    --color-secondary-600: theme('colors.teal.600'); /* Black */
+    --color-secondary-700: theme('colors.teal.700'); /* White */
+    --color-secondary-800: theme('colors.teal.800'); /* White */
+    --color-secondary-900: theme('colors.teal.900'); /* White */
+    --color-secondary: var(--color-secondary-400);
+    /* Neutral */
+    --color-neutral: theme('colors.neutral.400');
+    /* Surface, Background and Error */
+    --color-background: theme('colors.neutral.900'); /* White */
+    --color-surface: theme('colors.black'); /* White */
+    --color-error: theme('colors.red.400'); /* Black */
+    --color-success: theme('colors.green.400'); /* Black */
+    /* "On" Colors */
+    --color-on-background: theme('colors.white');
+    --color-on-surface: theme('colors.white');
+    --color-on-error: theme('colors.black');
+    /* Ring */
+    --color-ring-on-background-75: theme('colors.white' / 75%);
+    --color-ring-on-surface-75: theme('colors.white' / 75%);
+    --color-ring-on-background-5: theme('colors.white' / 5%);
+    --color-ring-on-surface-5: theme('colors.white' / 5%);
+    /* Divide */
+    --color-divide-on-background: theme('colors.white' / 20%);
+    --color-divide-on-surface: theme('colors.white' / 20%);
+
+    /*** Buttons ***/
+    /* Primary */
+    --color-bg-button-primary: theme('colors.violet.500');
+    --color-bg-button-primary-hover: theme('colors.violet.600');
+    --color-bg-button-primary-disabled: theme('colors.violet.300');
+    --color-text-button-primary: theme('colors.black');
+    --color-text-button-primary-hover: theme('colors.white');
+    --color-text-button-primary-disabled: theme('colors.neutral.600');
+    --color-ring-button-primary-focus: theme('colors.violet.500');
+    /* Secondary */
+    --color-bg-button-secondary: theme('colors.neutral.600');
+    --color-bg-button-secondary-hover: theme('colors.neutral.700');
+    --color-bg-button-secondary-disabled: theme('colors.neutral.300');
+    --color-text-button-secondary: theme('colors.white');
+    --color-text-button-secondary-hover: theme('colors.white');
+    --color-text-button-secondary-disabled: theme('colors.neutral.600');
+    --color-border-button-secondary: theme('colors.transparent');
+    --color-ring-button-secondary-focus: theme('colors.violet.500');
+
+    /*** Inputs ***/
+    --color-bg-input: theme('colors.neutral.700');
+    --color-text-input: theme('colors.white');
+    --color-placeholder-input: theme('colors.neutral.400');
+    --color-placeholder-input-focus: theme('colors.neutral.500');
+    --color-border-input: theme('colors.transparent');
+    --color-border-input-focus: theme('colors.white');
+    --color-ring-input-focus: theme('colors.white');
+    /* Error */
+    --color-text-input-error-icon: theme('colors.red.400');
+    --color-text-input-error-message: theme('colors.red.500');
+    --color-border-input-error-focus: theme('colors.red.400');
+    --color-ring-input-error-focus: theme('colors.red.400');
+
+    /*** Links ***/
+    --color-text-link: theme('colors.violet.400');
+    --color-text-link-hover: theme('colors.violet.500');
+  }
 }
 
-.dark {
-  /*** Theme colors ***/
-  /* Primary */
-  --color-primary-50: theme('colors.violet.50'); /* Black */
-  --color-primary-100: theme('colors.violet.100'); /* Black */
-  --color-primary-200: theme('colors.violet.200'); /* Black */
-  --color-primary-300: theme('colors.violet.300'); /* Black */
-  --color-primary-400: theme('colors.violet.400'); /* Black */
-  --color-primary-500: theme('colors.violet.500'); /* Black */
-  --color-primary-600: theme('colors.violet.600'); /* White */
-  --color-primary-700: theme('colors.violet.700'); /* White */
-  --color-primary-800: theme('colors.violet.800'); /* White */
-  --color-primary-900: theme('colors.violet.900'); /* White */
-  --color-primary: var(--color-primary-400);
-  /* Secondary */
-  --color-secondary-50: theme('colors.teal.50'); /* Black */
-  --color-secondary-100: theme('colors.teal.100'); /* Black */
-  --color-secondary-200: theme('colors.teal.200'); /* Black */
-  --color-secondary-300: theme('colors.teal.300'); /* Black */
-  --color-secondary-400: theme('colors.teal.400'); /* Black */
-  --color-secondary-500: theme('colors.teal.500'); /* Black */
-  --color-secondary-600: theme('colors.teal.600'); /* Black */
-  --color-secondary-700: theme('colors.teal.700'); /* White */
-  --color-secondary-800: theme('colors.teal.800'); /* White */
-  --color-secondary-900: theme('colors.teal.900'); /* White */
-  --color-secondary: var(--color-secondary-400);
-  /* Neutral */
-  --color-neutral: theme('colors.neutral.400');
-  /* Surface, Background and Error */
-  --color-background: theme('colors.neutral.800'); /* White */
-  --color-surface: theme('colors.neutral.900'); /* White */
-  --color-error: theme('colors.red.400'); /* Black */
-  --color-success: theme('colors.green.400'); /* Black */
-  /* "On" Colors */
-  --color-on-background: theme('colors.white');
-  --color-on-surface: theme('colors.white');
-  --color-on-error: theme('colors.black');
-  /* Ring */
-  --color-ring-on-background-75: theme('colors.white' / 75%);
-  --color-ring-on-surface-75: theme('colors.white' / 75%);
-  --color-ring-on-background-5: theme('colors.white' / 5%);
-  --color-ring-on-surface-5: theme('colors.white' / 5%);
-  /* Divide */
-  --color-divide-on-background: theme('colors.white' / 5%);
-  --color-divide-on-surface: theme('colors.white' / 5%);
+@layer components {
+  .button-primary {
+    @apply bg-button-primary text-button-primary inline-flex items-center rounded-md border border-transparent px-4 py-2 text-sm font-medium shadow-sm;
+    @apply hover:bg-button-primary-hover hover:text-button-primary-hover;
+    @apply focus:ring-offset-background focus:ring-button-primary-focus focus:outline-none focus:ring-2 focus:ring-offset-2;
+    @apply disabled:bg-button-primary-disabled disabled:text-button-primary-disabled;
+  }
+
+  .button-secondary {
+    @apply bg-button-secondary text-button-secondary border-button-secondary inline-flex items-center rounded-md border px-4 py-2 text-sm font-medium shadow-sm;
+    @apply hover:bg-button-secondary-hover hover:text-button-secondary-hover;
+    @apply focus:ring-offset-background focus:ring-button-secondary-focus focus:outline-none focus:ring-2 focus:ring-offset-2;
+    @apply disabled:bg-button-secondary-disabled disabled:text-button-secondary-disabled;
+  }
+
+  .input {
+    @apply block w-full rounded-md shadow-sm sm:text-sm;
+    @apply bg-input text-input placeholder-input border-input;
+    @apply focus:bg-input-focus focus:text-input-focus focus:placeholder-input-focus focus:border-input-focus focus:ring-input-focus;
+  }
 }

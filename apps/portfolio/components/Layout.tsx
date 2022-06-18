@@ -1,5 +1,7 @@
 import { useRouter } from 'next/router';
 
+import { motion } from 'framer-motion';
+
 import { ProfileImage } from './ProfileImage';
 
 export const Layout = ({ children }) => {
@@ -8,13 +10,28 @@ export const Layout = ({ children }) => {
 
   return (
     <main
-      className={`mx-auto flex max-w-screen-sm flex-col items-center justify-center space-y-4 p-4 sm-max-h:pt-20 sm:px-6 lg:px-8 ${
-        isHome ? 'h-screen sm-max-h:h-auto' : 'pt-20'
-      }`}
+      className={`relative mx-auto flex max-w-screen-sm flex-col items-center justify-start px-4 pt-16 pb-4
+      sm:min-h-screen sm:px-6 lg:px-8 ${
+        isHome
+          ? 'sm-max-h:!flex-row sm-max-h:!justify-start sm:justify-center sm:pt-0'
+          : 'sm:pt-20'
+      } sm-max-h:!pt-16
+    `}
     >
-      <ProfileImage isHome={isHome} />
+      <motion.figure layout>
+        <ProfileImage isHome={isHome} className="mb-4 flex-none" />
+      </motion.figure>
 
-      {children}
+      <motion.section
+        layout
+        initial={{ opacity: 0, scale: 0.5 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.5 }}
+        transition={{ ease: 'easeInOut' }}
+        className="flex w-full flex-col space-y-4"
+      >
+        {children}
+      </motion.section>
     </main>
   );
 };
