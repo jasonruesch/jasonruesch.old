@@ -67,7 +67,7 @@ export function Index() {
   }, [isOnScreen]);
 
   return (
-    <div className="space-y-4">
+    <>
       <h1 className="text-center font-heading text-3xl font-bold sm:text-4xl">
         Hi! I&apos;m
         <br />
@@ -93,7 +93,7 @@ export function Index() {
           </div>
         </a>
       </Link>
-    </div>
+    </>
   );
 }
 

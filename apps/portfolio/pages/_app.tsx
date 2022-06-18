@@ -4,11 +4,12 @@ import { useState, useEffect } from 'react';
 
 import { ThemeProvider } from 'next-themes';
 
-import { Beams, Layout, Navbar, PageTransitions } from '../components';
+import { AnimatePresence } from 'framer-motion';
 
+import { Beams, Layout, Navbar } from '../components';
 import './styles.css';
 
-function CustomApp({ Component, pageProps }: AppProps) {
+function CustomApp({ Component, pageProps, router }: AppProps) {
   const [isHydrated, setIsHydrated] = useState(false);
   useEffect(() => {
     setIsHydrated(true);
@@ -28,11 +29,15 @@ function CustomApp({ Component, pageProps }: AppProps) {
           <>
             <Beams />
             <Navbar />
-            <PageTransitions>
-              <Layout>
+            <AnimatePresence
+              exitBeforeEnter
+              initial={false}
+              onExitComplete={() => window.scrollTo(0, 0)}
+            >
+              <Layout key={router.route}>
                 <Component {...pageProps} />
               </Layout>
-            </PageTransitions>
+            </AnimatePresence>
           </>
         )}
       </ThemeProvider>
