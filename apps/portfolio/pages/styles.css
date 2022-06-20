@@ -166,12 +166,14 @@
 
     /*** Inputs ***/
     --color-bg-input: theme('colors.neutral.700');
+    --color-bg-input-focus: theme('colors.neutral.700');
     --color-text-input: theme('colors.white');
+    --color-text-input-focus: theme('colors.white');
     --color-placeholder-input: theme('colors.neutral.400');
     --color-placeholder-input-focus: theme('colors.neutral.500');
     --color-border-input: theme('colors.transparent');
-    --color-border-input-focus: theme('colors.white');
-    --color-ring-input-focus: theme('colors.white');
+    --color-border-input-focus: theme('colors.violet.300');
+    --color-ring-input-focus: theme('colors.violet.300');
     /* Error */
     --color-text-input-error-icon: theme('colors.red.400');
     --color-text-input-error-message: theme('colors.red.500');
