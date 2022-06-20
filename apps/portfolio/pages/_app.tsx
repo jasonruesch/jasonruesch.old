@@ -4,12 +4,13 @@ import { useState, useEffect } from 'react';
 
 import { ThemeProvider } from 'next-themes';
 
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence, MotionConfig } from 'framer-motion';
 
 import { Beams, Layout, Navbar } from '../components';
 import './styles.css';
 
 function CustomApp({ Component, pageProps, router }: AppProps) {
+  const isHome = router.route === '/' || router.route === '/home';
   const [isHydrated, setIsHydrated] = useState(false);
   useEffect(() => {
     setIsHydrated(true);
@@ -29,15 +30,17 @@ function CustomApp({ Component, pageProps, router }: AppProps) {
           <>
             <Beams />
             <Navbar />
-            <AnimatePresence
-              exitBeforeEnter
-              initial={false}
-              onExitComplete={() => window.scrollTo(0, 0)}
-            >
-              <Layout key={router.route}>
-                <Component {...pageProps} />
-              </Layout>
-            </AnimatePresence>
+            <MotionConfig reducedMotion="user">
+              <AnimatePresence
+                exitBeforeEnter
+                initial={false}
+                onExitComplete={() => window.scrollTo(0, 0)}
+              >
+                <Layout isHome={isHome} key={router.route}>
+                  <Component {...pageProps} />
+                </Layout>
+              </AnimatePresence>
+            </MotionConfig>
           </>
         )}
       </ThemeProvider>

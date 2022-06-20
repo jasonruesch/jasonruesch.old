@@ -1,30 +1,35 @@
-import { useRouter } from 'next/router';
-
 import { motion } from 'framer-motion';
 
-import { ProfileImage } from './ProfileImage';
-
-export const Layout = ({ children }) => {
-  const { route } = useRouter();
-  const isHome = route === '/';
-
+export const Layout = ({ children, isHome }) => {
   return (
     <main
-      className={`relative mx-auto flex max-w-screen-sm flex-col items-center justify-start px-4 pt-16 pb-4
+      className={`mx-auto flex max-w-screen-sm flex-col items-center justify-start px-4 pt-16 pb-4
       sm:min-h-screen sm:px-6 lg:px-8 ${
         isHome
           ? 'sm-max-h:!flex-row sm-max-h:!justify-start sm:justify-center sm:pt-0'
           : 'sm:pt-20'
-      } sm-max-h:!pt-16
+      } space-y-4 sm-max-h:!pt-16
     `}
     >
-      <motion.figure layout>
-        <ProfileImage isHome={isHome} className="mb-4 flex-none" />
+      <motion.figure
+        layoutId="profile-image"
+        className={`relative h-[150px] w-[150px] flex-none rounded-full ${
+          isHome ? 'md:h-[300px] md:w-[300px]' : 'sm-max-h:hidden'
+        }`}
+      >
+        <motion.img
+          initial={{ rotate: -180 }}
+          animate={{ rotate: 0 }}
+          exit={{ rotate: 180 }}
+          src="/images/profile.png"
+          alt="Jason Ruesch"
+          className="bg-primary rounded-full"
+        />
       </motion.figure>
 
       <motion.section
-        layout
-        initial={{ opacity: 0, scale: 0.5 }}
+        layoutId="content"
+        initial={{ opacity: 0, scale: 0.75 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.5 }}
         transition={{ ease: 'easeInOut' }}

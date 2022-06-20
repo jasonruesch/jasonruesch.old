@@ -2,69 +2,47 @@ import Link from 'next/link';
 import { useCallback, useEffect, useRef } from 'react';
 
 import { ChevronRightIcon } from '@heroicons/react/outline';
-import gsap from 'gsap';
+import { motion, useAnimation, Variants } from 'framer-motion';
 
 import { useOnScreen } from '../hooks';
 
-const sleepUntil = async (f, timeoutMs) => {
-  return new Promise<void>((resolve, reject) => {
-    const timeWas = new Date().getTime();
-    const wait = setInterval(function () {
-      if (f()) {
-        clearInterval(wait);
-        resolve();
-      } else if (new Date().getTime() - timeWas > timeoutMs) {
-        // Timed out
-        clearInterval(wait);
-        reject();
-      }
-    }, 20);
-  });
-};
-
-export function Index() {
-  const tl = useRef<gsap.core.Timeline>(null);
+export function Home() {
   const el = useRef<HTMLDivElement>(null);
   const isOnScreen = useOnScreen(el);
+  const controls = useAnimation();
 
-  const handlePointerEnter = useCallback(async () => {
-    await sleepUntil(() => tl.current.progress() === 1, 1000);
-    tl.current.pause();
-  }, []);
-
-  const handlePointerLeave = useCallback(async () => {
-    await sleepUntil(
-      () => !tl.current.isActive() || tl.current.progress() === 1,
-      1000
-    );
-    tl.current.resume();
-  }, []);
-
-  useEffect(() => {
-    tl.current = gsap
-      .timeline({
-        repeat: -1,
-        repeatDelay: 0.5,
+  const variants: Variants = {
+    initial: { x: -24 },
+    hover: { x: -24 },
+    animate: {
+      x: [-24, -48, 0, -24],
+      transition: {
         delay: 0.5,
-      })
-      .to(el.current, { x: -24, ease: 'power1.out', duration: 0.25 })
-      .to(el.current, { x: 24, duration: 0.125 })
-      .to(el.current, { x: 0, ease: 'back.out(5)', duration: 0.375 });
+        times: [0, 0.5, 0.675, 1],
+        ease: ['linear', 'linear', 'backOut'],
+        duration: 0.75,
+        repeat: Infinity,
+        repeatDelay: 0.5,
+      },
+    },
+  };
 
-    return () => {
-      tl.current.kill();
-    };
-  }, []);
+  const handleHoverStart = useCallback(async () => {
+    controls.stop();
+    controls.set('hover');
+  }, [controls]);
+
+  const handleHoverEnd = useCallback(async () => {
+    controls.start('animate');
+  }, [controls]);
 
   useEffect(() => {
     if (isOnScreen) {
-      if (!tl.current.isActive()) {
-        tl.current.restart(true);
-      }
+      controls.start('animate');
     } else {
-      tl.current.pause();
+      controls.stop();
     }
-  }, [isOnScreen]);
+  }, [isOnScreen, controls]);
 
   return (
     <>
@@ -82,19 +60,25 @@ export function Index() {
       </h1>
 
       <Link href="/about">
-        <a
-          className="text-link hover:text-link-hover mx-auto flex w-24 justify-end text-sm font-medium sm-max-h:hidden"
+        <motion.a
+          onHoverStart={() => handleHoverStart()}
+          onHoverEnd={() => handleHoverEnd()}
           aria-label="Learn more about me"
-          onPointerEnter={() => handlePointerEnter()}
-          onPointerLeave={() => handlePointerLeave()}
+          className="text-link hover:text-link-hover mx-auto flex w-24 cursor-pointer justify-end text-sm font-medium sm-max-h:hidden"
         >
-          <div className="w-12 -translate-x-6" ref={el}>
+          <motion.div
+            ref={el}
+            initial="initial"
+            animate={controls}
+            variants={variants}
+            className="w-12 -translate-x-6"
+          >
             <ChevronRightIcon className="h-12 w-12" aria-hidden="true" />
-          </div>
-        </a>
+          </motion.div>
+        </motion.a>
       </Link>
     </>
   );
 }
 
-export default Index;
+export default Home;
