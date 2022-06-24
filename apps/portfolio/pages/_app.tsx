@@ -1,16 +1,23 @@
 import { AppProps } from 'next/app';
 import Head from 'next/head';
+import { ThemeProvider } from 'next-themes';
 import '../styles/tailwind.css';
 
 function CustomApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title>Welcome to portfolio!</title>
+        <title>Jason Ruesch</title>
       </Head>
-      <main className="app">
-        <Component {...pageProps} />
-      </main>
+      <ThemeProvider
+        defaultTheme="system"
+        attribute="class"
+        forcedTheme={pageProps.theme || null}
+      >
+        <main>
+          <Component {...pageProps} />
+        </main>
+      </ThemeProvider>
     </>
   );
 }
