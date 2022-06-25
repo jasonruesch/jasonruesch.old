@@ -18,10 +18,8 @@ function CustomApp({ Component, pageProps }: AppProps) {
         <header className="sticky top-0 z-40">
           <Navbar />
         </header>
-        <main>
-          <div className="mx-auto max-w-7xl px-2 py-4 sm:px-6 lg:px-8">
-            <Component {...pageProps} />
-          </div>
+        <main className="mx-auto max-w-7xl px-2 py-4 sm:px-6 lg:px-8">
+          <Component {...pageProps} />
         </main>
       </ThemeProvider>
     </>

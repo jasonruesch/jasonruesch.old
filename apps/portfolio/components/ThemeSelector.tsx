@@ -20,7 +20,7 @@ export default function ThemeSelector() {
         <div>
           <Menu.Button
             className={classNames(
-              theme !== 'system' ? 'text-cyan-500' : '',
+              theme !== 'system' ? 'text-cyan-500 dark:text-violet-400' : '',
               'rounded-md p-2'
             )}
           >
@@ -54,14 +54,18 @@ export default function ThemeSelector() {
                       active
                         ? 'bg-neutral-100 text-neutral-900'
                         : 'text-neutral-700',
-                      theme === 'light' ? 'text-cyan-500' : '',
+                      theme === 'light'
+                        ? 'text-cyan-500 dark:text-violet-400'
+                        : '',
                       'group flex w-full items-center px-4 py-2 text-sm'
                     )}
                     onClick={() => setTheme('light')}
                   >
                     <SunIcon
                       className={classNames(
-                        theme === 'light' ? 'text-cyan-500' : '',
+                        theme === 'light'
+                          ? 'text-cyan-500 dark:text-violet-400'
+                          : '',
                         'mr-3 h-5 w-5 text-neutral-400 group-hover:text-neutral-500'
                       )}
                       aria-hidden="true"
@@ -77,14 +81,18 @@ export default function ThemeSelector() {
                       active
                         ? 'bg-neutral-100 text-neutral-900'
                         : 'text-neutral-700',
-                      theme === 'dark' ? 'text-cyan-500' : '',
+                      theme === 'dark'
+                        ? 'text-cyan-500 dark:text-violet-400'
+                        : '',
                       'group flex w-full items-center px-4 py-2 text-sm'
                     )}
                     onClick={() => setTheme('dark')}
                   >
                     <MoonIcon
                       className={classNames(
-                        theme === 'dark' ? 'text-cyan-500' : '',
+                        theme === 'dark'
+                          ? 'text-cyan-500 dark:text-violet-400'
+                          : '',
                         'mr-3 h-5 w-5 text-neutral-400 group-hover:text-neutral-500'
                       )}
                       aria-hidden="true"
@@ -100,14 +108,18 @@ export default function ThemeSelector() {
                       active
                         ? 'bg-neutral-100 text-neutral-900'
                         : 'text-neutral-700',
-                      theme === 'system' ? 'text-cyan-500' : '',
+                      theme === 'system'
+                        ? 'text-cyan-500 dark:text-violet-400'
+                        : '',
                       'group flex w-full items-center px-4 py-2 text-sm'
                     )}
                     onClick={() => setTheme('system')}
                   >
                     <DesktopComputerIcon
                       className={classNames(
-                        theme === 'system' ? 'text-cyan-500' : '',
+                        theme === 'system'
+                          ? 'text-cyan-500 dark:text-violet-400'
+                          : '',
                         'mr-3 h-5 w-5 text-neutral-400 group-hover:text-neutral-500'
                       )}
                       aria-hidden="true"
