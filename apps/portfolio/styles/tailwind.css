@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+#__next {
+  @apply h-full;
+}
+
 :root,
 .light {
   --color-primary: theme('colors.cyan.500');
