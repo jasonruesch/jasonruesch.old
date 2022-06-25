@@ -15,7 +15,7 @@ export default function Document() {
           rel="stylesheet"
         />
       </Head>
-      <body className="min-h-screen bg-neutral-100 text-neutral-900 dark:bg-neutral-800 dark:text-white">
+      <body className="bg-neutral-100 text-neutral-900 dark:bg-neutral-800 dark:text-white">
         <Main />
         <NextScript />
       </body>
