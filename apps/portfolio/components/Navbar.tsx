@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import ThemeSelector from './ThemeSelector';
+import Logo from './Logo';
 
 const navigation = [
   { name: 'Home', href: '/' },
@@ -39,9 +40,11 @@ export default function Navbar() {
       as="nav"
       className={({ open }) =>
         classNames(
-          open || scrolled
+          scrolled
             ? 'bg-white/75 shadow backdrop-blur dark:bg-neutral-900/75 dark:shadow-black/75'
-            : ''
+            : '',
+          open ? 'bg-white shadow dark:bg-neutral-900 dark:shadow-black' : '',
+          'fixed top-0 z-40 w-full'
         )
       }
     >
@@ -65,12 +68,15 @@ export default function Navbar() {
               </div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex flex-shrink-0 items-center">
-                  <h1 className="font-display block text-4xl lg:hidden">JR</h1>
-                  <h1 className="font-display hidden text-4xl lg:block">
-                    Jason Ruesch
-                  </h1>
+                  <div className="font-display flex items-center text-3xl font-bold">
+                    <Logo className="h-10 w-10 lg:mr-2" />
+                    <span className="hidden lg:inline">
+                      {/* bg-gradient-to-r from-fuchsia-500 to-cyan-500 dark:from-teal-400 dark:to-violet-400 bg-clip-text text-transparent */}
+                      Jason Ruesch
+                    </span>
+                  </div>
                 </div>
-                <div className="hidden sm:ml-6 sm:block">
+                <div className="hidden sm:mx-6 sm:block">
                   <div className="h-full sm:flex sm:space-x-8">
                     {navigation.map((item) => (
                       <Link key={item.name} href={item.href}>
@@ -79,7 +85,7 @@ export default function Navbar() {
                             route === item.href
                               ? 'border-cyan-500 dark:border-violet-400'
                               : 'border-transparent text-neutral-500 hover:border-neutral-300 hover:text-neutral-700 dark:text-neutral-300 dark:hover:text-white',
-                            'inline-flex items-center border-b-2 px-1 py-2 text-sm font-medium'
+                            'inline-flex items-center border-b-2 px-1 pb-2 pt-3 text-sm font-medium'
                           )}
                           aria-current={
                             route === item.href ? 'page' : undefined
@@ -92,7 +98,7 @@ export default function Navbar() {
                   </div>
                 </div>
               </div>
-              <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+              <div className="absolute inset-y-0 right-0 flex items-center sm:static sm:inset-auto">
                 <ThemeSelector />
               </div>
             </div>
