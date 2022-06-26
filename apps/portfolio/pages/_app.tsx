@@ -19,8 +19,8 @@ function CustomApp({ Component, pageProps }: AppProps) {
       >
         <Navbar />
 
-        <main className="mx-auto h-full max-w-7xl p-4 pt-20 sm:px-6 lg:px-8">
-          <div className="relative mx-auto mb-5 h-36 w-36 rounded-full bg-cyan-500 dark:bg-violet-400 sm:h-72 sm:w-72">
+        <main className="mx-auto min-h-full max-w-7xl overflow-hidden p-4 pt-16 sm:px-6 lg:px-8">
+          <div className="relative mx-auto mb-4 h-36 w-36 rounded-full bg-cyan-500 dark:bg-violet-400 sm:h-72 sm:w-72">
             <Image
               src={profileImage}
               alt="Jason Ruesch"

@@ -1,8 +1,8 @@
 export function About() {
   return (
     <>
-      <div className="mx-auto max-w-4xl">
-        <h1 className="font-display mb-4 text-2xl font-bold sm:text-4xl">
+      <div className="mx-auto max-w-xl">
+        <h1 className="font-display mb-4 text-center text-2xl font-bold sm:text-4xl">
           About Me
         </h1>
         <div className="space-y-4 text-sm sm:text-base">
