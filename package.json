@@ -7,7 +7,7 @@
     "build": "nx build",
     "test": "nx test",
     "dev-emails": "maizzle serve",
-    "build-emails": "maizzle build production"
+    "build-emails": "maizzle build production && cp -r dist/apps/emails/* apps/portfolio/public/templates/emails/"
   },
   "private": true,
   "dependencies": {

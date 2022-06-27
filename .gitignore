@@ -4,6 +4,8 @@
 /dist
 /tmp
 /out-tsc
+/apps/portfolio/public/templates/emails/*
+!/apps/portfolio/public/templates/emails/README.md
 
 # dependencies
 node_modules
@@ -37,6 +39,3 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
-
-# Maizzle
-build_local

@@ -8,7 +8,7 @@ const { serverRuntimeConfig } = getConfig();
 
 export default async function handler(
   request: NextApiRequest,
-  response: NextApiResponse,
+  response: NextApiResponse
 ) {
   const body = request.body;
 
@@ -28,8 +28,8 @@ export default async function handler(
       process.env.NODE_ENV === 'production'
         ? process.cwd()
         : serverRuntimeConfig.PROJECT_ROOT,
-      'public/templates/email',
-      `${templateName.toLowerCase()}.html`,
+      'public/templates/emails',
+      `${templateName.toLowerCase()}.html`
     );
     const templateSource = readFileSync(templateFile, 'utf8');
     const template = handlebars.compile(templateSource);
