@@ -4,6 +4,8 @@ import { ThemeProvider } from 'next-themes';
 import Image from 'next/image';
 import Navbar from '@/components/Navbar';
 import profileImage from '@/images/profile.png';
+import Beams from '@/components/Beams';
+
 import '../styles/tailwind.css';
 
 function classNames(...classes) {
@@ -23,12 +25,13 @@ function CustomApp({ Component, pageProps, router }: AppProps) {
         attribute="class"
         forcedTheme={pageProps.theme || null}
       >
+        <Beams />
         <Navbar />
 
         <main
           className={classNames(
-            isHome ? 'flex flex-col justify-center' : '',
-            'mx-auto min-h-full max-w-7xl overflow-hidden p-4 pt-16 sm:px-6 lg:px-8'
+            isHome ? 'flex flex-col justify-center' : 'pt-16',
+            'mx-auto min-h-screen max-w-7xl overflow-hidden p-4 sm:px-6 lg:px-8'
           )}
         >
           <div
