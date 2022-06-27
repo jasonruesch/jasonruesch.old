@@ -41,23 +41,23 @@ export default function Contact() {
     },
     validationSchema,
     onSubmit: async (values, { resetForm }) => {
-      console.log(JSON.stringify(values, null, 2));
+      // console.log(JSON.stringify(values, null, 2));
 
       await sleep(500);
 
       try {
-        // const response = await fetch('/api/email', {
-        //   body: JSON.stringify({ ...values, template: 'contact' }),
-        //   headers: {
-        //     'Content-Type': 'application/json',
-        //   },
-        //   method: 'POST',
-        // });
-        // const { error } = await response.json();
+        const response = await fetch('/api/email', {
+          body: JSON.stringify({ ...values, template: 'contact' }),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          method: 'POST',
+        });
+        const { error } = await response.json();
 
-        // if (error) {
-        //   throw new Error(error);
-        // }
+        if (error) {
+          throw new Error(error);
+        }
 
         resetForm();
         setShowSuccess(true);

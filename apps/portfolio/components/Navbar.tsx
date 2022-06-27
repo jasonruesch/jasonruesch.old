@@ -68,13 +68,15 @@ export default function Navbar() {
               </div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex flex-shrink-0 items-center">
-                  <div className="font-display flex items-center text-3xl font-bold">
-                    <Logo className="h-10 w-10 lg:mr-2" />
-                    <span className="hidden lg:inline">
-                      {/* bg-gradient-to-r from-secondary to-primary bg-clip-text text-transparent */}
-                      Jason Ruesch
-                    </span>
-                  </div>
+                  <Link href="/">
+                    <a className="font-display flex items-center text-3xl font-bold">
+                      <Logo className="h-10 w-10 lg:mr-2" />
+                      <span className="hidden lg:inline">
+                        {/* bg-gradient-to-r from-secondary to-primary bg-clip-text text-transparent */}
+                        Jason Ruesch
+                      </span>
+                    </a>
+                  </Link>
                 </div>
                 <div className="hidden sm:mx-6 sm:block">
                   <div className="h-full sm:flex sm:space-x-8">
