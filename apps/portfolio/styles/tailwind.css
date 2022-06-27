@@ -13,6 +13,8 @@
     --color-secondary: theme('colors.fuchsia.500');
     --color-background: theme('colors.neutral.100');
     --color-on-background: theme('colors.neutral.900');
+    --color-surface: theme('colors.white');
+    --color-on-surface: theme('colors.neutral.900');
   }
 
   .dark {
@@ -20,5 +22,7 @@
     --color-secondary: theme('colors.teal.400');
     --color-background: theme('colors.neutral.800');
     --color-on-background: theme('colors.white');
+    --color-surface: theme('colors.neutral.900');
+    --color-on-surface: theme('colors.white');
   }
 }

@@ -37,10 +37,9 @@ export default function Navbar() {
       as="nav"
       className={({ open }) =>
         clsx(
-          scrolled && !open
+          open || scrolled
             ? 'bg-white/75 shadow backdrop-blur dark:bg-neutral-900/75 dark:shadow-black/75'
             : '',
-          open ? 'bg-white shadow dark:bg-neutral-900 dark:shadow-black' : '',
           'fixed top-0 z-40 w-full'
         )
       }
@@ -111,7 +110,7 @@ export default function Navbar() {
                     <a
                       className={clsx(
                         route === item.href
-                          ? 'border-primary bg-cyan-100 text-cyan-700 dark:bg-violet-700 dark:text-violet-50'
+                          ? 'border-primary bg-cyan-100/75 text-cyan-700 dark:bg-violet-700/75 dark:text-violet-50'
                           : 'border-transparent text-neutral-500 hover:border-neutral-300 hover:bg-neutral-50 hover:text-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-700 dark:hover:text-white',
                         'block border-l-4 py-2 pl-3 pr-4 text-base font-medium'
                       )}

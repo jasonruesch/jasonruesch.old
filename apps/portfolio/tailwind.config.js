@@ -23,10 +23,12 @@ module.exports = {
       },
       backgroundColor: {
         background: 'var(--color-background)',
+        surface: 'var(--color-surface)',
       },
       textColor: {
         on: {
           background: 'var(--color-on-background)',
+          surface: 'var(--color-on-surface)',
         },
       },
     },
