@@ -2,13 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
-:root,
-.light {
-  --color-primary: theme('colors.cyan.500');
-  --color-secondary: theme('colors.fuchsia.500');
-}
+@layer base {
+  #__next {
+    height: 100%;
+  }
 
-.dark {
-  --color-primary: theme('colors.violet.400');
-  --color-secondary: theme('colors.teal.400');
+  :root,
+  .light {
+    --color-primary: theme('colors.cyan.500');
+    --color-secondary: theme('colors.fuchsia.500');
+    --color-background: theme('colors.neutral.100');
+    --color-on-background: theme('colors.neutral.900');
+  }
+
+  .dark {
+    --color-primary: theme('colors.violet.400');
+    --color-secondary: theme('colors.teal.400');
+    --color-background: theme('colors.neutral.800');
+    --color-on-background: theme('colors.white');
+  }
 }

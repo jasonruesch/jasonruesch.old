@@ -40,7 +40,7 @@ export default function Navbar() {
       as="nav"
       className={({ open }) =>
         classNames(
-          scrolled
+          scrolled && !open
             ? 'bg-white/75 shadow backdrop-blur dark:bg-neutral-900/75 dark:shadow-black/75'
             : '',
           open ? 'bg-white shadow dark:bg-neutral-900 dark:shadow-black' : '',
@@ -71,7 +71,7 @@ export default function Navbar() {
                   <div className="font-display flex items-center text-3xl font-bold">
                     <Logo className="h-10 w-10 lg:mr-2" />
                     <span className="hidden lg:inline">
-                      {/* bg-gradient-to-r from-fuchsia-500 to-cyan-500 dark:from-teal-400 dark:to-violet-400 bg-clip-text text-transparent */}
+                      {/* bg-gradient-to-r from-secondary to-primary bg-clip-text text-transparent */}
                       Jason Ruesch
                     </span>
                   </div>
@@ -83,7 +83,7 @@ export default function Navbar() {
                         <a
                           className={classNames(
                             route === item.href
-                              ? 'border-cyan-500 dark:border-violet-400'
+                              ? 'border-primary'
                               : 'border-transparent text-neutral-500 hover:border-neutral-300 hover:text-neutral-700 dark:text-neutral-300 dark:hover:text-white',
                             'inline-flex items-center border-b-2 px-1 pb-2 pt-3 text-sm font-medium'
                           )}
@@ -112,7 +112,7 @@ export default function Navbar() {
                     <a
                       className={classNames(
                         route === item.href
-                          ? 'border-cyan-500 bg-cyan-50 text-cyan-700 dark:border-violet-400 dark:bg-neutral-700 dark:text-white'
+                          ? 'border-primary bg-cyan-100 text-cyan-700 dark:bg-violet-700 dark:text-violet-50'
                           : 'border-transparent text-neutral-500 hover:border-neutral-300 hover:bg-neutral-50 hover:text-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-700 dark:hover:text-white',
                         'block border-l-4 py-2 pl-3 pr-4 text-base font-medium'
                       )}

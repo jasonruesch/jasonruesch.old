@@ -20,9 +20,7 @@ export default function ThemeSelector() {
         <div>
           <Menu.Button
             className={classNames(
-              theme !== 'system'
-                ? 'text-cyan-500 dark:text-violet-400'
-                : 'text-neutral-400',
+              theme !== 'system' ? 'text-primary' : 'text-neutral-400',
               'rounded-md p-2'
             )}
           >
@@ -56,7 +54,7 @@ export default function ThemeSelector() {
                       active
                         ? 'bg-neutral-100 text-neutral-900'
                         : theme === 'light'
-                        ? 'text-cyan-500 dark:text-violet-400'
+                        ? 'text-primary'
                         : 'text-neutral-700',
                       'group flex w-full items-center px-4 py-2 text-sm'
                     )}
@@ -64,9 +62,7 @@ export default function ThemeSelector() {
                   >
                     <SunIcon
                       className={classNames(
-                        theme === 'light'
-                          ? 'text-cyan-500 dark:text-violet-400'
-                          : 'text-neutral-400',
+                        theme === 'light' ? 'text-primary' : 'text-neutral-400',
                         'mr-3 h-5 w-5 group-hover:text-neutral-500'
                       )}
                       aria-hidden="true"
@@ -82,7 +78,7 @@ export default function ThemeSelector() {
                       active
                         ? 'bg-neutral-100 text-neutral-900'
                         : theme === 'dark'
-                        ? 'text-cyan-500 dark:text-violet-400'
+                        ? 'text-primary'
                         : 'text-neutral-700',
                       'group flex w-full items-center px-4 py-2 text-sm'
                     )}
@@ -90,9 +86,7 @@ export default function ThemeSelector() {
                   >
                     <MoonIcon
                       className={classNames(
-                        theme === 'dark'
-                          ? 'text-cyan-500 dark:text-violet-400'
-                          : 'text-neutral-400',
+                        theme === 'dark' ? 'text-primary' : 'text-neutral-400',
                         'mr-3 h-5 w-5 group-hover:text-neutral-500'
                       )}
                       aria-hidden="true"
@@ -108,7 +102,7 @@ export default function ThemeSelector() {
                       active
                         ? 'bg-neutral-100 text-neutral-900'
                         : theme === 'system'
-                        ? 'text-cyan-500 dark:text-violet-400'
+                        ? 'text-primary'
                         : 'text-neutral-700',
                       'group flex w-full items-center px-4 py-2 text-sm'
                     )}
@@ -117,7 +111,7 @@ export default function ThemeSelector() {
                     <DesktopComputerIcon
                       className={classNames(
                         theme === 'system'
-                          ? 'text-cyan-500 dark:text-violet-400'
+                          ? 'text-primary'
                           : 'text-neutral-400',
                         'mr-3 h-5 w-5 group-hover:text-neutral-500'
                       )}

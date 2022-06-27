@@ -4,6 +4,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import SpinnerIcon from '@/components/icons/SpinnerIcon';
 import Notification from '@/components/Notification';
+import ProfileImage from '@/components/ProfileImage';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
@@ -68,164 +69,167 @@ export default function Contact() {
   });
 
   return (
-    <div className="relative mx-auto max-w-xl">
-      <h1 className="text-center text-2xl font-bold sm:text-4xl">
-        Get In Touch
-      </h1>
-      <div className="mt-1">
-        <form
-          onSubmit={handleSubmit}
-          className="grid grid-cols-1 gap-y-1 sm:grid-cols-2 sm:gap-x-8"
-        >
-          <div>
-            <label htmlFor="name" className="block text-sm font-medium">
-              Name
-            </label>
-            <div className="relative mt-1 rounded-md shadow-sm dark:shadow-black">
-              <input
-                type="text"
-                name="name"
-                id="name"
-                autoComplete="name"
-                className={classNames(
-                  !!errors.name && touched.name
-                    ? 'border-red-300 pr-10 text-red-900 placeholder-red-300 focus:border-red-500 focus:outline-none focus:ring-red-500'
-                    : 'border-neutral-300 text-neutral-900 focus:border-cyan-500 focus:ring-cyan-500 dark:border-neutral-600 dark:text-white dark:focus:border-violet-400 dark:focus:ring-violet-400',
-                  'block w-full rounded-md bg-white py-3 px-4 dark:bg-neutral-900 sm:text-sm'
+    <div className="pt-16">
+      <ProfileImage className="mx-auto mb-4" />
+      <div className="relative mx-auto max-w-xl">
+        <h1 className="text-center text-2xl font-bold sm:text-4xl">
+          Get In Touch
+        </h1>
+        <div className="mt-1">
+          <form
+            onSubmit={handleSubmit}
+            className="grid grid-cols-1 gap-y-1 sm:grid-cols-2 sm:gap-x-8"
+          >
+            <div>
+              <label htmlFor="name" className="block text-sm font-medium">
+                Name
+              </label>
+              <div className="relative mt-1 rounded-md shadow-sm dark:shadow-black">
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  autoComplete="name"
+                  className={classNames(
+                    !!errors.name && touched.name
+                      ? 'border-red-300 pr-10 text-red-900 placeholder-red-300 focus:border-red-500 focus:outline-none focus:ring-red-500'
+                      : 'focus:border-primary focus:ring-primary border-neutral-300 text-neutral-900 dark:border-neutral-600 dark:text-white',
+                    'block w-full rounded-md bg-white py-3 px-4 dark:bg-neutral-900 sm:text-sm'
+                  )}
+                  placeholder="Jane Smith"
+                  required
+                  aria-invalid={!!errors.name && touched.name}
+                  aria-describedby={
+                    !!errors.name && touched.name ? 'name-error' : ''
+                  }
+                  value={values.name}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                />
+                {!!errors.name && touched.name && (
+                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+                    <ExclamationCircleIcon
+                      className="h-5 w-5 text-red-500"
+                      aria-hidden="true"
+                    />
+                  </div>
                 )}
-                placeholder="Jane Smith"
-                required
-                aria-invalid={!!errors.name && touched.name}
-                aria-describedby={
-                  !!errors.name && touched.name ? 'name-error' : ''
-                }
-                value={values.name}
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-              {!!errors.name && touched.name && (
-                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
-                  <ExclamationCircleIcon
-                    className="h-5 w-5 text-red-500"
-                    aria-hidden="true"
-                  />
-                </div>
-              )}
+              </div>
+              <p className="mt-1 h-5 text-sm text-red-600" id="name-error">
+                {!!errors.name && touched.name && errors.name}
+              </p>
             </div>
-            <p className="mt-1 h-5 text-sm text-red-600" id="name-error">
-              {!!errors.name && touched.name && errors.name}
-            </p>
-          </div>
-          <div>
-            <label htmlFor="email" className="block text-sm font-medium">
-              Email
-            </label>
-            <div className="relative mt-1 rounded-md shadow-sm dark:shadow-black">
-              <input
-                type="email"
-                name="email"
-                id="email"
-                autoComplete="email"
-                className={classNames(
-                  !!errors.email && touched.email
-                    ? 'border-red-300 pr-10 text-red-900 placeholder-red-300 focus:border-red-500 focus:outline-none focus:ring-red-500'
-                    : 'border-neutral-300 text-neutral-900 focus:border-cyan-500 focus:ring-cyan-500 dark:border-neutral-600 dark:text-white dark:focus:border-violet-400 dark:focus:ring-violet-400',
-                  'block w-full rounded-md bg-white py-3 px-4 dark:bg-neutral-900 sm:text-sm'
+            <div>
+              <label htmlFor="email" className="block text-sm font-medium">
+                Email
+              </label>
+              <div className="relative mt-1 rounded-md shadow-sm dark:shadow-black">
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  autoComplete="email"
+                  className={classNames(
+                    !!errors.email && touched.email
+                      ? 'border-red-300 pr-10 text-red-900 placeholder-red-300 focus:border-red-500 focus:outline-none focus:ring-red-500'
+                      : 'focus:border-primary focus:ring-primary border-neutral-300 text-neutral-900 dark:border-neutral-600 dark:text-white',
+                    'block w-full rounded-md bg-white py-3 px-4 dark:bg-neutral-900 sm:text-sm'
+                  )}
+                  placeholder="you@example.com"
+                  required
+                  aria-invalid={!!errors.email && touched.email}
+                  aria-describedby={
+                    !!errors.email && touched.email ? 'email-error' : ''
+                  }
+                  value={values.email}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                />
+                {!!errors.email && touched.email && (
+                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+                    <ExclamationCircleIcon
+                      className="h-5 w-5 text-red-500"
+                      aria-hidden="true"
+                    />
+                  </div>
                 )}
-                placeholder="you@example.com"
-                required
-                aria-invalid={!!errors.email && touched.email}
-                aria-describedby={
-                  !!errors.email && touched.email ? 'email-error' : ''
-                }
-                value={values.email}
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-              {!!errors.email && touched.email && (
-                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
-                  <ExclamationCircleIcon
-                    className="h-5 w-5 text-red-500"
-                    aria-hidden="true"
-                  />
-                </div>
-              )}
+              </div>
+              <p className="mt-1 h-5 text-sm text-red-600" id="email-error">
+                {!!errors.email && touched.email && errors.email}
+              </p>
             </div>
-            <p className="mt-1 h-5 text-sm text-red-600" id="email-error">
-              {!!errors.email && touched.email && errors.email}
-            </p>
-          </div>
-          <div className="sm:col-span-2">
-            <label htmlFor="message" className="block text-sm font-medium">
-              Message
-            </label>
-            <div className="relative mt-1 rounded-md shadow-sm dark:shadow-black">
-              <textarea
-                name="message"
-                id="message"
-                rows={2}
-                className={classNames(
-                  !!errors.message && touched.message
-                    ? 'border-red-300 pr-10 text-red-900 placeholder-red-300 focus:border-red-500 focus:outline-none focus:ring-red-500'
-                    : 'border-neutral-300 text-neutral-900 focus:border-cyan-500 focus:ring-cyan-500 dark:border-neutral-600 dark:text-white dark:focus:border-violet-400 dark:focus:ring-violet-400',
-                  'block w-full rounded-md bg-white py-3 px-4 dark:bg-neutral-900 sm:text-sm'
+            <div className="sm:col-span-2">
+              <label htmlFor="message" className="block text-sm font-medium">
+                Message
+              </label>
+              <div className="relative mt-1 rounded-md shadow-sm dark:shadow-black">
+                <textarea
+                  name="message"
+                  id="message"
+                  rows={2}
+                  className={classNames(
+                    !!errors.message && touched.message
+                      ? 'border-red-300 pr-10 text-red-900 placeholder-red-300 focus:border-red-500 focus:outline-none focus:ring-red-500'
+                      : 'focus:border-primary focus:ring-primary border-neutral-300 text-neutral-900 dark:border-neutral-600 dark:text-white',
+                    'block w-full rounded-md bg-white py-3 px-4 dark:bg-neutral-900 sm:text-sm'
+                  )}
+                  placeholder="How can I help?"
+                  required
+                  aria-invalid={!!errors.message && touched.message}
+                  aria-describedby={
+                    !!errors.message && touched.message ? 'message-error' : ''
+                  }
+                  value={values.message}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                />
+                {!!errors.message && touched.message && (
+                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+                    <ExclamationCircleIcon
+                      className="h-5 w-5 text-red-500"
+                      aria-hidden="true"
+                    />
+                  </div>
                 )}
-                placeholder="How can I help?"
-                required
-                aria-invalid={!!errors.message && touched.message}
-                aria-describedby={
-                  !!errors.message && touched.message ? 'message-error' : ''
-                }
-                value={values.message}
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-              {!!errors.message && touched.message && (
-                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
-                  <ExclamationCircleIcon
-                    className="h-5 w-5 text-red-500"
-                    aria-hidden="true"
-                  />
-                </div>
-              )}
+              </div>
+              <p className="mt-1 h-5 text-sm text-red-600" id="message-error">
+                {!!errors.message && touched.message && errors.message}
+              </p>
             </div>
-            <p className="mt-1 h-5 text-sm text-red-600" id="message-error">
-              {!!errors.message && touched.message && errors.message}
-            </p>
-          </div>
-          <div className="mt-1 sm:col-span-2">
-            <button
-              type="submit"
-              className="inline-flex w-full items-center justify-center rounded-md border border-transparent bg-cyan-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 dark:bg-violet-500 dark:hover:bg-violet-600 dark:focus:ring-violet-400"
-              disabled={!dirty || !isValid || isSubmitting}
-            >
-              {isSubmitting ? (
-                <>
-                  <SpinnerIcon className="mr-3 h-4 w-4 fill-cyan-500 dark:fill-violet-400" />
-                  Sending...
-                </>
-              ) : (
-                <>Let&apos;s talk</>
-              )}
-            </button>
-          </div>
-        </form>
-      </div>
+            <div className="mt-1 sm:col-span-2">
+              <button
+                type="submit"
+                className="focus:ring-primary inline-flex w-full items-center justify-center rounded-md border border-transparent bg-cyan-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 dark:bg-violet-500 dark:hover:bg-violet-600"
+                disabled={!dirty || !isValid || isSubmitting}
+              >
+                {isSubmitting ? (
+                  <>
+                    <SpinnerIcon className="fill-primary mr-3 h-4 w-4" />
+                    Sending...
+                  </>
+                ) : (
+                  <>Let&apos;s talk</>
+                )}
+              </button>
+            </div>
+          </form>
+        </div>
 
-      <Notification
-        type="success"
-        show={showSuccess}
-        onHide={() => setShowSuccess(false)}
-      >
-        Thank you for your message!
-      </Notification>
-      <Notification
-        type="error"
-        show={showError}
-        onHide={() => setShowError(false)}
-      >
-        Something went wrong. Please try again.
-      </Notification>
+        <Notification
+          type="success"
+          show={showSuccess}
+          onHide={() => setShowSuccess(false)}
+        >
+          Thank you for your message!
+        </Notification>
+        <Notification
+          type="error"
+          show={showError}
+          onHide={() => setShowError(false)}
+        >
+          Something went wrong. Please try again.
+        </Notification>
+      </div>
     </div>
   );
 }

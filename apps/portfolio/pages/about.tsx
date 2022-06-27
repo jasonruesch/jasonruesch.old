@@ -1,6 +1,9 @@
+import ProfileImage from '@/components/ProfileImage';
+
 export function About() {
   return (
-    <>
+    <div className="pt-16">
+      <ProfileImage className="mx-auto mb-4" />
       <div className="mx-auto max-w-xl">
         <h1 className="font-display mb-4 text-center text-2xl font-bold sm:text-4xl">
           About Me
@@ -23,7 +26,7 @@ export function About() {
           </p>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
