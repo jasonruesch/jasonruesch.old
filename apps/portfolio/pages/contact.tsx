@@ -69,9 +69,9 @@ export default function Contact() {
   });
 
   return (
-    <div className="pt-16">
-      <ProfileImage className="mx-auto mb-4" />
-      <div className="relative mx-auto max-w-xl">
+    <div className="pt-16 pb-4">
+      <ProfileImage className="mx-auto my-4" />
+      <div className="relative mx-auto max-w-screen-sm">
         <h1 className="text-center text-2xl font-bold sm:text-4xl">
           Get In Touch
         </h1>

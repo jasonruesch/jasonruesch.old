@@ -28,7 +28,7 @@ function CustomApp({ Component, pageProps }: AppProps) {
             <Beams />
             <Navbar />
 
-            <main className="mx-auto h-full max-w-7xl overflow-hidden p-4 sm:px-6 lg:px-8">
+            <main className="mx-auto min-h-full max-w-screen-lg px-4 sm:px-6 lg:px-8">
               <Component {...pageProps} />
             </main>
           </>

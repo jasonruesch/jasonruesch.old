@@ -50,7 +50,7 @@ export default function Navbar() {
     >
       {({ open }) => (
         <>
-          <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-screen-lg px-2 sm:px-6 lg:px-8">
             <div className="relative flex h-16 items-center justify-between">
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 {/* Mobile menu button */}
@@ -69,9 +69,9 @@ export default function Navbar() {
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex flex-shrink-0 items-center">
                   <Link href="/">
-                    <a className="font-display flex items-center text-3xl font-bold">
+                    <a className="flex items-center">
                       <Logo className="h-10 w-10 lg:mr-2" />
-                      <span className="hidden lg:inline">
+                      <span className="font-display hidden text-3xl font-bold lg:inline">
                         {/* bg-gradient-to-r from-secondary to-primary bg-clip-text text-transparent */}
                         Jason Ruesch
                       </span>

@@ -2,7 +2,7 @@ import ProfileImage from '@/components/ProfileImage';
 
 export function Index() {
   return (
-    <div className="flex h-full flex-col justify-center">
+    <div className="flex min-h-screen flex-col justify-center">
       <ProfileImage className="mx-auto mb-4" isHome />
       <h1 className="font-display text-center text-2xl font-bold sm:text-4xl">
         Hi, I&apos;m
