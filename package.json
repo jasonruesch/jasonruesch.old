@@ -5,12 +5,15 @@
   "scripts": {
     "start": "nx serve",
     "build": "nx build",
-    "test": "nx test"
+    "test": "nx test",
+    "dev-emails": "maizzle serve",
+    "build-emails": "maizzle build production"
   },
   "private": true,
   "dependencies": {
     "@headlessui/react": "^1.6.5",
     "@heroicons/react": "^1.0.6",
+    "@maizzle/framework": "latest",
     "@nrwl/next": "14.3.6",
     "@tailwindcss/forms": "^0.5.2",
     "@tailwindcss/typography": "^0.5.2",
@@ -24,6 +27,9 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "regenerator-runtime": "0.13.7",
+    "tailwindcss-box-shadow": "^1.0.0",
+    "tailwindcss-email-variants": "^2.0.0",
+    "tailwindcss-mso": "^1.2.0",
     "tslib": "^2.3.0",
     "yup": "^0.32.11"
   },
