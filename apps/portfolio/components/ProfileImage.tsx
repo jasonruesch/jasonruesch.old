@@ -16,7 +16,7 @@ export default function ProfileImage({
     <div
       className={classNames(
         'bg-primary relative h-36 w-36 rounded-full',
-        isHome ? 'sm:h-72 sm:w-72' : '',
+        isHome ? 'sm-h:!h-36 sm-h:!w-36 sm:h-72 sm:w-72' : '',
         className
       )}
     >

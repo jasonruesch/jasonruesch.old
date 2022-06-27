@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import ThemeSelector from './ThemeSelector';
-import Logo from './Logo';
+import LogoImage from './LogoImage';
 
 const navigation = [
   { name: 'Home', href: '/' },
@@ -70,7 +70,7 @@ export default function Navbar() {
                 <div className="flex flex-shrink-0 items-center">
                   <Link href="/">
                     <a className="flex items-center">
-                      <Logo className="h-10 w-10 lg:mr-2" />
+                      <LogoImage className="h-10 w-10 lg:mr-2" />
                       <span className="font-display hidden text-3xl font-bold lg:inline">
                         {/* bg-gradient-to-r from-secondary to-primary bg-clip-text text-transparent */}
                         Jason Ruesch
