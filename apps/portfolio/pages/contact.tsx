@@ -196,7 +196,7 @@ export default function Contact() {
             <div className="mt-1 sm:col-span-2">
               <button
                 type="submit"
-                className="focus:ring-primary inline-flex w-full items-center justify-center rounded-md border border-transparent bg-cyan-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 dark:bg-violet-500 dark:hover:bg-violet-600"
+                className="focus:ring-primary inline-flex w-full items-center justify-center rounded-md border border-transparent bg-cyan-600 px-6 py-3 text-base font-medium text-black shadow-sm hover:bg-cyan-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:bg-cyan-300 disabled:text-neutral-500 dark:bg-violet-500 dark:hover:bg-violet-600 dark:disabled:bg-violet-300 dark:disabled:text-neutral-600"
                 disabled={!dirty || !isValid || isSubmitting}
               >
                 {isSubmitting ? (
