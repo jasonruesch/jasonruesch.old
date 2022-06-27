@@ -11,6 +11,15 @@
 
 module.exports = {
   build: {
+    browsersync: {
+      watch: ['apps/emails'],
+    },
+    components: {
+      root: 'apps/emails/components',
+    },
+    layouts: {
+      root: 'apps/emails/layouts',
+    },
     templates: {
       source: 'apps/emails/templates',
       destination: {
@@ -20,6 +29,10 @@ module.exports = {
         source: 'apps/emails/images',
         destination: 'images',
       },
+    },
+    tailwind: {
+      css: 'apps/emails/styles/tailwind.css',
+      config: 'apps/emails/tailwind.config.js',
     },
   },
 };

@@ -1,4 +1,9 @@
+const colors = require('tailwindcss/colors');
+
+/** @type {import('tailwindcss').Config} */
 module.exports = {
+  content: ['apps/emails/**/*.html'],
+  darkMode: 'media',
   theme: {
     screens: {
       xs: { max: '425px' },
@@ -163,6 +168,20 @@ module.exports = {
       minWidth: (theme) => ({
         ...theme('spacing'),
       }),
+      colors: {
+        primary: 'var(--color-primary)',
+        secondary: 'var(--color-secondary)',
+      },
+      backgroundColor: {
+        background: 'var(--color-background)',
+        surface: 'var(--color-surface)',
+      },
+      textColor: {
+        on: {
+          background: 'var(--color-on-background)',
+          surface: 'var(--color-on-surface)',
+        },
+      },
     },
   },
   corePlugins: {

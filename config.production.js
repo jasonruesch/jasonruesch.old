@@ -10,13 +10,6 @@
 */
 
 module.exports = {
-  build: {
-    templates: {
-      destination: {
-        path: 'dist/apps/emails',
-      },
-    },
-  },
   inlineCSS: true,
   removeUnusedCSS: true,
 };
