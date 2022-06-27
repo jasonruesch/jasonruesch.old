@@ -3,6 +3,7 @@ import { MenuAlt1Icon, XIcon } from '@heroicons/react/outline';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
+import clsx from 'clsx';
 import ThemeSelector from './ThemeSelector';
 import LogoImage from './LogoImage';
 
@@ -11,10 +12,6 @@ const navigation = [
   { name: 'About', href: '/about' },
   { name: 'Contact', href: '/contact' },
 ];
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ');
-}
 
 export default function Navbar() {
   const { route } = useRouter();
@@ -39,7 +36,7 @@ export default function Navbar() {
     <Disclosure
       as="nav"
       className={({ open }) =>
-        classNames(
+        clsx(
           scrolled && !open
             ? 'bg-white/75 shadow backdrop-blur dark:bg-neutral-900/75 dark:shadow-black/75'
             : '',
@@ -83,7 +80,7 @@ export default function Navbar() {
                     {navigation.map((item) => (
                       <Link key={item.name} href={item.href}>
                         <a
-                          className={classNames(
+                          className={clsx(
                             route === item.href
                               ? 'border-primary'
                               : 'border-transparent text-neutral-500 hover:border-neutral-300 hover:text-neutral-700 dark:text-neutral-300 dark:hover:text-white',
@@ -112,7 +109,7 @@ export default function Navbar() {
                 {navigation.map((item) => (
                   <Disclosure.Button key={item.name} as={Link} href={item.href}>
                     <a
-                      className={classNames(
+                      className={clsx(
                         route === item.href
                           ? 'border-primary bg-cyan-100 text-cyan-700 dark:bg-violet-700 dark:text-violet-50'
                           : 'border-transparent text-neutral-500 hover:border-neutral-300 hover:bg-neutral-50 hover:text-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-700 dark:hover:text-white',

@@ -1,9 +1,6 @@
 import Image from 'next/image';
+import clsx from 'clsx';
 import profileImage from '@/images/profile.png';
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ');
-}
 
 export default function ProfileImage({
   className,
@@ -14,7 +11,7 @@ export default function ProfileImage({
 }) {
   return (
     <div
-      className={classNames(
+      className={clsx(
         'bg-primary relative h-36 w-36 rounded-full',
         isHome ? 'sm-h:!h-36 sm-h:!w-36 sm:h-72 sm:w-72' : '',
         className

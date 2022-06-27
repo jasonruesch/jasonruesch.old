@@ -31,7 +31,7 @@ export default function Notification({
       leaveTo="opacity-0"
     >
       <div
-        className={`pointer-events-auto w-full max-w-sm overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 dark:ring-opacity-50 ${
+        className={`pointer-events-auto w-full max-w-sm overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 dark:shadow-black dark:ring-opacity-50 ${
           type === 'error' ? 'bg-red-500 text-white' : ''
         } ${type === 'success' ? 'bg-green-500 text-white' : ''} ${className}`}
       >

@@ -1,12 +1,10 @@
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ');
-}
+import clsx from 'clsx';
 
 export default function SpinnerIcon({ className }: { className?: string }) {
   return (
     <svg
       role="status"
-      className={classNames('motion-safe:animate-spin', className)}
+      className={clsx('motion-safe:animate-spin', className)}
       viewBox="0 0 100 101"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

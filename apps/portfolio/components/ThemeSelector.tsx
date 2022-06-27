@@ -6,10 +6,7 @@ import {
   MoonIcon as MoonIconOutline,
 } from '@heroicons/react/outline';
 import { useTheme } from 'next-themes';
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ');
-}
+import clsx from 'clsx';
 
 export default function ThemeSelector() {
   const { theme, setTheme, forcedTheme } = useTheme();
@@ -19,7 +16,7 @@ export default function ThemeSelector() {
       <Menu as="div" className="inline-block text-left">
         <div>
           <Menu.Button
-            className={classNames(
+            className={clsx(
               theme !== 'system' ? 'text-primary' : 'text-neutral-400',
               'rounded-md p-2'
             )}
@@ -45,25 +42,25 @@ export default function ThemeSelector() {
           leaveFrom="transform opacity-100 scale-100"
           leaveTo="transform opacity-0 scale-95"
         >
-          <Menu.Items className="absolute right-0 z-50 mt-2 w-36 origin-top-right divide-y divide-neutral-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+          <Menu.Items className="bg-surface text-on-surface absolute right-0 z-50 mt-2 w-36 origin-top-right rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:shadow-black dark:ring-opacity-50">
             <div className="py-1">
               <Menu.Item>
                 {({ active }) => (
                   <button
-                    className={classNames(
+                    className={clsx(
                       active
-                        ? 'bg-neutral-100 text-neutral-900'
+                        ? 'bg-neutral-100 text-neutral-900 dark:bg-neutral-700 dark:text-white'
                         : theme === 'light'
                         ? 'text-primary'
-                        : 'text-neutral-700',
+                        : '',
                       'group flex w-full items-center px-4 py-2 text-sm'
                     )}
                     onClick={() => setTheme('light')}
                   >
                     <SunIcon
-                      className={classNames(
-                        theme === 'light' ? 'text-primary' : 'text-neutral-400',
-                        'mr-3 h-5 w-5 group-hover:text-neutral-500'
+                      className={clsx(
+                        theme === 'light' ? 'text-primary' : '',
+                        'mr-3 h-5 w-5 group-hover:text-neutral-500 dark:group-hover:text-white'
                       )}
                       aria-hidden="true"
                     />
@@ -74,20 +71,20 @@ export default function ThemeSelector() {
               <Menu.Item>
                 {({ active }) => (
                   <button
-                    className={classNames(
+                    className={clsx(
                       active
-                        ? 'bg-neutral-100 text-neutral-900'
+                        ? 'bg-neutral-100 text-neutral-900 dark:bg-neutral-700 dark:text-white'
                         : theme === 'dark'
                         ? 'text-primary'
-                        : 'text-neutral-700',
+                        : '',
                       'group flex w-full items-center px-4 py-2 text-sm'
                     )}
                     onClick={() => setTheme('dark')}
                   >
                     <MoonIcon
-                      className={classNames(
-                        theme === 'dark' ? 'text-primary' : 'text-neutral-400',
-                        'mr-3 h-5 w-5 group-hover:text-neutral-500'
+                      className={clsx(
+                        theme === 'dark' ? 'text-primary' : '',
+                        'mr-3 h-5 w-5 group-hover:text-neutral-500 dark:group-hover:text-white'
                       )}
                       aria-hidden="true"
                     />
@@ -98,22 +95,20 @@ export default function ThemeSelector() {
               <Menu.Item>
                 {({ active }) => (
                   <button
-                    className={classNames(
+                    className={clsx(
                       active
-                        ? 'bg-neutral-100 text-neutral-900'
+                        ? 'bg-neutral-100 text-neutral-900 dark:bg-neutral-700 dark:text-white'
                         : theme === 'system'
                         ? 'text-primary'
-                        : 'text-neutral-700',
+                        : '',
                       'group flex w-full items-center px-4 py-2 text-sm'
                     )}
                     onClick={() => setTheme('system')}
                   >
                     <DesktopComputerIcon
-                      className={classNames(
-                        theme === 'system'
-                          ? 'text-primary'
-                          : 'text-neutral-400',
-                        'mr-3 h-5 w-5 group-hover:text-neutral-500'
+                      className={clsx(
+                        theme === 'system' ? 'text-primary' : '',
+                        'mr-3 h-5 w-5 group-hover:text-neutral-500 dark:group-hover:text-white'
                       )}
                       aria-hidden="true"
                     />

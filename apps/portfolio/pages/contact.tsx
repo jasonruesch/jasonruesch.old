@@ -2,13 +2,10 @@ import { useState } from 'react';
 import { ExclamationCircleIcon } from '@heroicons/react/solid';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import clsx from 'clsx';
 import SpinnerIcon from '@/components/icons/SpinnerIcon';
 import Notification from '@/components/Notification';
 import ProfileImage from '@/components/ProfileImage';
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ');
-}
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
@@ -90,7 +87,7 @@ export default function Contact() {
                   name="name"
                   id="name"
                   autoComplete="name"
-                  className={classNames(
+                  className={clsx(
                     !!errors.name && touched.name
                       ? 'border-red-300 pr-10 text-red-900 placeholder-red-300 focus:border-red-500 focus:outline-none focus:ring-red-500'
                       : 'focus:border-primary focus:ring-primary border-neutral-300 text-neutral-900 dark:border-neutral-600 dark:text-white',
@@ -129,7 +126,7 @@ export default function Contact() {
                   name="email"
                   id="email"
                   autoComplete="email"
-                  className={classNames(
+                  className={clsx(
                     !!errors.email && touched.email
                       ? 'border-red-300 pr-10 text-red-900 placeholder-red-300 focus:border-red-500 focus:outline-none focus:ring-red-500'
                       : 'focus:border-primary focus:ring-primary border-neutral-300 text-neutral-900 dark:border-neutral-600 dark:text-white',
@@ -167,7 +164,7 @@ export default function Contact() {
                   name="message"
                   id="message"
                   rows={2}
-                  className={classNames(
+                  className={clsx(
                     !!errors.message && touched.message
                       ? 'border-red-300 pr-10 text-red-900 placeholder-red-300 focus:border-red-500 focus:outline-none focus:ring-red-500'
                       : 'focus:border-primary focus:ring-primary border-neutral-300 text-neutral-900 dark:border-neutral-600 dark:text-white',
