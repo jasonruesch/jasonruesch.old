@@ -39,7 +39,7 @@ function CustomApp({ Component, pageProps, router }: AppProps) {
                 className={clsx(
                   'mx-auto w-full max-w-screen-sm px-2 pt-16 pb-4 sm:px-6 lg:px-8',
                   pageProps.shouldCenter
-                    ? 'sm-h:!static sm-h:!top-0 sm-h:!left-0 sm-h:!translate-y-0 sm-h:!translate-x-0 sm-h:!pt-16 absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 !pt-4'
+                    ? 'sm-min-h:absolute sm-min-h:top-1/2 sm-min-h:left-1/2 sm-min-h:-translate-y-1/2 sm-min-h:-translate-x-1/2 sm-min-h:pt-4'
                     : ''
                 )}
               >
@@ -49,7 +49,7 @@ function CustomApp({ Component, pageProps, router }: AppProps) {
                     className={clsx(
                       'ring-offset-surface border-primary bg-primary dark:from-primary dark:to-secondary mx-auto mb-4 h-36 w-36 overflow-hidden rounded-full border-2 ring-0 ring-inset ring-offset-8 dark:bg-gradient-to-b',
                       pageProps.shouldCenter
-                        ? 'sm-h:!h-36 sm-h:!w-36 sm:h-72 sm:w-72 sm:border-4 sm:ring-offset-[16px]'
+                        ? 'sm:sm-min-h:h-72 sm:sm-min-h:w-72 sm:sm-min-h:border-4 sm:sm-min-h:ring-offset-[16px]'
                         : ''
                     )}
                     style={{ clipPath: 'border-box' }}

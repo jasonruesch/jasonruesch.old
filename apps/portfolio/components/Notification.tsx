@@ -24,8 +24,8 @@ export default function Notification({
       show={show}
       as={Fragment}
       enter="transform ease-out duration-300 transition"
-      enterFrom="translate-y-2 opacity-0 sm:translate-y-0 sm:translate-x-2 sm-h:translate-y-2 sm-h:translate-x-auto"
-      enterTo="translate-y-0 opacity-100 sm:translate-x-0 sm-h:translate-x-auto"
+      enterFrom="translate-y-2 opacity-0 sm:sm-min-h:translate-y-0 sm:sm-min-h:translate-x-2"
+      enterTo="translate-y-0 opacity-100 sm:sm-min-h:translate-x-0"
       leave="transition ease-in duration-100"
       leaveFrom="opacity-100"
       leaveTo="opacity-0"

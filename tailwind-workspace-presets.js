@@ -15,7 +15,7 @@ module.exports = {
     require('@tailwindcss/typography'),
     require('@tailwindcss/forms'),
     plugin(function ({ addVariant }) {
-      addVariant('sm-h', `@media (max-height: ${defaultTheme.screens.sm})`);
+      addVariant('sm-min-h', `@media (min-height: ${defaultTheme.screens.sm})`);
     }),
   ],
 };
