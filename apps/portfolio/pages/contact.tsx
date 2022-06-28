@@ -65,7 +65,7 @@ export default function Contact() {
   });
 
   return (
-    <div className="mx-auto w-full max-w-screen-sm">
+    <>
       <h1 className="text-center text-2xl font-bold sm:text-4xl">
         Get In Touch
       </h1>
@@ -223,6 +223,6 @@ export default function Contact() {
       >
         Something went wrong. Please try again.
       </Notification>
-    </div>
+    </>
   );
 }

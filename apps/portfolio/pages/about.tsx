@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 export function About() {
   return (
-    <div className="mx-auto w-full max-w-screen-sm">
+    <>
       <h1 className="font-display mb-4 text-center text-2xl font-bold sm:text-4xl">
         About Me
       </h1>
@@ -34,7 +34,7 @@ export function About() {
           </a>
         </Link>
       </div>
-    </div>
+    </>
   );
 }
 

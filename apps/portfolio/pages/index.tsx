@@ -77,13 +77,10 @@ export function Index() {
   );
 }
 
-/**
- * Example of forcing a theme on the page.
- */
-// export async function getServerSideProps() {
-//   return {
-//     props: { theme: 'light' },
-//   };
-// }
+export async function getStaticProps() {
+  return {
+    props: { shouldCenter: true /*, theme: 'light' */ },
+  };
+}
 
 export default Index;
