@@ -44,12 +44,14 @@ export function Index() {
 
   return (
     <>
-      <h1 className="font-display mb-4 text-center text-2xl font-bold sm:text-4xl">
+      <h1 className="font-display dark:text-on-background mb-4 text-center text-2xl font-bold text-neutral-400 sm:text-4xl">
         Hi, I&apos;m
         <br />
         <div className="text-primary">Jason Ruesch</div>
         and I am a<br />
-        <div className="text-secondary">Software Engineer</div>
+        <div className="dark:text-secondary text-on-background">
+          Software Engineer
+        </div>
         focusing on
         <br />
         Web Development and Design

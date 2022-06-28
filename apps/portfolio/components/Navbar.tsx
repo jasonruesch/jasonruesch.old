@@ -78,7 +78,7 @@ export default function Navbar({ className }: { className?: string }) {
                         className={clsx(
                           route === item.href
                             ? 'border-primary'
-                            : 'border-transparent text-neutral-500 hover:border-neutral-300 hover:text-neutral-700 dark:text-neutral-300 dark:hover:text-white',
+                            : 'border-transparent text-neutral-500 hover:border-neutral-400 hover:text-neutral-700 dark:text-neutral-300 dark:hover:text-white',
                           'inline-flex items-center border-b-2 px-1 pb-2 pt-3 text-sm font-medium'
                         )}
                         aria-current={route === item.href ? 'page' : undefined}

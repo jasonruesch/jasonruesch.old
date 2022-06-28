@@ -51,7 +51,7 @@ function CustomApp({ Component, pageProps, router }: AppProps) {
                       pageProps.shouldCenter
                         ? 'sm-h:!h-36 sm-h:!w-36 sm:h-72 sm:w-72 sm:border-4 sm:ring-offset-[16px]'
                         : '',
-                      'from-primary to-secondary bg-gradient-to-b'
+                      'bg-primary dark:from-primary dark:to-secondary dark:bg-gradient-to-b'
                     )}
                   >
                     <motion.img
