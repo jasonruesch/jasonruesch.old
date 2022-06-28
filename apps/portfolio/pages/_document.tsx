@@ -22,11 +22,11 @@ export default function Document() {
         {/* Global notification live region rendered permanently at the end of the document */}
         <div
           aria-live="assertive"
-          className="sm-max-h:items-end sm-max-h:px-4 sm-max-h:py-6 pointer-events-none fixed inset-0 z-20 flex items-end px-4 py-6 sm:items-start sm:px-6 sm:py-20"
+          className="sm-h:items-end sm-h:px-4 sm-h:py-6 pointer-events-none fixed inset-0 z-20 flex items-end px-4 py-6 sm:items-start sm:px-6 sm:py-20"
         >
           <div
             id="live"
-            className="sm-max-h:items-center flex w-full flex-col items-center space-y-4 sm:items-end"
+            className="sm-h:items-center flex w-full flex-col items-center space-y-4 sm:items-end"
           >
             {/* Notification panel is dynamically inserted into this live region when it needs to be displayed */}
           </div>

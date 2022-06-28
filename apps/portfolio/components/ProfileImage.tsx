@@ -1,6 +1,5 @@
-import Image from 'next/image';
 import clsx from 'clsx';
-import profileImage from '@/images/profile.png';
+import { motion } from 'framer-motion';
 
 export default function ProfileImage({
   className,
@@ -10,20 +9,22 @@ export default function ProfileImage({
   isHome?: boolean;
 }) {
   return (
-    <div
+    <motion.figure
+      layoutId="profile-image"
       className={clsx(
         'bg-primary relative h-36 w-36 rounded-full',
         isHome ? 'sm-h:!h-36 sm-h:!w-36 sm:h-72 sm:w-72' : '',
         className
       )}
     >
-      <Image
-        src={profileImage}
+      <motion.img
+        initial={{ rotate: -180 }}
+        animate={{ rotate: 0 }}
+        exit={{ rotate: 180 }}
+        transition={{ duration: 0.3 }}
+        src="/images/profile.png"
         alt="Jason Ruesch"
-        layout="fill"
-        unoptimized
-        priority
       />
-    </div>
+    </motion.figure>
   );
 }
