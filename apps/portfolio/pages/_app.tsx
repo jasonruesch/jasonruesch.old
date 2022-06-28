@@ -47,10 +47,11 @@ function CustomApp({ Component, pageProps, router }: AppProps) {
                   <motion.figure
                     layoutId="profile-image"
                     className={clsx(
+                      'ring-offset-surface border-primary mx-auto mb-4 h-36 w-36 overflow-hidden rounded-full border-2 ring-0 ring-inset ring-offset-8',
                       pageProps.shouldCenter
-                        ? 'sm-h:!h-36 sm-h:!w-36 sm:h-72 sm:w-72'
+                        ? 'sm-h:!h-36 sm-h:!w-36 sm:h-72 sm:w-72 sm:border-4 sm:ring-offset-[16px]'
                         : '',
-                      'bg-primary mx-auto mb-4 h-36 w-36 rounded-full'
+                      'from-primary to-secondary bg-gradient-to-b'
                     )}
                   >
                     <motion.img
