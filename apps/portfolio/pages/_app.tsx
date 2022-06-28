@@ -2,13 +2,16 @@ import { useEffect, useState } from 'react';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 import { ThemeProvider } from 'next-themes';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
+import clsx from 'clsx';
 import Navbar from '@/components/Navbar';
 import Beams from '@/components/Beams';
 
 import '../styles/tailwind.css';
 
 function CustomApp({ Component, pageProps, router }: AppProps) {
+  const isHome = router.pathname === '/';
+
   const [isHydrated, setIsHydrated] = useState(false);
   useEffect(() => {
     setIsHydrated(true);
@@ -27,7 +30,7 @@ function CustomApp({ Component, pageProps, router }: AppProps) {
         {isHydrated && (
           <>
             <Beams />
-            <Navbar />
+            <Navbar className="fixed top-0 z-40 h-16 w-full px-2 sm:px-6 lg:px-8" />
             <AnimatePresence
               exitBeforeEnter
               initial={false}
@@ -35,9 +38,39 @@ function CustomApp({ Component, pageProps, router }: AppProps) {
             >
               <main
                 key={router.route}
-                className="mx-auto min-h-full max-w-screen-lg px-4 sm:px-6 lg:px-8"
+                className={clsx(
+                  'px-2 pt-16 pb-4 sm:px-6 lg:px-8',
+                  isHome
+                    ? 'sm-h:!static sm-h:!top-0 sm-h:!left-0 sm-h:!translate-y-0 sm-h:!translate-x-0 sm-h:!pt-16 sm:absolute sm:top-1/2 sm:left-1/2 sm:-translate-y-1/2 sm:-translate-x-1/2 sm:pt-4'
+                    : ''
+                )}
               >
-                <Component {...pageProps} />
+                <motion.figure
+                  layoutId="profile-image"
+                  className={clsx(
+                    isHome ? 'sm-h:!h-36 sm-h:!w-36 sm:h-72 sm:w-72' : '',
+                    'bg-primary relative mx-auto mb-4 h-36 w-36 rounded-full'
+                  )}
+                >
+                  <motion.img
+                    initial={{ rotate: -180 }}
+                    animate={{ rotate: 0 }}
+                    exit={{ rotate: 180 }}
+                    transition={{ duration: 0.3 }}
+                    src="/images/profile.png"
+                    alt="Jason Ruesch"
+                  />
+                </motion.figure>
+
+                <motion.section
+                  layoutId="content"
+                  initial={{ opacity: 0, scale: 0.75 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.5 }}
+                  transition={{ ease: 'easeInOut' }}
+                >
+                  <Component {...pageProps} />
+                </motion.section>
               </main>
             </AnimatePresence>
           </>

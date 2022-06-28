@@ -1,4 +1,3 @@
-import ProfileImage from '@/components/ProfileImage';
 import { useRef, useCallback, useEffect } from 'react';
 import { ChevronRightIcon } from '@heroicons/react/outline';
 import { motion, useAnimation, Variants } from 'framer-motion';
@@ -44,46 +43,37 @@ export function Index() {
   }, [isOnScreen, controls]);
 
   return (
-    <div className="sm-h:min-h-0 sm-h:pt-16 sm-h:pb-4 flex min-h-screen flex-col justify-center">
-      <ProfileImage className="sm-h:mt-4 mx-auto mb-4" isHome />
-      <motion.section
-        layoutId="content"
-        initial={{ opacity: 0, scale: 0.75 }}
-        animate={{ opacity: 1, scale: 1 }}
-        exit={{ opacity: 0, scale: 0.5 }}
-        transition={{ ease: 'easeInOut' }}
-      >
-        <h1 className="font-display mb-4 text-center text-2xl font-bold sm:text-4xl">
-          Hi, I&apos;m
-          <br />
-          <div className="text-primary">Jason Ruesch</div>
-          and I am a<br />
-          <div className="text-secondary">Software Engineer</div>
-          focusing on
-          <br />
-          Web Development and Design
-        </h1>
+    <>
+      <h1 className="font-display mb-4 text-center text-2xl font-bold sm:text-4xl">
+        Hi, I&apos;m
+        <br />
+        <div className="text-primary">Jason Ruesch</div>
+        and I am a<br />
+        <div className="text-secondary">Software Engineer</div>
+        focusing on
+        <br />
+        Web Development and Design
+      </h1>
 
-        <Link href="/about">
-          <motion.a
-            onHoverStart={() => handleHoverStart()}
-            onHoverEnd={() => handleHoverEnd()}
-            aria-label="Learn more about me"
-            className="text-primary sm-h:hidden mx-auto flex w-24 cursor-pointer justify-end text-sm font-medium hover:text-cyan-600 dark:hover:text-violet-500"
+      <Link href="/about">
+        <motion.a
+          onHoverStart={() => handleHoverStart()}
+          onHoverEnd={() => handleHoverEnd()}
+          aria-label="Learn more about me"
+          className="text-primary sm-h:hidden mx-auto flex w-24 cursor-pointer justify-end text-sm font-medium hover:text-cyan-600 dark:hover:text-violet-500"
+        >
+          <motion.div
+            ref={el}
+            initial="initial"
+            animate={controls}
+            variants={variants}
+            className="w-12 -translate-x-6"
           >
-            <motion.div
-              ref={el}
-              initial="initial"
-              animate={controls}
-              variants={variants}
-              className="w-12 -translate-x-6"
-            >
-              <ChevronRightIcon className="h-12 w-12" aria-hidden="true" />
-            </motion.div>
-          </motion.a>
-        </Link>
-      </motion.section>
-    </div>
+            <ChevronRightIcon className="h-12 w-12" aria-hidden="true" />
+          </motion.div>
+        </motion.a>
+      </Link>
+    </>
   );
 }
 

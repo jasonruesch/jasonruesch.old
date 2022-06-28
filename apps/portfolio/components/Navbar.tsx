@@ -13,7 +13,7 @@ const navigation = [
   { name: 'Contact', href: '/contact' },
 ];
 
-export default function Navbar() {
+export default function Navbar({ className }: { className?: string }) {
   const { route } = useRouter();
   const [scrolled, setScrolled] = useState(false);
 
@@ -40,65 +40,58 @@ export default function Navbar() {
           open || scrolled
             ? 'bg-white/75 shadow backdrop-blur dark:bg-neutral-900/75 dark:shadow-black/75'
             : '',
-          'fixed top-0 z-40 w-full'
+          className
         )
       }
     >
       {({ open }) => (
         <>
-          <div className="mx-auto max-w-screen-lg px-2 sm:px-6 lg:px-8">
-            <div className="relative flex h-16 items-center justify-between">
-              <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
-                {/* Mobile menu button */}
-                <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2">
-                  <span className="sr-only">Open main menu</span>
-                  {open ? (
-                    <XIcon className="block h-6 w-6" aria-hidden="true" />
-                  ) : (
-                    <MenuAlt1Icon
-                      className="block h-6 w-6"
-                      aria-hidden="true"
-                    />
-                  )}
-                </Disclosure.Button>
+          <div className="relative flex h-16 items-center justify-between">
+            <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
+              {/* Mobile menu button */}
+              <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2">
+                <span className="sr-only">Open main menu</span>
+                {open ? (
+                  <XIcon className="block h-6 w-6" aria-hidden="true" />
+                ) : (
+                  <MenuAlt1Icon className="block h-6 w-6" aria-hidden="true" />
+                )}
+              </Disclosure.Button>
+            </div>
+            <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+              <div className="flex flex-shrink-0 items-center">
+                <Link href="/">
+                  <a className="flex items-center">
+                    <LogoImage className="h-10 w-10 lg:mr-2" />
+                    <span className="font-display hidden text-3xl font-bold lg:inline">
+                      {/* bg-gradient-to-r from-secondary to-primary bg-clip-text text-transparent */}
+                      Jason Ruesch
+                    </span>
+                  </a>
+                </Link>
               </div>
-              <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-                <div className="flex flex-shrink-0 items-center">
-                  <Link href="/">
-                    <a className="flex items-center">
-                      <LogoImage className="h-10 w-10 lg:mr-2" />
-                      <span className="font-display hidden text-3xl font-bold lg:inline">
-                        {/* bg-gradient-to-r from-secondary to-primary bg-clip-text text-transparent */}
-                        Jason Ruesch
-                      </span>
-                    </a>
-                  </Link>
-                </div>
-                <div className="hidden sm:mx-6 sm:block">
-                  <div className="h-full sm:flex sm:space-x-8">
-                    {navigation.map((item) => (
-                      <Link key={item.name} href={item.href}>
-                        <a
-                          className={clsx(
-                            route === item.href
-                              ? 'border-primary'
-                              : 'border-transparent text-neutral-500 hover:border-neutral-300 hover:text-neutral-700 dark:text-neutral-300 dark:hover:text-white',
-                            'inline-flex items-center border-b-2 px-1 pb-2 pt-3 text-sm font-medium'
-                          )}
-                          aria-current={
-                            route === item.href ? 'page' : undefined
-                          }
-                        >
-                          {item.name}
-                        </a>
-                      </Link>
-                    ))}
-                  </div>
+              <div className="hidden sm:mx-6 sm:block">
+                <div className="h-full sm:flex sm:space-x-8">
+                  {navigation.map((item) => (
+                    <Link key={item.name} href={item.href}>
+                      <a
+                        className={clsx(
+                          route === item.href
+                            ? 'border-primary'
+                            : 'border-transparent text-neutral-500 hover:border-neutral-300 hover:text-neutral-700 dark:text-neutral-300 dark:hover:text-white',
+                          'inline-flex items-center border-b-2 px-1 pb-2 pt-3 text-sm font-medium'
+                        )}
+                        aria-current={route === item.href ? 'page' : undefined}
+                      >
+                        {item.name}
+                      </a>
+                    </Link>
+                  ))}
                 </div>
               </div>
-              <div className="absolute inset-y-0 right-0 flex items-center sm:static sm:inset-auto">
-                <ThemeSelector />
-              </div>
+            </div>
+            <div className="absolute inset-y-0 right-0 flex items-center sm:static sm:inset-auto">
+              <ThemeSelector />
             </div>
           </div>
 
