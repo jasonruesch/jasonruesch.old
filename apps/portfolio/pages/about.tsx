@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import ProfileImage from '@/components/ProfileImage';
+import Link from 'next/link';
 
 export function About() {
   return (
@@ -16,7 +17,7 @@ export function About() {
           <h1 className="font-display mb-4 text-center text-2xl font-bold sm:text-4xl">
             About Me
           </h1>
-          <div className="space-y-4 text-sm sm:text-base">
+          <div className="mb-4 space-y-4 text-sm sm:text-base">
             <p>
               My name is Jason Ruesch. I am a software engineer, web developer,
               and designer currently living in Raleigh, NC. I enjoy creating
@@ -35,6 +36,15 @@ export function About() {
               more about me or how I can help you with your web needs, please
               reach out.
             </p>
+          </div>
+
+          <div className="flex justify-center">
+            <Link href="/contact">
+              <a className="text-primary font-medium hover:text-cyan-600 dark:hover:text-violet-500">
+                Get in touch
+                <span aria-hidden="true"> &rarr;</span>
+              </a>
+            </Link>
           </div>
         </div>
       </motion.section>

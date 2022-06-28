@@ -69,7 +69,7 @@ export function Index() {
             onHoverStart={() => handleHoverStart()}
             onHoverEnd={() => handleHoverEnd()}
             aria-label="Learn more about me"
-            className="text-primary sm-h:hidden mx-auto flex w-24 cursor-pointer justify-end text-sm font-medium"
+            className="text-primary sm-h:hidden mx-auto flex w-24 cursor-pointer justify-end text-sm font-medium hover:text-cyan-600 dark:hover:text-violet-500"
           >
             <motion.div
               ref={el}
