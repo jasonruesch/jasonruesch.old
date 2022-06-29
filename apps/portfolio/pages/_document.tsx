@@ -67,9 +67,10 @@ export default function Document() {
         <meta property="og:description" content="Personal portfolio" />
         <meta property="og:site_name" content="Jason Ruesch" />
         <meta property="og:url" content="https://jasonruesch.dev" />
+        <meta property="fb:app_id" content="263886926978895" />
         <meta
           property="og:image"
-          content="https://jasonruesch.dev/icons/apple-touch-icon.png"
+          content="https://jasonruesch.dev/images/opengraph.png"
         />
 
         <link
