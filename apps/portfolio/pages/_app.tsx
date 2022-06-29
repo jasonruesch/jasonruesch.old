@@ -19,6 +19,10 @@ function CustomApp({ Component, pageProps, router }: AppProps) {
     <>
       <Head>
         <title>Jason Ruesch</title>
+        <meta
+          name="viewport"
+          content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, user-scalable=no, viewport-fit=cover"
+        />
       </Head>
       <ThemeProvider
         defaultTheme="system"
