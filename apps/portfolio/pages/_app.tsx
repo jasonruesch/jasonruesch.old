@@ -41,7 +41,7 @@ function CustomApp({ Component, pageProps, router }: AppProps) {
               <main
                 key={router.route}
                 className={clsx(
-                  'px-2 pt-16 pb-4 sm:px-6 lg:px-8',
+                  'w-full px-4 pt-16 pb-4 sm:px-6 lg:px-8',
                   pageProps.shouldCenter
                     ? 'sm-min-h:absolute sm-min-h:top-1/2 sm-min-h:left-1/2 sm-min-h:-translate-y-1/2 sm-min-h:-translate-x-1/2 sm-min-h:pt-4'
                     : ''

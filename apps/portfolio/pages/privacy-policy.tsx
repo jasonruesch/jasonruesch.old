@@ -1,8 +1,8 @@
-export function Privacy() {
+export function PrivacyPolicy() {
   return (
     <div className="space-y-4">
       <h1 className="font-display text-2xl font-bold sm:text-4xl">
-        Privacy Notice
+        Privacy Policy
       </h1>
       <small>Last updated July 01, 2022</small>
       <p>
@@ -569,4 +569,4 @@ export async function getStaticProps() {
   };
 }
 
-export default Privacy;
+export default PrivacyPolicy;
