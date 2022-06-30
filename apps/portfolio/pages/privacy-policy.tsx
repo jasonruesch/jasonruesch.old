@@ -1,6 +1,6 @@
 export function PrivacyPolicy() {
   return (
-    <div className="space-y-4">
+    <div className="w-full space-y-4">
       <h1 className="font-display text-2xl font-bold sm:text-4xl">
         Privacy Policy
       </h1>
@@ -429,11 +429,11 @@ export function PrivacyPolicy() {
         protection authorities are available here:{' '}
         <a
           className="text-primary"
-          href="https://www.edoeb.admin.ch/edoeb/en/home.html"
+          href="https://edoeb.admin.ch/edoeb/en/home.html"
           target="_blank"
           rel="noreferrer"
         >
-          https://www.edoeb.admin.ch/edoeb/en/home.html.
+          edoeb.admin.ch/edoeb/en/home.html.
         </a>
       </p>
       <p id="withdrawconsent">
