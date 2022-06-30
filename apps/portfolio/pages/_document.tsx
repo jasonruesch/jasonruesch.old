@@ -2,7 +2,10 @@ import { Html, Head, Main, NextScript } from 'next/document';
 
 export default function Document() {
   return (
-    <Html lang="en" className="bg-background text-on-background h-full">
+    <Html
+      lang="en"
+      className="bg-background text-on-background h-full scroll-pt-16"
+    >
       <Head>
         <meta name="application-name" content="Jason Ruesch" />
         <meta name="apple-mobile-web-app-capable" content="yes" />

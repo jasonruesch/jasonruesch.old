@@ -43,8 +43,8 @@ export function Index() {
   }, [isOnScreen, controls]);
 
   return (
-    <>
-      <h1 className="font-display dark:text-on-background mb-4 text-center text-2xl font-bold text-neutral-400 sm:text-4xl">
+    <div className="space-y-4">
+      <h1 className="font-display dark:text-on-background text-center text-2xl font-bold text-neutral-400 sm:text-4xl">
         Hi, I&apos;m
         <br />
         <div className="text-primary">Jason Ruesch</div>
@@ -75,7 +75,7 @@ export function Index() {
           </motion.div>
         </motion.a>
       </Link>
-    </>
+    </div>
   );
 }
 
