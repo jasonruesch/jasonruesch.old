@@ -91,17 +91,32 @@ export default function Navbar({ className }: { className?: string }) {
               </div>
             </div>
             <div className="absolute inset-y-0 right-0 flex items-center sm:static sm:inset-auto">
-              <ThemeSelector />
+              <Link href="/privacy-policy">
+                <a
+                  className={clsx(
+                    route === '/privacy-policy'
+                      ? 'border-primary'
+                      : 'border-transparent text-neutral-500 hover:border-neutral-400 hover:text-neutral-700 dark:text-neutral-300 dark:hover:text-white',
+                    'hidden items-center border-b-2 px-1 pb-2 pt-3 text-sm font-medium sm:inline-flex'
+                  )}
+                  aria-current={
+                    route === '/privacy-policy' ? 'page' : undefined
+                  }
+                >
+                  Privacy Policy
+                </a>
+              </Link>
+              <ThemeSelector className="ml-8 text-neutral-400 hover:text-neutral-500 dark:hover:text-neutral-300" />
               <a
                 href="https://github.com/jasonruesch"
-                className="ml-4 block text-neutral-400 hover:text-neutral-500 dark:hover:text-neutral-300"
+                className="ml-2 block rounded-md p-2 text-neutral-400 hover:text-neutral-500 dark:hover:text-neutral-300"
                 target="_blank"
                 rel="noreferrer"
               >
                 <span className="sr-only">Jason Ruesch on GitHub</span>
                 <svg
                   viewBox="0 0 16 16"
-                  className="h-5 w-5"
+                  className="h-6 w-6"
                   fill="currentColor"
                   aria-hidden="true"
                 >
@@ -130,6 +145,22 @@ export default function Navbar({ className }: { className?: string }) {
                     </a>
                   </Disclosure.Button>
                 ))}
+                <Disclosure.Button as={Link} href="/privacy-policy">
+                  <a
+                    className={clsx(
+                      route === '/privacy-policy'
+                        ? 'border-primary bg-cyan-100/75 text-cyan-700 dark:bg-violet-700/75 dark:text-violet-50'
+                        : 'border-transparent text-neutral-500 hover:border-neutral-300 hover:bg-neutral-50 hover:text-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-700 dark:hover:text-white',
+                      'block border-l-4 py-2 pl-3 pr-4 text-base font-medium'
+                    )}
+                    aria-current={
+                      route === '/privacy-policy' ? 'page' : undefined
+                    }
+                    onClick={() => close()}
+                  >
+                    Privacy Policy
+                  </a>
+                </Disclosure.Button>
               </div>
             )}
           </Disclosure.Panel>
