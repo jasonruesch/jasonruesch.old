@@ -1,4 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const withNx = require('@nrwl/next/plugins/with-nx');
 const withPWA = require('next-pwa');
 
@@ -13,6 +12,7 @@ const nextConfig = {
   },
   pwa: {
     dest: 'public',
+    // disable: process.env.NODE_ENV === 'development',
   },
   reactStrictMode: true,
   serverRuntimeConfig: {
