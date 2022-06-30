@@ -8,7 +8,7 @@ import {
 import { useTheme } from 'next-themes';
 import clsx from 'clsx';
 
-export default function ThemeSelector() {
+export default function ThemeSelector({ className }: { className?: string }) {
   const { resolvedTheme, theme, setTheme, forcedTheme } = useTheme();
 
   useEffect(() => {
@@ -19,11 +19,11 @@ export default function ThemeSelector() {
 
   return (
     !forcedTheme && (
-      <Menu as="div" className="inline-block text-left">
+      <Menu as="div" className={clsx('inline-block text-left', className)}>
         <div>
           <Menu.Button
             className={clsx(
-              theme !== 'system' ? 'text-primary' : 'text-neutral-400',
+              theme !== 'system' ? 'text-primary' : '',
               'rounded-md p-2'
             )}
           >
@@ -66,7 +66,7 @@ export default function ThemeSelector() {
                     <SunIcon
                       className={clsx(
                         theme === 'light' ? 'text-primary' : '',
-                        'mr-3 h-5 w-5 group-hover:text-neutral-500 dark:group-hover:text-white'
+                        'mr-3 h-5 w-5 group-hover:text-neutral-500 dark:group-hover:text-neutral-300'
                       )}
                       aria-hidden="true"
                     />
@@ -90,7 +90,7 @@ export default function ThemeSelector() {
                     <MoonIcon
                       className={clsx(
                         theme === 'dark' ? 'text-primary' : '',
-                        'mr-3 h-5 w-5 group-hover:text-neutral-500 dark:group-hover:text-white'
+                        'mr-3 h-5 w-5 group-hover:text-neutral-500 dark:group-hover:text-neutral-300'
                       )}
                       aria-hidden="true"
                     />
@@ -114,7 +114,7 @@ export default function ThemeSelector() {
                     <DesktopComputerIcon
                       className={clsx(
                         theme === 'system' ? 'text-primary' : '',
-                        'mr-3 h-5 w-5 group-hover:text-neutral-500 dark:group-hover:text-white'
+                        'mr-3 h-5 w-5 group-hover:text-neutral-500 dark:group-hover:text-neutral-300'
                       )}
                       aria-hidden="true"
                     />

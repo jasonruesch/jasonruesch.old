@@ -1,6 +1,13 @@
-export const Beams = () => {
+import clsx from 'clsx';
+
+export const Beams = ({ className }: { className?: string }) => {
   return (
-    <div className="pointer-events-none absolute inset-x-0 top-0 z-10 flex justify-center overflow-hidden">
+    <div
+      className={clsx(
+        'pointer-events-none absolute inset-x-0 top-0 z-10 flex justify-center overflow-hidden',
+        className
+      )}
+    >
       <div className="flex w-[54rem] flex-none justify-end md:w-[81rem] lg:w-[108rem]">
         <picture>
           <source srcSet="/images/beams/docs@30.avif" type="image/avif" />
