@@ -16,7 +16,18 @@ bodyClass: bg-background
                   href="https://jasonruesch.dev"
                   class="text-on-background block max-w-full border-0 align-middle"
                 >
-                  <component src="logo.html" />
+                  <img
+                    src="images/logo-stacked.png"
+                    height="88"
+                    alt="Jason Ruesch"
+                    class="inline max-w-full align-middle [border:0] dark:hidden"
+                  />
+                  <img
+                    src="images/logo-stacked-dark.png"
+                    height="88"
+                    alt="Jason Ruesch"
+                    class="hidden max-w-full align-middle [border:0] dark:inline"
+                  />
                 </a>
               </td>
             </tr>
@@ -36,7 +47,9 @@ bodyClass: bg-background
                           <span class="font-bold">{{name}}</span> sent you a
                           message.<br />
                           Their email address is
-                          <a class="no-underline" href="mailto:{{email}}"
+                          <a
+                            class="text-primary no-underline"
+                            href="mailto:{{email}}"
                             >{{email}}</a
                           >.
                         </p>
@@ -59,19 +72,21 @@ bodyClass: bg-background
                         The framework for rapid email prototyping
                       </p>
                       <p class="cursor-default">
-                        <a href="https://maizzle.com/docs/" class="no-underline"
+                        <a
+                          href="https://maizzle.com/docs/"
+                          class="text-primary no-underline"
                           >Docs</a
                         >
                         &bull;
                         <a
                           href="https://github.com/maizzle"
-                          class="no-underline"
+                          class="text-primary no-underline"
                           >Github</a
                         >
                         &bull;
                         <a
                           href="https://twitter.com/maizzlejs"
-                          class="no-underline"
+                          class="text-primary no-underline"
                           >Twitter</a
                         >
                       </p>
