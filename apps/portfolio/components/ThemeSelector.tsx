@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import { Fragment, useEffect } from 'react';
 import { Menu, Transition } from '@headlessui/react';
 import { SunIcon, MoonIcon, DesktopComputerIcon } from '@heroicons/react/solid';
 import {
@@ -9,7 +9,13 @@ import { useTheme } from 'next-themes';
 import clsx from 'clsx';
 
 export default function ThemeSelector() {
-  const { theme, setTheme, forcedTheme } = useTheme();
+  const { resolvedTheme, theme, setTheme, forcedTheme } = useTheme();
+
+  useEffect(() => {
+    (
+      document.head.querySelector('meta[name="theme-color"]') as HTMLMetaElement
+    ).content = resolvedTheme === 'dark' ? '#262626' : '#f5f5f5';
+  }, [resolvedTheme]);
 
   return (
     !forcedTheme && (
