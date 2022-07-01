@@ -1,4 +1,5 @@
 import { Html, Head, Main, NextScript } from 'next/document';
+import { appleDeviceSpecsForLaunchImages } from 'pwa-asset-generator';
 
 export default function Document() {
   return (
@@ -76,41 +77,36 @@ export default function Document() {
           content="https://jasonruesch.dev/images/opengraph.png"
         />
 
-        <link
-          rel="apple-touch-startup-image"
-          href="/images/apple_splash_2048.png"
-          sizes="2048x2732"
-        />
-        <link
-          rel="apple-touch-startup-image"
-          href="/images/apple_splash_1668.png"
-          sizes="1668x2224"
-        />
-        <link
-          rel="apple-touch-startup-image"
-          href="/images/apple_splash_1536.png"
-          sizes="1536x2048"
-        />
-        <link
-          rel="apple-touch-startup-image"
-          href="/images/apple_splash_1125.png"
-          sizes="1125x2436"
-        />
-        <link
-          rel="apple-touch-startup-image"
-          href="/images/apple_splash_1242.png"
-          sizes="1242x2208"
-        />
-        <link
-          rel="apple-touch-startup-image"
-          href="/images/apple_splash_750.png"
-          sizes="750x1334"
-        />
-        <link
-          rel="apple-touch-startup-image"
-          href="/images/apple_splash_640.png"
-          sizes="640x1136"
-        />
+        {appleDeviceSpecsForLaunchImages.map((spec) => {
+          return (
+            <>
+              <link
+                key={`apple-splash-${spec.portrait.width}-${spec.portrait.height}`}
+                rel="apple-touch-startup-image"
+                href={`/splashscreens/apple-splash-${spec.portrait.width}-${spec.portrait.height}.jpg`}
+                media={`(device-width: ${
+                  spec.portrait.width / spec.scaleFactor
+                }px) and (device-height: ${
+                  spec.portrait.height / spec.scaleFactor
+                }px) and (-webkit-device-pixel-ratio: ${
+                  spec.scaleFactor
+                }) and (orientation: portrait)`}
+              />
+              <link
+                key={`apple-splash-${spec.portrait.width}-${spec.portrait.height}`}
+                rel="apple-touch-startup-image"
+                href={`/splashscreens/apple-splash-${spec.portrait.width}-${spec.portrait.height}.jpg`}
+                media={`(device-width: ${
+                  spec.portrait.height / spec.scaleFactor
+                }px) and (device-height: ${
+                  spec.portrait.width / spec.scaleFactor
+                }px) and (-webkit-device-pixel-ratio: ${
+                  spec.scaleFactor
+                }) and (orientation: landscape)`}
+              />
+            </>
+          );
+        })}
 
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
