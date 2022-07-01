@@ -5,7 +5,7 @@ export default function Document() {
   return (
     <Html
       lang="en"
-      className="bg-background text-on-background h-full scroll-pt-16"
+      className="bg-background text-on-background h-full scroll-pt-16 scroll-smooth"
     >
       <Head>
         <meta name="application-name" content="Jason Ruesch" />
