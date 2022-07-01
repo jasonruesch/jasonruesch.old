@@ -93,9 +93,9 @@ export default function Document() {
                 }) and (orientation: portrait)`}
               />
               <link
-                key={`apple-splash-${spec.portrait.width}-${spec.portrait.height}`}
+                key={`apple-splash-${spec.portrait.height}-${spec.portrait.width}`}
                 rel="apple-touch-startup-image"
-                href={`/splashscreens/apple-splash-${spec.portrait.width}-${spec.portrait.height}.jpg`}
+                href={`/splashscreens/apple-splash-${spec.portrait.height}-${spec.portrait.width}.jpg`}
                 media={`(device-width: ${
                   spec.portrait.height / spec.scaleFactor
                 }px) and (device-height: ${
