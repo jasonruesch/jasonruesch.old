@@ -83,7 +83,7 @@ export default function Document() {
               <link
                 key={`apple-splash-${spec.portrait.width}-${spec.portrait.height}`}
                 rel="apple-touch-startup-image"
-                href={`/splashscreens/apple-splash-${spec.portrait.width}-${spec.portrait.height}.png`}
+                href={`/splashscreens/apple-splash-${spec.portrait.width}-${spec.portrait.height}.jpg`}
                 media={`(device-width: ${
                   spec.portrait.width / spec.scaleFactor
                 }px) and (device-height: ${
@@ -95,7 +95,7 @@ export default function Document() {
               <link
                 key={`apple-splash-${spec.portrait.width}-${spec.portrait.height}`}
                 rel="apple-touch-startup-image"
-                href={`/splashscreens/apple-splash-${spec.portrait.width}-${spec.portrait.height}.png`}
+                href={`/splashscreens/apple-splash-${spec.portrait.width}-${spec.portrait.height}.jpg`}
                 media={`(device-width: ${
                   spec.portrait.height / spec.scaleFactor
                 }px) and (device-height: ${
