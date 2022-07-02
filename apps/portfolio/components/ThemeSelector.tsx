@@ -19,13 +19,24 @@ export default function ThemeSelector({ className }: { className?: string }) {
 
   return (
     !forcedTheme && (
-      <Menu as="div" className={clsx('inline-block text-left', className)}>
+      <Menu
+        as="div"
+        className={clsx(
+          'inline-block text-left text-neutral-400 hover:text-neutral-500 dark:hover:text-neutral-300',
+          className
+        )}
+      >
         <div>
           <Menu.Button
-            className={clsx(
-              theme !== 'system' ? 'text-primary' : '',
-              'rounded-md p-2'
-            )}
+            className={({ open }) =>
+              clsx(
+                theme !== 'system'
+                  ? 'text-primary hover:text-neutral-500 dark:hover:text-neutral-300'
+                  : '',
+                'rounded-md p-2',
+                open ? 'text-neutral-500 dark:text-neutral-300' : ''
+              )
+            }
           >
             <span className="sr-only">Open theme menu</span>
             <SunIconOutline

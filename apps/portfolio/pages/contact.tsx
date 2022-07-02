@@ -8,7 +8,7 @@ import Notification from '@/components/Notification';
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
-export default function Contact() {
+export function Contact() {
   const validationSchema = Yup.object({
     name: Yup.string().required('Your name is required.'),
     email: Yup.string()
@@ -224,3 +224,13 @@ export default function Contact() {
     </div>
   );
 }
+
+export async function getStaticProps() {
+  return {
+    props: {
+      shouldShowProfileImage: true,
+    },
+  };
+}
+
+export default Contact;

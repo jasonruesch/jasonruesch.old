@@ -35,4 +35,12 @@ export function About() {
   );
 }
 
+export async function getStaticProps() {
+  return {
+    props: {
+      shouldShowProfileImage: true,
+    },
+  };
+}
+
 export default About;
