@@ -1,4 +1,4 @@
-export function PrivacyPolicy() {
+export function Privacy() {
   return (
     <div className="w-full space-y-4">
       <h1 className="font-display text-2xl font-bold sm:text-4xl">
@@ -565,8 +565,8 @@ export function PrivacyPolicy() {
 
 export async function getStaticProps() {
   return {
-    props: { hideProfileImage: true },
+    props: {},
   };
 }
 
-export default PrivacyPolicy;
+export default Privacy;

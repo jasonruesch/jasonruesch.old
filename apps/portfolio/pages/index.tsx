@@ -81,7 +81,11 @@ export function Index() {
 
 export async function getStaticProps() {
   return {
-    props: { shouldCenter: true /*, theme: 'light' */ },
+    props: {
+      shouldShowProfileImage: true,
+      shouldCenter: true,
+      // theme: 'light',
+    },
   };
 }
 

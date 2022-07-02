@@ -13,7 +13,7 @@ export function Logo() {
 
 export async function getStaticProps() {
   return {
-    props: { hideProfileImage: true, shouldCenter: true },
+    props: { shouldCenter: true },
   };
 }
 

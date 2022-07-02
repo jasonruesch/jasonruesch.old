@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 
-export const Beams = ({ className }: { className?: string }) => {
+export default function Beams({ className }: { className?: string }) {
   return (
     <div
       className={clsx(
@@ -28,6 +28,4 @@ export const Beams = ({ className }: { className?: string }) => {
       </div>
     </div>
   );
-};
-
-export default Beams;
+}
