@@ -6,6 +6,11 @@
 /out-tsc
 /apps/portfolio/public/templates/emails/*
 !/apps/portfolio/public/templates/emails/README.md
+/apps/portfolio/public/workbox-*.js
+/apps/portfolio/public/workbox-*.js.map
+/apps/portfolio/public/sw.js
+/apps/portfolio/public/sw.js.map
+/apps/portfolio/public/worker-development.js
 
 # dependencies
 node_modules
