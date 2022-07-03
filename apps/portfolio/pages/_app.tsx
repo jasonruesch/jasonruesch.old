@@ -15,6 +15,30 @@ function CustomApp({ Component, pageProps, router }: AppProps) {
     setIsHydrated(true);
   }, []);
 
+  const {
+    theme,
+    shouldCenter = false,
+    shouldShowProfileImage = false,
+    shouldShowSearch = false,
+    secondaryNavigation = null,
+  } = pageProps;
+
+  useEffect(() => {
+    document.documentElement.classList.toggle('scroll-pt-32', shouldShowSearch);
+    document.documentElement.classList.toggle(
+      'scroll-pt-18',
+      !shouldShowSearch
+    );
+    document.documentElement.classList.toggle(
+      'md:scroll-pt-32',
+      secondaryNavigation
+    );
+    document.documentElement.classList.toggle(
+      'md:scroll-pt-18',
+      !secondaryNavigation && shouldShowSearch
+    );
+  }, [secondaryNavigation, shouldShowSearch]);
+
   return (
     <>
       <Head>
@@ -27,15 +51,15 @@ function CustomApp({ Component, pageProps, router }: AppProps) {
       <ThemeProvider
         defaultTheme="system"
         attribute="class"
-        forcedTheme={pageProps.theme || null}
+        forcedTheme={theme || null}
       >
         {isHydrated && (
           <>
             <Beams className="print:hidden" />
             <Navbar
               className="min-h-16 fixed top-0 z-40 w-full px-2 print:hidden sm:px-6 lg:px-8"
-              secondaryNavigation={pageProps.secondaryNavigation}
-              shouldShowSearch={pageProps.shouldShowSearch}
+              secondaryNavigation={secondaryNavigation}
+              shouldShowSearch={shouldShowSearch}
             />
             <AnimatePresence
               exitBeforeEnter
@@ -45,20 +69,24 @@ function CustomApp({ Component, pageProps, router }: AppProps) {
               <main
                 key={router.route}
                 className={clsx(
-                  pageProps.shouldShowSearch ? 'pt-[116px]' : 'pt-16',
+                  shouldShowSearch ? 'pt-32' : 'pt-18',
+                  secondaryNavigation
+                    ? 'md:pt-32'
+                    : shouldShowSearch
+                    ? 'md:pt-18'
+                    : '',
                   'w-full px-4 pb-4 print:pt-4 sm:px-6 lg:px-8',
-                  pageProps.secondaryNavigation ? 'md:pt-[116px]' : '',
-                  pageProps.shouldCenter
+                  shouldCenter
                     ? 'sm-min-h:absolute sm-min-h:top-1/2 sm-min-h:left-1/2 sm-min-h:-translate-y-1/2 sm-min-h:-translate-x-1/2 sm-min-h:pt-4'
                     : ''
                 )}
               >
-                {pageProps.shouldShowProfileImage && (
+                {shouldShowProfileImage && (
                   <motion.figure
                     layoutId="profile-image"
                     className={clsx(
                       'ring-offset-surface border-primary bg-primary dark:from-primary dark:to-secondary mx-auto mb-4 h-36 w-36 overflow-hidden rounded-full border-2 ring-0 ring-inset ring-offset-8 dark:bg-gradient-to-b',
-                      pageProps.shouldCenter
+                      shouldCenter
                         ? 'sm:sm-min-h:h-72 sm:sm-min-h:w-72 sm:sm-min-h:border-4 sm:sm-min-h:ring-offset-[16px]'
                         : ''
                     )}

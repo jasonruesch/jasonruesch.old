@@ -1,3 +1,5 @@
+import { SecondaryNavigationItem } from '@/components/Navbar';
+
 export function Styleguide() {
   return (
     <div className="w-full space-y-4">
@@ -9,14 +11,17 @@ export function Styleguide() {
 }
 
 export async function getStaticProps() {
-  const secondaryNavigation = [
+  const secondaryNavigation: SecondaryNavigationItem[] = [
     { name: 'Colors', href: '#colors', current: true },
-    { name: 'Typography', href: '#typography', current: false },
-    { name: 'Shadows', href: '#shadows', current: false },
+    { name: 'Typography', href: '#typography' },
+    { name: 'Shadows', href: '#shadows' },
   ];
 
   return {
-    props: { secondaryNavigation, shouldShowSearch: true },
+    props: {
+      secondaryNavigation,
+      shouldShowSearch: true,
+    },
   };
 }
 

@@ -15,14 +15,19 @@ const navigation = [
   { name: 'Contact', href: '/contact' },
 ];
 
+export interface SecondaryNavigationItem {
+  name: string;
+  href: string;
+  current?: boolean;
+}
+
 export default function Navbar({
   className,
   secondaryNavigation,
   shouldShowSearch,
 }: {
   className?: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  secondaryNavigation?: any[];
+  secondaryNavigation?: SecondaryNavigationItem[];
   shouldShowSearch?: boolean;
 }) {
   const { route } = useRouter();
@@ -166,7 +171,7 @@ export default function Navbar({
 
             {secondaryNavigation && (
               <nav
-                className="hidden md:flex md:space-x-8 md:py-2"
+                className="hidden h-14 space-x-8 md:flex md:items-center"
                 aria-label="Secondary navigation"
               >
                 {secondaryNavigation.map((item) => (
@@ -187,7 +192,7 @@ export default function Navbar({
             )}
 
             {shouldShowSearch && (
-              <div className="flex items-center justify-center py-2 md:hidden">
+              <div className="flex h-14 items-center justify-center md:hidden">
                 <div className="w-full max-w-lg">
                   <label htmlFor="search" className="sr-only">
                     Search
