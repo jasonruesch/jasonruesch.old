@@ -103,15 +103,9 @@ function CustomApp({ Component, pageProps, router }: AppProps) {
                   </motion.figure>
                 )}
 
-                <motion.section
-                  layoutId="content"
-                  initial={{ opacity: 0, scale: 0.75 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.5 }}
-                  transition={{ ease: 'easeInOut' }}
-                >
+                <section>
                   <Component {...pageProps} />
-                </motion.section>
+                </section>
               </main>
             </AnimatePresence>
           </>
