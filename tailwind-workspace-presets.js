@@ -9,6 +9,12 @@ module.exports = {
         sans: ['Inter', ...defaultTheme.fontFamily.sans],
         display: ['Alegreya Sans SC', ...defaultTheme.fontFamily.sans],
       },
+      padding: {
+        18: '72px',
+      },
+      scrollPadding: {
+        18: '4.5rem',
+      },
     },
   },
   plugins: [
