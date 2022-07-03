@@ -83,7 +83,7 @@ function CustomApp({ Component, pageProps, router }: AppProps) {
               >
                 {shouldShowProfileImage && (
                   <motion.figure
-                    layoutId="profile-image"
+                    // layoutId="profile-image"
                     className={clsx(
                       'ring-offset-surface border-primary bg-primary dark:from-primary dark:to-secondary mx-auto mb-4 h-36 w-36 overflow-hidden rounded-full border-2 ring-0 ring-inset ring-offset-8 dark:bg-gradient-to-b',
                       shouldCenter
@@ -93,10 +93,10 @@ function CustomApp({ Component, pageProps, router }: AppProps) {
                     style={{ clipPath: 'border-box' }}
                   >
                     <motion.img
-                      initial={{ rotate: -180 }}
-                      animate={{ rotate: 0 }}
-                      exit={{ rotate: 180 }}
-                      transition={{ duration: 0.3 }}
+                      // initial={{ rotate: -180 }}
+                      // animate={{ rotate: 0 }}
+                      // exit={{ rotate: 180 }}
+                      // transition={{ duration: 0.3 }}
                       src="/images/profile.png"
                       alt="Jason Ruesch"
                     />
