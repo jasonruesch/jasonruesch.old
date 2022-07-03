@@ -65,7 +65,7 @@ export function Contact() {
   });
 
   return (
-    <div className="mx-auto max-w-screen-sm space-y-1 sm:space-y-4">
+    <div className="mx-auto max-w-screen-sm space-y-4">
       <h1 className="text-center text-2xl font-bold sm:text-4xl">
         Get In Touch
       </h1>
@@ -77,17 +77,17 @@ export function Contact() {
           <label htmlFor="name" className="block text-sm font-medium">
             Name
           </label>
-          <div className="relative mt-1 rounded-md shadow-sm dark:shadow-black">
+          <div className="relative mt-1 rounded-md">
             <input
               type="text"
               name="name"
               id="name"
               autoComplete="name"
               className={clsx(
+                'block w-full rounded-md border bg-white py-2 px-3 focus:outline-none focus:ring-1 dark:bg-neutral-700 sm:text-sm',
                 !!errors.name && touched.name
                   ? 'border-red-300 pr-10 text-red-900 placeholder-red-300 focus:border-red-500 focus:outline-none focus:ring-red-500'
-                  : 'focus:border-primary focus:ring-primary border-neutral-300 text-neutral-900 dark:border-neutral-600 dark:text-white',
-                'block w-full rounded-md bg-white py-3 px-4 dark:bg-neutral-900 sm:text-sm'
+                  : 'focus:border-primary focus:ring-primary border-neutral-300 placeholder-neutral-500 focus:text-neutral-900 focus:placeholder-neutral-400 dark:border-transparent dark:placeholder-neutral-400 dark:focus:border-white dark:focus:bg-white dark:focus:text-neutral-900 dark:focus:placeholder-neutral-500 dark:focus:ring-white'
               )}
               placeholder="Jane Smith"
               required
@@ -116,17 +116,17 @@ export function Contact() {
           <label htmlFor="email" className="block text-sm font-medium">
             Email
           </label>
-          <div className="relative mt-1 rounded-md shadow-sm dark:shadow-black">
+          <div className="relative mt-1 rounded-md">
             <input
               type="email"
               name="email"
               id="email"
               autoComplete="email"
               className={clsx(
+                'block w-full rounded-md border bg-white py-2 px-3 focus:outline-none focus:ring-1 dark:bg-neutral-700 sm:text-sm',
                 !!errors.email && touched.email
                   ? 'border-red-300 pr-10 text-red-900 placeholder-red-300 focus:border-red-500 focus:outline-none focus:ring-red-500'
-                  : 'focus:border-primary focus:ring-primary border-neutral-300 text-neutral-900 dark:border-neutral-600 dark:text-white',
-                'block w-full rounded-md bg-white py-3 px-4 dark:bg-neutral-900 sm:text-sm'
+                  : 'focus:border-primary focus:ring-primary border-neutral-300 placeholder-neutral-500 focus:text-neutral-900 focus:placeholder-neutral-400 dark:border-transparent dark:placeholder-neutral-400 dark:focus:border-white dark:focus:bg-white dark:focus:text-neutral-900 dark:focus:placeholder-neutral-500 dark:focus:ring-white'
               )}
               placeholder="you@example.com"
               required
@@ -155,16 +155,16 @@ export function Contact() {
           <label htmlFor="message" className="block text-sm font-medium">
             Message
           </label>
-          <div className="relative mt-1 rounded-md shadow-sm dark:shadow-black">
+          <div className="relative mt-1 rounded-md">
             <textarea
               name="message"
               id="message"
               rows={2}
               className={clsx(
+                'block w-full rounded-md border bg-white py-2 px-3 focus:outline-none focus:ring-1 dark:bg-neutral-700 sm:text-sm',
                 !!errors.message && touched.message
                   ? 'border-red-300 pr-10 text-red-900 placeholder-red-300 focus:border-red-500 focus:outline-none focus:ring-red-500'
-                  : 'focus:border-primary focus:ring-primary border-neutral-300 text-neutral-900 dark:border-neutral-600 dark:text-white',
-                'block w-full rounded-md bg-white py-3 px-4 dark:bg-neutral-900 sm:text-sm'
+                  : 'focus:border-primary focus:ring-primary border-neutral-300 placeholder-neutral-500 focus:text-neutral-900 focus:placeholder-neutral-400 dark:border-transparent dark:placeholder-neutral-400 dark:focus:border-white dark:focus:bg-white dark:focus:text-neutral-900 dark:focus:placeholder-neutral-500 dark:focus:ring-white'
               )}
               placeholder="How can I help?"
               required
