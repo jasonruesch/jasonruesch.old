@@ -171,7 +171,7 @@ export default function Navbar({
 
             {secondaryNavigation && (
               <nav
-                className="hidden h-14 space-x-8 md:flex md:items-center"
+                className="hidden h-14 space-x-8 overflow-auto md:flex md:items-center"
                 aria-label="Secondary navigation"
               >
                 {secondaryNavigation.map((item) => (
