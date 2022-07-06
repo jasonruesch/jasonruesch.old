@@ -2,9 +2,11 @@ import { Disclosure } from '@headlessui/react';
 import { MenuAlt1Icon, XIcon } from '@heroicons/react/outline';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { SearchIcon } from '@heroicons/react/solid';
 import clsx from 'clsx';
+import { Link as ScrollLink, scroller } from 'react-scroll';
+import useScrollOffset from '@/hooks/useScrollOffset';
 import ThemeSelector from './ThemeSelector';
 import LogoImage from './LogoImage';
 import NavMenu from './NavMenu';
@@ -17,8 +19,7 @@ const navigation = [
 
 export interface SecondaryNavigationItem {
   name: string;
-  href: string;
-  current?: boolean;
+  id: string;
 }
 
 export default function Navbar({
@@ -32,6 +33,10 @@ export default function Navbar({
 }) {
   const { route } = useRouter();
   const [scrolled, setScrolled] = useState(false);
+  const scrollOffset = useScrollOffset({
+    navbarHasSecondaryNavigation: !!secondaryNavigation,
+    navbarHasSearch: shouldShowSearch,
+  });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -47,6 +52,13 @@ export default function Navbar({
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
+  const hash = useRef(window.location.hash);
+  useEffect(() => {
+    scroller.scrollTo(hash.current.replace('#', ''), {
+      offset: scrollOffset,
+    });
+  }, [scrollOffset]);
 
   return (
     <Disclosure
@@ -175,18 +187,16 @@ export default function Navbar({
                 aria-label="Secondary navigation"
               >
                 {secondaryNavigation.map((item) => (
-                  <a
+                  <ScrollLink
                     key={item.name}
-                    href={item.href}
-                    className={clsx(
-                      item.current
-                        ? 'bg-neutral-300 text-neutral-900 dark:bg-neutral-700 dark:text-white'
-                        : 'text-neutral-900 hover:bg-neutral-200 hover:text-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-600 dark:hover:text-white',
-                      'inline-flex items-center rounded-md py-2 px-3 text-sm font-medium'
-                    )}
+                    to={item.id}
+                    offset={scrollOffset}
+                    spy
+                    className="inline-flex cursor-pointer items-center rounded-md py-2 px-3 text-sm font-medium text-neutral-900 hover:bg-neutral-200 hover:text-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-600 dark:hover:text-white"
+                    activeClass="!bg-neutral-300 !text-neutral-900 dark:!bg-neutral-700 dark:!text-white"
                   >
                     {item.name}
-                  </a>
+                  </ScrollLink>
                 ))}
               </nav>
             )}
@@ -273,19 +283,20 @@ export default function Navbar({
                   </Disclosure.Button>
                 </div>
                 {secondaryNavigation && (
-                  <div className="border-t border-neutral-300 pt-4 pb-3 dark:border-neutral-600">
-                    <div className="space-y-1 px-2">
-                      {secondaryNavigation.map((item) => (
-                        <Disclosure.Button
-                          key={item.name}
-                          as="a"
-                          href={item.href}
-                          className="block rounded-md py-2 px-3 text-base font-medium text-neutral-500 hover:bg-neutral-50 hover:text-neutral-900 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-white"
-                        >
-                          {item.name}
-                        </Disclosure.Button>
-                      ))}
-                    </div>
+                  <div className="space-y-1 border-t border-neutral-300 py-4 dark:border-neutral-600">
+                    {secondaryNavigation.map((item) => (
+                      <Disclosure.Button
+                        as={ScrollLink}
+                        key={item.name}
+                        to={item.id}
+                        offset={scrollOffset}
+                        spy
+                        className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-neutral-500 hover:border-neutral-300 hover:bg-neutral-50 hover:text-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-700 dark:hover:text-white"
+                        activeClass="!border-primary-500 dark:!border-primary-400 !bg-primary-100/75 !text-primary-700 dark:!bg-primary-700/75 dark:!text-primary-50"
+                      >
+                        {item.name}
+                      </Disclosure.Button>
+                    ))}
                   </div>
                 )}
               </>

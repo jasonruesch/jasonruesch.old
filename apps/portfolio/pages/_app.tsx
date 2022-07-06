@@ -23,22 +23,6 @@ function CustomApp({ Component, pageProps, router }: AppProps) {
     secondaryNavigation = null,
   } = pageProps;
 
-  useEffect(() => {
-    document.documentElement.classList.toggle('scroll-pt-32', shouldShowSearch);
-    document.documentElement.classList.toggle(
-      'scroll-pt-18',
-      !shouldShowSearch
-    );
-    document.documentElement.classList.toggle(
-      'md:scroll-pt-32',
-      secondaryNavigation
-    );
-    document.documentElement.classList.toggle(
-      'md:scroll-pt-18',
-      !secondaryNavigation && shouldShowSearch
-    );
-  }, [secondaryNavigation, shouldShowSearch]);
-
   return (
     <>
       <Head>
