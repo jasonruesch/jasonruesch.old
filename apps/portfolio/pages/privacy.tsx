@@ -1,9 +1,7 @@
 export function Privacy() {
   return (
     <div className="w-full space-y-4">
-      <h1 className="font-display text-2xl font-bold sm:text-4xl">
-        Privacy Policy
-      </h1>
+      <h1>Privacy Policy</h1>
       <small>Last updated July 01, 2022</small>
       <p>
         This privacy notice for Jason Ruesch (&quot;Company,&quot;
@@ -16,7 +14,7 @@ export function Privacy() {
         <li>
           Visit our website at{' '}
           <a
-            className="text-primary"
+            className="text-primary-500 dark:text-primary-400"
             href="https://jasonruesch.dev"
             target="_blank"
             rel="noreferrer"
@@ -42,16 +40,14 @@ export function Privacy() {
         privacy@jasonruesch.dev.
       </p>
 
-      <h2 className="font-display text-xl font-bold sm:text-3xl">
-        Summary Of Key Points
-      </h2>
+      <h2>Summary Of Key Points</h2>
       <p>
         <em>
           This summary provides key points from our privacy notice, but you can
           find out more details about any of these topics by clicking the link
           following each key point or by using our table of contents below to
           find the section you are looking for. You can also{' '}
-          <a className="text-primary" href="#toc">
+          <a className="text-primary-500 dark:text-primary-400" href="#toc">
             click here to go directly to our table of contents.
           </a>
         </em>
@@ -61,7 +57,10 @@ export function Privacy() {
         navigate our Services, we may process personal information depending on
         how you interact with Jason Ruesch and the Services, the choices you
         make, and the products and features you use.{' '}
-        <a className="text-primary" href="#personalinfo">
+        <a
+          className="text-primary-500 dark:text-primary-400"
+          href="#personalinfo"
+        >
           Click here to learn more.
         </a>
       </p>
@@ -80,7 +79,7 @@ export function Privacy() {
         process your information for other purposes with your consent. We
         process your information only when we have a valid legal reason to do
         so.{' '}
-        <a className="text-primary" href="#infouse">
+        <a className="text-primary-500 dark:text-primary-400" href="#infouse">
           Click here to learn more.
         </a>
       </p>
@@ -88,7 +87,7 @@ export function Privacy() {
         In what situations and with which parties do we share personal
         information? We may share information in specific situations and with
         specific third parties.{' '}
-        <a className="text-primary" href="#whoshare">
+        <a className="text-primary-500 dark:text-primary-400" href="#whoshare">
           Click here to learn more.
         </a>
       </p>
@@ -100,7 +99,7 @@ export function Privacy() {
         we cannot promise or guarantee that hackers, cybercriminals, or other
         unauthorized third parties will not be able to defeat our security and
         improperly collect, access, steal, or modify your information.{' '}
-        <a className="text-primary" href="#infosafe">
+        <a className="text-primary-500 dark:text-primary-400" href="#infosafe">
           Click here to learn more.
         </a>
       </p>
@@ -108,7 +107,10 @@ export function Privacy() {
         What are your rights? Depending on where you are located geographically,
         the applicable privacy law may mean you have certain rights regarding
         your personal information.{' '}
-        <a className="text-primary" href="#privacyrights">
+        <a
+          className="text-primary-500 dark:text-primary-400"
+          href="#privacyrights"
+        >
           Click here to learn more.
         </a>
       </p>
@@ -116,7 +118,7 @@ export function Privacy() {
         How do you exercise your rights? The easiest way to exercise your rights
         is by filling out our data subject request form available{' '}
         <a
-          className="text-primary"
+          className="text-primary-500 dark:text-primary-400"
           href="https://app.termly.io/notify/793f077a-7821-4f8d-993b-8e5d5ccd4cc3"
           target="_blank"
           rel="noreferrer"
@@ -129,89 +131,101 @@ export function Privacy() {
       <p>
         Want to learn more about what Jason Ruesch does with any information we
         collect?{' '}
-        <a className="text-primary" href="#toc">
+        <a className="text-primary-500 dark:text-primary-400" href="#toc">
           Click here to review the notice in full.
         </a>
       </p>
 
-      <h2 className="font-display text-xl font-bold sm:text-3xl" id="toc">
-        Table Of Contents
-      </h2>
+      <h2 id="toc">Table Of Contents</h2>
       <ol className="ml-4 list-decimal">
         <li>
-          <a className="text-primary" href="#infocollect">
+          <a
+            className="text-primary-500 dark:text-primary-400"
+            href="#infocollect"
+          >
             WHAT INFORMATION DO WE COLLECT?
           </a>
         </li>
         <li>
-          <a className="text-primary" href="#infouse">
+          <a className="text-primary-500 dark:text-primary-400" href="#infouse">
             HOW DO WE PROCESS YOUR INFORMATION?
           </a>
         </li>
         <li>
-          <a className="text-primary" href="#whoshare">
+          <a
+            className="text-primary-500 dark:text-primary-400"
+            href="#whoshare"
+          >
             WHEN AND WITH WHOM DO WE SHARE YOUR PERSONAL INFORMATION?
           </a>
         </li>
         <li>
-          <a className="text-primary" href="#inforetain">
+          <a
+            className="text-primary-500 dark:text-primary-400"
+            href="#inforetain"
+          >
             HOW LONG DO WE KEEP YOUR INFORMATION?
           </a>
         </li>
         <li>
-          <a className="text-primary" href="#infosafe">
+          <a
+            className="text-primary-500 dark:text-primary-400"
+            href="#infosafe"
+          >
             HOW DO WE KEEP YOUR INFORMATION SAFE?
           </a>
         </li>
         <li>
-          <a className="text-primary" href="#infominors">
+          <a
+            className="text-primary-500 dark:text-primary-400"
+            href="#infominors"
+          >
             DO WE COLLECT INFORMATION FROM MINORS?
           </a>
         </li>
         <li>
-          <a className="text-primary" href="#privacyrights">
+          <a
+            className="text-primary-500 dark:text-primary-400"
+            href="#privacyrights"
+          >
             WHAT ARE YOUR PRIVACY RIGHTS?
           </a>
         </li>
         <li>
-          <a className="text-primary" href="#DNT">
+          <a className="text-primary-500 dark:text-primary-400" href="#DNT">
             CONTROLS FOR DO-NOT-TRACK FEATURES
           </a>
         </li>
         <li>
-          <a className="text-primary" href="#caresidents">
+          <a
+            className="text-primary-500 dark:text-primary-400"
+            href="#caresidents"
+          >
             DO CALIFORNIA RESIDENTS HAVE SPECIFIC PRIVACY RIGHTS?
           </a>
         </li>
         <li>
-          <a className="text-primary" href="#policyupdates">
+          <a
+            className="text-primary-500 dark:text-primary-400"
+            href="#policyupdates"
+          >
             DO WE MAKE UPDATES TO THIS NOTICE?
           </a>
         </li>
         <li>
-          <a className="text-primary" href="#contact">
+          <a className="text-primary-500 dark:text-primary-400" href="#contact">
             HOW CAN YOU CONTACT US ABOUT THIS NOTICE?
           </a>
         </li>
         <li>
-          <a className="text-primary" href="#request">
+          <a className="text-primary-500 dark:text-primary-400" href="#request">
             HOW CAN YOU REVIEW, UPDATE, OR DELETE THE DATA WE COLLECT FROM YOU?
           </a>
         </li>
       </ol>
 
-      <h2
-        className="font-display text-xl font-bold sm:text-3xl"
-        id="infocollect"
-      >
-        1. WHAT INFORMATION DO WE COLLECT?
-      </h2>
-      <h3
-        className="font-display text-lg font-bold sm:text-2xl"
-        id="personalinfo"
-      >
-        Personal information you disclose to us
-      </h3>
+      <h2 id="infocollect">1. WHAT INFORMATION DO WE COLLECT?</h2>
+      <h3 id="personalinfo">Personal information you disclose to us</h3>
       <p>
         <em>
           In Short: We collect personal information that you provide to us.
@@ -233,12 +247,7 @@ export function Privacy() {
         <li>names</li>
         <li>email addresses</li>
       </ul>
-      <h3
-        className="font-display text-lg font-bold sm:text-2xl"
-        id="sensitiveinfo"
-      >
-        Sensitive Information
-      </h3>
+      <h3 id="sensitiveinfo">Sensitive Information</h3>
       <p>We do not process sensitive information.</p>
       <p>
         All personal information that you provide to us must be true, complete,
@@ -249,7 +258,7 @@ export function Privacy() {
         Information collected when you use our Facebook application(s). We by
         default access your{' '}
         <a
-          className="text-primary"
+          className="text-primary-500 dark:text-primary-400"
           href="https://www.facebook.com/about/privacy/"
           target="_blank"
           rel="noreferrer"
@@ -263,7 +272,7 @@ export function Privacy() {
         to grant or deny us access to each individual permission. For more
         information regarding Facebook permissions, refer to the{' '}
         <a
-          className="text-primary"
+          className="text-primary-500 dark:text-primary-400"
           href="https://developers.facebook.com/docs/facebook-login/permissions"
           target="_blank"
           rel="noreferrer"
@@ -272,9 +281,7 @@ export function Privacy() {
         </a>
       </p>
 
-      <h2 className="font-display text-xl font-bold sm:text-3xl" id="infouse">
-        2. HOW DO WE PROCESS YOUR INFORMATION?
-      </h2>
+      <h2 id="infouse">2. HOW DO WE PROCESS YOUR INFORMATION?</h2>
       <p>
         <em>
           In Short: We process your information to provide, improve, and
@@ -299,7 +306,7 @@ export function Privacy() {
         </li>
       </ul>
 
-      <h2 className="font-display text-xl font-bold sm:text-3xl" id="whoshare">
+      <h2 id="whoshare">
         3. WHEN AND WITH WHOM DO WE SHARE YOUR PERSONAL INFORMATION?
       </h2>
       <p>
@@ -321,12 +328,7 @@ export function Privacy() {
         </li>
       </ul>
 
-      <h2
-        className="font-display text-xl font-bold sm:text-3xl"
-        id="inforetain"
-      >
-        4. HOW LONG DO WE KEEP YOUR INFORMATION?
-      </h2>
+      <h2 id="inforetain">4. HOW LONG DO WE KEEP YOUR INFORMATION?</h2>
       <p>
         <em>
           In Short: We keep your information for as long as necessary to fulfill
@@ -350,9 +352,7 @@ export function Privacy() {
         processing until deletion is possible.
       </p>
 
-      <h2 className="font-display text-xl font-bold sm:text-3xl" id="infosafe">
-        5. HOW DO WE KEEP YOUR INFORMATION SAFE?
-      </h2>
+      <h2 id="infosafe">5. HOW DO WE KEEP YOUR INFORMATION SAFE?</h2>
       <p>
         <em>
           In Short: We aim to protect your personal information through a system
@@ -374,12 +374,7 @@ export function Privacy() {
         a secure environment.
       </p>
 
-      <h2
-        className="font-display text-xl font-bold sm:text-3xl"
-        id="infominors"
-      >
-        6. DO WE COLLECT INFORMATION FROM MINORS?
-      </h2>
+      <h2 id="infominors">6. DO WE COLLECT INFORMATION FROM MINORS?</h2>
       <p>
         <em>
           In Short: We do not knowingly collect data from or market to children
@@ -398,12 +393,7 @@ export function Privacy() {
         contact us at privacy@jasonruesch.dev.
       </p>
 
-      <h2
-        className="font-display text-xl font-bold sm:text-3xl"
-        id="privacyrights"
-      >
-        7. WHAT ARE YOUR PRIVACY RIGHTS?
-      </h2>
+      <h2 id="privacyrights">7. WHAT ARE YOUR PRIVACY RIGHTS?</h2>
       <p>
         <em>
           In Short: You may review, change, or terminate your account at any
@@ -416,7 +406,7 @@ export function Privacy() {
         complain to your local data protection supervisory authority. You can
         find their contact details here:{' '}
         <a
-          className="text-primary"
+          className="text-primary-500 dark:text-primary-400"
           href="https://ec.europa.eu/justice/data-protection/bodies/authorities/index_en.htm"
           target="_blank"
           rel="noreferrer"
@@ -428,7 +418,7 @@ export function Privacy() {
         If you are located in Switzerland, the contact details for the data
         protection authorities are available here:{' '}
         <a
-          className="text-primary"
+          className="text-primary-500 dark:text-primary-400"
           href="https://edoeb.admin.ch/edoeb/en/home.html"
           target="_blank"
           rel="noreferrer"
@@ -443,7 +433,7 @@ export function Privacy() {
           depending on the applicable law, you have the right to withdraw your
           consent at any time. You can withdraw your consent at any time by
           contacting us by using the contact details provided in the section{' '}
-          <a className="text-primary" href="#contact">
+          <a className="text-primary-500 dark:text-primary-400" href="#contact">
             &quot;HOW CAN YOU CONTACT US ABOUT THIS NOTICE?&quot;
           </a>{' '}
           below.
@@ -460,9 +450,7 @@ export function Privacy() {
         email us at privacy@jasonruesch.dev.
       </p>
 
-      <h2 className="font-display text-xl font-bold sm:text-3xl" id="DNT">
-        8. CONTROLS FOR DO-NOT-TRACK FEATURES
-      </h2>
+      <h2 id="DNT">8. CONTROLS FOR DO-NOT-TRACK FEATURES</h2>
       <p>
         Most web browsers and some mobile operating systems and mobile
         applications include a Do-Not-Track (&quot;DNT&quot;) feature or setting
@@ -477,10 +465,7 @@ export function Privacy() {
         notice.
       </p>
 
-      <h2
-        className="font-display text-xl font-bold sm:text-3xl"
-        id="caresidents"
-      >
+      <h2 id="caresidents">
         9. DO CALIFORNIA RESIDENTS HAVE SPECIFIC PRIVACY RIGHTS?
       </h2>
       <p>
@@ -512,12 +497,7 @@ export function Privacy() {
         our systems (e.g., backups, etc.).
       </p>
 
-      <h2
-        className="font-display text-xl font-bold sm:text-3xl"
-        id="policyupdates"
-      >
-        10. DO WE MAKE UPDATES TO THIS NOTICE?
-      </h2>
+      <h2 id="policyupdates">10. DO WE MAKE UPDATES TO THIS NOTICE?</h2>
       <p>
         <em>
           In Short: Yes, we will update this notice as necessary to stay
@@ -534,15 +514,13 @@ export function Privacy() {
         frequently to be informed of how we are protecting your information.
       </p>
 
-      <h2 className="font-display text-xl font-bold sm:text-3xl" id="contact">
-        11. HOW CAN YOU CONTACT US ABOUT THIS NOTICE?
-      </h2>
+      <h2 id="contact">11. HOW CAN YOU CONTACT US ABOUT THIS NOTICE?</h2>
       <p>
         If you have questions or comments about this notice, you may email us at
         privacy@jasonruesch.dev.
       </p>
 
-      <h2 className="font-display text-xl font-bold sm:text-3xl" id="request">
+      <h2 id="request">
         12. HOW CAN YOU REVIEW, UPDATE, OR DELETE THE DATA WE COLLECT FROM YOU?
       </h2>
       <p>
@@ -551,7 +529,7 @@ export function Privacy() {
         that information, or delete it. To request to review, update, or delete
         your personal information, please submit a request form by clicking{' '}
         <a
-          className="text-primary"
+          className="text-primary-500 dark:text-primary-400"
           href="https://app.termly.io/notify/793f077a-7821-4f8d-993b-8e5d5ccd4cc3"
           target="_blank"
           rel="noreferrer"

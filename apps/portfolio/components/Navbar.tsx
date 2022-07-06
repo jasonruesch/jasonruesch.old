@@ -93,7 +93,7 @@ export default function Navbar({
                     <a className="flex items-center">
                       <LogoImage className="h-10 w-10 lg:mr-2" />
                       <span className="font-display hidden text-3xl font-bold lg:inline">
-                        {/* bg-gradient-to-r from-secondary to-primary bg-clip-text text-transparent */}
+                        {/* bg-gradient-to-r from-secondary-500 to-primary-500 dark:from-secondary-400 dark:to-primary-400 bg-clip-text text-transparent */}
                         Jason Ruesch
                       </span>
                     </a>
@@ -106,7 +106,7 @@ export default function Navbar({
                         <a
                           className={clsx(
                             route === item.href
-                              ? 'border-primary'
+                              ? 'border-primary-500 dark:border-primary-400'
                               : 'border-transparent text-neutral-500 hover:border-neutral-400 hover:text-neutral-700 dark:text-neutral-300 dark:hover:text-white',
                             'inline-flex items-center border-b-2 px-1 pb-2 pt-3 text-sm font-medium'
                           )}
@@ -128,7 +128,7 @@ export default function Navbar({
                     <label htmlFor="search" className="sr-only">
                       Search
                     </label>
-                    <div className="relative text-white focus-within:text-neutral-400">
+                    <div className="relative focus-within:text-neutral-400">
                       <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
                         <SearchIcon
                           className="h-5 w-5 text-neutral-400"
@@ -138,7 +138,7 @@ export default function Navbar({
                       <input
                         id="search"
                         name="search"
-                        className="focus:border-primary focus:ring-primary block w-full rounded-md border border-neutral-300 bg-white py-2 pl-10 pr-3 text-sm placeholder-neutral-500 focus:text-neutral-900 focus:placeholder-neutral-400 focus:outline-none focus:ring-1 dark:border-transparent dark:bg-neutral-700 dark:placeholder-neutral-400 dark:focus:border-white dark:focus:bg-white dark:focus:text-neutral-900 dark:focus:placeholder-neutral-500 dark:focus:ring-white sm:text-sm"
+                        className="focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-400 dark:focus:ring-primary-400 block w-full rounded-md border border-neutral-300 bg-white py-2 pl-10 pr-3 text-sm placeholder-neutral-500 focus:text-neutral-900 focus:placeholder-neutral-400 focus:outline-none focus:ring-1 dark:border-transparent dark:bg-neutral-700 dark:placeholder-neutral-400 dark:focus:border-white dark:focus:bg-white dark:focus:text-neutral-900 dark:focus:placeholder-neutral-500 dark:focus:ring-white sm:text-sm"
                         placeholder="Search"
                         type="search"
                       />
@@ -197,7 +197,7 @@ export default function Navbar({
                   <label htmlFor="search" className="sr-only">
                     Search
                   </label>
-                  <div className="relative text-white focus-within:text-neutral-400">
+                  <div className="relative focus-within:text-neutral-400">
                     <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
                       <SearchIcon
                         className="h-5 w-5 text-gray-400"
@@ -207,7 +207,7 @@ export default function Navbar({
                     <input
                       id="search"
                       name="search"
-                      className="focus:border-primary focus:ring-primary block w-full rounded-md border border-neutral-300 bg-white py-2 pl-10 pr-3 text-sm placeholder-neutral-500 focus:text-neutral-900 focus:placeholder-neutral-400 focus:outline-none focus:ring-1 dark:border-transparent dark:bg-neutral-700 dark:placeholder-neutral-400 dark:focus:border-white dark:focus:bg-white dark:focus:text-neutral-900 dark:focus:placeholder-neutral-500 dark:focus:ring-white sm:text-sm"
+                      className="focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-400 dark:focus:ring-primary-400 block w-full rounded-md border border-neutral-300 bg-white py-2 pl-10 pr-3 text-sm placeholder-neutral-500 focus:text-neutral-900 focus:placeholder-neutral-400 focus:outline-none focus:ring-1 dark:border-transparent dark:bg-neutral-700 dark:placeholder-neutral-400 dark:focus:border-white dark:focus:bg-white dark:focus:text-neutral-900 dark:focus:placeholder-neutral-500 dark:focus:ring-white sm:text-sm"
                       placeholder="Search"
                       type="search"
                     />
@@ -230,7 +230,7 @@ export default function Navbar({
                       <a
                         className={clsx(
                           route === item.href
-                            ? 'border-primary bg-cyan-100/75 text-cyan-700 dark:bg-violet-700/75 dark:text-violet-50'
+                            ? 'border-primary-500 dark:border-primary-400 bg-primary-100/75 text-primary-700 dark:bg-primary-700/75 dark:text-primary-50'
                             : 'border-transparent text-neutral-500 hover:border-neutral-300 hover:bg-neutral-50 hover:text-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-700 dark:hover:text-white',
                           'block border-l-4 py-2 pl-3 pr-4 text-base font-medium'
                         )}
@@ -245,7 +245,7 @@ export default function Navbar({
                     <a
                       className={clsx(
                         route === '/styleguide'
-                          ? 'border-primary bg-cyan-100/75 text-cyan-700 dark:bg-violet-700/75 dark:text-violet-50'
+                          ? 'border-primary-500 dark:border-primary-400 bg-primary-100/75 text-primary-700 dark:bg-primary-700/75 dark:text-primary-50'
                           : 'border-transparent text-neutral-500 hover:border-neutral-300 hover:bg-neutral-50 hover:text-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-700 dark:hover:text-white',
                         'block border-l-4 py-2 pl-3 pr-4 text-base font-medium'
                       )}
@@ -261,7 +261,7 @@ export default function Navbar({
                     <a
                       className={clsx(
                         route === '/privacy'
-                          ? 'border-primary bg-cyan-100/75 text-cyan-700 dark:bg-violet-700/75 dark:text-violet-50'
+                          ? 'border-primary-500 dark:border-primary-400 bg-primary-100/75 text-primary-700 dark:bg-primary-700/75 dark:text-primary-50'
                           : 'border-transparent text-neutral-500 hover:border-neutral-300 hover:bg-neutral-50 hover:text-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-700 dark:hover:text-white',
                         'block border-l-4 py-2 pl-3 pr-4 text-base font-medium'
                       )}

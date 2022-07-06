@@ -85,7 +85,7 @@ function CustomApp({ Component, pageProps, router }: AppProps) {
                   <motion.figure
                     // layoutId="profile-image"
                     className={clsx(
-                      'ring-offset-surface border-primary bg-primary dark:from-primary dark:to-secondary mx-auto mb-4 h-36 w-36 overflow-hidden rounded-full border-2 ring-0 ring-inset ring-offset-8 dark:bg-gradient-to-b',
+                      'ring-offset-surface border-primary-500 dark:border-primary-400 bg-primary-500 dark:from-primary-400 dark:to-secondary-400 mx-auto mb-4 h-36 w-36 overflow-hidden rounded-full border-2 ring-0 ring-inset ring-offset-8 dark:bg-gradient-to-b',
                       shouldCenter
                         ? 'sm:sm-min-h:h-72 sm:sm-min-h:w-72 sm:sm-min-h:border-4 sm:sm-min-h:ring-offset-[16px]'
                         : ''
@@ -103,9 +103,7 @@ function CustomApp({ Component, pageProps, router }: AppProps) {
                   </motion.figure>
                 )}
 
-                <section>
-                  <Component {...pageProps} />
-                </section>
+                <Component {...pageProps} />
               </main>
             </AnimatePresence>
           </>

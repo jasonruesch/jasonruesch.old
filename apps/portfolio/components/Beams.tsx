@@ -4,7 +4,7 @@ export default function Beams({ className }: { className?: string }) {
   return (
     <div
       className={clsx(
-        'pointer-events-none fixed inset-x-0 bottom-0 z-10 flex rotate-180 justify-center overflow-hidden',
+        'pointer-events-none fixed inset-x-0 bottom-0 -z-10 flex rotate-180 justify-center overflow-hidden',
         className
       )}
     >
