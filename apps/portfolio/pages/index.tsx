@@ -44,12 +44,14 @@ export function Index() {
 
   return (
     <div className="space-y-4">
-      <h1 className="font-display dark:text-on-background text-center text-2xl font-bold text-neutral-400 sm:text-4xl">
+      <h1 className="dark:text-on-background text-center text-neutral-400">
         Hi, I&apos;m
         <br />
-        <div className="text-primary">Jason Ruesch</div>
+        <div className="text-primary-500 dark:text-primary-400">
+          Jason Ruesch
+        </div>
         and I am a<br />
-        <div className="dark:text-secondary text-on-background">
+        <div className="dark:text-secondary-400 text-on-background">
           Software Engineer
         </div>
         focusing on
@@ -62,7 +64,7 @@ export function Index() {
           onHoverStart={() => handleHoverStart()}
           onHoverEnd={() => handleHoverEnd()}
           aria-label="Learn more about me"
-          className="text-primary mx-auto flex w-24 cursor-pointer justify-end text-sm font-medium hover:text-cyan-600 dark:hover:text-violet-500"
+          className="text-primary-500 dark:text-primary-400 hover:text-primary-600 dark:hover:text-primary-500 mx-auto flex w-24 cursor-pointer justify-end text-sm font-medium"
         >
           <motion.div
             ref={el}

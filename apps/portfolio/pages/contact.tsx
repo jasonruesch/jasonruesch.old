@@ -66,9 +66,7 @@ export function Contact() {
 
   return (
     <div className="mx-auto max-w-screen-sm space-y-4">
-      <h1 className="text-center text-2xl font-bold sm:text-4xl">
-        Get In Touch
-      </h1>
+      <h1 className="text-center">Get In Touch</h1>
       <form
         onSubmit={handleSubmit}
         className="grid grid-cols-1 gap-y-1 sm:grid-cols-2 sm:gap-x-8"
@@ -87,7 +85,7 @@ export function Contact() {
                 'block w-full rounded-md border bg-white py-2 px-3 focus:outline-none focus:ring-1 dark:bg-neutral-700 sm:text-sm',
                 !!errors.name && touched.name
                   ? 'border-red-300 pr-10 text-red-900 placeholder-red-300 focus:border-red-500 focus:outline-none focus:ring-red-500'
-                  : 'focus:border-primary focus:ring-primary border-neutral-300 placeholder-neutral-500 focus:text-neutral-900 focus:placeholder-neutral-400 dark:border-transparent dark:placeholder-neutral-400 dark:focus:border-white dark:focus:bg-white dark:focus:text-neutral-900 dark:focus:placeholder-neutral-500 dark:focus:ring-white'
+                  : 'focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-400 dark:focus:ring-primary-400 border-neutral-300 placeholder-neutral-500 focus:text-neutral-900 focus:placeholder-neutral-400 dark:border-transparent dark:placeholder-neutral-400 dark:focus:border-white dark:focus:bg-white dark:focus:text-neutral-900 dark:focus:placeholder-neutral-500 dark:focus:ring-white'
               )}
               placeholder="Jane Smith"
               required
@@ -126,7 +124,7 @@ export function Contact() {
                 'block w-full rounded-md border bg-white py-2 px-3 focus:outline-none focus:ring-1 dark:bg-neutral-700 sm:text-sm',
                 !!errors.email && touched.email
                   ? 'border-red-300 pr-10 text-red-900 placeholder-red-300 focus:border-red-500 focus:outline-none focus:ring-red-500'
-                  : 'focus:border-primary focus:ring-primary border-neutral-300 placeholder-neutral-500 focus:text-neutral-900 focus:placeholder-neutral-400 dark:border-transparent dark:placeholder-neutral-400 dark:focus:border-white dark:focus:bg-white dark:focus:text-neutral-900 dark:focus:placeholder-neutral-500 dark:focus:ring-white'
+                  : 'focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-400 dark:focus:ring-primary-400 border-neutral-300 placeholder-neutral-500 focus:text-neutral-900 focus:placeholder-neutral-400 dark:border-transparent dark:placeholder-neutral-400 dark:focus:border-white dark:focus:bg-white dark:focus:text-neutral-900 dark:focus:placeholder-neutral-500 dark:focus:ring-white'
               )}
               placeholder="you@example.com"
               required
@@ -164,7 +162,7 @@ export function Contact() {
                 'block w-full rounded-md border bg-white py-2 px-3 focus:outline-none focus:ring-1 dark:bg-neutral-700 sm:text-sm',
                 !!errors.message && touched.message
                   ? 'border-red-300 pr-10 text-red-900 placeholder-red-300 focus:border-red-500 focus:outline-none focus:ring-red-500'
-                  : 'focus:border-primary focus:ring-primary border-neutral-300 placeholder-neutral-500 focus:text-neutral-900 focus:placeholder-neutral-400 dark:border-transparent dark:placeholder-neutral-400 dark:focus:border-white dark:focus:bg-white dark:focus:text-neutral-900 dark:focus:placeholder-neutral-500 dark:focus:ring-white'
+                  : 'focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-400 dark:focus:ring-primary-400 border-neutral-300 placeholder-neutral-500 focus:text-neutral-900 focus:placeholder-neutral-400 dark:border-transparent dark:placeholder-neutral-400 dark:focus:border-white dark:focus:bg-white dark:focus:text-neutral-900 dark:focus:placeholder-neutral-500 dark:focus:ring-white'
               )}
               placeholder="How can I help?"
               required
@@ -192,12 +190,12 @@ export function Contact() {
         <div className="mt-1 sm:col-span-2">
           <button
             type="submit"
-            className="focus:ring-primary inline-flex w-full items-center justify-center rounded-md border border-transparent bg-cyan-600 px-6 py-3 text-base font-medium text-black shadow-sm hover:bg-cyan-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:bg-cyan-300 disabled:text-neutral-500 dark:bg-violet-500 dark:hover:bg-violet-600 dark:disabled:bg-violet-300 dark:disabled:text-neutral-600"
+            className="focus:ring-primary-500 dark:focus:ring-primary-400 bg-primary-600 hover:bg-primary-700 disabled:bg-primary-300 dark:bg-primary-500 dark:hover:bg-primary-600 dark:disabled:bg-primary-300 inline-flex w-full items-center justify-center rounded-md border border-transparent px-6 py-3 text-base font-medium text-black shadow-sm hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:text-neutral-500 dark:disabled:text-neutral-600"
             disabled={!dirty || !isValid || isSubmitting}
           >
             {isSubmitting ? (
               <>
-                <SpinnerIcon className="fill-primary mr-3 h-4 w-4" />
+                <SpinnerIcon className="fill-primary-500 dark:fill-primary-400 mr-3 h-4 w-4" />
                 Sending...
               </>
             ) : (

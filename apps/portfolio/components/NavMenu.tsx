@@ -24,7 +24,7 @@ const NavLink = forwardRef(
           active
             ? 'bg-neutral-100 text-neutral-900 dark:bg-neutral-700 dark:text-white'
             : route === href
-            ? 'text-primary'
+            ? 'text-primary-500 dark:text-primary-400'
             : '',
           'group flex w-full items-center px-4 py-2 text-sm'
         )}

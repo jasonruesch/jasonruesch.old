@@ -3,9 +3,7 @@ import Link from 'next/link';
 export function About() {
   return (
     <div className="mx-auto max-w-screen-sm space-y-4 text-sm sm:text-base">
-      <h1 className="font-display text-center text-2xl font-bold sm:text-4xl">
-        About Me
-      </h1>
+      <h1 className="text-center">About Me</h1>
       <p>
         My name is Jason Ruesch. I am a software engineer, web developer, and
         designer currently living in Raleigh, NC. I enjoy creating software that
@@ -25,7 +23,7 @@ export function About() {
 
       <div className="flex justify-center">
         <Link href="/contact">
-          <a className="text-primary font-medium hover:text-cyan-600 dark:hover:text-violet-500">
+          <a className="text-primary-500 dark:text-primary-400 hover:text-primary-600 dark:hover:text-primary-500 font-medium">
             Get in touch
             <span aria-hidden="true"> &rarr;</span>
           </a>

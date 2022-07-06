@@ -31,7 +31,7 @@ export default function ThemeSelector({ className }: { className?: string }) {
             className={({ open }) =>
               clsx(
                 theme !== 'system'
-                  ? 'text-primary hover:text-neutral-500 dark:hover:text-neutral-300'
+                  ? 'text-primary-500 dark:text-primary-400 hover:text-neutral-500 dark:hover:text-neutral-300'
                   : '',
                 'rounded-md p-2',
                 open ? 'text-neutral-500 dark:text-neutral-300' : ''
@@ -68,7 +68,7 @@ export default function ThemeSelector({ className }: { className?: string }) {
                       active
                         ? 'bg-neutral-100 text-neutral-900 dark:bg-neutral-700 dark:text-white'
                         : theme === 'light'
-                        ? 'text-primary'
+                        ? 'text-primary-500 dark:text-primary-400'
                         : '',
                       'group flex w-full items-center px-4 py-2 text-sm'
                     )}
@@ -76,12 +76,14 @@ export default function ThemeSelector({ className }: { className?: string }) {
                   >
                     <SunIcon
                       className={clsx(
-                        theme === 'light' ? 'text-primary' : '',
+                        theme === 'light'
+                          ? 'text-primary-500 dark:text-primary-400'
+                          : '',
                         'mr-3 h-5 w-5 group-hover:text-neutral-500 dark:group-hover:text-neutral-300'
                       )}
                       aria-hidden="true"
                     />
-                    Light
+                    <span>Light</span>
                   </button>
                 )}
               </Menu.Item>
@@ -92,7 +94,7 @@ export default function ThemeSelector({ className }: { className?: string }) {
                       active
                         ? 'bg-neutral-100 text-neutral-900 dark:bg-neutral-700 dark:text-white'
                         : theme === 'dark'
-                        ? 'text-primary'
+                        ? 'text-primary-500 dark:text-primary-400'
                         : '',
                       'group flex w-full items-center px-4 py-2 text-sm'
                     )}
@@ -100,12 +102,14 @@ export default function ThemeSelector({ className }: { className?: string }) {
                   >
                     <MoonIcon
                       className={clsx(
-                        theme === 'dark' ? 'text-primary' : '',
+                        theme === 'dark'
+                          ? 'text-primary-500 dark:text-primary-400'
+                          : '',
                         'mr-3 h-5 w-5 group-hover:text-neutral-500 dark:group-hover:text-neutral-300'
                       )}
                       aria-hidden="true"
                     />
-                    Dark
+                    <span>Dark</span>
                   </button>
                 )}
               </Menu.Item>
@@ -116,7 +120,7 @@ export default function ThemeSelector({ className }: { className?: string }) {
                       active
                         ? 'bg-neutral-100 text-neutral-900 dark:bg-neutral-700 dark:text-white'
                         : theme === 'system'
-                        ? 'text-primary'
+                        ? 'text-primary-500 dark:text-primary-400'
                         : '',
                       'group flex w-full items-center px-4 py-2 text-sm'
                     )}
@@ -124,12 +128,14 @@ export default function ThemeSelector({ className }: { className?: string }) {
                   >
                     <DesktopComputerIcon
                       className={clsx(
-                        theme === 'system' ? 'text-primary' : '',
+                        theme === 'system'
+                          ? 'text-primary-500 dark:text-primary-400'
+                          : '',
                         'mr-3 h-5 w-5 group-hover:text-neutral-500 dark:group-hover:text-neutral-300'
                       )}
                       aria-hidden="true"
                     />
-                    System
+                    <span>System</span>
                   </button>
                 )}
               </Menu.Item>
