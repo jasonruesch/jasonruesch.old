@@ -1,6 +1,7 @@
 import { SecondaryNavigationItem } from '@/components/Navbar';
 import StyleguideCard from '@/components/styleguide/Card';
 import StyleguideColorCards from '@/components/styleguide/ColorCards';
+import StyleguideTypographyCard from '@/components/styleguide/TypographyCard';
 import { useSearch } from '@/hooks/useSearch';
 import { useEffect } from 'react';
 
@@ -93,39 +94,93 @@ const colors = {
 const typography = {
   title: 'Typography',
   sections: [
-    <StyleguideCard
-      key="h1"
-      title="H1"
-      description="font-display text-2xl font-bold sm:text-4xl"
-    >
-      <div className="flex items-center">
-        <h1 className="font-display text-2xl font-bold sm:text-4xl">
-          Heading H1
-        </h1>
-      </div>
-    </StyleguideCard>,
-    <StyleguideCard
-      key="h2"
-      title="H2"
-      description="font-display text-xl font-bold sm:text-3xl"
-    >
-      <div className="flex items-center">
-        <h1 className="font-display text-xl font-bold sm:text-3xl">
-          Heading H2
-        </h1>
-      </div>
-    </StyleguideCard>,
-    <StyleguideCard
-      key="h3"
-      title="H3"
-      description="font-display text-lg font-bold sm:text-2xl"
-    >
-      <div className="flex items-center">
-        <h1 className="font-display text-lg font-bold sm:text-2xl">
-          Heading H3
-        </h1>
-      </div>
-    </StyleguideCard>,
+    <StyleguideTypographyCard
+      key="headings"
+      title="Headings"
+      items={[
+        {
+          title: 'Heading H1',
+          fontFamily: 'Alegreya Sans SC',
+          fontWeight: 'Bold',
+          fontSize: '24px / 32px',
+          alternateFontSize: '36px / 40px (small screens and above)',
+          example: (
+            <>
+              <h1 key="h1-example" className="font-display text-2xl font-bold">
+                Etiam nec metus vitae lectus
+              </h1>
+              <h1
+                key="h1-example-sm"
+                className="font-display text-4xl font-bold"
+              >
+                Etiam nec metus vitae lectus
+              </h1>
+            </>
+          ),
+          description: 'font-display text-2xl font-bold sm:text-4xl',
+        },
+        {
+          title: 'Heading H2',
+          fontFamily: 'Alegreya Sans SC',
+          fontWeight: 'Bold',
+          fontSize: '20px / 28px',
+          alternateFontSize: '30px / 36px (small screens and above)',
+          example: (
+            <>
+              <h2 key="h2-example" className="font-display text-xl font-bold">
+                Etiam nec metus vitae lectus
+              </h2>
+              <h2
+                key="h2-example-sm"
+                className="font-display text-3xl font-bold"
+              >
+                Etiam nec metus vitae lectus
+              </h2>
+            </>
+          ),
+          description: 'font-display text-xl font-bold sm:text-3xl',
+        },
+        {
+          title: 'Heading H3',
+          fontFamily: 'Alegreya Sans SC',
+          fontWeight: 'Bold',
+          fontSize: '18px / 28px',
+          alternateFontSize: '24px / 32px (small screens and above)',
+          example: (
+            <>
+              <h3 key="h3-example" className="font-display text-lg font-bold">
+                Etiam nec metus vitae lectus
+              </h3>
+              <h3
+                key="h3-example-sm"
+                className="font-display text-2xl font-bold"
+              >
+                Etiam nec metus vitae lectus
+              </h3>
+            </>
+          ),
+          description: 'font-display text-lg font-bold sm:text-2xl',
+        },
+        {
+          title: 'Heading H4',
+          fontFamily: 'Inter',
+          fontWeight: 'Bold',
+          fontSize: '16px / 24px',
+          alternateFontSize: '20px / 28px (small screens and above)',
+          example: (
+            <>
+              <h4 key="h4-example" className="text-xl font-bold">
+                Etiam nec metus vitae lectus
+              </h4>
+              <h4 key="h4-example-sm" className="text-base font-bold">
+                Etiam nec metus vitae lectus
+              </h4>
+            </>
+          ),
+          description: 'font-bold sm:text-xl',
+        },
+      ]}
+    />,
   ],
 };
 

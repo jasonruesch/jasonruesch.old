@@ -16,6 +16,9 @@
   h3 {
     @apply font-display text-lg font-bold sm:text-2xl;
   }
+  h4 {
+    @apply font-bold sm:text-xl;
+  }
 }
 
 @layer components {
