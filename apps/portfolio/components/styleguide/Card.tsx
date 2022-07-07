@@ -1,4 +1,4 @@
-import { ReactNode, useState } from 'react';
+import { ReactNode, useRef, useState } from 'react';
 import { ClipboardCopyIcon } from '@heroicons/react/solid';
 import clsx from 'clsx';
 import { Transition } from '@headlessui/react';
@@ -15,13 +15,15 @@ export default function StyleguideCard({
   description?: string;
 }) {
   const [isCopied, setIsCopied] = useState(false);
+  const timeout = useRef<NodeJS.Timeout>();
 
   const handleCopyToClipboard = (e) => {
+    clearTimeout(timeout.current);
     setIsCopied(true);
 
     navigator.clipboard.writeText(description);
 
-    setTimeout(() => {
+    timeout.current = setTimeout(() => {
       setIsCopied(false);
     }, 1500);
   };
@@ -29,11 +31,13 @@ export default function StyleguideCard({
   return (
     <div
       className={clsx(
-        'bg-surface text-on-survface divide-y rounded-lg shadow dark:divide-black dark:shadow-black',
+        'bg-surface text-on-survface divide-y divide-black/10 rounded-lg shadow ring-1 ring-black/10 dark:divide-black dark:shadow-black dark:ring-0',
         className
       )}
     >
-      <div className="overflow-hidden rounded-t-lg">{children}</div>
+      <div className="relative flex min-h-[160px] items-stretch justify-center overflow-hidden rounded-t-lg">
+        {children}
+      </div>
       <div className="bg-neutral-10 rounded-b-lg px-5 py-3 dark:bg-neutral-700">
         <div className="flex text-sm">
           <div className="flex-1">
