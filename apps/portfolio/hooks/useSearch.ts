@@ -6,6 +6,7 @@ import {
   ReactNode,
   Children,
   cloneElement,
+  ReactElement,
 } from 'react';
 
 type Options = Partial<{
@@ -43,11 +44,9 @@ function map<T, C extends ReactNode>(
 
 export function useSearch(
   searchInput,
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  collection: { name: string; sections: any[] }
+  collection: { title: string; sections: ReactElement[] }
 ) {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [sections, setSections] = useState<any[]>();
+  const [sections, setSections] = useState<ReactElement[]>();
 
   useEffect(() => {
     // Must search for at least 2 characters
@@ -55,7 +54,7 @@ export function useSearch(
     if (
       searchInput === '' ||
       searchInput.length < 2 ||
-      searchInput.trim().toLowerCase() === collection.name.toLowerCase()
+      searchInput.trim().toLowerCase() === collection.title.toLowerCase()
     ) {
       setSections(collection.sections);
       return;
@@ -92,30 +91,28 @@ export function useSearch(
       return String(value);
     };
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const filteredSections = sections.filter((section: any) => {
-      // const filteredItems = section.items.filter((item) => {
-      //   const value = map(item, (el) => toString(el))?.toString();
-      //   // return Object.values(item).some((value) => contains(value));
-      //   return contains(value);
-      // });
-      // if (filteredItems.length > 0) {
-      //   section.items = filteredItems;
-      // }
-      const { title, bgColorClassNames } = section.props;
-      const filteredItems = bgColorClassNames.filter((item) => {
-        const value = map(item, (el) => toString(el))?.toString();
-        // return Object.values(item).some((value) => contains(value));
-        return contains(value);
+    const filteredSections = sections.filter((section: ReactElement) => {
+      const { children, ...props } = section.props;
+      const match = Object.entries(props).some(([key, prop]) => {
+        if (Array.isArray(prop)) {
+          const filteredItems = prop.filter((item) => {
+            const value = map(item, (el) => toString(el));
+            return contains(value);
+          });
+          if (filteredItems.length > 0) {
+            section.props[key] = filteredItems;
+          }
+          return filteredItems.length > 0;
+        }
+
+        return contains(prop);
       });
-      if (filteredItems.length > 0) {
-        section.props.bgColorClassNames = filteredItems;
-      }
-      return contains(title) || filteredItems.length > 0;
+
+      return match || contains(toString(children));
     });
 
     // If the section name matches the query, only use the filtered sections if they have items, otherwise include the entire section
-    const result = contains(collection.name)
+    const result = contains(collection.title)
       ? filteredSections.length > 0
         ? filteredSections
         : sections

@@ -22,7 +22,7 @@ export default function StyleguideColorCards({
               title={colorName}
               description={description}
             >
-              <div className={clsx('h-40', bgColor)}></div>
+              <div className={clsx('w-full', bgColor)}></div>
             </StyleguideCard>
           );
         })}
