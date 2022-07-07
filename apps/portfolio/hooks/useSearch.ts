@@ -96,7 +96,9 @@ export function useSearch(
       const match = Object.entries(props).some(([key, prop]) => {
         if (Array.isArray(prop)) {
           const filteredItems = prop.filter((item) => {
-            const value = map(item, (el) => toString(el));
+            const value = isValidElement(item)
+              ? map(item, (el) => toString(el))
+              : toString(item);
             return contains(value);
           });
           if (filteredItems.length > 0) {
