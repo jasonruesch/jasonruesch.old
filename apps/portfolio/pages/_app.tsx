@@ -23,6 +23,13 @@ function CustomApp({ Component, pageProps, router }: AppProps) {
     secondaryNavigation = null,
   } = pageProps;
 
+  const searchInput: string = router.query.q
+    ? Array.isArray(router.query.q)
+      ? router.query.q[0]
+      : router.query.q
+    : '';
+  pageProps.searchInput = searchInput;
+
   return (
     <>
       <Head>
