@@ -27,10 +27,12 @@ export default function Navbar({
   className,
   secondaryNavigation,
   shouldShowSearch,
+  searchInput,
 }: {
   className?: string;
   secondaryNavigation?: SecondaryNavigationItem[];
   shouldShowSearch?: boolean;
+  searchInput?: string;
 }) {
   const router = useRouter();
   const { route } = router;
@@ -39,12 +41,6 @@ export default function Navbar({
     navbarHasSecondaryNavigation: !!secondaryNavigation,
     navbarHasSearch: shouldShowSearch,
   });
-  const searchInput: string = router.query.q
-    ? Array.isArray(router.query.q)
-      ? router.query.q[0]
-      : router.query.q
-    : '';
-
   const handleSearch = debounce((e) => {
     const searchValue: string = e.target.value;
     // Set the query parameter 'q' to the search value

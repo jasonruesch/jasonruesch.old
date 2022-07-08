@@ -1,22 +1,17 @@
 import { useEffect, useState } from 'react';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
-import Image from 'next/image';
 import { ThemeProvider } from 'next-themes';
 import { AnimatePresence } from 'framer-motion';
 import clsx from 'clsx';
 import Navbar from '@/components/Navbar';
 import Beams from '@/components/Beams';
-import profileImage from '@/images/jasonruesch-512.png';
-import profileDarkImage from '@/images/jasonruesch-dark-512.png';
 
 import '../styles/tailwind.css';
+import ProfileImage from '@/components/ProfileImage';
 
 function CustomApp({ Component, pageProps, router }: AppProps) {
   const [isHydrated, setIsHydrated] = useState(false);
-  useEffect(() => {
-    setIsHydrated(true);
-  }, []);
 
   const {
     theme,
@@ -32,6 +27,10 @@ function CustomApp({ Component, pageProps, router }: AppProps) {
       : router.query.q
     : '';
   pageProps.searchInput = searchInput;
+
+  useEffect(() => {
+    setIsHydrated(true);
+  }, []);
 
   return (
     <>
@@ -54,6 +53,7 @@ function CustomApp({ Component, pageProps, router }: AppProps) {
               className="min-h-16 fixed top-0 z-40 w-full px-2 print:hidden sm:px-6 lg:px-8"
               secondaryNavigation={secondaryNavigation}
               shouldShowSearch={shouldShowSearch}
+              searchInput={searchInput}
             />
             <AnimatePresence
               exitBeforeEnter
@@ -76,27 +76,7 @@ function CustomApp({ Component, pageProps, router }: AppProps) {
                 )}
               >
                 {shouldShowProfileImage && (
-                  <figure
-                    className={clsx(
-                      'relative mx-auto mb-4 h-36 w-36 overflow-hidden rounded-full ring-2 ring-black/10 dark:ring-black',
-                      shouldCenter ? 'sm:sm-min-h:h-72 sm:sm-min-h:w-72' : ''
-                    )}
-                  >
-                    <Image
-                      layout="fill"
-                      src={profileImage}
-                      alt="Jason Ruesch"
-                      className="dark:hidden"
-                      priority
-                    />
-                    <Image
-                      layout="fill"
-                      src={profileDarkImage}
-                      alt="Jason Ruesch"
-                      className="hidden dark:block"
-                      priority
-                    />
-                  </figure>
+                  <ProfileImage shouldCenter={shouldCenter} />
                 )}
 
                 <Component {...pageProps} />

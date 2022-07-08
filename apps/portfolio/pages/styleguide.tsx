@@ -20,6 +20,18 @@ export function Styleguide({ searchInput }: { searchInput?: string }) {
             </div>
           </section>
         ))}
+
+        {filteredData?.length === 0 && (
+          <section>
+            <h2>
+              No results for &quot;
+              <span className="text-secondary-500 dark:text-secondary-400 font-sans text-base sm:text-2xl">
+                {searchInput}
+              </span>
+              &quot; were found
+            </h2>
+          </section>
+        )}
       </div>
 
       <BackToTopButton />
