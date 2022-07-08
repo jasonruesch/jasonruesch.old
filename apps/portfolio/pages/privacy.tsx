@@ -1,41 +1,9 @@
-import {
-  Link as ScrollLink,
-  animateScroll as scroll,
-  scroller,
-} from 'react-scroll';
+import { Link as ScrollLink } from 'react-scroll';
 import useScrollOffset from '@/hooks/useScrollOffset';
-import { Transition } from '@headlessui/react';
-import { Fragment, useEffect, useRef, useState } from 'react';
-import { ChevronUpIcon } from '@heroicons/react/outline';
+import { BackToTopButton } from '@/components/BackToTopButton';
 
 export function Privacy() {
   const scrollOffset = useScrollOffset();
-  const [showTopButton, setShowTopButton] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      // Show top button when the user scrolls down the height of the page title
-      if (document.documentElement.scrollTop > -scrollOffset) {
-        setShowTopButton(true);
-      } else {
-        setShowTopButton(false);
-      }
-    };
-    document.addEventListener('scroll', handleScroll);
-
-    handleScroll();
-
-    return () => {
-      document.removeEventListener('scroll', handleScroll);
-    };
-  }, [scrollOffset]);
-
-  const hash = useRef(window.location.hash);
-  useEffect(() => {
-    scroller.scrollTo(hash.current.replace('#', ''), {
-      offset: scrollOffset,
-    });
-  }, [scrollOffset]);
 
   return (
     <>
@@ -91,6 +59,7 @@ export function Privacy() {
               <ScrollLink
                 className="text-primary-500 dark:text-primary-400 cursor-pointer"
                 to="toc"
+                hashSpy
                 offset={scrollOffset}
               >
                 click here to go directly to our table of contents.
@@ -105,6 +74,7 @@ export function Privacy() {
             <ScrollLink
               className="text-primary-500 dark:text-primary-400 cursor-pointer"
               to="personalinfo"
+              hashSpy
               offset={scrollOffset}
             >
               Click here to learn more.
@@ -128,6 +98,7 @@ export function Privacy() {
             <ScrollLink
               className="text-primary-500 dark:text-primary-400 cursor-pointer"
               to="infouse"
+              hashSpy
               offset={scrollOffset}
             >
               Click here to learn more.
@@ -140,6 +111,7 @@ export function Privacy() {
             <ScrollLink
               className="text-primary-500 dark:text-primary-400 cursor-pointer"
               to="whoshare"
+              hashSpy
               offset={scrollOffset}
             >
               Click here to learn more.
@@ -157,6 +129,7 @@ export function Privacy() {
             <ScrollLink
               className="text-primary-500 dark:text-primary-400 cursor-pointer"
               to="infosafe"
+              hashSpy
               offset={scrollOffset}
             >
               Click here to learn more.
@@ -169,6 +142,7 @@ export function Privacy() {
             <ScrollLink
               className="text-primary-500 dark:text-primary-400 cursor-pointer"
               to="privacyrights"
+              hashSpy
               offset={scrollOffset}
             >
               Click here to learn more.
@@ -194,6 +168,7 @@ export function Privacy() {
             <ScrollLink
               className="text-primary-500 dark:text-primary-400 cursor-pointer"
               to="toc"
+              hashSpy
               offset={scrollOffset}
             >
               Click here to review the notice in full.
@@ -208,6 +183,7 @@ export function Privacy() {
               <ScrollLink
                 className="text-primary-500 dark:text-primary-400 cursor-pointer"
                 to="infocollect"
+                hashSpy
                 offset={scrollOffset}
               >
                 WHAT INFORMATION DO WE COLLECT?
@@ -217,6 +193,7 @@ export function Privacy() {
               <ScrollLink
                 className="text-primary-500 dark:text-primary-400 cursor-pointer"
                 to="infouse"
+                hashSpy
                 offset={scrollOffset}
               >
                 HOW DO WE PROCESS YOUR INFORMATION?
@@ -226,6 +203,7 @@ export function Privacy() {
               <ScrollLink
                 className="text-primary-500 dark:text-primary-400 cursor-pointer"
                 to="whoshare"
+                hashSpy
                 offset={scrollOffset}
               >
                 WHEN AND WITH WHOM DO WE SHARE YOUR PERSONAL INFORMATION?
@@ -235,6 +213,7 @@ export function Privacy() {
               <ScrollLink
                 className="text-primary-500 dark:text-primary-400 cursor-pointer"
                 to="inforetain"
+                hashSpy
                 offset={scrollOffset}
               >
                 HOW LONG DO WE KEEP YOUR INFORMATION?
@@ -244,6 +223,7 @@ export function Privacy() {
               <ScrollLink
                 className="text-primary-500 dark:text-primary-400 cursor-pointer"
                 to="infosafe"
+                hashSpy
                 offset={scrollOffset}
               >
                 HOW DO WE KEEP YOUR INFORMATION SAFE?
@@ -253,6 +233,7 @@ export function Privacy() {
               <ScrollLink
                 className="text-primary-500 dark:text-primary-400 cursor-pointer"
                 to="infominors"
+                hashSpy
                 offset={scrollOffset}
               >
                 DO WE COLLECT INFORMATION FROM MINORS?
@@ -262,6 +243,7 @@ export function Privacy() {
               <ScrollLink
                 className="text-primary-500 dark:text-primary-400 cursor-pointer"
                 to="privacyrights"
+                hashSpy
                 offset={scrollOffset}
               >
                 WHAT ARE YOUR PRIVACY RIGHTS?
@@ -271,6 +253,7 @@ export function Privacy() {
               <ScrollLink
                 className="text-primary-500 dark:text-primary-400 cursor-pointer"
                 to="DNT"
+                hashSpy
                 offset={scrollOffset}
               >
                 CONTROLS FOR DO-NOT-TRACK FEATURES
@@ -280,6 +263,7 @@ export function Privacy() {
               <ScrollLink
                 className="text-primary-500 dark:text-primary-400 cursor-pointer"
                 to="caresidents"
+                hashSpy
                 offset={scrollOffset}
               >
                 DO CALIFORNIA RESIDENTS HAVE SPECIFIC PRIVACY RIGHTS?
@@ -289,6 +273,7 @@ export function Privacy() {
               <ScrollLink
                 className="text-primary-500 dark:text-primary-400 cursor-pointer"
                 to="policyupdates"
+                hashSpy
                 offset={scrollOffset}
               >
                 DO WE MAKE UPDATES TO THIS NOTICE?
@@ -298,6 +283,7 @@ export function Privacy() {
               <ScrollLink
                 className="text-primary-500 dark:text-primary-400 cursor-pointer"
                 to="contact"
+                hashSpy
                 offset={scrollOffset}
               >
                 HOW CAN YOU CONTACT US ABOUT THIS NOTICE?
@@ -307,6 +293,7 @@ export function Privacy() {
               <ScrollLink
                 className="text-primary-500 dark:text-primary-400 cursor-pointer"
                 to="request"
+                hashSpy
                 offset={scrollOffset}
               >
                 HOW CAN YOU REVIEW, UPDATE, OR DELETE THE DATA WE COLLECT FROM
@@ -536,6 +523,7 @@ export function Privacy() {
               <ScrollLink
                 className="text-primary-500 dark:text-primary-400 cursor-pointer"
                 to="contact"
+                hashSpy
                 offset={scrollOffset}
               >
                 &quot;HOW CAN YOU CONTACT US ABOUT THIS NOTICE?&quot;
@@ -652,25 +640,7 @@ export function Privacy() {
         </div>
       </div>
 
-      {/* Back to Top Button */}
-      <Transition
-        as={Fragment}
-        appear
-        show={showTopButton}
-        enter="ease-in-out duration-300"
-        enterFrom="opacity-0"
-        enterTo="opacity-100"
-        leave="ease-in-out duration-300"
-        leaveFrom="opacity-100"
-        leaveTo="opacity-0"
-      >
-        <button
-          className="focus:ring-primary-500 dark:focus:ring-primary-400 bg-primary-600 hover:bg-primary-700 disabled:bg-primary-300 dark:bg-primary-500 dark:hover:bg-primary-600 dark:disabled:bg-primary-300 fixed bottom-8 right-12 z-40 inline-flex items-center justify-center rounded-full border border-transparent p-6 text-base font-medium text-black shadow-sm hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:text-neutral-500 dark:disabled:text-neutral-600 print:hidden"
-          onClick={() => scroll.scrollToTop()}
-        >
-          <ChevronUpIcon className="h-6 w-6" />
-        </button>
-      </Transition>
+      <BackToTopButton />
     </>
   );
 }

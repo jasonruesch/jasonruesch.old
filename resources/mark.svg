@@ -7,8 +7,8 @@
 
 			<linearGradient id="gradient" gradientUnits="userSpaceOnUse" x1="-688.3126" y1="1339.5153" x2="-683.6619"
 				y2="1339.5153" gradientTransform="matrix(100 0 0 -110.0909 68856.375 148631.7031)">
-				<stop offset="0" style="stop-color:#A78BFA" />
-				<stop offset="1" style="stop-color:#2DD4BF" />
+				<stop offset="0" style="stop-color:#06b6d4" />
+				<stop offset="1" style="stop-color:#d946ef" />
 			</linearGradient>
 			<path fill-rule="evenodd" clip-rule="evenodd" fill="url(#gradient)" d="M164.19,960.34c-2.63,0.21-10.64,13.6-28.9,50.99
 			c-18.66,38.21-31.75,63.51-40.28,82c-69.83,28.96-102.9,26.28-24.33,63.37c6.92,3.26,13.43,6.22,19.65,8.94
