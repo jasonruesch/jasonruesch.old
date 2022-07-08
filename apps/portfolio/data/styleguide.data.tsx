@@ -187,6 +187,51 @@ export const typography = {
         },
       ]}
     />,
+    <StyleguideTypographyCard
+      key="body"
+      title="Body"
+      items={[
+        {
+          title: 'Base (default)',
+          fontFamily: 'Inter',
+          fontSize: '16px / 24px',
+          example: (
+            <>
+              <p key="base-example" className="text-base">
+                Etiam nec metus vitae lectus
+              </p>
+            </>
+          ),
+          description: 'text-base',
+        },
+        {
+          title: 'Small',
+          fontFamily: 'Inter',
+          fontSize: '14px / 20px',
+          example: (
+            <>
+              <p key="sm-example" className="text-sm">
+                Etiam nec metus vitae lectus
+              </p>
+            </>
+          ),
+          description: 'text-sm',
+        },
+        {
+          title: 'Extra-Small',
+          fontFamily: 'Inter',
+          fontSize: '12px / 16px',
+          example: (
+            <>
+              <p key="xs-example" className="text-xs">
+                Etiam nec metus vitae lectus
+              </p>
+            </>
+          ),
+          description: 'text-xs',
+        },
+      ]}
+    />,
   ],
 };
 

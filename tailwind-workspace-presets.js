@@ -18,6 +18,21 @@ module.exports = {
       neutral: colors.neutral,
       red: colors.red,
     },
+    fontSize: {
+      xs: defaultTheme.fontSize.xs,
+      sm: defaultTheme.fontSize.sm,
+      base: defaultTheme.fontSize.base,
+      lg: defaultTheme.fontSize.lg,
+      xl: defaultTheme.fontSize.xl,
+      '2xl': defaultTheme.fontSize['2xl'],
+      '3xl': defaultTheme.fontSize['3xl'],
+      '4xl': defaultTheme.fontSize['4xl'],
+    },
+    boxShadow: {
+      DEFAULT: defaultTheme.boxShadow.DEFAULT,
+      md: defaultTheme.boxShadow.md,
+      lg: defaultTheme.boxShadow.lg,
+    },
     extend: {
       fontFamily: {
         sans: ['Inter', ...defaultTheme.fontFamily.sans],
