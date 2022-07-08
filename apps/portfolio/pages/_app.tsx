@@ -1,11 +1,14 @@
 import { useEffect, useState } from 'react';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
+import Image from 'next/image';
 import { ThemeProvider } from 'next-themes';
 import { AnimatePresence } from 'framer-motion';
 import clsx from 'clsx';
 import Navbar from '@/components/Navbar';
 import Beams from '@/components/Beams';
+import profileImage from '@/images/jasonruesch-512.png';
+import profileDarkImage from '@/images/jasonruesch-dark-512.png';
 
 import '../styles/tailwind.css';
 
@@ -75,19 +78,23 @@ function CustomApp({ Component, pageProps, router }: AppProps) {
                 {shouldShowProfileImage && (
                   <figure
                     className={clsx(
-                      'mx-auto mb-4 h-36 w-36 overflow-hidden rounded-full ring-2 ring-black/10 dark:ring-black',
+                      'relative mx-auto mb-4 h-36 w-36 overflow-hidden rounded-full ring-2 ring-black/10 dark:ring-black',
                       shouldCenter ? 'sm:sm-min-h:h-72 sm:sm-min-h:w-72' : ''
                     )}
                   >
-                    <img
+                    <Image
+                      layout="fill"
+                      src={profileImage}
+                      alt="Jason Ruesch"
                       className="dark:hidden"
-                      src="/images/jasonruesch-512.png"
-                      alt="Jason Ruesch"
+                      priority
                     />
-                    <img
-                      className="hidden dark:block"
-                      src="/images/jasonruesch-dark-512.png"
+                    <Image
+                      layout="fill"
+                      src={profileDarkImage}
                       alt="Jason Ruesch"
+                      className="hidden dark:block"
+                      priority
                     />
                   </figure>
                 )}
