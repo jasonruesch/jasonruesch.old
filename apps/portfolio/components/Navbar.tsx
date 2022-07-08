@@ -152,33 +152,34 @@ export default function Navbar({
               </div>
 
               {shouldShowSearch && (
-                <div className="mr-6 hidden flex-1 items-center justify-end px-2 md:flex">
-                  <form onSubmit={(e) => e.preventDefault()}>
-                    <div className="w-full max-w-xs">
-                      <label htmlFor="search" className="sr-only">
-                        Search
-                      </label>
-                      <div className="relative focus-within:text-neutral-400">
-                        <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                          <SearchIcon
-                            className="h-5 w-5 text-neutral-400"
-                            aria-hidden="true"
-                          />
-                        </div>
-                        <input
-                          id="search"
-                          name="search"
-                          className="focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-400 dark:focus:ring-primary-400 block w-full rounded-md border border-neutral-300 bg-white py-2 pl-10 pr-3 text-sm placeholder-neutral-500 focus:text-neutral-900 focus:placeholder-neutral-400 focus:outline-none focus:ring-1 dark:border-transparent dark:bg-neutral-700 dark:placeholder-neutral-400 dark:focus:border-white dark:focus:bg-white dark:focus:text-neutral-900 dark:focus:placeholder-neutral-500 dark:focus:ring-white sm:text-sm"
-                          placeholder="Search"
-                          type="search"
-                          defaultValue={searchInput}
-                          onInput={handleSearch}
-                          onChange={handleSearch}
+                <form
+                  className="mr-6 hidden flex-1 items-center justify-end px-2 md:flex"
+                  onSubmit={(e) => e.preventDefault()}
+                >
+                  <div className="w-full max-w-xs">
+                    <label htmlFor="search" className="sr-only">
+                      Search
+                    </label>
+                    <div className="relative focus-within:text-neutral-400">
+                      <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                        <SearchIcon
+                          className="h-5 w-5 text-neutral-400"
+                          aria-hidden="true"
                         />
                       </div>
+                      <input
+                        id="search"
+                        name="search"
+                        className="focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-400 dark:focus:ring-primary-400 block w-full rounded-md border border-neutral-300 bg-white py-2 pl-10 pr-3 text-sm placeholder-neutral-500 focus:text-neutral-900 focus:placeholder-neutral-400 focus:outline-none focus:ring-1 dark:border-transparent dark:bg-neutral-700 dark:placeholder-neutral-400 dark:focus:border-white dark:focus:bg-white dark:focus:text-neutral-900 dark:focus:placeholder-neutral-500 dark:focus:ring-white sm:text-sm"
+                        placeholder="Search"
+                        type="search"
+                        defaultValue={searchInput}
+                        onInput={handleSearch}
+                        onChange={handleSearch}
+                      />
                     </div>
-                  </form>
-                </div>
+                  </div>
+                </form>
               )}
 
               <div className="absolute inset-y-0 right-0 flex items-center space-x-2 md:static md:inset-auto">
@@ -225,33 +226,34 @@ export default function Navbar({
             )}
 
             {shouldShowSearch && (
-              <div className="flex h-14 items-center justify-center md:hidden">
-                <form onSubmit={(e) => e.preventDefault()}>
-                  <div className="w-full max-w-lg">
-                    <label htmlFor="search" className="sr-only">
-                      Search
-                    </label>
-                    <div className="relative focus-within:text-neutral-400">
-                      <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                        <SearchIcon
-                          className="h-5 w-5 text-gray-400"
-                          aria-hidden="true"
-                        />
-                      </div>
-                      <input
-                        id="search"
-                        name="search"
-                        className="focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-400 dark:focus:ring-primary-400 block w-full rounded-md border border-neutral-300 bg-white py-2 pl-10 pr-3 text-sm placeholder-neutral-500 focus:text-neutral-900 focus:placeholder-neutral-400 focus:outline-none focus:ring-1 dark:border-transparent dark:bg-neutral-700 dark:placeholder-neutral-400 dark:focus:border-white dark:focus:bg-white dark:focus:text-neutral-900 dark:focus:placeholder-neutral-500 dark:focus:ring-white sm:text-sm"
-                        placeholder="Search"
-                        type="search"
-                        defaultValue={searchInput}
-                        onInput={handleSearch}
-                        onChange={handleSearch}
+              <form
+                className="flex h-14 items-center justify-center md:hidden"
+                onSubmit={(e) => e.preventDefault()}
+              >
+                <div className="w-full max-w-lg">
+                  <label htmlFor="search" className="sr-only">
+                    Search
+                  </label>
+                  <div className="relative focus-within:text-neutral-400">
+                    <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                      <SearchIcon
+                        className="h-5 w-5 text-gray-400"
+                        aria-hidden="true"
                       />
                     </div>
+                    <input
+                      id="search"
+                      name="search"
+                      className="focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-400 dark:focus:ring-primary-400 block w-full rounded-md border border-neutral-300 bg-white py-2 pl-10 pr-3 text-sm placeholder-neutral-500 focus:text-neutral-900 focus:placeholder-neutral-400 focus:outline-none focus:ring-1 dark:border-transparent dark:bg-neutral-700 dark:placeholder-neutral-400 dark:focus:border-white dark:focus:bg-white dark:focus:text-neutral-900 dark:focus:placeholder-neutral-500 dark:focus:ring-white sm:text-sm"
+                      placeholder="Search"
+                      type="search"
+                      defaultValue={searchInput}
+                      onInput={handleSearch}
+                      onChange={handleSearch}
+                    />
                   </div>
-                </form>
-              </div>
+                </div>
+              </form>
             )}
           </div>
 
