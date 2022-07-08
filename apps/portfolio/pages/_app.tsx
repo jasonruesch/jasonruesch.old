@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 import { ThemeProvider } from 'next-themes';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 import clsx from 'clsx';
 import Navbar from '@/components/Navbar';
 import Beams from '@/components/Beams';
@@ -73,25 +73,23 @@ function CustomApp({ Component, pageProps, router }: AppProps) {
                 )}
               >
                 {shouldShowProfileImage && (
-                  <motion.figure
-                    // layoutId="profile-image"
+                  <figure
                     className={clsx(
-                      'ring-offset-surface border-primary-500 dark:border-primary-400 bg-primary-500 dark:from-primary-400 dark:to-secondary-400 mx-auto mb-4 h-36 w-36 overflow-hidden rounded-full border-2 ring-0 ring-inset ring-offset-8 dark:bg-gradient-to-b',
-                      shouldCenter
-                        ? 'sm:sm-min-h:h-72 sm:sm-min-h:w-72 sm:sm-min-h:border-4 sm:sm-min-h:ring-offset-[16px]'
-                        : ''
+                      'dark:border-on-background mx-auto mb-4 h-36 w-36 overflow-hidden rounded-full border-2 border-neutral-400',
+                      shouldCenter ? 'sm:sm-min-h:h-72 sm:sm-min-h:w-72' : ''
                     )}
-                    style={{ clipPath: 'border-box' }}
                   >
-                    <motion.img
-                      // initial={{ rotate: -180 }}
-                      // animate={{ rotate: 0 }}
-                      // exit={{ rotate: 180 }}
-                      // transition={{ duration: 0.3 }}
-                      src="/images/profile.png"
+                    <img
+                      className="dark:hidden"
+                      src="/images/jasonruesch-512.png"
                       alt="Jason Ruesch"
                     />
-                  </motion.figure>
+                    <img
+                      className="hidden dark:block"
+                      src="/images/jasonruesch-dark-512.png"
+                      alt="Jason Ruesch"
+                    />
+                  </figure>
                 )}
 
                 <Component {...pageProps} />

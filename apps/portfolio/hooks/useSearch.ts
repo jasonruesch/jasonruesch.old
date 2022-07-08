@@ -1,3 +1,4 @@
+import { StyleguideData } from '@/data/styleguide.data';
 import { cloneDeep } from 'lodash';
 import {
   useState,
@@ -6,7 +7,6 @@ import {
   ReactNode,
   Children,
   cloneElement,
-  ReactElement,
 } from 'react';
 
 type Options = Partial<{
@@ -44,23 +44,18 @@ function map<T, C extends ReactNode>(
 
 export function useSearch(
   searchInput,
-  collection: { title: string; sections: ReactElement[] }
-) {
-  const [sections, setSections] = useState<ReactElement[]>();
+  data: StyleguideData[]
+): StyleguideData[] {
+  const [results, setResults] = useState<StyleguideData[]>();
 
   useEffect(() => {
     // Must search for at least 2 characters
-    // Return all sections for the section if search matches the section name
-    if (
-      searchInput === '' ||
-      searchInput.length < 2 ||
-      searchInput.trim().toLowerCase() === collection.title.toLowerCase()
-    ) {
-      setSections(collection.sections);
+    if (searchInput === '' || searchInput.length < 2) {
+      setResults(data);
       return;
     }
 
-    const sections = cloneDeep(collection.sections);
+    const results = cloneDeep(data);
     // Split query to words
     const queryParts = searchInput
       .trim()
@@ -91,37 +86,41 @@ export function useSearch(
       return String(value);
     };
 
-    const filteredSections = sections.filter((section: ReactElement) => {
-      const { children, ...props } = section.props;
-      const match = Object.entries(props).some(([key, prop]) => {
-        if (Array.isArray(prop)) {
-          const filteredItems = prop.filter((item) => {
-            const value = isValidElement(item)
-              ? map(item, (el) => toString(el))
-              : toString(item);
-            return contains(value);
+    const filteredResults = results.filter(
+      (result: StyleguideData, index: number) => {
+        const filteredSections = result.sections.filter((section) => {
+          const { children, ...props } = section.props;
+          const match = Object.entries(props).some(([key, prop]) => {
+            if (Array.isArray(prop)) {
+              const filteredItems = prop.filter((item) => {
+                const value = isValidElement(item)
+                  ? map(item, (el) => toString(el))
+                  : toString(item);
+                return contains(value);
+              });
+              if (filteredItems.length > 0) {
+                section.props[key] = filteredItems;
+              }
+              return filteredItems.length > 0;
+            }
+
+            return contains(prop);
           });
-          if (filteredItems.length > 0) {
-            section.props[key] = filteredItems;
-          }
-          return filteredItems.length > 0;
+
+          return match || contains(toString(children));
+        });
+
+        if (filteredSections.length > 0) {
+          result.sections = filteredSections;
         }
 
-        return contains(prop);
-      });
+        return contains(result.title) || filteredSections.length > 0;
+      }
+    );
 
-      return match || contains(toString(children));
-    });
-
-    // If the section name matches the query, only use the filtered sections if they have items, otherwise include the entire section
-    const result = contains(collection.title)
-      ? filteredSections.length > 0
-        ? filteredSections
-        : sections
-      : filteredSections;
-    setSections(result);
+    setResults(filteredResults);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchInput]);
 
-  return sections;
+  return results;
 }

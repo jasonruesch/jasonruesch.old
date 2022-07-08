@@ -5,8 +5,9 @@ const { join } = require('path');
 module.exports = {
   presets: [require('../../tailwind-workspace-presets')],
   content: [
-    join(__dirname, 'pages/**/*.{ts,tsx}'),
     join(__dirname, 'components/**/*.{ts,tsx}'),
+    join(__dirname, 'data/**/*.{ts,tsx}'),
+    join(__dirname, 'pages/**/*.{ts,tsx}'),
     ...createGlobPatternsForDependencies(__dirname),
   ],
   darkMode: 'class',
@@ -39,8 +40,6 @@ module.exports = {
         },
         background: 'var(--color-background)',
         surface: 'var(--color-surface)',
-      },
-      textColor: {
         on: {
           background: 'var(--color-on-background)',
           surface: 'var(--color-on-surface)',

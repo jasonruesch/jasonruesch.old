@@ -2,10 +2,10 @@ import { Disclosure } from '@headlessui/react';
 import { MenuAlt1Icon, XIcon } from '@heroicons/react/outline';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { SearchIcon } from '@heroicons/react/solid';
 import clsx from 'clsx';
-import { Link as ScrollLink, scroller } from 'react-scroll';
+import { Link as ScrollLink } from 'react-scroll';
 import { debounce } from 'lodash';
 import useScrollOffset from '@/hooks/useScrollOffset';
 import ThemeSelector from './ThemeSelector';
@@ -76,13 +76,6 @@ export default function Navbar({
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
-
-  const hash = useRef(window.location.hash);
-  useEffect(() => {
-    scroller.scrollTo(hash.current.replace('#', ''), {
-      offset: scrollOffset,
-    });
-  }, [scrollOffset]);
 
   return (
     <Disclosure
@@ -160,29 +153,31 @@ export default function Navbar({
 
               {shouldShowSearch && (
                 <div className="mr-6 hidden flex-1 items-center justify-end px-2 md:flex">
-                  <div className="w-full max-w-xs">
-                    <label htmlFor="search" className="sr-only">
-                      Search
-                    </label>
-                    <div className="relative focus-within:text-neutral-400">
-                      <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                        <SearchIcon
-                          className="h-5 w-5 text-neutral-400"
-                          aria-hidden="true"
+                  <form onSubmit={(e) => e.preventDefault()}>
+                    <div className="w-full max-w-xs">
+                      <label htmlFor="search" className="sr-only">
+                        Search
+                      </label>
+                      <div className="relative focus-within:text-neutral-400">
+                        <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                          <SearchIcon
+                            className="h-5 w-5 text-neutral-400"
+                            aria-hidden="true"
+                          />
+                        </div>
+                        <input
+                          id="search"
+                          name="search"
+                          className="focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-400 dark:focus:ring-primary-400 block w-full rounded-md border border-neutral-300 bg-white py-2 pl-10 pr-3 text-sm placeholder-neutral-500 focus:text-neutral-900 focus:placeholder-neutral-400 focus:outline-none focus:ring-1 dark:border-transparent dark:bg-neutral-700 dark:placeholder-neutral-400 dark:focus:border-white dark:focus:bg-white dark:focus:text-neutral-900 dark:focus:placeholder-neutral-500 dark:focus:ring-white sm:text-sm"
+                          placeholder="Search"
+                          type="search"
+                          defaultValue={searchInput}
+                          onInput={handleSearch}
+                          onChange={handleSearch}
                         />
                       </div>
-                      <input
-                        id="search"
-                        name="search"
-                        className="focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-400 dark:focus:ring-primary-400 block w-full rounded-md border border-neutral-300 bg-white py-2 pl-10 pr-3 text-sm placeholder-neutral-500 focus:text-neutral-900 focus:placeholder-neutral-400 focus:outline-none focus:ring-1 dark:border-transparent dark:bg-neutral-700 dark:placeholder-neutral-400 dark:focus:border-white dark:focus:bg-white dark:focus:text-neutral-900 dark:focus:placeholder-neutral-500 dark:focus:ring-white sm:text-sm"
-                        placeholder="Search"
-                        type="search"
-                        defaultValue={searchInput}
-                        onInput={handleSearch}
-                        onChange={handleSearch}
-                      />
                     </div>
-                  </div>
+                  </form>
                 </div>
               )}
 
@@ -219,6 +214,7 @@ export default function Navbar({
                     to={item.id}
                     offset={scrollOffset}
                     spy
+                    hashSpy
                     className="inline-flex cursor-pointer items-center rounded-md py-2 px-3 text-sm font-medium text-neutral-900 hover:bg-neutral-200 hover:text-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-600 dark:hover:text-white"
                     activeClass="!bg-neutral-300 !text-neutral-900 dark:!bg-neutral-700 dark:!text-white"
                   >
@@ -230,29 +226,31 @@ export default function Navbar({
 
             {shouldShowSearch && (
               <div className="flex h-14 items-center justify-center md:hidden">
-                <div className="w-full max-w-lg">
-                  <label htmlFor="search" className="sr-only">
-                    Search
-                  </label>
-                  <div className="relative focus-within:text-neutral-400">
-                    <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                      <SearchIcon
-                        className="h-5 w-5 text-gray-400"
-                        aria-hidden="true"
+                <form onSubmit={(e) => e.preventDefault()}>
+                  <div className="w-full max-w-lg">
+                    <label htmlFor="search" className="sr-only">
+                      Search
+                    </label>
+                    <div className="relative focus-within:text-neutral-400">
+                      <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                        <SearchIcon
+                          className="h-5 w-5 text-gray-400"
+                          aria-hidden="true"
+                        />
+                      </div>
+                      <input
+                        id="search"
+                        name="search"
+                        className="focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-400 dark:focus:ring-primary-400 block w-full rounded-md border border-neutral-300 bg-white py-2 pl-10 pr-3 text-sm placeholder-neutral-500 focus:text-neutral-900 focus:placeholder-neutral-400 focus:outline-none focus:ring-1 dark:border-transparent dark:bg-neutral-700 dark:placeholder-neutral-400 dark:focus:border-white dark:focus:bg-white dark:focus:text-neutral-900 dark:focus:placeholder-neutral-500 dark:focus:ring-white sm:text-sm"
+                        placeholder="Search"
+                        type="search"
+                        defaultValue={searchInput}
+                        onInput={handleSearch}
+                        onChange={handleSearch}
                       />
                     </div>
-                    <input
-                      id="search"
-                      name="search"
-                      className="focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-400 dark:focus:ring-primary-400 block w-full rounded-md border border-neutral-300 bg-white py-2 pl-10 pr-3 text-sm placeholder-neutral-500 focus:text-neutral-900 focus:placeholder-neutral-400 focus:outline-none focus:ring-1 dark:border-transparent dark:bg-neutral-700 dark:placeholder-neutral-400 dark:focus:border-white dark:focus:bg-white dark:focus:text-neutral-900 dark:focus:placeholder-neutral-500 dark:focus:ring-white sm:text-sm"
-                      placeholder="Search"
-                      type="search"
-                      defaultValue={searchInput}
-                      onInput={handleSearch}
-                      onChange={handleSearch}
-                    />
                   </div>
-                </div>
+                </form>
               </div>
             )}
           </div>
@@ -321,6 +319,7 @@ export default function Navbar({
                         to={item.id}
                         offset={scrollOffset}
                         spy
+                        hashSpy
                         className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-neutral-500 hover:border-neutral-300 hover:bg-neutral-50 hover:text-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-700 dark:hover:text-white"
                         activeClass="!border-primary-500 dark:!border-primary-400 !bg-primary-100/75 !text-primary-700 dark:!bg-primary-700/75 dark:!text-primary-50"
                       >
