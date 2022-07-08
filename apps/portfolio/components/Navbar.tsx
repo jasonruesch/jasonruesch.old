@@ -86,7 +86,7 @@ export default function Navbar({
       }
     >
       {({ open }) => (
-        <>
+        <div className="mx-auto max-w-screen-xl px-2 print:hidden sm:px-6 lg:px-8">
           <div
             className={clsx(
               shouldShowSearch
@@ -329,7 +329,7 @@ export default function Navbar({
               </>
             )}
           </Disclosure.Panel>
-        </>
+        </div>
       )}
     </Disclosure>
   );

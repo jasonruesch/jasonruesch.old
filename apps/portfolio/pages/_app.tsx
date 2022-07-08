@@ -50,7 +50,7 @@ function CustomApp({ Component, pageProps, router }: AppProps) {
           <>
             <Beams className="print:hidden" />
             <Navbar
-              className="min-h-16 fixed top-0 z-40 w-full px-2 print:hidden sm:px-6 lg:px-8"
+              className="min-h-16 fixed top-0 z-40 w-full"
               secondaryNavigation={secondaryNavigation}
               shouldShowSearch={shouldShowSearch}
               searchInput={searchInput}
@@ -69,7 +69,7 @@ function CustomApp({ Component, pageProps, router }: AppProps) {
                     : shouldShowSearch
                     ? 'md:pt-18'
                     : '',
-                  'w-full px-4 pb-4 print:pt-4 sm:px-6 lg:px-8',
+                  'mx-auto w-full max-w-screen-xl px-4 pb-4 print:pt-4 sm:px-6 lg:px-8',
                   shouldCenter
                     ? 'sm-min-h:absolute sm-min-h:top-1/2 sm-min-h:left-1/2 sm-min-h:-translate-y-1/2 sm-min-h:-translate-x-1/2 sm-min-h:pt-4'
                     : ''
