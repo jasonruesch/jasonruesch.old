@@ -9,6 +9,7 @@ import Beams from '@/components/Beams';
 
 import '../styles/tailwind.css';
 import ProfileImage from '@/components/ProfileImage';
+import { BackToTopButton } from '@/components/BackToTopButton';
 
 function CustomApp({ Component, pageProps, router }: AppProps) {
   const [isHydrated, setIsHydrated] = useState(false);
@@ -82,6 +83,7 @@ function CustomApp({ Component, pageProps, router }: AppProps) {
                 <Component {...pageProps} />
               </main>
             </AnimatePresence>
+            <BackToTopButton />
           </>
         )}
       </ThemeProvider>
