@@ -17,6 +17,7 @@ module.exports = {
       teal: colors.teal,
       neutral: colors.neutral,
       red: colors.red,
+      green: colors.green,
     },
     fontSize: {
       xs: defaultTheme.fontSize.xs,
