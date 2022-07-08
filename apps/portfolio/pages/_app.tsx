@@ -75,7 +75,7 @@ function CustomApp({ Component, pageProps, router }: AppProps) {
                 {shouldShowProfileImage && (
                   <figure
                     className={clsx(
-                      'dark:border-on-background mx-auto mb-4 h-36 w-36 overflow-hidden rounded-full border-2 border-neutral-400',
+                      'mx-auto mb-4 h-36 w-36 overflow-hidden rounded-full ring-2 ring-black/10 dark:ring-black',
                       shouldCenter ? 'sm:sm-min-h:h-72 sm:sm-min-h:w-72' : ''
                     )}
                   >
