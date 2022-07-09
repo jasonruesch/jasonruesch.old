@@ -74,7 +74,7 @@ export function Contact() {
         <div>
           <label htmlFor="name" className="block text-sm font-medium">
             Name{' '}
-            <span className="material-icons text-xs text-red-500">
+            <span className="material-icons !text-xs text-red-500">
               emergency
             </span>
           </label>
@@ -116,7 +116,7 @@ export function Contact() {
         <div>
           <label htmlFor="email" className="block text-sm font-medium">
             Email{' '}
-            <span className="material-icons text-xs text-red-500">
+            <span className="material-icons !text-xs text-red-500">
               emergency
             </span>
           </label>
@@ -158,7 +158,7 @@ export function Contact() {
         <div className="sm:col-span-2">
           <label htmlFor="message" className="block text-sm font-medium">
             Message{' '}
-            <span className="material-icons text-xs text-red-500">
+            <span className="material-icons !text-xs text-red-500">
               emergency
             </span>
           </label>
