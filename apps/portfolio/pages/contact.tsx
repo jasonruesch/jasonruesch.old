@@ -85,10 +85,10 @@ export function Contact() {
               id="name"
               autoComplete="name"
               className={clsx(
-                'block w-full rounded-md border bg-white py-2 px-3 focus:outline-none focus:ring-1 dark:bg-neutral-700 sm:text-sm',
+                'focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-400 dark:focus:ring-primary-400 block w-full rounded-md border border-neutral-300 bg-white py-2 px-3 placeholder-neutral-500 focus:text-neutral-900 focus:placeholder-neutral-400 focus:outline-none focus:ring-1 dark:border-transparent dark:bg-neutral-700 dark:placeholder-neutral-400 dark:focus:border-white dark:focus:bg-white dark:focus:text-neutral-900 dark:focus:placeholder-neutral-500 dark:focus:ring-white sm:text-sm',
                 !!errors.name && touched.name
-                  ? 'border-red-300 pr-10 text-red-900 placeholder-red-300 focus:border-red-500 focus:outline-none focus:ring-red-500'
-                  : 'focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-400 dark:focus:ring-primary-400 border-neutral-300 placeholder-neutral-500 focus:text-neutral-900 focus:placeholder-neutral-400 dark:border-transparent dark:placeholder-neutral-400 dark:focus:border-white dark:focus:bg-white dark:focus:text-neutral-900 dark:focus:placeholder-neutral-500 dark:focus:ring-white'
+                  ? '!border-red-300 pr-10 !text-red-900 focus:!border-red-500 focus:!ring-red-500 dark:!text-red-400 dark:focus:!text-red-900'
+                  : ''
               )}
               placeholder="Jane Smith"
               required
@@ -127,10 +127,10 @@ export function Contact() {
               id="email"
               autoComplete="email"
               className={clsx(
-                'block w-full rounded-md border bg-white py-2 px-3 focus:outline-none focus:ring-1 dark:bg-neutral-700 sm:text-sm',
+                'focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-400 dark:focus:ring-primary-400 block w-full rounded-md border border-neutral-300 bg-white py-2 px-3 placeholder-neutral-500 focus:text-neutral-900 focus:placeholder-neutral-400 focus:outline-none focus:ring-1 dark:border-transparent dark:bg-neutral-700 dark:placeholder-neutral-400 dark:focus:border-white dark:focus:bg-white dark:focus:text-neutral-900 dark:focus:placeholder-neutral-500 dark:focus:ring-white sm:text-sm',
                 !!errors.email && touched.email
-                  ? 'border-red-300 pr-10 text-red-900 placeholder-red-300 focus:border-red-500 focus:outline-none focus:ring-red-500'
-                  : 'focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-400 dark:focus:ring-primary-400 border-neutral-300 placeholder-neutral-500 focus:text-neutral-900 focus:placeholder-neutral-400 dark:border-transparent dark:placeholder-neutral-400 dark:focus:border-white dark:focus:bg-white dark:focus:text-neutral-900 dark:focus:placeholder-neutral-500 dark:focus:ring-white'
+                  ? '!border-red-300 pr-10 !text-red-900 focus:!border-red-500 focus:!ring-red-500 dark:!text-red-400 dark:focus:!text-red-900'
+                  : ''
               )}
               placeholder="you@example.com"
               required
@@ -168,10 +168,10 @@ export function Contact() {
               id="message"
               rows={2}
               className={clsx(
-                'block w-full rounded-md border bg-white py-2 px-3 focus:outline-none focus:ring-1 dark:bg-neutral-700 sm:text-sm',
+                'focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-400 dark:focus:ring-primary-400 block w-full rounded-md border border-neutral-300 bg-white py-2 px-3 placeholder-neutral-500 focus:text-neutral-900 focus:placeholder-neutral-400 focus:outline-none focus:ring-1 dark:border-transparent dark:bg-neutral-700 dark:placeholder-neutral-400 dark:focus:border-white dark:focus:bg-white dark:focus:text-neutral-900 dark:focus:placeholder-neutral-500 dark:focus:ring-white sm:text-sm',
                 !!errors.message && touched.message
-                  ? 'border-red-300 pr-10 text-red-900 placeholder-red-300 focus:border-red-500 focus:outline-none focus:ring-red-500'
-                  : 'focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-400 dark:focus:ring-primary-400 border-neutral-300 placeholder-neutral-500 focus:text-neutral-900 focus:placeholder-neutral-400 dark:border-transparent dark:placeholder-neutral-400 dark:focus:border-white dark:focus:bg-white dark:focus:text-neutral-900 dark:focus:placeholder-neutral-500 dark:focus:ring-white'
+                  ? '!border-red-300 pr-10 !text-red-900 focus:!border-red-500 focus:!ring-red-500 dark:!text-red-400 dark:focus:!text-red-900'
+                  : ''
               )}
               placeholder="How can I help?"
               required
