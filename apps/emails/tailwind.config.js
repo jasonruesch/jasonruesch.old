@@ -3,11 +3,11 @@ const colors = require('tailwindcss/colors');
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['apps/emails/**/*.html'],
-  darkMode: 'media',
   theme: {
     screens: {
       xs: { max: '425px' },
       sm: { max: '600px' },
+      dark: { raw: '(prefers-color-scheme: dark)' },
     },
     extend: {
       spacing: {
