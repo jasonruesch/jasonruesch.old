@@ -107,6 +107,15 @@ module.exports = {
       },
       fontFamily: {
         sans: [
+          'Inter',
+          'ui-sans-serif',
+          'system-ui',
+          '-apple-system',
+          '"Segoe UI"',
+          'sans-serif',
+        ],
+        display: [
+          'Alegreya Sans SC',
           'ui-sans-serif',
           'system-ui',
           '-apple-system',
@@ -173,8 +182,6 @@ module.exports = {
         secondary: 'var(--color-secondary)',
         background: 'var(--color-background)',
         surface: 'var(--color-surface)',
-      },
-      textColor: {
         on: {
           background: 'var(--color-on-background)',
           surface: 'var(--color-on-surface)',
