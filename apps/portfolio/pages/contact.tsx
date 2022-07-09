@@ -190,7 +190,7 @@ export function Contact() {
         <div className="mt-1 sm:col-span-2">
           <button
             type="submit"
-            className="focus:ring-primary-500 dark:focus:ring-primary-400 bg-primary-600 hover:bg-primary-700 disabled:bg-primary-300 dark:bg-primary-500 dark:hover:bg-primary-600 dark:disabled:bg-primary-300 inline-flex w-full items-center justify-center rounded-md border border-transparent px-6 py-3 text-base font-medium text-black shadow-sm hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:text-neutral-500 dark:disabled:text-neutral-600"
+            className="btn-primary w-full"
             disabled={!dirty || !isValid || isSubmitting}
           >
             {isSubmitting ? (

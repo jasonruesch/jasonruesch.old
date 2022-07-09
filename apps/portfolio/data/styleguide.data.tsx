@@ -2,6 +2,7 @@ import { ReactElement } from 'react';
 import StyleguideCard from '@/components/styleguide/Card';
 import StyleguideColorCards from '@/components/styleguide/ColorCards';
 import StyleguideTypographyCard from '@/components/styleguide/TypographyCard';
+import { ChevronUpIcon } from '@heroicons/react/outline';
 
 export interface StyleguideData {
   id: string;
@@ -241,8 +242,17 @@ export const shadows = {
   sections: [
     <div
       key="shadows"
-      className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3"
+      className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4"
     >
+      <StyleguideCard
+        key="shadow-sm"
+        title="Shadow Small"
+        description="shadow-sm"
+      >
+        <div className="bg-background flex w-full items-center justify-center">
+          <div className="bg-surface h-20 w-20 rounded-md shadow-sm"></div>
+        </div>
+      </StyleguideCard>
       <StyleguideCard key="shadow" title="Shadow" description="shadow">
         <div className="bg-background flex w-full items-center justify-center">
           <div className="bg-surface h-20 w-20 rounded-md shadow"></div>
@@ -270,6 +280,61 @@ export const shadows = {
   ],
 };
 
-export const data = [colors, typography, shadows];
+export const buttons = {
+  id: 'buttons',
+  title: 'Buttons',
+  sections: [
+    <div key="buttons" className="mt-4 space-y-4">
+      <StyleguideCard
+        key="primary-button"
+        title="Primary"
+        description="btn-primary"
+      >
+        <div className="bg-background flex w-full items-center justify-center gap-4 p-4">
+          <button key="default-btn" className="btn-primary">
+            Default
+          </button>
+          <button key="disabled-btn" className="btn-primary" disabled>
+            Disabled
+          </button>
+        </div>
+      </StyleguideCard>
+      <StyleguideCard
+        key="secondary-button"
+        title="Secondary"
+        description="btn-secondary"
+      >
+        <div className="bg-background flex w-full items-center justify-center gap-4 p-4">
+          <button key="default-btn" className="btn-secondary">
+            Default
+          </button>
+          <button key="disabled-btn" className="btn-secondary" disabled>
+            Disabled
+          </button>
+        </div>
+      </StyleguideCard>
+      <StyleguideCard
+        key="circular-button"
+        title="Circular"
+        description="btn-primary p-6 rounded-full"
+      >
+        <div className="bg-background flex w-full items-center justify-center gap-4 p-4">
+          <button key="default-btn" className="btn-primary rounded-full p-6">
+            <ChevronUpIcon className="h-6 w-6" />
+          </button>
+          <button
+            key="disabled-btn"
+            className="btn-primary rounded-full p-6"
+            disabled
+          >
+            <ChevronUpIcon className="h-6 w-6" />
+          </button>
+        </div>
+      </StyleguideCard>
+    </div>,
+  ],
+};
+
+export const data = [colors, typography, shadows, buttons];
 
 export default data;

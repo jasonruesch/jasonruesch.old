@@ -31,6 +31,7 @@ module.exports = {
     },
     boxShadow: {
       DEFAULT: defaultTheme.boxShadow.DEFAULT,
+      sm: defaultTheme.boxShadow.sm,
       md: defaultTheme.boxShadow.md,
       lg: defaultTheme.boxShadow.lg,
     },

@@ -6,7 +6,7 @@ export function Styleguide({ searchInput }: { searchInput?: string }) {
   const filteredData = useSearch(searchInput, data);
 
   return (
-    <div className="w-full space-y-4">
+    <div className="w-full space-y-8">
       <h1>Style Guide</h1>
 
       {filteredData?.map(({ id, title, sections }) => (
@@ -39,6 +39,7 @@ export async function getStaticProps() {
     { name: 'Colors', id: 'colors' },
     { name: 'Typography', id: 'typography' },
     { name: 'Shadows', id: 'shadows' },
+    { name: 'Buttons', id: 'buttons' },
   ];
 
   return {

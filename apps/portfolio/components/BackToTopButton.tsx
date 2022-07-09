@@ -38,7 +38,7 @@ export function BackToTopButton() {
       leaveTo="opacity-0"
     >
       <button
-        className="focus:ring-primary-500 dark:focus:ring-primary-400 bg-primary-600 hover:bg-primary-700 disabled:bg-primary-300 dark:bg-primary-500 dark:hover:bg-primary-600 dark:disabled:bg-primary-300 fixed bottom-8 right-12 z-40 inline-flex items-center justify-center rounded-full border border-transparent p-6 text-base font-medium text-black shadow-sm hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:text-neutral-500 dark:disabled:text-neutral-600 print:hidden"
+        className="btn-primary fixed bottom-8 right-12 z-40 rounded-full p-6 print:hidden"
         onClick={() => window.scrollTo(0, 0)}
       >
         <ChevronUpIcon className="h-6 w-6" />
