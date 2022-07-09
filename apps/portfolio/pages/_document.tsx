@@ -118,6 +118,10 @@ export default function Document() {
           href="https://fonts.googleapis.com/css2?family=Inter&amp;family=Alegreya+Sans+SC&amp;display=swap"
           rel="stylesheet"
         />
+        <link
+          href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet"
+        />
       </Head>
       <body className="h-full">
         <Main />

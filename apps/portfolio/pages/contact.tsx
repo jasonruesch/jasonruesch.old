@@ -73,7 +73,10 @@ export function Contact() {
       >
         <div>
           <label htmlFor="name" className="block text-sm font-medium">
-            Name
+            Name{' '}
+            <span className="material-icons text-xs text-red-500">
+              emergency
+            </span>
           </label>
           <div className="relative mt-1 rounded-md">
             <input
@@ -112,7 +115,10 @@ export function Contact() {
         </div>
         <div>
           <label htmlFor="email" className="block text-sm font-medium">
-            Email
+            Email{' '}
+            <span className="material-icons text-xs text-red-500">
+              emergency
+            </span>
           </label>
           <div className="relative mt-1 rounded-md">
             <input
@@ -151,7 +157,10 @@ export function Contact() {
         </div>
         <div className="sm:col-span-2">
           <label htmlFor="message" className="block text-sm font-medium">
-            Message
+            Message{' '}
+            <span className="material-icons text-xs text-red-500">
+              emergency
+            </span>
           </label>
           <div className="relative mt-1 rounded-md">
             <textarea
