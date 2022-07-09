@@ -11,14 +11,14 @@
     --color-on-surface: theme('colors.neutral.900');
   }
 
-  @media (prefers-color-scheme: dark) {
+  @screen dark {
     :root {
-      --color-primary: theme('colors.violet.400');
-      --color-secondary: theme('colors.teal.400');
-      --color-background: theme('colors.neutral.800');
-      --color-on-background: theme('colors.white');
-      --color-surface: theme('colors.neutral.900');
-      --color-on-surface: theme('colors.white');
+      --color-primary: theme('colors.violet.400') !important;
+      --color-secondary: theme('colors.teal.400') !important;
+      --color-background: theme('colors.neutral.800') !important;
+      --color-on-background: theme('colors.white') !important;
+      --color-surface: theme('colors.neutral.900') !important;
+      --color-on-surface: theme('colors.white') !important;
     }
   }
 }

@@ -36,10 +36,6 @@ module.exports = {
       lg: defaultTheme.boxShadow.lg,
     },
     extend: {
-      fontFamily: {
-        sans: ['Inter', ...defaultTheme.fontFamily.sans],
-        display: ['Alegreya Sans SC', ...defaultTheme.fontFamily.sans],
-      },
       padding: {
         18: '72px',
       },
