@@ -19,6 +19,7 @@
     },
     "serve": {
       "executor": "@nrwl/next:server",
+      "dependsOn": ["^build"],
       "defaultConfiguration": "development",
       "options": {
         "buildTarget": "portfolio:build",
