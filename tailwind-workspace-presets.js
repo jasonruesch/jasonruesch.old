@@ -1,5 +1,4 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
-const plugin = require('tailwindcss/plugin');
 const colors = require('tailwindcss/colors');
 
 /** @type {import('tailwindcss').Config} */
@@ -26,6 +25,9 @@ module.exports = {
       lg: defaultTheme.boxShadow.lg,
     },
     extend: {
+      screens: {
+        'sm-min-h': { raw: `(min-height: ${defaultTheme.screens.sm})` },
+      },
       padding: {
         18: '72px',
       },
@@ -34,11 +36,5 @@ module.exports = {
       },
     },
   },
-  plugins: [
-    require('@tailwindcss/typography'),
-    require('@tailwindcss/forms'),
-    plugin(function ({ addVariant }) {
-      addVariant('sm-min-h', `@media (min-height: ${defaultTheme.screens.sm})`);
-    }),
-  ],
+  plugins: [require('@tailwindcss/typography'), require('@tailwindcss/forms')],
 };
