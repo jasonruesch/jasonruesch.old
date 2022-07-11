@@ -28,11 +28,8 @@ module.exports = {
       screens: {
         'sm-min-h': { raw: `(min-height: ${defaultTheme.screens.sm})` },
       },
-      padding: {
+      spacing: {
         18: '72px',
-      },
-      scrollPadding: {
-        18: '4.5rem',
       },
     },
   },
