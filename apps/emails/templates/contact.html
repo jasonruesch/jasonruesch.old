@@ -9,7 +9,7 @@ bodyClass: bg-background
     <table class="w-full font-sans">
       <tr>
         <td align="center" class="bg-background text-on-background">
-          <table class="w-150 sm:w-full">
+          <table class="w-full sm:max-w-screen-sm">
             <tr>
               <td class="p-12 text-center sm:py-8 sm:px-6">
                 <a
@@ -21,13 +21,15 @@ bodyClass: bg-background
               </td>
             </tr>
             <tr>
-              <td align="center" class="xs:px-0 px-6">
+              <td align="center" class="px-0 sm:px-6">
                 <table class="w-full">
                   <tr>
                     <td
-                      class="bg-surface text-on-surface xs:rounded-none rounded-md p-12 text-left text-base leading-6 shadow-sm sm:px-6"
+                      class="bg-surface text-on-surface rounded-none p-12 text-left text-base leading-6 shadow-sm sm:rounded-md sm:px-6"
                     >
-                      <p class="m-0 mb-6 text-2xl font-semibold sm:leading-8">
+                      <p
+                        class="m-0 mb-6 text-xl font-semibold sm:text-2xl sm:leading-8"
+                      >
                         You have a new message 🎉
                       </p>
                       <raw>
@@ -37,7 +39,7 @@ bodyClass: bg-background
                           message.<br />
                           Their email address is
                           <a
-                            class="text-primary no-underline"
+                            class="text-primary-500 dark:text-primary-400 no-underline"
                             href="mailto:{{email}}"
                             >{{email}}</a
                           >.
@@ -63,19 +65,19 @@ bodyClass: bg-background
                       <p class="cursor-default">
                         <a
                           href="https://maizzle.com/docs/"
-                          class="text-primary no-underline"
+                          class="text-primary-500 dark:text-primary-400 no-underline"
                           >Docs</a
                         >
                         &bull;
                         <a
                           href="https://github.com/maizzle"
-                          class="text-primary no-underline"
+                          class="text-primary-500 dark:text-primary-400 no-underline"
                           >Github</a
                         >
                         &bull;
                         <a
                           href="https://twitter.com/maizzlejs"
-                          class="text-primary no-underline"
+                          class="text-primary-500 dark:text-primary-400 no-underline"
                           >Twitter</a
                         >
                       </p>

@@ -6,11 +6,11 @@ export function Styleguide({ searchInput }: { searchInput?: string }) {
   const filteredData = useSearch(searchInput, data);
 
   return (
-    <div className="w-full space-y-8">
+    <div className="w-full">
       <h1>Style Guide</h1>
 
       {filteredData?.map(({ id, title, sections }) => (
-        <section key={id} id={id} className="last-of-type:min-h-screen">
+        <section key={id} id={id} className="py-4 last-of-type:min-h-screen">
           <h2>{title}</h2>
 
           <div className="mt-4 space-y-8">

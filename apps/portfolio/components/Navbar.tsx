@@ -212,6 +212,7 @@ export default function Navbar({
                     offset={scrollOffset}
                     spy
                     hashSpy
+                    isDynamic
                     className="inline-flex cursor-pointer items-center rounded-md py-2 px-3 text-sm font-medium text-neutral-900 hover:bg-neutral-200 hover:text-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-600 dark:hover:text-white"
                     activeClass="!bg-neutral-300 !text-neutral-900 dark:!bg-neutral-700 dark:!text-white"
                   >
@@ -318,6 +319,7 @@ export default function Navbar({
                         offset={scrollOffset}
                         spy
                         hashSpy
+                        isDynamic
                         className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-neutral-500 hover:border-neutral-300 hover:bg-neutral-50 hover:text-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-700 dark:hover:text-white"
                         activeClass="!border-primary-500 dark:!border-primary-400 !bg-primary-100/75 !text-primary-700 dark:!bg-primary-700/75 dark:!text-primary-50"
                       >
