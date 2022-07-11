@@ -40,7 +40,7 @@ export default async function handler(
     });
 
     const mailOptions = {
-      from: `${body.name} <${body.email}>`,
+      from: 'portfolio@jasonruesch.dev',
       to: ['jason.ruesch@me.com'],
       subject: `[${templateName.toUpperCase()}] Portfolio`,
       text: body.message,
