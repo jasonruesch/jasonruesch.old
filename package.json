@@ -5,9 +5,7 @@
   "scripts": {
     "start": "nx serve",
     "build": "nx build",
-    "test": "nx test",
-    "dev-emails": "maizzle serve",
-    "build-emails": "maizzle build production && cp -r dist/apps/emails/* apps/portfolio/public/templates/emails/"
+    "test": "nx test"
   },
   "private": true,
   "dependencies": {
