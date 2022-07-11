@@ -10,7 +10,7 @@
 /apps/portfolio/public/workbox-*.js.map
 /apps/portfolio/public/sw.js
 /apps/portfolio/public/sw.js.map
-/apps/portfolio/public/worker-development.js
+/apps/portfolio/public/worker-*.js
 
 # dependencies
 node_modules

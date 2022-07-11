@@ -6,6 +6,7 @@
     "build": {
       "executor": "@nrwl/next:build",
       "outputs": ["{options.outputPath}"],
+      "dependsOn": ["^build"],
       "defaultConfiguration": "production",
       "options": {
         "root": "apps/portfolio",
@@ -56,5 +57,6 @@
       }
     }
   },
-  "tags": []
+  "tags": [],
+  "implicitDependencies": ["emails"]
 }
