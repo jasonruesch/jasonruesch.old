@@ -1,4 +1,4 @@
-import { StyleguideData } from '@/data/styleguide.data';
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { cloneDeep } from 'lodash';
 import {
   useState,
@@ -42,11 +42,8 @@ function map<T, C extends ReactNode>(
   return _map(children, fn, maxDepth, 0);
 }
 
-export function useSearch(
-  searchInput,
-  data: StyleguideData[]
-): StyleguideData[] {
-  const [results, setResults] = useState<StyleguideData[]>();
+export function useSearch(searchInput, data: any[]): any[] {
+  const [results, setResults] = useState<any[]>();
 
   useEffect(() => {
     // Must search for at least 2 characters
@@ -56,11 +53,17 @@ export function useSearch(
     }
 
     const results = cloneDeep(data);
+
+    // ******************************************************
+    // Helper methods
+    // ******************************************************
+
     // Split query to words
     const queryParts = searchInput
       .trim()
       .split(' ')
       .map((part) => part.trim().toLowerCase());
+
     // Check if the value contains any of the words
     const contains = (value) => {
       const text = String(value).toLowerCase();
@@ -69,6 +72,8 @@ export function useSearch(
       }
       return queryParts.every((part) => text.includes(part));
     };
+
+    // Return the value as a string
     const toString = (value) => {
       if (typeof value === 'object') {
         let values = Object.values(value).filter(
@@ -86,41 +91,39 @@ export function useSearch(
       return String(value);
     };
 
-    const filteredResults = results.filter(
-      (result: StyleguideData, index: number) => {
-        const filteredSections = result.sections.filter((section) => {
-          const { children, ...props } = section.props;
-          const match = Object.entries(props).some(([key, prop]) => {
-            if (Array.isArray(prop)) {
-              const filteredItems = prop.filter((item) => {
-                const value = isValidElement(item)
-                  ? map(item, (el) => toString(el))
-                  : toString(item);
-                return contains(value);
-              });
-              if (filteredItems.length > 0) {
-                section.props[key] = filteredItems;
-              }
-              return filteredItems.length > 0;
-            }
+    // Filter and return whether the results contain the query
+    const filter = ([key, value], originalObject) => {
+      if (Array.isArray(value)) {
+        const filteredItems = value.filter((item) => {
+          if (isValidElement(item)) {
+            return (
+              Object.entries(item.props).some((v) => filter(v, item.props)) ||
+              contains(map(item, (el) => toString(el)))
+            );
+          }
 
-            return contains(prop);
-          });
-
-          return match || contains(toString(children));
+          return contains(toString(item));
         });
 
-        if (filteredSections.length > 0) {
-          result.sections = filteredSections;
+        if (filteredItems.length > 0) {
+          originalObject[key] = filteredItems;
+          return true;
         }
-
-        return contains(result.title) || filteredSections.length > 0;
+        return false;
       }
+
+      return contains(value);
+    };
+
+    // ******************************************************
+
+    // Filter the results
+    const filteredResults = results.filter((result: any) =>
+      Object.entries(result).some((value) => filter(value, result))
     );
 
     setResults(filteredResults);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchInput]);
+  }, [searchInput, data]);
 
   return results;
 }

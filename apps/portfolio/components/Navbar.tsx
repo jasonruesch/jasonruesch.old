@@ -35,21 +35,27 @@ export default function Navbar({
   searchInput?: string;
 }) {
   const router = useRouter();
-  const { route } = router;
+  const { asPath } = router;
   const [scrolled, setScrolled] = useState(false);
   const scrollOffset = useScrollOffset({
     navbarHasSecondaryNavigation: !!secondaryNavigation,
     navbarHasSearch: shouldShowSearch,
   });
+
   const handleSearch = debounce((e) => {
+    let query = router.query;
     const searchValue: string = e.target.value;
     // Set the query parameter 'q' to the search value
+    if (searchValue) {
+      query = { ...query, q: searchValue };
+    } else {
+      delete query.q;
+    }
+
     router.push(
       {
         pathname: router.pathname,
-        query: !!searchValue && {
-          q: searchValue,
-        },
+        query,
       },
       undefined,
       {
@@ -91,6 +97,8 @@ export default function Navbar({
             className={clsx(
               shouldShowSearch
                 ? 'divide-y divide-neutral-300 dark:divide-neutral-600'
+                : secondaryNavigation
+                ? ''
                 : 'md:divide-y-0',
               secondaryNavigation
                 ? 'md:divide-y md:divide-neutral-300 dark:md:divide-neutral-600'
@@ -130,13 +138,18 @@ export default function Navbar({
                       <Link key={item.name} href={item.href}>
                         <a
                           className={clsx(
-                            route === item.href
+                            (item.href === '/' && asPath === '/') ||
+                              (item.href !== '/' &&
+                                asPath.startsWith(item.href))
                               ? 'border-primary-500 dark:border-primary-400'
                               : 'border-transparent text-neutral-500 hover:border-neutral-400 hover:text-neutral-700 dark:text-neutral-300 dark:hover:text-white',
                             'inline-flex items-center border-b-2 px-1 pb-2 pt-3 text-sm font-medium'
                           )}
                           aria-current={
-                            route === item.href ? 'page' : undefined
+                            (item.href === '/' && asPath === '/') ||
+                            (item.href !== '/' && asPath.startsWith(item.href))
+                              ? 'page'
+                              : undefined
                           }
                         >
                           {item.name}
@@ -266,12 +279,18 @@ export default function Navbar({
                     >
                       <a
                         className={clsx(
-                          route === item.href
+                          (item.href === '/' && asPath === '/') ||
+                            (item.href !== '/' && asPath.startsWith(item.href))
                             ? 'border-primary-500 dark:border-primary-400 bg-primary-100/75 text-primary-700 dark:bg-primary-700/75 dark:text-primary-50'
                             : 'border-transparent text-neutral-500 hover:border-neutral-300 hover:bg-neutral-50 hover:text-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-700 dark:hover:text-white',
                           'block border-l-4 py-2 pl-3 pr-4 text-base font-medium'
                         )}
-                        aria-current={route === item.href ? 'page' : undefined}
+                        aria-current={
+                          (item.href === '/' && asPath === '/') ||
+                          (item.href !== '/' && asPath.startsWith(item.href))
+                            ? 'page'
+                            : undefined
+                        }
                         onClick={() => close()}
                       >
                         {item.name}
@@ -281,13 +300,13 @@ export default function Navbar({
                   <Disclosure.Button as={Link} href="/styleguide">
                     <a
                       className={clsx(
-                        route === '/styleguide'
+                        asPath.startsWith('/styleguide')
                           ? 'border-primary-500 dark:border-primary-400 bg-primary-100/75 text-primary-700 dark:bg-primary-700/75 dark:text-primary-50'
                           : 'border-transparent text-neutral-500 hover:border-neutral-300 hover:bg-neutral-50 hover:text-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-700 dark:hover:text-white',
                         'block border-l-4 py-2 pl-3 pr-4 text-base font-medium'
                       )}
                       aria-current={
-                        route === '/styleguide' ? 'page' : undefined
+                        asPath.startsWith('/styleguide') ? 'page' : undefined
                       }
                       onClick={() => close()}
                     >
@@ -297,12 +316,14 @@ export default function Navbar({
                   <Disclosure.Button as={Link} href="/privacy">
                     <a
                       className={clsx(
-                        route === '/privacy'
+                        asPath.startsWith('/privacy')
                           ? 'border-primary-500 dark:border-primary-400 bg-primary-100/75 text-primary-700 dark:bg-primary-700/75 dark:text-primary-50'
                           : 'border-transparent text-neutral-500 hover:border-neutral-300 hover:bg-neutral-50 hover:text-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-700 dark:hover:text-white',
                         'block border-l-4 py-2 pl-3 pr-4 text-base font-medium'
                       )}
-                      aria-current={route === '/privacy' ? 'page' : undefined}
+                      aria-current={
+                        asPath.startsWith('/privacy') ? 'page' : undefined
+                      }
                       onClick={() => close()}
                     >
                       Privacy

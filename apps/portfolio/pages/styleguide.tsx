@@ -20,7 +20,7 @@ export function Styleguide({ searchInput }: { searchInput?: string }) {
       ))}
 
       {filteredData?.length === 0 && (
-        <section>
+        <section className="py-4">
           <h2>
             No results for &quot;
             <span className="text-secondary-500 dark:text-secondary-400 font-sans text-base sm:text-2xl">
