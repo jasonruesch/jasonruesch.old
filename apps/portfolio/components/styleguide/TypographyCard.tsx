@@ -17,6 +17,7 @@ export default function StyleguideTypographyCard({
     fontWeight?: string;
     fontSize?: string;
     alternateFontSize?: string;
+    isDefault?: boolean;
   }[];
 }) {
   return (
@@ -39,6 +40,7 @@ export default function StyleguideTypographyCard({
                 alternateFontSize,
                 example,
                 description,
+                isDefault,
               },
               index
             ) => (
@@ -58,8 +60,13 @@ export default function StyleguideTypographyCard({
                 <div className="col-span-1 sm:col-span-2">
                   {example}
                   <div className="flex">
-                    <p className="text-primary-500 dark:text-primary-400 flex-1 pt-1 text-xs">
+                    <p className="text-primary flex-1 pt-1 text-xs">
                       {description}
+                      {isDefault && (
+                        <span className="text-on-surface ml-2">
+                          (applied by default)
+                        </span>
+                      )}
                     </p>
                     <CopyButton value={description} />
                   </div>

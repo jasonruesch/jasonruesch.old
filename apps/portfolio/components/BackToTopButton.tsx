@@ -1,16 +1,14 @@
 import { Fragment, useEffect, useState } from 'react';
 import { Transition } from '@headlessui/react';
 import { ChevronUpIcon } from '@heroicons/react/outline';
-import useScrollOffset from '@/hooks/useScrollOffset';
 
 export function BackToTopButton() {
   const [showTopButton, setShowTopButton] = useState(false);
-  const scrollOffset = useScrollOffset();
 
   useEffect(() => {
     const handleScroll = () => {
-      // Show top button when the user scrolls down the height of the page title
-      if (document.documentElement.scrollTop > -scrollOffset) {
+      // Show top button when the user scrolls down the height of the navbar
+      if (document.documentElement.scrollTop > 72) {
         setShowTopButton(true);
       } else {
         setShowTopButton(false);
@@ -23,7 +21,7 @@ export function BackToTopButton() {
     return () => {
       document.removeEventListener('scroll', handleScroll);
     };
-  }, [scrollOffset]);
+  }, []);
 
   return (
     <Transition

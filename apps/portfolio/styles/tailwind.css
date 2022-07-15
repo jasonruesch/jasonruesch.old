@@ -34,7 +34,9 @@
     --color-primary-700: theme('colors.cyan.700');
     --color-primary-800: theme('colors.cyan.800');
     --color-primary-900: theme('colors.cyan.900');
+    --color-primary-light: theme('colors.cyan.400');
     --color-primary: theme('colors.cyan.500');
+    --color-primary-dark: theme('colors.cyan.600');
 
     --color-secondary-50: theme('colors.fuchsia.50');
     --color-secondary-100: theme('colors.fuchsia.100');
@@ -46,11 +48,19 @@
     --color-secondary-700: theme('colors.fuchsia.700');
     --color-secondary-800: theme('colors.fuchsia.800');
     --color-secondary-900: theme('colors.fuchsia.900');
+    --color-secondary-light: theme('colors.fuchsia.400');
     --color-secondary: theme('colors.fuchsia.500');
+    --color-secondary-dark: theme('colors.fuchsia.600');
+
+    /* CURRENTLY: working on normalizing the neutral color throughout the app */
+    --color-neutral: theme('colors.neutral.500');
+    --color-neutral-inverse: theme('colors.neutral.400');
+    --color-neutral-border: theme('colors.neutral.300');
+    --color-neutral-muted: theme('colors.neutral.200');
 
     --color-background: theme('colors.neutral.100');
     --color-on-background: theme('colors.neutral.900');
-    --color-surface: theme('colors.white');
+    --color-surface: theme('colors.neutral.50');
     --color-on-surface: theme('colors.neutral.900');
   }
 
@@ -65,7 +75,9 @@
     --color-primary-700: theme('colors.violet.700');
     --color-primary-800: theme('colors.violet.800');
     --color-primary-900: theme('colors.violet.900');
+    --color-primary-light: theme('colors.violet.300');
     --color-primary: theme('colors.violet.400');
+    --color-primary-dark: theme('colors.violet.500');
 
     --color-secondary-50: theme('colors.teal.50');
     --color-secondary-100: theme('colors.teal.100');
@@ -77,12 +89,19 @@
     --color-secondary-700: theme('colors.teal.700');
     --color-secondary-800: theme('colors.teal.800');
     --color-secondary-900: theme('colors.teal.900');
+    --color-secondary-light: theme('colors.teal.300');
     --color-secondary: theme('colors.teal.400');
+    --color-secondary-dark: theme('colors.teal.500');
+
+    --color-neutral: theme('colors.neutral.400');
+    --color-neutral-inverse: theme('colors.neutral.500');
+    --color-neutral-border: theme('colors.neutral.600');
+    --color-neutral-muted: theme('colors.neutral.700');
 
     --color-background: theme('colors.neutral.800');
-    --color-on-background: theme('colors.white');
+    --color-on-background: theme('colors.neutral.50');
     --color-surface: theme('colors.neutral.900');
-    --color-on-surface: theme('colors.white');
+    --color-on-surface: theme('colors.neutral.50');
   }
 
   .btn-primary {

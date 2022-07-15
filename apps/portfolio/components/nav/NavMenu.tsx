@@ -5,46 +5,50 @@ import { Menu, Transition } from '@headlessui/react';
 import { DotsVerticalIcon } from '@heroicons/react/outline';
 import clsx from 'clsx';
 
-const NavLink = forwardRef(
+const MenuLink = forwardRef(
   (
     {
-      active,
-      route,
       href,
+      isCurrent,
       children,
-      ...rest
-    }: { active: boolean; route: string; href: string; children: ReactNode },
+    }: {
+      href: string;
+      isCurrent?: boolean;
+      children: ReactNode;
+    },
     ref: MutableRefObject<HTMLAnchorElement>
   ) => (
     <Link href={href}>
       <a
         ref={ref}
-        {...rest}
         className={clsx(
-          active
-            ? 'bg-neutral-100 text-neutral-900 dark:bg-neutral-700 dark:text-white'
-            : route === href
-            ? 'text-primary-500 dark:text-primary-400'
-            : '',
-          'group flex w-full items-center px-4 py-2 text-sm'
+          'text-on-surface hover:bg-neutral-muted group flex w-full items-center px-4 py-2 text-sm',
+          isCurrent ? '!text-primary hover:!text-on-surface' : ''
         )}
-        aria-current={route === href ? 'page' : undefined}
+        aria-current={isCurrent ? 'page' : undefined}
       >
         {children}
       </a>
     </Link>
   )
 );
-NavLink.displayName = 'NavLink';
+MenuLink.displayName = 'NavLink';
 
-export default function NavMenu({ className }: { className?: string }) {
+export default function NavMenu({
+  className,
+  items,
+}: {
+  className?: string;
+  items: { name: string; href: string }[];
+}) {
   const { route } = useRouter();
+  const hasCurrent = items.some(({ href }) => href === route);
 
   return (
     <Menu
       as="div"
       className={clsx(
-        'inline-block text-left text-neutral-400 hover:text-neutral-500 dark:hover:text-neutral-300',
+        'hover:text-neutral text-neutral-inverse relative inline-block text-left',
         className
       )}
     >
@@ -53,7 +57,8 @@ export default function NavMenu({ className }: { className?: string }) {
           className={({ open }) =>
             clsx(
               'rounded-md p-2',
-              open ? 'text-neutral-500 dark:text-neutral-300' : ''
+              open ? 'text-neutral' : '',
+              hasCurrent ? 'text-primary hover:text-neutral' : ''
             )
           }
         >
@@ -73,20 +78,13 @@ export default function NavMenu({ className }: { className?: string }) {
       >
         <Menu.Items className="bg-surface text-on-surface absolute right-0 z-50 mt-2 w-36 origin-top-right rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:shadow-black dark:ring-opacity-50">
           <div className="py-1">
-            <Menu.Item>
-              {({ active }) => (
-                <NavLink active={active} route={route} href="/styleguide">
-                  Style Guide
-                </NavLink>
-              )}
-            </Menu.Item>
-            <Menu.Item>
-              {({ active }) => (
-                <NavLink active={active} route={route} href="/privacy">
-                  Privacy Policy
-                </NavLink>
-              )}
-            </Menu.Item>
+            {items.map(({ name, href }) => (
+              <Menu.Item key={name}>
+                <MenuLink href={href} isCurrent={route === href}>
+                  {name}
+                </MenuLink>
+              </Menu.Item>
+            ))}
           </div>
         </Menu.Items>
       </Transition>

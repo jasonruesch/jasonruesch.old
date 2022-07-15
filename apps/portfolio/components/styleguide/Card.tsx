@@ -7,11 +7,13 @@ export default function StyleguideCard({
   children,
   title,
   description,
+  isDefault,
 }: {
   className?: string;
   children?: ReactNode;
   title?: string;
   description?: string;
+  isDefault?: boolean;
 }) {
   return (
     <div
@@ -27,8 +29,13 @@ export default function StyleguideCard({
         <div className="text-sm">
           <span>{title}</span>
           <div className="flex">
-            <p className="text-primary-500 dark:text-primary-400 flex-1 pt-1 text-xs">
+            <p className="text-primary flex-1 pt-1 text-xs">
               {description}
+              {isDefault && (
+                <span className="text-on-surface ml-2">
+                  (applied by default)
+                </span>
+              )}
             </p>
             <CopyButton value={description} />
           </div>

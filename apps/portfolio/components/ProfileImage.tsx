@@ -5,11 +5,7 @@ import { useEffect, useState } from 'react';
 import profileImage from '@/images/jasonruesch-512.png';
 import profileDarkImage from '@/images/jasonruesch-dark-512.png';
 
-export default function ProfileImage({
-  shouldCenter = false,
-}: {
-  shouldCenter?: boolean;
-}) {
+export default function ProfileImage({ large = false }: { large?: boolean }) {
   const { resolvedTheme } = useTheme();
   const [isDark, setIsDark] = useState(resolvedTheme === 'dark');
 
@@ -21,7 +17,7 @@ export default function ProfileImage({
     <figure
       className={clsx(
         'relative mx-auto mb-4 h-36 w-36 overflow-hidden rounded-full ring-2 ring-black/10 dark:ring-black',
-        shouldCenter ? 'sm:sm-min-h:h-72 sm:sm-min-h:w-72' : ''
+        large ? 'sm:sm-min-h:h-72 sm:sm-min-h:w-72' : ''
       )}
     >
       <Image
