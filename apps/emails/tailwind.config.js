@@ -18,6 +18,7 @@ module.exports = {
       },
       colors: {
         primary: {
+          DEFAULT: 'var(--color-primary)',
           50: 'var(--color-primary-50)',
           100: 'var(--color-primary-100)',
           200: 'var(--color-primary-200)',
@@ -30,6 +31,7 @@ module.exports = {
           900: 'var(--color-primary-900)',
         },
         secondary: {
+          DEFAULT: 'var(--color-secondary)',
           50: 'var(--color-secondary-50)',
           100: 'var(--color-secondary-100)',
           200: 'var(--color-secondary-200)',

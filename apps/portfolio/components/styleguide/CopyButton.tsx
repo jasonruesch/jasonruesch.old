@@ -19,7 +19,7 @@ export default function CopyButton({ value }: { value: string }) {
 
   return (
     <button
-      className="group relative -m-2 flex items-center rounded-full p-2 text-neutral-900 hover:text-neutral-500 dark:text-white dark:hover:text-neutral-300"
+      className="text-neutral-inverse hover:text-neutral group relative -m-2 flex items-center rounded-full p-2"
       onClick={handleClick}
     >
       <Transition

@@ -125,6 +125,7 @@ export const typography = {
             </>
           ),
           description: 'font-display text-2xl font-bold sm:text-4xl',
+          isDefault: true,
         },
         {
           title: 'Heading H2',
@@ -146,6 +147,7 @@ export const typography = {
             </>
           ),
           description: 'font-display text-xl font-bold sm:text-3xl',
+          isDefault: true,
         },
         {
           title: 'Heading H3',
@@ -167,6 +169,7 @@ export const typography = {
             </>
           ),
           description: 'font-display text-lg font-bold sm:text-2xl',
+          isDefault: true,
         },
         {
           title: 'Heading H4',
@@ -185,6 +188,7 @@ export const typography = {
             </>
           ),
           description: 'font-bold sm:text-xl',
+          isDefault: true,
         },
       ]}
     />,
@@ -204,6 +208,7 @@ export const typography = {
             </>
           ),
           description: 'text-base',
+          isDefault: true,
         },
         {
           title: 'Small',
@@ -219,7 +224,7 @@ export const typography = {
           description: 'text-sm',
         },
         {
-          title: 'Extra-Small',
+          title: 'Extra Small',
           fontFamily: 'Inter',
           fontSize: '12px / 16px',
           example: (
@@ -242,7 +247,7 @@ export const shadows = {
   sections: [
     <div
       key="shadows"
-      className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4"
+      className="mt-4 grid grid-cols-1 gap-4 print:grid-cols-2 sm:grid-cols-2 md:grid-cols-4"
     >
       <StyleguideCard
         key="shadow-sm"
@@ -284,46 +289,49 @@ export const buttons = {
   id: 'buttons',
   title: 'Buttons',
   sections: [
-    <div key="buttons" className="mt-4 space-y-4">
+    <div
+      key="buttons"
+      className="mt-4 grid grid-cols-1 gap-4 print:grid-cols-2 sm:grid-cols-2 md:grid-cols-4"
+    >
       <StyleguideCard
-        key="primary-button"
+        key="button-primary"
         title="Primary"
         description="btn-primary"
       >
         <div className="bg-background flex w-full items-center justify-center gap-4 p-4">
-          <button key="default-btn" className="btn-primary">
+          <button key="button-default" className="btn-primary">
             Default
           </button>
-          <button key="disabled-btn" className="btn-primary" disabled>
+          <button key="button-disabled" className="btn-primary" disabled>
             Disabled
           </button>
         </div>
       </StyleguideCard>
       <StyleguideCard
-        key="secondary-button"
+        key="button-secondary"
         title="Secondary"
         description="btn-secondary"
       >
         <div className="bg-background flex w-full items-center justify-center gap-4 p-4">
-          <button key="default-btn" className="btn-secondary">
+          <button key="button-default" className="btn-secondary">
             Default
           </button>
-          <button key="disabled-btn" className="btn-secondary" disabled>
+          <button key="button-disabled" className="btn-secondary" disabled>
             Disabled
           </button>
         </div>
       </StyleguideCard>
       <StyleguideCard
-        key="circular-button"
+        key="button-circular"
         title="Circular"
         description="btn-primary p-6 rounded-full"
       >
         <div className="bg-background flex w-full items-center justify-center gap-4 p-4">
-          <button key="default-btn" className="btn-primary rounded-full p-6">
+          <button key="button-default" className="btn-primary rounded-full p-6">
             <ChevronUpIcon className="h-6 w-6" />
           </button>
           <button
-            key="disabled-btn"
+            key="button-disabled"
             className="btn-primary rounded-full p-6"
             disabled
           >

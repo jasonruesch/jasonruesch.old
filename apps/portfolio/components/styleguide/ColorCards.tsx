@@ -12,7 +12,7 @@ export default function StyleguideColorCards({
   return (
     <div>
       <h3>{title}</h3>
-      <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      <div className="mt-4 grid grid-cols-1 gap-4 print:grid-cols-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {bgColorClassNames.map((bgColor) => {
           const description = bgColor.replace('bg-', '-');
           const colorName = capitalCase(description);

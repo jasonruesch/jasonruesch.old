@@ -22,7 +22,7 @@ export default function ThemeSelector({ className }: { className?: string }) {
       <Menu
         as="div"
         className={clsx(
-          'inline-block text-left text-neutral-400 hover:text-neutral-500 dark:hover:text-neutral-300',
+          'hover:text-neutral text-neutral-inverse relative inline-block text-left',
           className
         )}
       >
@@ -30,11 +30,9 @@ export default function ThemeSelector({ className }: { className?: string }) {
           <Menu.Button
             className={({ open }) =>
               clsx(
-                theme !== 'system'
-                  ? 'text-primary-500 dark:text-primary-400 hover:text-neutral-500 dark:hover:text-neutral-300'
-                  : '',
                 'rounded-md p-2',
-                open ? 'text-neutral-500 dark:text-neutral-300' : ''
+                open ? 'text-neutral' : '',
+                theme !== 'system' ? 'text-primary hover:text-neutral' : ''
               )
             }
           >
@@ -59,85 +57,73 @@ export default function ThemeSelector({ className }: { className?: string }) {
           leaveFrom="transform opacity-100 scale-100"
           leaveTo="transform opacity-0 scale-95"
         >
-          <Menu.Items className="bg-surface text-on-surface absolute right-0 z-50 mt-2 w-36 origin-top-right rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:shadow-black dark:ring-opacity-50">
+          <Menu.Items className="bg-surface absolute right-0 z-50 mt-2 w-36 origin-top-right rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:shadow-black dark:ring-opacity-50">
             <div className="py-1">
               <Menu.Item>
-                {({ active }) => (
-                  <button
+                <button
+                  className={clsx(
+                    'text-on-surface hover:bg-neutral-muted group flex w-full items-center px-4 py-2 text-sm',
+                    theme === 'light'
+                      ? '!text-primary hover:!text-on-surface'
+                      : ''
+                  )}
+                  onClick={() => setTheme('light')}
+                >
+                  <SunIcon
                     className={clsx(
-                      active
-                        ? 'bg-neutral-100 text-neutral-900 dark:bg-neutral-700 dark:text-white'
-                        : theme === 'light'
-                        ? 'text-primary-500 dark:text-primary-400'
-                        : '',
-                      'group flex w-full items-center px-4 py-2 text-sm'
+                      'mr-3 h-5 w-5',
+                      theme === 'light'
+                        ? 'text-primary group-hover:text-on-surface'
+                        : ''
                     )}
-                    onClick={() => setTheme('light')}
-                  >
-                    <SunIcon
-                      className={clsx(
-                        theme === 'light'
-                          ? 'text-primary-500 dark:text-primary-400'
-                          : '',
-                        'mr-3 h-5 w-5 group-hover:text-neutral-500 dark:group-hover:text-neutral-300'
-                      )}
-                      aria-hidden="true"
-                    />
-                    <span>Light</span>
-                  </button>
-                )}
+                    aria-hidden="true"
+                  />
+                  <span>Light</span>
+                </button>
               </Menu.Item>
               <Menu.Item>
-                {({ active }) => (
-                  <button
+                <button
+                  className={clsx(
+                    'text-on-surface hover:bg-neutral-muted group flex w-full items-center px-4 py-2 text-sm',
+                    theme === 'dark'
+                      ? '!text-primary hover:!text-on-surface'
+                      : ''
+                  )}
+                  onClick={() => setTheme('dark')}
+                >
+                  <MoonIcon
                     className={clsx(
-                      active
-                        ? 'bg-neutral-100 text-neutral-900 dark:bg-neutral-700 dark:text-white'
-                        : theme === 'dark'
-                        ? 'text-primary-500 dark:text-primary-400'
-                        : '',
-                      'group flex w-full items-center px-4 py-2 text-sm'
+                      'mr-3 h-5 w-5',
+                      theme === 'dark'
+                        ? 'text-primary group-hover:text-on-surface'
+                        : ''
                     )}
-                    onClick={() => setTheme('dark')}
-                  >
-                    <MoonIcon
-                      className={clsx(
-                        theme === 'dark'
-                          ? 'text-primary-500 dark:text-primary-400'
-                          : '',
-                        'mr-3 h-5 w-5 group-hover:text-neutral-500 dark:group-hover:text-neutral-300'
-                      )}
-                      aria-hidden="true"
-                    />
-                    <span>Dark</span>
-                  </button>
-                )}
+                    aria-hidden="true"
+                  />
+                  <span>Dark</span>
+                </button>
               </Menu.Item>
               <Menu.Item>
-                {({ active }) => (
-                  <button
+                <button
+                  className={clsx(
+                    'text-on-surface hover:bg-neutral-muted group flex w-full items-center px-4 py-2 text-sm',
+                    theme === 'system'
+                      ? '!text-primary hover:!text-on-surface'
+                      : ''
+                  )}
+                  onClick={() => setTheme('system')}
+                >
+                  <DesktopComputerIcon
                     className={clsx(
-                      active
-                        ? 'bg-neutral-100 text-neutral-900 dark:bg-neutral-700 dark:text-white'
-                        : theme === 'system'
-                        ? 'text-primary-500 dark:text-primary-400'
-                        : '',
-                      'group flex w-full items-center px-4 py-2 text-sm'
+                      'mr-3 h-5 w-5',
+                      theme === 'system'
+                        ? 'text-primary group-hover:text-on-surface'
+                        : ''
                     )}
-                    onClick={() => setTheme('system')}
-                  >
-                    <DesktopComputerIcon
-                      className={clsx(
-                        theme === 'system'
-                          ? 'text-primary-500 dark:text-primary-400'
-                          : '',
-                        'mr-3 h-5 w-5 group-hover:text-neutral-500 dark:group-hover:text-neutral-300'
-                      )}
-                      aria-hidden="true"
-                    />
-                    <span>System</span>
-                  </button>
-                )}
+                    aria-hidden="true"
+                  />
+                  <span>System</span>
+                </button>
               </Menu.Item>
             </div>
           </Menu.Items>

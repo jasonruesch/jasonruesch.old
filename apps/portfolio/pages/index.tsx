@@ -1,8 +1,10 @@
 import { useRef, useCallback, useEffect } from 'react';
 import { ChevronRightIcon } from '@heroicons/react/outline';
 import { motion, useAnimation, Variants } from 'framer-motion';
-import useOnScreen from '@/hooks/useOnScreen';
 import Link from 'next/link';
+import useOnScreen from '@/hooks/useOnScreen';
+import ProfileImage from '@/components/ProfileImage';
+import Layout from '@/components/Layout';
 
 export function Index() {
   const el = useRef<HTMLDivElement>(null);
@@ -43,49 +45,49 @@ export function Index() {
   }, [isOnScreen, controls]);
 
   return (
-    <div className="space-y-4">
-      <h1 className="dark:text-on-background text-center text-neutral-400">
-        Hi, I&apos;m
-        <br />
-        <div className="text-primary-500 dark:text-primary-400">
-          Jason Ruesch
-        </div>
-        and I am a<br />
-        <div className="dark:text-secondary-400 text-on-background">
-          Software Engineer
-        </div>
-        focusing on
-        <br />
-        Web Development and Design
-      </h1>
+    <Layout shouldCenterVertically>
+      <ProfileImage large />
 
-      <Link href="/about">
-        <motion.a
-          onHoverStart={() => handleHoverStart()}
-          onHoverEnd={() => handleHoverEnd()}
-          aria-label="Learn more about me"
-          className="text-primary-500 dark:text-primary-400 hover:text-primary-600 dark:hover:text-primary-500 mx-auto flex w-24 cursor-pointer justify-end text-sm font-medium"
-        >
-          <motion.div
-            ref={el}
-            initial="initial"
-            animate={controls}
-            variants={variants}
-            className="w-12 -translate-x-6"
+      <div className="space-y-4">
+        <h1 className="text-neutral text-center">
+          Hi, I&apos;m
+          <br />
+          <div className="text-primary">Jason Ruesch</div>
+          and I am a<br />
+          <div className="dark:text-secondary text-on-background">
+            Software Engineer
+          </div>
+          focusing on
+          <br />
+          Web Development and Design
+        </h1>
+
+        <Link href="/about">
+          <motion.a
+            onHoverStart={() => handleHoverStart()}
+            onHoverEnd={() => handleHoverEnd()}
+            aria-label="Learn more about me"
+            className="text-primary hover:text-primary-dark mx-auto flex w-24 cursor-pointer justify-end text-sm font-medium"
           >
-            <ChevronRightIcon className="h-12 w-12" aria-hidden="true" />
-          </motion.div>
-        </motion.a>
-      </Link>
-    </div>
+            <motion.div
+              ref={el}
+              initial="initial"
+              animate={controls}
+              variants={variants}
+              className="w-12 -translate-x-6"
+            >
+              <ChevronRightIcon className="h-12 w-12" aria-hidden="true" />
+            </motion.div>
+          </motion.a>
+        </Link>
+      </div>
+    </Layout>
   );
 }
 
 export async function getStaticProps() {
   return {
     props: {
-      shouldShowProfileImage: true,
-      shouldCenter: true,
       // theme: 'light',
     },
   };
