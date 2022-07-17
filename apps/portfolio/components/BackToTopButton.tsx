@@ -36,7 +36,7 @@ export function BackToTopButton() {
       leaveTo="opacity-0"
     >
       <button
-        className="btn-primary fixed bottom-8 right-12 z-40 rounded-full p-6 print:hidden"
+        className="btn-primary fixed bottom-8 right-12 z-40 hidden rounded-full p-6 print:hidden sm:block"
         onClick={() => window.scrollTo(0, 0)}
       >
         <ChevronUpIcon className="h-6 w-6" />

@@ -28,7 +28,7 @@ export const Nav = ({
             href={item.href}
             className={clsx(
               'text-neutral-inverse hover:text-neutral hover:border-neutral inline-flex items-center border-b-2 border-transparent px-1 pb-2 pt-3',
-              isCurrent ? '!border-secondary hover:!border-neutral' : ''
+              isCurrent ? '!border-primary hover:!border-neutral' : ''
             )}
             isCurrent={isCurrent}
           >

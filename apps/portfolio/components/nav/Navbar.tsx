@@ -142,9 +142,6 @@ export default function Navbar({
               <>
                 <div className="space-y-1 pt-2 pb-4">
                   <MobileNav items={navigation} />
-                </div>
-
-                <div className="border-neutral-border space-y-1 border-t py-4">
                   <MobileNav items={menu} />
                 </div>
 

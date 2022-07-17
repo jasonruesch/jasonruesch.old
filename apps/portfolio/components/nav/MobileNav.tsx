@@ -22,7 +22,7 @@ export const MobileNav = ({ items }: { items: NavItem[] }) => {
             href={item.href}
             className={clsx(
               'text-neutral-inverse hover:text-neutral hover:border-neutral block border-l-4 border-transparent py-2 pl-3 pr-4',
-              isCurrent ? '!border-secondary hover:!border-neutral' : ''
+              isCurrent ? '!border-primary hover:!border-neutral' : ''
             )}
             isCurrent={isCurrent}
           >
