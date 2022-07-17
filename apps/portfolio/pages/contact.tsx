@@ -77,7 +77,10 @@ export function Contact() {
           className="grid grid-cols-1 gap-y-1 sm:grid-cols-2 sm:gap-x-8"
         >
           <div>
-            <label htmlFor="name" className="block text-sm font-medium">
+            <label
+              htmlFor="name"
+              className="text-neutral block text-sm font-medium"
+            >
               Name{' '}
               <span className="material-icons !text-xs text-red-500">
                 emergency
@@ -119,7 +122,10 @@ export function Contact() {
             </p>
           </div>
           <div>
-            <label htmlFor="email" className="block text-sm font-medium">
+            <label
+              htmlFor="email"
+              className="text-neutral block text-sm font-medium"
+            >
               Email{' '}
               <span className="material-icons !text-xs text-red-500">
                 emergency
@@ -161,7 +167,10 @@ export function Contact() {
             </p>
           </div>
           <div className="sm:col-span-2">
-            <label htmlFor="message" className="block text-sm font-medium">
+            <label
+              htmlFor="message"
+              className="text-neutral block text-sm font-medium"
+            >
               Message{' '}
               <span className="material-icons !text-xs text-red-500">
                 emergency
