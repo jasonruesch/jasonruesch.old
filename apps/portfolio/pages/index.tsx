@@ -62,7 +62,7 @@ export function Index() {
           Web Development and Design
         </h1>
 
-        <Link href="/about">
+        <Link href="/about" scroll={false}>
           <motion.a
             onHoverStart={() => handleHoverStart()}
             onHoverEnd={() => handleHoverEnd()}

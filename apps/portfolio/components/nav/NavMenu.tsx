@@ -18,7 +18,7 @@ const MenuLink = forwardRef(
     },
     ref: MutableRefObject<HTMLAnchorElement>
   ) => (
-    <Link href={href}>
+    <Link href={href} scroll={false}>
       <a
         ref={ref}
         className={clsx(
@@ -32,7 +32,7 @@ const MenuLink = forwardRef(
     </Link>
   )
 );
-MenuLink.displayName = 'NavLink';
+MenuLink.displayName = 'MenuLink';
 
 export default function NavMenu({
   className,

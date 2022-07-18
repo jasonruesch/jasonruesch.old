@@ -17,7 +17,7 @@ const NavLink = forwardRef(
     ref: MutableRefObject<HTMLAnchorElement>
   ) => {
     return (
-      <Link href={href}>
+      <Link href={href} scroll={false}>
         <a
           ref={ref}
           className={className}
@@ -29,6 +29,6 @@ const NavLink = forwardRef(
     );
   }
 );
-NavLink.displayName = 'MyLink';
+NavLink.displayName = 'NavLink';
 
 export default NavLink;

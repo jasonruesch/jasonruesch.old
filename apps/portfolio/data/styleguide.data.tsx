@@ -15,6 +15,24 @@ export const colors = {
   title: 'Colors',
   sections: [
     <StyleguideColorCards
+      key="theme"
+      title="Theme"
+      bgColorClassNames={[
+        'bg-background',
+        'bg-surface',
+        'bg-primary-light',
+        'bg-primary',
+        'bg-primary-dark',
+        'bg-secondary-light',
+        'bg-secondary',
+        'bg-secondary-dark',
+        'bg-neutral',
+        'bg-neutral-inverse',
+        'bg-neutral-border',
+        'bg-neutral-muted',
+      ]}
+    />,
+    <StyleguideColorCards
       key="primary"
       title="Primary"
       bgColorClassNames={[

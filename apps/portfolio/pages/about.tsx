@@ -28,7 +28,7 @@ export function About() {
         </p>
 
         <div className="flex justify-center">
-          <Link href="/contact">
+          <Link href="/contact" scroll={false}>
             <a className="text-primary hover:text-primary-dark font-medium">
               Get in touch
               <span aria-hidden="true"> &rarr;</span>
