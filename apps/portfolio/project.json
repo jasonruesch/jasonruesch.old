@@ -6,6 +6,7 @@
     "build": {
       "executor": "@nrwl/next:build",
       "outputs": ["{options.outputPath}"],
+      "dependsOn": ["^build"],
       "defaultConfiguration": "production",
       "options": {
         "root": "apps/portfolio",
@@ -21,6 +22,7 @@
     },
     "serve": {
       "executor": "@nrwl/next:server",
+      "dependsOn": ["^build"],
       "defaultConfiguration": "development",
       "options": {
         "buildTarget": "portfolio:build",
@@ -60,5 +62,6 @@
       }
     }
   },
-  "tags": []
+  "tags": [],
+  "implicitDependencies": ["emails"]
 }

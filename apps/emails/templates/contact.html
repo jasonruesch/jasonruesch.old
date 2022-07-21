@@ -1,0 +1,94 @@
+---
+title: 'You have a new message'
+preheader: 'Someone sent you a message from your portfolio website'
+bodyClass: bg-background
+---
+
+<extends src="main.html">
+  <block name="template">
+    <table class="w-full font-sans">
+      <tr>
+        <td align="center" class="bg-background text-on-background">
+          <table class="w-full sm:max-w-screen-sm">
+            <tr>
+              <td class="p-12 text-center sm:py-8 sm:px-6">
+                <a
+                  href="https://jasonruesch.dev"
+                  class="text-on-background block max-w-full border-0 align-middle no-underline"
+                >
+                  <component src="logo.html" />
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td align="center" class="px-0 sm:px-6">
+                <table class="w-full">
+                  <tr>
+                    <td
+                      class="bg-surface text-on-surface rounded-none p-12 text-left text-base leading-6 shadow-sm sm:rounded-md sm:px-6"
+                    >
+                      <p
+                        class="m-0 mb-6 text-xl font-semibold sm:text-2xl sm:leading-8"
+                      >
+                        You have a new message 🎉
+                      </p>
+                      <raw>
+                        <p class="m-0 mb-6">Hey there,</p>
+                        <p class="m-0 mb-6">
+                          <span class="font-bold">{{name}}</span> sent you a
+                          message.<br />
+                          Their email address is
+                          <a
+                            class="text-primary no-underline"
+                            href="mailto:{{email}}?subject=Thank%20you%20for%20your%20message"
+                            >{{email}}</a
+                          >.
+                        </p>
+                        <p class="m-0 mb-6">Here is what they said.</p>
+                        <blockquote
+                          class="m-0 border-0 border-l-4 border-solid border-neutral-300 pl-8 dark:border-neutral-600"
+                        >
+                          {{message}}
+                        </blockquote>
+                      </raw>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="h-12"></td>
+                  </tr>
+                  <tr>
+                    <td class="text-on-background px-6 text-center text-xs">
+                      <p class="m-0 mb-4 uppercase">Powered by Maizzle</p>
+                      <p class="m-0 italic">
+                        The framework for rapid email prototyping
+                      </p>
+                      <p class="cursor-default">
+                        <a
+                          href="https://maizzle.com/docs/"
+                          class="text-primary no-underline"
+                          >Docs</a
+                        >
+                        &bull;
+                        <a
+                          href="https://github.com/maizzle"
+                          class="text-primary no-underline"
+                          >Github</a
+                        >
+                        &bull;
+                        <a
+                          href="https://twitter.com/maizzlejs"
+                          class="text-primary no-underline"
+                          >Twitter</a
+                        >
+                      </p>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </block>
+</extends>
