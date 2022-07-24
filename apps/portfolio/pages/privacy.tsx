@@ -1,7 +1,5 @@
 import { Link as ScrollLink } from 'react-scroll';
-import { NavItem } from '@portfolio/components/nav/Navbar';
-import { BackToTopButton } from '@portfolio/components/BackToTopButton';
-import Layout from '@portfolio/components/Layout';
+import { NavItem, BackToTopButton, Layout } from '@portfolio/ui';
 
 const navigation: NavItem[] = [
   {
@@ -597,12 +595,6 @@ export function Privacy() {
       <BackToTopButton />
     </>
   );
-}
-
-export async function getStaticProps() {
-  return {
-    props: {},
-  };
 }
 
 export default Privacy;

@@ -4,6 +4,8 @@
   "projects": {
     "emails": "apps/emails",
     "portfolio": "apps/portfolio",
-    "portfolio-e2e": "apps/portfolio-e2e"
+    "portfolio-data-access": "libs/portfolio/data-access",
+    "portfolio-e2e": "apps/portfolio-e2e",
+    "portfolio-ui": "libs/portfolio/ui"
   }
 }
