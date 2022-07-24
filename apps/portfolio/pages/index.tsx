@@ -1,7 +1,6 @@
 import { ChevronRightIcon } from '@heroicons/react/outline';
-import Layout from '@portfolio/components/Layout';
-import { ProfileImage } from '@portfolio/components/ProfileImage';
-import useOnScreen from '@portfolio/hooks/useOnScreen';
+import { Layout, ProfileImage } from '@portfolio/ui';
+import { useOnScreen } from '@portfolio/ui';
 import { useAnimation, Variants, motion } from 'framer-motion';
 import Link from 'next/link';
 import { useRef, useCallback, useEffect } from 'react';
@@ -46,8 +45,8 @@ export function Index() {
 
   return (
     <Layout shouldCenterVertically>
-      <ProfileImage large />
       <div className="space-y-4">
+        <ProfileImage large />
         <h1 className="text-neutral text-center">
           Hi, I&apos;m
           <br />

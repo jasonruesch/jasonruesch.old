@@ -1,12 +1,11 @@
-import Layout from '@portfolio/components/Layout';
-import { ProfileImage } from '@portfolio/components/ProfileImage';
+import { Layout, ProfileImage } from '@portfolio/ui';
 import Link from 'next/link';
 
 export function About() {
   return (
     <Layout>
-      <ProfileImage />
       <div className="mx-auto max-w-screen-sm space-y-4 text-sm sm:text-base">
+        <ProfileImage />
         <h1 className="text-center">About Me</h1>
         <p className="text-neutral">
           My name is Jason Ruesch. I am a software engineer, web developer, and

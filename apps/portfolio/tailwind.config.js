@@ -7,7 +7,7 @@ const sharedTailwindPresets = require('../../tailwind-workspace-presets');
 module.exports = {
   presets: [sharedTailwindPresets],
   content: [
-    join(__dirname, '{pages,components,data}/**/*.{ts,tsx}'),
+    join(__dirname, '{pages,lib}/**/*.{ts,tsx}'),
     ...createGlobPatternsForDependencies(__dirname),
   ],
   darkMode: 'class',

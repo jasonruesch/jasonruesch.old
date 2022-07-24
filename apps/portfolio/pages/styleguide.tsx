@@ -1,12 +1,14 @@
-import { NavItem } from '@portfolio/components/nav/Navbar';
-import { useSearch } from '@portfolio/hooks/useSearch';
-import data from '@portfolio/data/styleguide.data';
+import {
+  NavItem,
+  SearchInput,
+  ScrollSubNav,
+  MobileScrollNav,
+  BackToTopButton,
+  Layout,
+} from '@portfolio/ui';
+import { useSearch } from '@portfolio/ui';
+import { StyleguideData } from '@portfolio/ui';
 import { useState } from 'react';
-import { SearchInput } from '@portfolio/components/SearchInput';
-import { ScrollSubNav } from '@portfolio/components/nav/ScrollSubNav';
-import { MobileScrollNav } from '@portfolio/components/nav/MobileScrollNav';
-import { BackToTopButton } from '@portfolio/components/BackToTopButton';
-import Layout from '@portfolio/components/Layout';
 
 const navigation: NavItem[] = [
   { name: 'Colors', href: 'colors' },
@@ -17,7 +19,7 @@ const navigation: NavItem[] = [
 
 export function Styleguide() {
   const [searchInput, setSearchInput] = useState('');
-  const filteredData = useSearch(searchInput, data);
+  const filteredData = useSearch(searchInput, StyleguideData);
 
   return (
     <>

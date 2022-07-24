@@ -3,10 +3,7 @@ import { ExclamationCircleIcon } from '@heroicons/react/solid';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import clsx from 'clsx';
-import { SpinnerIcon } from '@portfolio/components/icons/SpinnerIcon';
-import { Notification } from '@portfolio/components/Notification';
-import { ProfileImage } from '@portfolio/components/ProfileImage';
-import Layout from '@portfolio/components/Layout';
+import { SpinnerIcon, Notification, ProfileImage, Layout } from '@portfolio/ui';
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
@@ -76,8 +73,8 @@ export function Contact() {
 
   return (
     <Layout>
-      <ProfileImage />
       <div className="mx-auto max-w-screen-sm space-y-4">
+        <ProfileImage />
         <h1 className="text-center">Get In Touch</h1>
         <form
           onSubmit={handleSubmit}

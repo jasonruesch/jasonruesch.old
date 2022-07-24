@@ -1,4 +1,4 @@
-import Layout from '@portfolio/components/Layout';
+import { Layout } from '@portfolio/ui';
 
 export function Lipsum() {
   return (

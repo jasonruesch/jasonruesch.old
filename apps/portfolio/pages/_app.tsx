@@ -1,9 +1,10 @@
+import { PageTransitions } from '@portfolio/ui';
 import { ThemeProvider } from 'next-themes';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 import { useState, useEffect } from 'react';
-import { PageTransitions } from '../components/PageTransitions';
 import '../styles/tailwind.css';
+import '../styles/transitions.css';
 
 function CustomApp({ Component, pageProps }: AppProps) {
   const [isHydrated, setIsHydrated] = useState(false);
@@ -31,7 +32,7 @@ function CustomApp({ Component, pageProps }: AppProps) {
               id="header"
               className="fixed inset-x-0 top-0 z-40 print:hidden"
             ></header>
-            <PageTransitions className="bg-background min-h-screen py-4">
+            <PageTransitions>
               <Component {...pageProps} />
             </PageTransitions>
           </>
