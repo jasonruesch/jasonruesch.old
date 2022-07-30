@@ -26,7 +26,8 @@
       "options": {
         "buildTarget": "portfolio:build",
         "dev": true,
-        "port": 4400
+        "port": 4400,
+        "proxyConfig": "apps/portfolio/proxy.conf.json"
       },
       "configurations": {
         "development": {
