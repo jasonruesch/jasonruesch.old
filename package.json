@@ -53,6 +53,7 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.6.6",
+    "@headlessui/tailwindcss": "^0.1.0",
     "@heroicons/react": "^1.0.6",
     "@maizzle/framework": "^4.0.2",
     "clsx": "^1.2.1",
@@ -72,6 +73,7 @@
     "tailwindcss-email-variants": "^2.0.0",
     "tailwindcss-mso": "^1.2.0",
     "tslib": "^2.3.0",
+    "uninstall": "^0.0.0",
     "yup": "^0.32.11"
   }
 }

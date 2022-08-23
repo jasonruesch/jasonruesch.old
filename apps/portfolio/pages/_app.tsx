@@ -31,9 +31,12 @@ function CustomApp({ Component, pageProps }: AppProps) {
         {isHydrated && (
           <>
             <Header className="z-30">
-              <div className="mx-auto flex h-14 max-w-screen-lg items-center px-4 sm:h-16 sm:px-8">
-                <Navbar />
-              </div>
+              {(disclosureRenderPropArg) => (
+                <Navbar
+                  className="mx-auto max-w-screen-lg px-4 sm:px-8"
+                  disclosureRenderPropArg={disclosureRenderPropArg}
+                />
+              )}
             </Header>
             <Beams className="z-10" />
             <PageTransitions>

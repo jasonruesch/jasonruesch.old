@@ -1,8 +1,16 @@
+import { Disclosure } from '@headlessui/react';
 import clsx from 'clsx';
-import { ReactNode, useEffect, useState } from 'react';
+import { MutableRefObject, ReactElement, useEffect, useState } from 'react';
+
+export interface DisclosureRenderPropArg {
+  open?: boolean;
+  close?: (
+    focusableElement?: HTMLElement | MutableRefObject<HTMLElement>
+  ) => void;
+}
 
 export interface HeaderProps {
-  children: ReactNode;
+  children: ({ open, close }: DisclosureRenderPropArg) => ReactElement;
   className?: string;
 }
 
@@ -21,16 +29,19 @@ export function Header({ children, className }: HeaderProps) {
   }, []);
 
   return (
-    <header
-      className={clsx(
-        'fixed inset-x-0 top-0',
-        isScrolled
-          ? 'bg-neutral-50 shadow dark:bg-neutral-900 dark:shadow-black'
-          : '',
-        className
-      )}
+    <Disclosure
+      as="header"
+      className={({ open }) =>
+        clsx(
+          'fixed inset-x-0 top-0',
+          open || isScrolled
+            ? 'bg-neutral-50 shadow dark:bg-neutral-900 dark:shadow-black'
+            : '',
+          className
+        )
+      }
     >
-      {children}
-    </header>
+      {({ open, close }) => children({ open, close })}
+    </Disclosure>
   );
 }
