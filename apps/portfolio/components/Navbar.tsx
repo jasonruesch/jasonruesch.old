@@ -1,36 +1,32 @@
 import clsx from 'clsx';
-import { ReactNode, useEffect, useState } from 'react';
+import Link from 'next/link';
+import { GitHubLink } from './GitHubLink';
+import { LogoImage } from './LogoImage';
+import { Nav } from './Nav';
+import { NavMenu } from './NavMenu';
+import { ThemeSelector } from './ThemeSelector';
 
 export interface NavbarProps {
-  children: ReactNode;
   className?: string;
 }
 
-export function Navbar({ children, className }: NavbarProps) {
-  // Detect when the page has been scrolled to help style the navbar.
-  const [isScrolled, setIsScrolled] = useState(false);
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 0);
-    };
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-
+export function Navbar({ className }: NavbarProps) {
   return (
-    <header
-      className={clsx(
-        'fixed inset-x-0 top-0 z-30',
-        isScrolled
-          ? 'bg-neutral-50 shadow dark:bg-neutral-900 dark:shadow-black'
-          : '',
-        className
-      )}
-    >
-      {children}
-    </header>
+    <div className={clsx('flex w-full items-center', className)}>
+      <Link href="/">
+        <a className="flex items-center">
+          <LogoImage className="h-10 w-10 lg:mr-2" />
+          <span className="hidden font-display text-3xl font-bold lg:inline">
+            Jason Ruesch
+          </span>
+        </a>
+      </Link>
+      <Nav className="mx-8 hidden sm:block" />
+      <div className="flex flex-auto items-center justify-end">
+        <ThemeSelector />
+        <GitHubLink />
+        <NavMenu className="hidden md:inline-block" />
+      </div>
+    </div>
   );
 }

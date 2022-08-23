@@ -97,7 +97,7 @@ export function Contact() {
                       ? 'border-red-300 pr-10 text-red-900 focus:border-red-500 focus:ring-red-500 dark:border-red-600 dark:text-red-50 dark:focus:border-red-400 dark:focus:ring-red-400'
                       : 'border-neutral-300 focus:border-cyan-500 focus:ring-cyan-500 dark:border-neutral-600 dark:focus:border-violet-400 dark:focus:ring-violet-400'
                   )}
-                  placeholder="Jane Smith"
+                  placeholder="Jane Doe"
                   required
                   aria-invalid={!!errors.name && touched.name}
                   aria-describedby={

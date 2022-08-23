@@ -15,7 +15,7 @@ export interface MenuLinkProps {
 
 const MenuLink = forwardRef(
   (
-    { href, isCurrent, children }: MenuLinkProps,
+    { href, children, isCurrent, ...rest }: MenuLinkProps,
     ref: MutableRefObject<HTMLAnchorElement>
   ) => (
     <Link href={href}>
@@ -28,6 +28,7 @@ const MenuLink = forwardRef(
             : ''
         )}
         aria-current={isCurrent ? 'page' : undefined}
+        {...rest}
       >
         {children}
       </a>

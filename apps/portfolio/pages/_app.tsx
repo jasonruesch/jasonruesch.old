@@ -1,16 +1,11 @@
 import { ThemeProvider } from 'next-themes';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
-import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { Beams } from '../components/Beams';
-import { GitHubLink } from '../components/GitHubLink';
-import { LogoImage } from '../components/LogoImage';
-import { Nav } from '../components/Nav';
+import { Header } from '../components/Header';
 import { Navbar } from '../components/Navbar';
-import { NavMenu } from '../components/NavMenu';
 import { PageTransitions } from '../components/PageTransitions';
-import { ThemeSelector } from '../components/ThemeSelector';
 import './styles.css';
 
 function CustomApp({ Component, pageProps }: AppProps) {
@@ -35,26 +30,11 @@ function CustomApp({ Component, pageProps }: AppProps) {
       >
         {isHydrated && (
           <>
-            <Navbar>
+            <Header className="z-30">
               <div className="mx-auto flex h-14 max-w-screen-lg items-center px-4 sm:h-16 sm:px-8">
-                <div className="flex w-full items-center">
-                  <Link href="/">
-                    <a className="flex items-center">
-                      <LogoImage className="h-10 w-10 lg:mr-2" />
-                      <span className="hidden font-display text-3xl font-bold lg:inline">
-                        Jason Ruesch
-                      </span>
-                    </a>
-                  </Link>
-                  <Nav className="mx-8 hidden sm:block" />
-                  <div className="flex flex-auto items-center justify-end">
-                    <ThemeSelector />
-                    <GitHubLink />
-                    <NavMenu className="hidden md:inline-block" />
-                  </div>
-                </div>
+                <Navbar />
               </div>
-            </Navbar>
+            </Header>
             <Beams className="z-10" />
             <PageTransitions>
               <main className="flex min-h-screen bg-neutral-100 text-neutral-900 dark:bg-neutral-800 dark:text-neutral-50">
