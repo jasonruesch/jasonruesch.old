@@ -1,3 +1,50 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root,
+  .light {
+    --color-primary: theme(colors.cyan.500);
+    --color-secondary: theme(colors.fuchsia.500);
+  }
+
+  .dark {
+    --color-primary: theme(colors.violet.400);
+    --color-secondary: theme(colors.teal.400);
+  }
+
+  h1 {
+    @apply pb-4 font-display text-2xl font-medium sm:text-4xl;
+  }
+
+  h2 {
+    @apply pb-4 font-display text-xl font-medium sm:text-3xl;
+  }
+
+  h3 {
+    @apply pb-4 font-display text-lg font-medium sm:text-2xl;
+  }
+
+  h4 {
+    @apply pb-4 font-display font-medium sm:text-xl;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-md border border-transparent px-4 py-2 text-sm font-medium shadow-sm dark:shadow-black;
+    @apply bg-cyan-600 text-black dark:bg-violet-500;
+    @apply enabled:hover:bg-cyan-700 enabled:hover:text-white dark:enabled:hover:bg-violet-600;
+    @apply focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 focus:ring-offset-neutral-50 dark:focus:ring-violet-400 dark:focus:ring-offset-neutral-900;
+    @apply disabled:bg-cyan-300 disabled:text-neutral-500 dark:disabled:bg-violet-400 dark:disabled:text-neutral-600;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center rounded-md border border-neutral-300 px-4 py-2 text-sm font-medium shadow-sm dark:border-transparent dark:shadow-black;
+    @apply bg-white text-neutral-700 dark:bg-black dark:text-neutral-200;
+    @apply enabled:hover:bg-neutral-50 dark:enabled:hover:bg-neutral-900;
+    @apply focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 focus:ring-offset-neutral-50 dark:focus:ring-violet-400 dark:focus:ring-offset-neutral-900;
+    @apply disabled:bg-neutral-300 disabled:text-neutral-500 dark:disabled:bg-neutral-900 dark:disabled:text-neutral-600;
+  }
+}

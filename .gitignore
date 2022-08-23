@@ -4,6 +4,13 @@
 /dist
 /tmp
 /out-tsc
+**/public/templates/emails/*
+!**/public/templates/emails/README.md
+**/public/workbox-*.js
+**/public/workbox-*.js.map
+**/public/sw.js
+**/public/sw.js.map
+**/public/worker-*.js
 
 # dependencies
 node_modules

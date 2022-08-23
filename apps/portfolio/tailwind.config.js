@@ -1,5 +1,6 @@
 const { createGlobPatternsForDependencies } = require('@nrwl/react/tailwind');
 const { join } = require('path');
+const defaultTheme = require('tailwindcss/defaultTheme');
 const workspacePreset = require('../../tailwind-workspace-preset');
 
 /** @type {import('tailwindcss').Config} */
@@ -14,6 +15,10 @@ module.exports = {
   ],
   darkMode: 'class',
   theme: {
+    fontFamily: {
+      sans: ['Inter', ...defaultTheme.fontFamily.sans],
+      display: ['Alegreya Sans SC', ...defaultTheme.fontFamily.sans],
+    },
     extend: {},
   },
   plugins: [require('@tailwindcss/forms')],
