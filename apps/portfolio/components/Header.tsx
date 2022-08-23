@@ -1,5 +1,6 @@
 import { Disclosure } from '@headlessui/react';
 import clsx from 'clsx';
+import { useTheme } from 'next-themes';
 import { MutableRefObject, ReactElement, useEffect, useState } from 'react';
 
 export interface DisclosureRenderPropArg {
@@ -27,6 +28,19 @@ export function Header({ children, className }: HeaderProps) {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
+  const { resolvedTheme } = useTheme();
+  useEffect(() => {
+    const themeColor = document.head.querySelector(
+      'meta[name="theme-color"]'
+    ) as HTMLMetaElement;
+
+    if (isScrolled) {
+      themeColor.content = resolvedTheme === 'dark' ? '#171717' : '#fafafa';
+    } else {
+      themeColor.content = resolvedTheme === 'dark' ? '#262626' : '#f5f5f5';
+    }
+  }, [resolvedTheme, isScrolled]);
 
   return (
     <Disclosure
