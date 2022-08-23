@@ -20,6 +20,7 @@
     },
     "serve": {
       "executor": "@nrwl/next:server",
+      "dependsOn": ["^build"],
       "defaultConfiguration": "development",
       "options": {
         "buildTarget": "portfolio:build",
@@ -58,5 +59,6 @@
       }
     }
   },
-  "tags": ["type:app", "scope:portfolio"]
+  "tags": ["type:app", "scope:portfolio"],
+  "implicitDependencies": ["emails"]
 }
