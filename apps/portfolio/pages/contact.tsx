@@ -79,10 +79,7 @@ export function Contact() {
         <form onSubmit={handleSubmit}>
           <div className="grid grid-cols-1 gap-x-4 sm:grid-cols-6">
             <div className="sm:col-span-3">
-              <label
-                htmlFor="name"
-                className="block text-sm font-medium text-neutral-700 dark:text-neutral-200"
-              >
+              <label htmlFor="name" className="block text-sm font-medium">
                 Name <span className="text-red-500 dark:text-red-400">*</span>
               </label>
               <div className="relative mt-1 rounded-md">
@@ -125,10 +122,7 @@ export function Contact() {
             </div>
 
             <div className="sm:col-span-3">
-              <label
-                htmlFor="email"
-                className="block text-sm font-medium text-neutral-700 dark:text-neutral-200"
-              >
+              <label htmlFor="email" className="block text-sm font-medium">
                 Email address{' '}
                 <span className="text-red-500 dark:text-red-400">*</span>
               </label>
@@ -172,10 +166,7 @@ export function Contact() {
             </div>
 
             <div className="sm:col-span-6">
-              <label
-                htmlFor="message"
-                className="block text-sm font-medium text-neutral-700 dark:text-neutral-200"
-              >
+              <label htmlFor="message" className="block text-sm font-medium">
                 Message{' '}
                 <span className="text-red-500 dark:text-red-400">*</span>
               </label>
