@@ -73,7 +73,7 @@ export function Contact() {
   });
 
   return (
-    <div className="mx-auto grid h-full max-w-xl sm:place-items-center">
+    <div className="mx-auto grid h-full max-w-xl pt-16 pb-4 sm:place-items-center sm:py-20">
       <div className="w-full">
         <h1>Get In Touch</h1>
         <form onSubmit={handleSubmit}>

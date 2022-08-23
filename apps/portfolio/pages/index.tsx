@@ -38,7 +38,7 @@ export function Index() {
   }, [controls]);
 
   return (
-    <div className="grid h-full place-content-center">
+    <div className="grid h-full place-content-center py-16 sm:py-20">
       <ProfileImage large className="pb-4" />
 
       <h1 className="text-center text-neutral-500 dark:text-neutral-400">

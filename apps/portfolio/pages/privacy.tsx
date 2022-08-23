@@ -53,7 +53,7 @@ const navigation = [
 
 export function Privacy() {
   return (
-    <div>
+    <div className="pt-16 pb-4">
       <h1>Privacy Policy</h1>
       <small>Last updated July 01, 2022</small>
       <div className="space-y-4">
