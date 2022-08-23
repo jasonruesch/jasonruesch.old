@@ -40,7 +40,13 @@ function CustomApp({ Component, pageProps }: AppProps) {
             </Header>
             <Beams className="z-10" />
             <PageTransitions>
-              <main className="flex min-h-screen bg-neutral-100 text-neutral-900 dark:bg-neutral-800 dark:text-neutral-50">
+              <main
+                className="flex min-h-screen bg-neutral-100 text-neutral-900 dark:bg-neutral-800 dark:text-neutral-50"
+                style={{
+                  /* mobile viewport bug fix */
+                  minHeight: '-webkit-fill-available',
+                }}
+              >
                 <div className="z-20 mx-auto w-full max-w-screen-lg py-16 px-4 sm:py-20 sm:px-8">
                   <Component {...pageProps} />
                 </div>
