@@ -35,10 +35,10 @@ export function ThemeSelector({ className }: ThemeSelectorProps) {
           className={({ open }) =>
             clsx(
               'rounded-md p-2',
-              open ? 'text-neutral-900 dark:text-neutral-50' : '',
               theme !== 'system'
                 ? 'text-cyan-500 hover:text-neutral-900 dark:text-violet-400 dark:hover:text-neutral-50'
-                : ''
+                : '',
+              open ? '!text-neutral-900 dark:!text-neutral-50' : ''
             )
           }
         >

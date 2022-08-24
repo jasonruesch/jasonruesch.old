@@ -7,9 +7,10 @@ import {
 import { useRouter } from 'next/router';
 import { ReactNode } from 'react';
 
-const SCALE = 0.6;
 const DURATION = 0.4;
 const DELAY = 0.5;
+const SCALE = 0.6;
+
 const pageAdjustment = {
   height: '100vh',
   overflow: 'hidden',
@@ -24,7 +25,7 @@ const variants: Variants = {
     scale: SCALE,
     x: '100%',
     transition: {
-      duration: DURATION,
+      duration: 0,
     },
   },
   center: {
