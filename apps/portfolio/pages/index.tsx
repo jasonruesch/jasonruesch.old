@@ -38,43 +38,47 @@ export function Index() {
   }, [controls]);
 
   return (
-    <div className="grid h-full place-content-center py-16 sm:py-20">
-      <ProfileImage large className="pb-4" />
+    <div className="mx-auto grid h-full max-w-xl place-items-center py-16 sm:py-20">
+      <div className="w-full">
+        <ProfileImage large className="pb-4" />
 
-      <h1 className="text-center text-neutral-500 dark:text-neutral-400">
-        Hi, I&apos;m
-        <br />
-        <span className="text-cyan-500 dark:text-violet-400">Jason Ruesch</span>
-        <br />
-        and I am a
-        <br />
-        <span className="text-neutral-900 dark:text-teal-400">
-          Software Engineer
-        </span>
-        <br />
-        focusing on
-        <br />
-        Web Development and Design
-      </h1>
+        <h1 className="text-center text-neutral-500 dark:text-neutral-400">
+          Hi, I&apos;m
+          <br />
+          <span className="text-cyan-500 dark:text-violet-400">
+            Jason Ruesch
+          </span>
+          <br />
+          and I am a
+          <br />
+          <span className="text-neutral-900 dark:text-teal-400">
+            Software Engineer
+          </span>
+          <br />
+          focusing on
+          <br />
+          Web Development and Design
+        </h1>
 
-      <Link href="/about">
-        <motion.a
-          onHoverStart={() => handleHoverStart()}
-          onHoverEnd={() => handleHoverEnd()}
-          aria-label="Learn more about me"
-          className="mx-auto flex w-24 cursor-pointer justify-end text-sm font-medium text-cyan-500 hover:text-cyan-600 dark:text-violet-400 dark:hover:text-violet-500"
-        >
-          <motion.div
-            ref={el}
-            initial="initial"
-            animate={controls}
-            variants={variants}
-            className="w-12 -translate-x-6"
+        <Link href="/about">
+          <motion.a
+            onHoverStart={() => handleHoverStart()}
+            onHoverEnd={() => handleHoverEnd()}
+            aria-label="Learn more about me"
+            className="mx-auto flex w-24 cursor-pointer justify-end text-sm font-medium text-cyan-500 hover:text-cyan-600 dark:text-violet-400 dark:hover:text-violet-500"
           >
-            <ChevronRightIcon className="h-12 w-12" aria-hidden="true" />
-          </motion.div>
-        </motion.a>
-      </Link>
+            <motion.div
+              ref={el}
+              initial="initial"
+              animate={controls}
+              variants={variants}
+              className="w-12 -translate-x-6"
+            >
+              <ChevronRightIcon className="h-12 w-12" aria-hidden="true" />
+            </motion.div>
+          </motion.a>
+        </Link>
+      </div>
     </div>
   );
 }
