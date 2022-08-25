@@ -31,7 +31,7 @@ module.exports = {
       },
     },
     tailwind: {
-      css: 'apps/emails/styles/tailwind.css',
+      css: 'apps/emails/styles/styles.css',
       config: 'apps/emails/tailwind.config.js',
     },
   },

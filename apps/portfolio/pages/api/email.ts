@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import nodemailer from 'nodemailer';
-import { resolve } from 'path';
+import { join, resolve } from 'path';
 import { readFileSync } from 'fs';
 import handlebars from 'handlebars';
 import getConfig from 'next/config';
@@ -26,11 +26,11 @@ export default async function handler(
     const templateName = body.template;
     const templateFile = resolve(
       process.env.NODE_ENV === 'production'
-        ? process.cwd()
-        : serverRuntimeConfig.PROJECT_ROOT,
-      'public/templates/emails',
+        ? join(process.cwd(), 'public/templates/emails')
+        : serverRuntimeConfig.EMAIL_TEMPLATES,
       `${templateName.toLowerCase()}.html`
     );
+    console.log('templateFile', templateFile);
     const templateSource = readFileSync(templateFile, 'utf8');
     const template = handlebars.compile(templateSource);
     const html = template({

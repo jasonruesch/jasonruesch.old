@@ -20,7 +20,9 @@
     },
     "serve": {
       "executor": "@nrwl/next:server",
-      "dependsOn": ["^build"],
+      "dependsOn": [
+        { "projects": "dependencies", "target": "build", "params": "forward" }
+      ],
       "defaultConfiguration": "development",
       "options": {
         "buildTarget": "portfolio:build",

@@ -7,7 +7,7 @@
       "executor": "@nrwl/workspace:run-commands",
       "defaultConfiguration": "production",
       "options": {
-        "command": "maizzle build && cp -r dist/apps/emails/* apps/portfolio/public/templates/emails/"
+        "command": "maizzle build"
       },
       "configurations": {
         "development": {},

@@ -2,6 +2,7 @@
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { withNx } = require('@nrwl/next/plugins/with-nx');
+const { join } = require('path');
 const withPWA = require('next-pwa')({
   dest: 'public',
   disable: process.env.NODE_ENV === 'development',
@@ -17,7 +18,7 @@ const nextConfig = {
     svgr: false,
   },
   serverRuntimeConfig: {
-    PROJECT_ROOT: __dirname,
+    EMAIL_TEMPLATES: join(__dirname, '../../dist/apps/emails'),
   },
 };
 
