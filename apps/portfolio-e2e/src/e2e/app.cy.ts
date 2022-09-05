@@ -1,4 +1,4 @@
-import { getGreeting } from '../support/app.po';
+// import { getGreeting } from '../support/app.po';
 
 describe('portfolio', () => {
   beforeEach(() => cy.visit('/'));
@@ -8,6 +8,6 @@ describe('portfolio', () => {
     cy.login('my-email@something.com', 'myPassword');
 
     // Function helper example, see `../support/app.po.ts` file
-    getGreeting().contains('Welcome portfolio');
+    // getGreeting().contains('Welcome portfolio');
   });
 });

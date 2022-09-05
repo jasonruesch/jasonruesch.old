@@ -3,9 +3,11 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "nx serve",
-    "build": "nx build",
-    "test": "nx test"
+    "start": "nx run-many --target=serve --parallel",
+    "build": "nx run-many --target=build",
+    "test": "nx run-many --target=test",
+    "lint": "nx run-many --target=lint",
+    "e2e": "nx run-many --target=e2e"
   },
   "private": true,
   "dependencies": {
