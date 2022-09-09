@@ -8,8 +8,8 @@ export async function generateRssFeed() {
   const articles = await getAllArticles();
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
   const author = {
-    name: 'Spencer Sharp',
-    email: 'spencer@planetaria.tech',
+    name: 'Jason Ruesch',
+    email: 'jason@jasonruesch.dev',
   };
 
   const feed = new Feed({
