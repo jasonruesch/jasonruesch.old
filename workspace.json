@@ -2,6 +2,12 @@
   "$schema": "./node_modules/nx/schemas/workspace-schema.json",
   "version": 2,
   "projects": {
+    "api": "apps/api",
+    "api-interfaces": "libs/api-interfaces",
+    "expenses": "apps/expenses",
+    "expenses-e2e": "apps/expenses-e2e",
+    "expenses-ng": "apps/expenses-ng",
+    "expenses-ng-e2e": "apps/expenses-ng-e2e",
     "personal": "apps/personal",
     "personal-e2e": "apps/personal-e2e"
   }

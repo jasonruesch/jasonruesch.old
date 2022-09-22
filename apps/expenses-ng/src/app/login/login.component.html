@@ -1,0 +1,27 @@
+<h1 class="bold pb-4 text-4xl">Expenses</h1>
+
+<div class="rounded-md border bg-white ring-1 ring-black">
+  <form class="p-4" (submit)="handleLogin($event)">
+    <div class="mb-4">
+      <label class="mb-2 block" htmlFor="email"> Email </label>
+      <input
+        class="w-full rounded-md border border-black p-2"
+        id="email"
+        type="email"
+      />
+    </div>
+    <div class="mb-4">
+      <label class="mb-2 block" htmlFor="password"> Password </label>
+      <input
+        class="w-full rounded-md border border-black p-2"
+        id="password"
+        type="password"
+      />
+    </div>
+    <div class="mb-4">
+      <button class="rounded-md border border-black p-2" type="submit">
+        Sign In
+      </button>
+    </div>
+  </form>
+</div>

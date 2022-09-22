@@ -1,0 +1,49 @@
+<h1 class="bold pb-4 text-4xl">Expenses</h1>
+
+<div class="rounded-md border bg-white ring-1 ring-black">
+  <table
+    class="w-full table-auto rounded-md"
+    *ngIf="expenses$ | async as expenses; else empty"
+  >
+    <thead>
+      <tr class="border-b border-black">
+        <th class="w-1/4 p-2 text-left">Name</th>
+        <th class="p-2 text-left">Due</th>
+        <th class="p-2 text-right">Amount</th>
+        <th class="p-2 text-left">Category</th>
+        <th class="w-3/4 p-2 text-left">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="let expense of expenses; let i = index"
+        class="hover:bg-neutral-200 cursor-pointer"
+        [ngClass]="i % 2 === 0 ? 'bg-white' : 'bg-neutral-100'"
+        (click)="handleItemSelected(expense)"
+      >
+        <td class="p-2">{{ expense.name }}</td>
+        <td class="whitespace-nowrap p-2">
+          {{ expense.due | date: 'shortDate' }}
+        </td>
+        <td class="p-2 text-right">{{ expense.amount | currency }}</td>
+        <td class="p-2">{{ expense.category }}</td>
+        <td class="p-2">{{ expense.description }}</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr class="border-t border-black">
+        <td class="p-2" colspan="2"></td>
+        <td class="p-2 text-right font-bold">
+          {{ calculateTotalAmount(expenses) | currency }}
+        </td>
+        <td class="p-2" colspan="2"></td>
+      </tr>
+    </tfoot>
+  </table>
+</div>
+
+<ng-template #empty>
+  <div class="p-4">
+    <p class="text-center">No expenses found.</p>
+  </div>
+</ng-template>
