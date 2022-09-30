@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Expense } from '@jasonruesch/api-interfaces';
-import { ExpenseService } from '../lib/expense.service';
+import { ExpenseService } from '../lib/expenses/expense.service';
 
 @Component({
   selector: 'jr-home',

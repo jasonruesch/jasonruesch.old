@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from '../lib/auth.service';
+import { AuthService } from '../lib/auth/auth.service';
 
 @Component({
   selector: 'jr-login',
@@ -21,9 +21,8 @@ export class LoginComponent {
       localStorage.setItem('token', accessToken);
 
       const redirect = this.route.snapshot.queryParams['redirect'];
-      if (redirect) {
-        this.router.navigateByUrl(redirect);
-      }
+      const url = redirect ? redirect : '/';
+      this.router.navigateByUrl(url);
     };
 
     const request$ = this.api.login('user@test.tld', 'password');

@@ -1,13 +1,18 @@
+import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Expense } from '@jasonruesch/api-interfaces';
-import { catchError, Observable } from 'rxjs';
+import { catchError, Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ExpenseService {
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   loadExpenses(): Observable<Expense[]> {
     return this.http
@@ -18,7 +23,12 @@ export class ExpenseService {
       })
       .pipe(
         catchError((err) => {
-          console.error(err);
+          if (err.status === 401) {
+            this.router.navigate(['login'], {
+              queryParams: { redirect: this.route.snapshot.url },
+            });
+            return of([]);
+          }
           throw err;
         })
       );

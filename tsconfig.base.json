@@ -15,7 +15,10 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@jasonruesch/api-interfaces": ["libs/api-interfaces/src/index.ts"]
+      "@jasonruesch/api-interfaces": ["libs/api-interfaces/src/index.ts"],
+      "@jasonruesch/shared/reactive-state": [
+        "libs/shared/reactive-state/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

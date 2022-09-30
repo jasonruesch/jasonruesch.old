@@ -7,13 +7,12 @@ import {
   UrlTree,
 } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AuthFacade } from './auth.facade';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-  constructor(private router: Router, private facade: AuthFacade) {}
+  constructor(private router: Router) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,

@@ -1,0 +1,40 @@
+{
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/shared/reactive-state/src",
+  "prefix": "degreed",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:ng-packagr-lite",
+      "outputs": ["dist/libs/shared/reactive-state"],
+      "options": {
+        "project": "libs/shared/reactive-state/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/shared/reactive-state/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/shared/reactive-state/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/shared/reactive-state"],
+      "options": {
+        "jestConfig": "libs/shared/reactive-state/jest.config.ts",
+        "passWithNoTests": true,
+        "runInBand": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["libs/shared/reactive-state/**/*.ts", "libs/shared/reactive-state/**/*.html"]
+      }
+    }
+  },
+  "tags": ["sparks", "utils"]
+}

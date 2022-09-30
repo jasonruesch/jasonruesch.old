@@ -9,6 +9,7 @@
     "expenses-ng": "apps/expenses-ng",
     "expenses-ng-e2e": "apps/expenses-ng-e2e",
     "personal": "apps/personal",
-    "personal-e2e": "apps/personal-e2e"
+    "personal-e2e": "apps/personal-e2e",
+    "shared-reactive-state": "libs/shared/reactive-state"
   }
 }
