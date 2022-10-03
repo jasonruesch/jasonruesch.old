@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Expense } from '@jasonruesch/api-interfaces';
-import { ExpenseService } from '../lib/expenses/expense.service';
+import { ExpensesFacade } from '../lib/expenses/expenses.facade';
 
 @Component({
   selector: 'jr-home',
@@ -8,9 +8,10 @@ import { ExpenseService } from '../lib/expenses/expense.service';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent {
-  expenses$ = this.api.loadExpenses();
+  vm$ = this.facade.vm$;
+  showSkeleton$ = this.facade.showSkeleton$;
 
-  constructor(private api: ExpenseService) {}
+  constructor(private facade: ExpensesFacade) {}
 
   calculateTotalAmount(expenses: Expense[]) {
     return expenses.reduce((acc, cur) => acc + cur.amount, 0);

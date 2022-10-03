@@ -3,7 +3,7 @@
 <div class="rounded-md border bg-white ring-1 ring-black">
   <table
     class="w-full table-auto rounded-md"
-    *ngIf="expenses$ | async as expenses; else empty"
+    *ngIf="vm$ | async as vm; else empty"
   >
     <thead>
       <tr class="border-b border-black">
@@ -16,7 +16,7 @@
     </thead>
     <tbody>
       <tr
-        *ngFor="let expense of expenses; let i = index"
+        *ngFor="let expense of vm.expenses; let i = index"
         class="hover:bg-neutral-200 cursor-pointer"
         [ngClass]="i % 2 === 0 ? 'bg-white' : 'bg-neutral-100'"
         (click)="handleItemSelected(expense)"
@@ -34,7 +34,7 @@
       <tr class="border-t border-black">
         <td class="p-2" colspan="2"></td>
         <td class="p-2 text-right font-bold">
-          {{ calculateTotalAmount(expenses) | currency }}
+          {{ calculateTotalAmount(vm.expenses) | currency }}
         </td>
         <td class="p-2" colspan="2"></td>
       </tr>

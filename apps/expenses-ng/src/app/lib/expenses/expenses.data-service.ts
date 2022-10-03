@@ -7,7 +7,7 @@ import { catchError, Observable, of } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class ExpenseService {
+export class ExpensesDataService {
   constructor(
     private http: HttpClient,
     private router: Router,
