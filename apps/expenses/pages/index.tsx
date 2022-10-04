@@ -9,7 +9,7 @@ export function Index() {
   const totalAmount = expenses?.reduce((acc, cur) => acc + cur.amount, 0);
 
   const handleItemSelected = (expense: Expense) => {
-    console.log(expense.name);
+    router.push(`/expenses/${expense.id}`);
   };
 
   useEffect(() => {

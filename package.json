@@ -7,7 +7,7 @@
     "build": "nx build",
     "test": "nx test",
     "personal": "nx serve personal",
-    "expenses": "nx run-many --target=serve --projects=api,expenses-ng --parallel",
+    "expenses": "nx run-many --target=serve --projects=api,expenses --parallel",
     "postinstall": "ngcc --properties es2020 browser module main"
   },
   "private": true,

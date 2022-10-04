@@ -45,6 +45,7 @@ export function Login() {
               className="w-full rounded-md border border-black p-2"
               id="email"
               type="email"
+              value="user@test.tld"
             />
           </div>
           <div className="mb-4">
@@ -55,6 +56,7 @@ export function Login() {
               className="w-full rounded-md border border-black p-2"
               id="password"
               type="password"
+              value="password"
             />
           </div>
           <div className="mb-4">
