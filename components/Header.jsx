@@ -5,7 +5,8 @@ import { Popover, Transition } from '@headlessui/react'
 import clsx from 'clsx'
 
 import { Container } from '@/components/Container'
-import avatarImage from '@/images/avatar.jpg'
+import avatarImage from '@/images/avatar.png'
+import avatarDarkImage from '@/images/avatar-dark.png'
 import { Fragment, useEffect, useRef } from 'react'
 
 function CloseIcon(props) {
@@ -230,7 +231,10 @@ function Avatar({ large = false, className, ...props }) {
     <Link
       href="/"
       aria-label="Home"
-      className={clsx(className, 'pointer-events-auto')}
+      className={clsx(
+        className,
+        'pointer-events-auto fill-[#D946EF] text-[#06B6D4] dark:fill-[#2DD4BF] dark:text-[#A78BFA]'
+      )}
       {...props}
     >
       <Image
@@ -238,7 +242,17 @@ function Avatar({ large = false, className, ...props }) {
         alt=""
         sizes={large ? '4rem' : '2.25rem'}
         className={clsx(
-          'rounded-full bg-zinc-100 object-cover dark:bg-zinc-800',
+          'rounded-full bg-zinc-100 object-cover dark:hidden',
+          large ? 'h-16 w-16' : 'h-9 w-9'
+        )}
+        priority
+      />
+      <Image
+        src={avatarDarkImage}
+        alt=""
+        sizes={large ? '4rem' : '2.25rem'}
+        className={clsx(
+          'hidden rounded-full object-cover dark:block dark:bg-zinc-800',
           large ? 'h-16 w-16' : 'h-9 w-9'
         )}
         priority
