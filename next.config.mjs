@@ -4,9 +4,8 @@ import rehypePrism from '@mapbox/rehype-prism'
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  pageExtensions: ['jsx', 'tsx', 'mdx'],
+  pageExtensions: ['jsx', 'mdx'],
   reactStrictMode: true,
-  swcMinify: true,
   experimental: {
     scrollRestoration: true,
   },
