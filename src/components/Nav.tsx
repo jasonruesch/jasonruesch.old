@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import { useLocation } from 'react-router-dom';
 
 const navItems = [
   { name: 'Home', href: '/' },
@@ -6,21 +7,22 @@ const navItems = [
   { name: 'Contact', href: '/contact' },
 ];
 
-/* eslint-disable-next-line */
 export interface NavProps {
-  currentPath: string;
+  className?: string;
 }
 
-export function Nav({ currentPath }: NavProps) {
-  const isCurrentRoute = (path: string): boolean => {
+export function Nav({ className }: NavProps) {
+  const { pathname: asPath } = useLocation();
+
+  const isCurrentRoute = (href: string): boolean => {
     return (
-      (path === '/' && currentPath === '/') ||
-      (path !== '/' && currentPath.includes(path))
+      (href === '/' && asPath === '/') ||
+      (href !== '/' && asPath.startsWith(href))
     );
   };
 
   return (
-    <nav className="space-x-8">
+    <nav className={clsx('space-x-8', className)}>
       {navItems.map(({ name, href }) => (
         <a
           href={href}
@@ -38,5 +40,3 @@ export function Nav({ currentPath }: NavProps) {
     </nav>
   );
 }
-
-export default Nav;
