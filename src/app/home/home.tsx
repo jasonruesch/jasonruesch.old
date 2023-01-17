@@ -7,7 +7,7 @@ export function Home(props: HomeProps) {
   return (
     <>
       <Nav />
-      <h1>Welcome to Home!</h1>
+      <h1>Jason Ruesch</h1>
     </>
   );
 }
