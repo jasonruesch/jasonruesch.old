@@ -1,4 +1,4 @@
-import { ProfileImage } from '@/components';
+import { ProfileImage } from '@jasonruesch/shared/ui';
 import { NavLink } from 'react-router-dom';
 
 /* eslint-disable-next-line */

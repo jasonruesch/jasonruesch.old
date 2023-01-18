@@ -2,7 +2,7 @@ import { ChevronRightIcon } from '@heroicons/react/24/outline';
 import { motion, useAnimation, Variants } from 'framer-motion';
 import { useRef, useCallback, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import { ProfileImage } from '../../components/ProfileImage';
+import { ProfileImage } from '@jasonruesch/shared/ui';
 
 /* eslint-disable-next-line */
 export interface HomeProps {}

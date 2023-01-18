@@ -3,7 +3,7 @@ import { ExclamationCircleIcon } from '@heroicons/react/24/solid';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import clsx from 'clsx';
-import { SpinnerIcon, Notification } from '@/components';
+import { SpinnerIcon, Notification } from '@jasonruesch/shared/ui';
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 

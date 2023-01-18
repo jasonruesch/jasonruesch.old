@@ -3,7 +3,7 @@ import Home from './home/home';
 import About from './about/about';
 import Contact from './contact/contact';
 import { useEffect, useState } from 'react';
-import { Beams, Header, Navbar, PageTransitions } from '@/components';
+import { Beams, Header, Navbar, PageTransitions } from '@jasonruesch/shared/ui';
 import Privacy from './privacy/privacy';
 
 export function App() {
