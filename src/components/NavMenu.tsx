@@ -1,39 +1,10 @@
-import { forwardRef, Fragment, LegacyRef, ReactNode } from 'react';
+import { Fragment } from 'react';
 import { Menu, Transition } from '@headlessui/react';
 import { EllipsisVerticalIcon } from '@heroicons/react/24/outline';
 import clsx from 'clsx';
-import { useLocation } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 
 const menuItems = [{ name: 'Privacy Policy', href: '/privacy' }];
-
-export interface MenuLinkProps {
-  href: string;
-  isCurrent?: boolean;
-  children: ReactNode;
-}
-
-const MenuLink = forwardRef(
-  (
-    { href, children, isCurrent, ...rest }: MenuLinkProps,
-    ref: LegacyRef<HTMLAnchorElement>
-  ) => (
-    <a
-      href={href}
-      ref={ref}
-      className={clsx(
-        'group flex w-full items-center px-4 py-2 text-sm text-neutral-900 hover:bg-neutral-200 dark:text-neutral-50 dark:hover:bg-neutral-700',
-        isCurrent
-          ? '!text-cyan-500 hover:!text-neutral-900 dark:!text-violet-400 dark:hover:!text-neutral-50'
-          : ''
-      )}
-      aria-current={isCurrent ? 'page' : undefined}
-      {...rest}
-    >
-      {children}
-    </a>
-  )
-);
-MenuLink.displayName = 'MenuLink';
 
 export interface NavMenuProps {
   className?: string;
@@ -88,9 +59,18 @@ export function NavMenu({ className }: NavMenuProps) {
           <div className="py-1">
             {menuItems.map(({ name, href }) => (
               <Menu.Item key={name}>
-                <MenuLink href={href} isCurrent={isCurrentRoute(href)}>
+                <NavLink
+                  to={href}
+                  className={clsx(
+                    'group flex w-full items-center px-4 py-2 text-sm text-neutral-900 hover:bg-neutral-200 dark:text-neutral-50 dark:hover:bg-neutral-700',
+                    isCurrentRoute(href)
+                      ? '!text-cyan-500 hover:!text-neutral-900 dark:!text-violet-400 dark:hover:!text-neutral-50'
+                      : ''
+                  )}
+                  aria-current={isCurrentRoute(href) ? 'page' : undefined}
+                >
                   {name}
-                </MenuLink>
+                </NavLink>
               </Menu.Item>
             ))}
           </div>

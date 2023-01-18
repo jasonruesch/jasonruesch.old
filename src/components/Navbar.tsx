@@ -1,5 +1,6 @@
 import { Disclosure } from '@headlessui/react';
 import { Bars3CenterLeftIcon, XMarkIcon } from '@heroicons/react/24/outline';
+import { NavLink } from 'react-router-dom';
 import { GitHubLink } from './GitHubLink';
 import { DisclosureRenderPropArg } from './Header';
 import { LogoImage } from './LogoImage';
@@ -36,12 +37,12 @@ export function Navbar({
         </div>
 
         <div className="flex w-full items-center justify-center sm:justify-start">
-          <a href="/" className="flex items-center">
+          <NavLink to="/" className="flex items-center">
             <LogoImage className="h-10 w-10 lg:mr-2" />
             <span className="hidden font-display text-3xl font-bold lg:inline">
               Jason Ruesch
             </span>
-          </a>
+          </NavLink>
           <Nav className="mx-8 hidden sm:block" />
         </div>
 

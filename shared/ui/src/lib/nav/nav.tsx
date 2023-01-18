@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import { NavLink } from 'react-router-dom';
 
 const navItems = [
   { name: 'Home', href: '/' },
@@ -22,8 +23,8 @@ export function Nav({ currentPath }: NavProps) {
   return (
     <nav className="space-x-8">
       {navItems.map(({ name, href }) => (
-        <a
-          href={href}
+        <NavLink
+          to={href}
           key={name}
           className={clsx(
             'inline-flex items-center border-b-2 px-1 pb-2 pt-3 text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-50',
@@ -33,7 +34,7 @@ export function Nav({ currentPath }: NavProps) {
           )}
         >
           {name}
-        </a>
+        </NavLink>
       ))}
     </nav>
   );

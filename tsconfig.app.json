@@ -5,7 +5,8 @@
     "types": ["node"],
     "paths": {
       "@/components": ["src/components/index.ts"]
-    }
+    },
+    "resolveJsonModule": true
   },
   "files": [
     "./node_modules/@nrwl/react/typings/cssmodule.d.ts",

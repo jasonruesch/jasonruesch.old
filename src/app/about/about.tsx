@@ -1,4 +1,5 @@
 import { ProfileImage } from '@/components';
+import { NavLink } from 'react-router-dom';
 
 /* eslint-disable-next-line */
 export interface AboutProps {}
@@ -30,13 +31,13 @@ export function About(props: AboutProps) {
             out.
           </p>
 
-          <a
-            href="/contact"
+          <NavLink
+            to="/contact"
             className="block font-medium text-cyan-500 hover:text-cyan-600 dark:text-violet-400 dark:hover:text-violet-500"
           >
             Get in touch
             <span aria-hidden="true"> &rarr;</span>
-          </a>
+          </NavLink>
         </div>
       </div>
     </div>

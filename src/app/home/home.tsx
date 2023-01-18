@@ -1,6 +1,7 @@
 import { ChevronRightIcon } from '@heroicons/react/24/outline';
 import { motion, useAnimation, Variants } from 'framer-motion';
 import { useRef, useCallback, useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
 import { ProfileImage } from '../../components/ProfileImage';
 
 /* eslint-disable-next-line */
@@ -62,23 +63,24 @@ export function Home(props: HomeProps) {
           Web Development and Design
         </h1>
 
-        <motion.a
-          href="/about"
-          onHoverStart={() => handleHoverStart()}
-          onHoverEnd={() => handleHoverEnd()}
-          aria-label="Learn more about me"
-          className="mx-auto flex w-24 cursor-pointer justify-end text-sm font-medium text-cyan-500 hover:text-cyan-600 dark:text-violet-400 dark:hover:text-violet-500"
-        >
+        <NavLink to="/about">
           <motion.div
-            ref={el}
-            initial="initial"
-            animate={controls}
-            variants={variants}
-            className="w-12 -translate-x-6"
+            onHoverStart={() => handleHoverStart()}
+            onHoverEnd={() => handleHoverEnd()}
+            aria-label="Learn more about me"
+            className="mx-auto flex w-24 cursor-pointer justify-end text-sm font-medium text-cyan-500 hover:text-cyan-600 dark:text-violet-400 dark:hover:text-violet-500"
           >
-            <ChevronRightIcon className="h-12 w-12" aria-hidden="true" />
+            <motion.div
+              ref={el}
+              initial="initial"
+              animate={controls}
+              variants={variants}
+              className="w-12 -translate-x-6"
+            >
+              <ChevronRightIcon className="h-12 w-12" aria-hidden="true" />
+            </motion.div>
           </motion.div>
-        </motion.a>
+        </NavLink>
       </div>
     </div>
   );
