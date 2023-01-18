@@ -5,6 +5,7 @@ import Contact from './contact/contact';
 import { useEffect, useState } from 'react';
 import { Beams, Header, Navbar, PageTransitions } from '@jasonruesch/shared/ui';
 import Privacy from './privacy/privacy';
+import { ThemeProvider } from 'next-themes';
 
 export function App() {
   const [isHydrated, setIsHydrated] = useState(false);
@@ -15,7 +16,11 @@ export function App() {
   const location = useLocation();
 
   return !isHydrated ? null : (
-    <>
+    <ThemeProvider
+      defaultTheme="system"
+      attribute="class"
+      // forcedTheme={pageProps.theme || null}
+    >
       <Header className="z-30">
         {(disclosureRenderPropArg) => (
           <Navbar
@@ -37,7 +42,7 @@ export function App() {
           </div>
         </main>
       </PageTransitions>
-    </>
+    </ThemeProvider>
   );
 }
 

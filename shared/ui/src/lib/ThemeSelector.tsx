@@ -1,32 +1,32 @@
-// import { Fragment, useEffect } from 'react';
-import { Menu } from '@headlessui/react';
-// import {
-//   SunIcon,
-//   MoonIcon,
-//   ComputerDesktopIcon,
-// } from '@heroicons/react/24/solid';
+import { Fragment, useEffect } from 'react';
+import { Menu, Transition } from '@headlessui/react';
+import {
+  SunIcon,
+  MoonIcon,
+  ComputerDesktopIcon,
+} from '@heroicons/react/24/solid';
 import {
   SunIcon as SunIconOutline,
   MoonIcon as MoonIconOutline,
 } from '@heroicons/react/24/outline';
 import clsx from 'clsx';
+import { useTheme } from 'next-themes';
 
 export interface ThemeSelectorProps {
   className?: string;
 }
 
 export function ThemeSelector({ className }: ThemeSelectorProps) {
-  // const { resolvedTheme, theme, setTheme, forcedTheme } = useTheme();
+  const { resolvedTheme, theme, setTheme, forcedTheme } = useTheme();
 
-  // useEffect(() => {
-  //   const themeColor = document.head.querySelector(
-  //     'meta[name="theme-color"]'
-  //   ) as HTMLMetaElement;
-  //   themeColor.content = resolvedTheme === 'dark' ? '#262626' : '#f5f5f5';
-  // }, [resolvedTheme]);
+  useEffect(() => {
+    const themeColor = document.head.querySelector(
+      'meta[name="theme-color"]'
+    ) as HTMLMetaElement;
+    themeColor.content = resolvedTheme === 'dark' ? '#262626' : '#f5f5f5';
+  }, [resolvedTheme]);
 
-  // return forcedTheme ? null : (
-  return (
+  return forcedTheme ? null : (
     <Menu
       as="div"
       className={clsx(
@@ -39,9 +39,9 @@ export function ThemeSelector({ className }: ThemeSelectorProps) {
           className={({ open }) =>
             clsx(
               'rounded-md p-2',
-              // theme !== 'system' ?
-              'text-cyan-500 hover:text-neutral-900 dark:text-violet-400 dark:hover:text-neutral-50',
-              // : '',
+              theme !== 'system'
+                ? 'text-cyan-500 hover:text-neutral-900 dark:text-violet-400 dark:hover:text-neutral-50'
+                : '',
               open ? '!text-neutral-900 dark:!text-neutral-50' : ''
             )
           }
@@ -55,7 +55,7 @@ export function ThemeSelector({ className }: ThemeSelectorProps) {
         </Menu.Button>
       </div>
 
-      {/* <Transition
+      <Transition
         as={Fragment}
         enter="transition ease-out duration-100"
         enterFrom="transform opacity-0 scale-95"
@@ -134,7 +134,7 @@ export function ThemeSelector({ className }: ThemeSelectorProps) {
             </Menu.Item>
           </div>
         </Menu.Items>
-      </Transition> */}
+      </Transition>
     </Menu>
   );
 }

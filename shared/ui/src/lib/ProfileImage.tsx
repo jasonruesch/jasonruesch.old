@@ -1,6 +1,7 @@
 import clsx from 'clsx';
-// import { useEffect, useState } from 'react';
-// import profileImage from '../assets/jasonruesch-512.png';
+import { useTheme } from 'next-themes';
+import { useEffect, useState } from 'react';
+import profileImage from '../assets/jasonruesch-512.png';
 import profileDarkImage from '../assets/jasonruesch-dark-512.png';
 
 export interface ProfileImageProps {
@@ -9,12 +10,12 @@ export interface ProfileImageProps {
 }
 
 export function ProfileImage({ className, large = false }: ProfileImageProps) {
-  // const { resolvedTheme } = useTheme();
-  // const [isDark, setIsDark] = useState(resolvedTheme === 'dark');
+  const { resolvedTheme } = useTheme();
+  const [isDark, setIsDark] = useState(resolvedTheme === 'dark');
 
-  // useEffect(() => {
-  //   setIsDark(resolvedTheme === 'dark');
-  // }, [resolvedTheme]);
+  useEffect(() => {
+    setIsDark(resolvedTheme === 'dark');
+  }, [resolvedTheme]);
 
   return (
     <figure
@@ -24,11 +25,7 @@ export function ProfileImage({ className, large = false }: ProfileImageProps) {
         className
       )}
     >
-      <img
-        // src={isDark ? profileDarkImage : profileImage}
-        src={profileDarkImage}
-        alt="Jason Ruesch"
-      />
+      <img src={isDark ? profileDarkImage : profileImage} alt="Jason Ruesch" />
     </figure>
   );
 }

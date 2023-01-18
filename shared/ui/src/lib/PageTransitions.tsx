@@ -90,7 +90,7 @@ export const PageTransitions = ({
     <div
       className="after:fixed after:inset-0 after:-z-[1] after:block after:h-full after:w-full after:bg-gradient-to-b
       after:from-neutral-100 after:via-cyan-500 after:to-fuchsia-500
-      dark:after:from-neutral-800 dark:after:via-violet-400 dark:after:to-teal-400"
+      dark:after:from-neutral-800 dark:after:via-violet-400 dark:after:to-teal-400 overflow-hidden"
     >
       <AnimatePresence
         initial={false}

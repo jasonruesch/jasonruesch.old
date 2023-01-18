@@ -54,6 +54,7 @@
     "clsx": "^1.2.1",
     "formik": "^2.2.9",
     "framer-motion": "^8.4.6",
+    "next-themes": "^0.2.1",
     "pwa-asset-generator": "^6.2.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
