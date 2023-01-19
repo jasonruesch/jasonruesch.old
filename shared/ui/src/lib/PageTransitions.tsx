@@ -10,59 +10,64 @@ import { useLocation } from 'react-router-dom';
 const DURATION = 0.4;
 const DELAY = 0.5;
 const SCALE = 0.6;
+const BORDER_RADIUS = '16px';
 
-const pageAdjustment = {
-  height: '100vh',
-  overflow: 'hidden',
-};
-const pageReset = {
-  height: 'auto',
-  overflow: 'visible',
-};
 const variants: Variants = {
   in: {
-    ...pageAdjustment,
+    height: '100vh',
+    // width: '100vh',
+    overflow: 'hidden',
     scale: SCALE,
-    x: '100%',
+    opacity: 0,
+    originX: 0.5,
+    x: '100vw',
+    borderRadius: BORDER_RADIUS,
     transition: {
       duration: 0,
     },
   },
   center: {
+    opacity: 1,
     x: 0,
     transition: {
       duration: DURATION,
     },
   },
   scaleUp: {
+    // width: 'auto',
     scale: 1,
+    borderRadius: 0,
     transition: {
       duration: DURATION,
       delay: DELAY,
     },
   },
   resetPage: {
-    ...pageReset,
+    height: 'auto',
+    overflow: 'visible',
     transition: {
-      duration: 0,
+      duration: 0.1,
       delay: DURATION + DELAY,
     },
   },
   adjustPage: {
-    ...pageAdjustment,
+    height: '100vh',
+    overflow: 'hidden',
     transition: {
       duration: 0,
     },
   },
   scaleDown: {
+    // width: '100vh',
     scale: SCALE,
+    borderRadius: BORDER_RADIUS,
     transition: {
       duration: DURATION,
     },
   },
   out: {
     opacity: 0,
-    x: '-100%',
+    x: '-100vw',
     transition: {
       duration: DURATION,
       delay: DELAY,
@@ -99,12 +104,12 @@ export const PageTransitions = ({
       >
         <motion.div
           id="page"
-          className={className}
           key={route}
-          variants={!shouldReduceMotion ? variants : undefined}
+          className={className}
           initial="in"
           animate={['center', 'scaleUp', 'resetPage']}
           exit={['adjustPage', 'scaleDown', 'out']}
+          variants={!shouldReduceMotion ? variants : undefined}
           onAnimationComplete={(definition) => {
             if (definition === 'resetPage') {
               setTimeout(() => {
