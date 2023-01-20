@@ -1,8 +1,14 @@
 name: Automatically Merge Dependabot PRs
 
 on:
+  push:
+    branches:
+      - main
   pull_request:
   workflow_dispatch:
+    inputs:
+      pr-number:
+        required: true
 
 jobs:
   test:
@@ -17,8 +23,11 @@ jobs:
   automerge:
     needs: test
     runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      contents: write
     steps:
-      - uses: fastify/github-action-merge-dependabot@v1
+      - uses: fastify/github-action-merge-dependabot@v3
         if: ${{ github.actor == 'dependabot[bot]' && github.event_name == 'pull_request' }}
         with:
           github-token: ${{secrets.github_token}}
