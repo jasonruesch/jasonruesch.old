@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "nx serve",
+    "start": "vercel dev --listen 4200",
     "build": "nx build",
     "test": "nx test"
   },
@@ -37,6 +37,7 @@
     "eslint-plugin-react": "7.31.11",
     "eslint-plugin-react-hooks": "4.6.0",
     "jsdom": "~20.0.3",
+    "maildev": "^2.0.5",
     "nx": "15.5.1",
     "postcss": "8.4.19",
     "prettier": "^2.6.2",

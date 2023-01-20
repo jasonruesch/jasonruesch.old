@@ -1,11 +1,19 @@
-import nodemailer from 'nodemailer';
+import * as nodemailer from 'nodemailer';
 import { join, resolve } from 'path';
 import { readFileSync } from 'fs';
-import handlebars from 'handlebars';
+import * as handlebars from 'handlebars';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default async function handler(request: any, response: any) {
   const body = request.body;
+
+  if (!body) {
+    return response
+      .status(400)
+      .json({ error: 'No email values were provided' });
+  }
+
+  console.log(process.env.SMTP_HOST, process.env.SMTP_PORT);
 
   try {
     const transport = nodemailer.createTransport({
@@ -20,12 +28,10 @@ export default async function handler(request: any, response: any) {
 
     const templateName = body.template;
     const templateFile = resolve(
-      join(process.cwd(), 'templates/emails'),
+      join(process.cwd(), 'public/templates/emails'),
       `${templateName.toLowerCase()}.html`
     );
-
-    console.debug('templateFile', templateFile);
-
+    console.log('templateFile', templateFile);
     const templateSource = readFileSync(templateFile, 'utf8');
     const template = handlebars.compile(templateSource);
     const html = template({
@@ -43,15 +49,11 @@ export default async function handler(request: any, response: any) {
     };
 
     const info = await transport.sendMail(mailOptions);
-
     console.debug('Message sent: %s', info.messageId);
-
-    return response.status(200).json({ error: '' });
-  } catch (error) {
+    return response.status(200).json({ message: 'OK' });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (error: any) {
     console.error(error);
-
-    return response
-      .status(error.statusCode || 500)
-      .json({ error: error.message });
+    return response.status(500).json({ error: error.message });
   }
 }
