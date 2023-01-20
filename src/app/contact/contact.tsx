@@ -240,14 +240,15 @@ export function Contact(props: ContactProps) {
         </form>
       </div>
 
-      {notification && (
-        <Notification
-          type={notification.type}
-          onHide={() => setNotification(undefined)}
-        >
-          {notification.message}
-        </Notification>
-      )}
+      {/* {notification && ( */}
+      <Notification
+        show={!!notification}
+        type={notification?.type}
+        onHide={() => setNotification(undefined)}
+      >
+        {notification?.message}
+      </Notification>
+      {/* )} */}
     </div>
   );
 }

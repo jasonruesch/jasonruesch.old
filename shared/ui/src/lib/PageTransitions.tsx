@@ -5,7 +5,7 @@ import {
   Variants,
 } from 'framer-motion';
 import { ReactNode } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigationType } from 'react-router-dom';
 
 const DURATION = 0.4;
 const DELAY = 0.5;
@@ -13,19 +13,19 @@ const SCALE = 0.6;
 const BORDER_RADIUS = '16px';
 
 const variants: Variants = {
-  in: {
+  in: (shouldSlideRight) => ({
     height: '100vh',
     // width: '100vh',
     overflow: 'hidden',
     scale: SCALE,
     opacity: 0,
     originX: 0.5,
-    x: '100vw',
+    x: shouldSlideRight ? '-100vw' : '100vw',
     borderRadius: BORDER_RADIUS,
     transition: {
       duration: 0,
     },
-  },
+  }),
   center: {
     opacity: 1,
     x: 0,
@@ -65,14 +65,14 @@ const variants: Variants = {
       duration: DURATION,
     },
   },
-  out: {
+  out: (shouldSlideRight) => ({
     opacity: 0,
-    x: '-100vw',
+    x: shouldSlideRight ? '100vw' : '-100vw',
     transition: {
       duration: DURATION,
       delay: DELAY,
     },
-  },
+  }),
 };
 
 export interface PageTransitionsProps {
@@ -88,8 +88,10 @@ export const PageTransitions = ({
   children,
   className,
 }: PageTransitionsProps) => {
-  const { pathname: route } = useLocation();
   const shouldReduceMotion = useReducedMotion();
+  const { pathname: route } = useLocation();
+  const navigationType = useNavigationType();
+  const shouldSlideRight = navigationType === 'POP';
 
   return (
     <div
@@ -106,6 +108,7 @@ export const PageTransitions = ({
           id="page"
           key={route}
           className={className}
+          custom={shouldSlideRight}
           initial="in"
           animate={['center', 'scaleUp', 'resetPage']}
           exit={['adjustPage', 'scaleDown', 'out']}

@@ -9,34 +9,35 @@ export type NotificatonType = 'success' | 'error';
 export interface NotificationProps {
   children: ReactNode;
   className?: string;
-  type: NotificatonType;
+  show: boolean;
+  type?: NotificatonType;
   onHide: () => void;
 }
 
 export function Notification({
   children,
   className,
+  show,
   type,
   onHide,
 }: NotificationProps) {
   // Automatically hide the notification after 2 seconds, unless the user hovers over it
-  let timer: NodeJS.Timeout;
-
-  const startTimer = () => {
-    timer = setTimeout(() => {
-      onHide();
-    }, 2000);
-  };
-
-  const pauseTimer = () => {
-    clearTimeout(timer);
-  };
-
-  startTimer();
+  // let timer: NodeJS.Timeout;
+  // const clearTimer = () => {
+  //   clearTimeout(timer);
+  // };
+  // const startTimer = () => {
+  //   timer = setTimeout(() => {
+  //     onHide();
+  //   }, 2000);
+  // };
+  // TODO: Start timer when show changes to true,
+  // and clear timer when show changes to false
+  // startTimer();
 
   return createPortal(
     <Transition
-      show
+      show={show}
       as={Fragment}
       enter="transform ease-out duration-300 transition"
       enterFrom="translate-y-2 opacity-0 sm:translate-y-0 sm:translate-x-2"
@@ -49,12 +50,12 @@ export function Notification({
         className={`pointer-events-auto w-full max-w-sm overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 dark:shadow-black dark:ring-opacity-50 ${
           type === 'error' ? 'bg-red-500 text-white' : ''
         } ${type === 'success' ? 'bg-green-500 text-white' : ''} ${className}`}
-        onMouseEnter={() => {
-          pauseTimer();
-        }}
-        onMouseLeave={() => {
-          startTimer();
-        }}
+        // onMouseEnter={() => {
+        //   clearTimer();
+        // }}
+        // onMouseLeave={() => {
+        //   startTimer();
+        // }}
       >
         <div className="p-4">
           <div className="flex items-center">
