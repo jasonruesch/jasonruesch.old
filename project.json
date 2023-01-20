@@ -22,9 +22,7 @@
     },
     "serve": {
       "executor": "@nrwl/vite:dev-server",
-      "dependsOn": [
-        { "projects": "dependencies", "target": "build", "params": "forward" }
-      ],
+      "dependsOn": [{ "projects": "dependencies", "target": "build" }],
       "defaultConfiguration": "development",
       "options": {
         "buildTarget": "jasonruesch:build"

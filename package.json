@@ -3,12 +3,12 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "vercel dev --listen 4200",
+    "start": "vercel dev --local-config ./vercel.local.json --listen 4200",
     "serve": "nx serve",
     "build": "nx build",
     "build:emails": "nx build emails --skip-nx-cache",
     "test": "nx test",
-    "maildev": "maildev"
+    "maildev": "maildev --ip 127.0.0.1"
   },
   "private": true,
   "devDependencies": {

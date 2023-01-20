@@ -1,10 +1,10 @@
 {
   "framework": "vite",
   "outputDirectory": "dist/jasonruesch",
-  "rewrites": [
+  "routes": [
     {
-      "source": "/((?!api/.*).*)",
-      "destination": "/index.html"
+      "src": "/((?!api/.*).*)",
+      "dest": "/"
     }
   ],
   "devCommand": "nx serve --port $PORT"

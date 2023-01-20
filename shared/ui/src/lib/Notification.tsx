@@ -32,6 +32,8 @@ export function Notification({
     clearTimeout(timer);
   };
 
+  startTimer();
+
   return createPortal(
     <Transition
       show

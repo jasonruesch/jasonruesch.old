@@ -13,7 +13,9 @@ export default async function handler(request: any, response: any) {
       .json({ error: 'No email values were provided' });
   }
 
-  console.log(process.env.SMTP_HOST, process.env.SMTP_PORT);
+  console.debug(
+    `Connecting to ${process.env.SMTP_HOST}:${process.env.SMTP_PORT}`
+  );
 
   try {
     const transport = nodemailer.createTransport({
@@ -31,7 +33,9 @@ export default async function handler(request: any, response: any) {
       join(process.cwd(), 'public/templates/emails'),
       `${templateName.toLowerCase()}.html`
     );
-    console.log('templateFile', templateFile);
+
+    console.debug('Using template file: %s', templateFile);
+
     const templateSource = readFileSync(templateFile, 'utf8');
     const template = handlebars.compile(templateSource);
     const html = template({
@@ -41,15 +45,17 @@ export default async function handler(request: any, response: any) {
     });
 
     const mailOptions = {
-      from: 'portfolio@jasonruesch.dev',
+      from: 'noreply@jasonruesch.dev',
       to: ['jason.ruesch@me.com'],
-      subject: `[${templateName.toUpperCase()}] Portfolio`,
+      subject: `[${templateName.toUpperCase()}] Jason Ruesch`,
       text: body.message,
       html,
     };
 
     const info = await transport.sendMail(mailOptions);
+
     console.debug('Message sent: %s', info.messageId);
+
     return response.status(200).json({ message: 'OK' });
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
