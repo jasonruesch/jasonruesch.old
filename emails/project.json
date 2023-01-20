@@ -1,0 +1,32 @@
+{
+  "name": "emails",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "./emails/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "defaultConfiguration": "production",
+      "options": {
+        "command": "maizzle build"
+      },
+      "configurations": {
+        "development": {},
+        "production": {
+          "command": "maizzle build production && shx cp -r dist/emails/* public/templates/emails/"
+        }
+      }
+    },
+    "serve": {
+      "executor": "nx:run-commands",
+      "defaultConfiguration": "development",
+      "options": {
+        "command": "maizzle serve"
+      },
+      "configurations": {
+        "development": {}
+      }
+    }
+  },
+  "tags": []
+}

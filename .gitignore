@@ -37,3 +37,10 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# Vercel
+.vercel
+
+# Maizzle
+**/public/templates/emails/*
+!**/public/templates/emails/README.md
