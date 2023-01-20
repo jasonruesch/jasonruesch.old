@@ -19,6 +19,19 @@ export function Notification({
   type,
   onHide,
 }: NotificationProps) {
+  // Automatically hide the notification after 2 seconds, unless the user hovers over it
+  let timer: NodeJS.Timeout;
+
+  const startTimer = () => {
+    timer = setTimeout(() => {
+      onHide();
+    }, 2000);
+  };
+
+  const pauseTimer = () => {
+    clearTimeout(timer);
+  };
+
   return createPortal(
     <Transition
       show
@@ -34,6 +47,12 @@ export function Notification({
         className={`pointer-events-auto w-full max-w-sm overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 dark:shadow-black dark:ring-opacity-50 ${
           type === 'error' ? 'bg-red-500 text-white' : ''
         } ${type === 'success' ? 'bg-green-500 text-white' : ''} ${className}`}
+        onMouseEnter={() => {
+          pauseTimer();
+        }}
+        onMouseLeave={() => {
+          startTimer();
+        }}
       >
         <div className="p-4">
           <div className="flex items-center">
