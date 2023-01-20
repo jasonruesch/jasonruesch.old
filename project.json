@@ -22,6 +22,9 @@
     },
     "serve": {
       "executor": "@nrwl/vite:dev-server",
+      "dependsOn": [
+        { "projects": "dependencies", "target": "build", "params": "forward" }
+      ],
       "defaultConfiguration": "development",
       "options": {
         "buildTarget": "jasonruesch:build"
@@ -53,5 +56,6 @@
       }
     }
   },
-  "tags": []
+  "tags": [],
+  "implicitDependencies": ["emails"]
 }
