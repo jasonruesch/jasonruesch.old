@@ -10,10 +10,10 @@
   <p>Quickly build HTML emails with utility-first CSS</p>
 <div>
 
-  [![Version][npm-version-shield]][npm]
-  [![Build][github-ci-shield]][github-ci]
-  [![Downloads][npm-stats-shield]][npm-stats]
-  [![License][license-shield]][license]
+[![Version][npm-version-shield]][npm]
+[![Build][github-ci-shield]][github-ci]
+[![Downloads][npm-stats-shield]][npm-stats]
+[![License][license-shield]][license]
 
   </div>
 </div>
