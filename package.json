@@ -3,8 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "vercel dev --local-config ./vercel.local.json --listen 4200",
-    "serve": "nx serve",
+    "start": "vercel dev --listen 4200",
     "build": "nx build",
     "build:emails": "nx build emails --skip-nx-cache",
     "test": "nx test",

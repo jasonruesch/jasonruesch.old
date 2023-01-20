@@ -4,7 +4,13 @@
   "rewrites": [
     {
       "source": "/((?!api/.*).*)",
-      "destination": "/index.html"
+      "destination": "/index.html",
+      "has": [
+        {
+          "type": "host",
+          "value": "(?!localhost).*"
+        }
+      ]
     }
   ],
   "devCommand": "nx serve --port $PORT"
