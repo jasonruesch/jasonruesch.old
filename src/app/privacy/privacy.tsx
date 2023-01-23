@@ -105,7 +105,7 @@ export function Privacy(props: PrivacyProps) {
               contents below to find the section you are looking for. You can
               also{' '}
               <a
-                href="#toc"
+                href="/privacy#toc"
                 className="font-medium text-cyan-500 hover:text-cyan-600 dark:text-violet-400 dark:hover:text-violet-500"
               >
                 click here to go directly to our table of contents.
@@ -119,7 +119,7 @@ export function Privacy(props: PrivacyProps) {
             you make, and the products and features you use.{' '}
             <a
               className="cursor-pointer text-cyan-500 dark:text-violet-400"
-              href="#personalinfo"
+              href="/privacy#personalinfo"
             >
               Click here to learn more.
             </a>
@@ -140,7 +140,7 @@ export function Privacy(props: PrivacyProps) {
             We process your information only when we have a valid legal reason
             to do so.{' '}
             <a
-              href="#infouse"
+              href="/privacy#infouse"
               className="font-medium text-cyan-500 hover:text-cyan-600 dark:text-violet-400 dark:hover:text-violet-500"
             >
               Click here to learn more.
@@ -151,7 +151,7 @@ export function Privacy(props: PrivacyProps) {
             information? We may share information in specific situations and
             with specific third parties.{' '}
             <a
-              href="#whoshare"
+              href="/privacy#whoshare"
               className="font-medium text-cyan-500 hover:text-cyan-600 dark:text-violet-400 dark:hover:text-violet-500"
             >
               Click here to learn more.
@@ -167,7 +167,7 @@ export function Privacy(props: PrivacyProps) {
             to defeat our security and improperly collect, access, steal, or
             modify your information.{' '}
             <a
-              href="#infosafe"
+              href="/privacy#infosafe"
               className="font-medium text-cyan-500 hover:text-cyan-600 dark:text-violet-400 dark:hover:text-violet-500"
             >
               Click here to learn more.
@@ -178,7 +178,7 @@ export function Privacy(props: PrivacyProps) {
             geographically, the applicable privacy law may mean you have certain
             rights regarding your personal information.{' '}
             <a
-              href="#privacyrights"
+              href="/privacy#privacyrights"
               className="font-medium text-cyan-500 hover:text-cyan-600 dark:text-violet-400 dark:hover:text-violet-500"
             >
               Click here to learn more.
@@ -202,7 +202,7 @@ export function Privacy(props: PrivacyProps) {
             Want to learn more about what Jason Ruesch does with any information
             we collect?{' '}
             <a
-              href="#toc"
+              href="/privacy#toc"
               className="font-medium text-cyan-500 hover:text-cyan-600 dark:text-violet-400 dark:hover:text-violet-500"
             >
               Click here to review the notice in full.
@@ -443,7 +443,7 @@ export function Privacy(props: PrivacyProps) {
               consent at any time by contacting us by using the contact details
               provided in the section{' '}
               <a
-                href="#contact"
+                href="/privacy#contact"
                 className="font-medium text-cyan-500 hover:text-cyan-600 dark:text-violet-400 dark:hover:text-violet-500"
               >
                 &quot;HOW CAN YOU CONTACT US ABOUT THIS NOTICE?&quot;
