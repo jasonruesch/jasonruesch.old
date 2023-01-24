@@ -8,7 +8,7 @@ import { ReactNode, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import useWindowSize from './hooks/useWindowSize';
 
-const MULTIPLIER = 5;
+const MULTIPLIER = 1;
 const DURATION = 0.7 * MULTIPLIER;
 
 const variants: Variants = {
