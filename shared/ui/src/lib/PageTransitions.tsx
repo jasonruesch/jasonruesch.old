@@ -8,76 +8,91 @@ import { ReactNode, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import useWindowSize from './hooks/useWindowSize';
 
-const MULTIPLIER = 1;
+const MULTIPLIER = 5;
+const DURATION = 0.7 * MULTIPLIER;
 
 const variants: Variants = {
-  hidden: ({ didNavigate }) =>
-    didNavigate
+  hidden: ({ windowSize, didNavigate }) => {
+    const height = Math.min(windowSize.width, windowSize.height);
+
+    return didNavigate
       ? {
-          x: '100vw',
+          x: `${windowSize.width}px`,
           opacity: 0,
           overflow: 'hidden',
-          height: '100vh',
-          width: '100vh',
-          scale: 0.6,
           borderRadius: '16px',
+          height: `${windowSize.height}px`,
+          width: `${height}px`,
+          scale: 0.6,
         }
-      : {},
-  enter: ({ windowSize, didNavigate }) =>
-    didNavigate
+      : {};
+  },
+  enter: ({ windowSize, didNavigate }) => {
+    const height = Math.min(windowSize.width, windowSize.height);
+    const centerX = windowSize.width / 2 - height / 2;
+
+    return didNavigate
       ? {
-          x: [
-            `${windowSize.width}px`,
-            `${windowSize.width / 2 - windowSize.height / 2}px`,
-            '0px',
-          ],
+          x: [`${windowSize.width}px`, `${centerX}px`, '0px'],
           opacity: 1,
           overflow: 'visible',
+          borderRadius: '0',
           height: 'auto',
           width: 'auto',
           scale: 1,
-          borderRadius: '0',
           transition: {
             x: {
               type: 'spring',
               stiffness: 300,
               damping: 30,
-              duration: 0.8 * MULTIPLIER,
+              duration: DURATION,
               times: [0, 0.5, 1],
             },
-            opacity: { duration: 0.2 * MULTIPLIER },
-            overflow: { delay: 0.8 * MULTIPLIER, duration: 0.1 },
-            height: { delay: 0.8 * MULTIPLIER, duration: 0.1 },
-            default: { delay: 0.4 * MULTIPLIER, duration: 0.4 * MULTIPLIER },
+            opacity: { duration: DURATION / 3 },
+            overflow: { delay: DURATION, duration: 0.1 },
+            borderRadius: { delay: DURATION, duration: 0.1 },
+            height: { delay: DURATION, duration: 0.1 },
+            width:
+              windowSize.width < windowSize.height
+                ? { delay: DURATION, duration: 0.1 }
+                : { delay: DURATION / 2, duration: DURATION / 2 },
+            default: { delay: DURATION / 2, duration: DURATION / 2 },
           },
         }
-      : {},
-  exit: ({ windowSize }) => ({
-    x: [
-      '0px',
-      `${windowSize.width / 2 - windowSize.height / 2}px`,
-      `-${windowSize.width}px`,
-    ],
-    opacity: 0,
-    overflow: 'hidden',
-    height: '100vh',
-    width: '100vh',
-    scale: 0.6,
-    borderRadius: '16px',
-    transition: {
-      x: {
-        type: 'spring',
-        stiffness: 300,
-        damping: 30,
-        duration: 0.8 * MULTIPLIER,
-        times: [0, 0.5, 1],
+      : {};
+  },
+  exit: ({ windowSize }) => {
+    const height = Math.min(windowSize.width, windowSize.height);
+    const centerX = windowSize.width / 2 - height / 2;
+
+    return {
+      x: ['0px', `${centerX}px`, `-${windowSize.width}px`],
+      opacity: 0,
+      overflow: 'hidden',
+      borderRadius: '16px',
+      height: `${windowSize.height}px`,
+      width: `${height}px`,
+      scale: 0.6,
+      transition: {
+        x: {
+          type: 'spring',
+          stiffness: 300,
+          damping: 30,
+          duration: DURATION,
+          times: [0, 0.5, 1],
+        },
+        opacity: { delay: 2 * (DURATION / 3), duration: DURATION / 3 },
+        overflow: { duration: 0 },
+        borderRadius: { duration: 0 },
+        height: { duration: 0 },
+        width:
+          windowSize.width < windowSize.height
+            ? { duration: 0 }
+            : { duration: DURATION / 2 },
+        default: { duration: DURATION / 2 },
       },
-      opacity: { delay: 0.6 * MULTIPLIER, duration: 0.2 * MULTIPLIER },
-      overflow: { duration: 0 },
-      height: { duration: 0 },
-      default: { duration: 0.4 * MULTIPLIER },
-    },
-  }),
+    };
+  },
 };
 
 export interface PageTransitionsProps {
