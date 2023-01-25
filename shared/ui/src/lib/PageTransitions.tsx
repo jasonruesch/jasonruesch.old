@@ -8,8 +8,7 @@ import { ReactNode, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import useWindowSize from './hooks/useWindowSize';
 
-const MULTIPLIER = 1;
-const DURATION = 0.7 * MULTIPLIER;
+const DURATION = 1; // seconds
 
 const variants: Variants = {
   hidden: ({ windowSize, didNavigate }) => {
@@ -42,9 +41,6 @@ const variants: Variants = {
           scale: 1,
           transition: {
             x: {
-              type: 'spring',
-              stiffness: 300,
-              damping: 30,
               duration: DURATION,
               times: [0, 0.5, 1],
             },
@@ -75,9 +71,6 @@ const variants: Variants = {
       scale: 0.6,
       transition: {
         x: {
-          type: 'spring',
-          stiffness: 300,
-          damping: 30,
           duration: DURATION,
           times: [0, 0.5, 1],
         },
