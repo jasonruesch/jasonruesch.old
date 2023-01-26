@@ -3,11 +3,12 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "vercel dev --listen 4200",
+    "start": "concurrently \"npm:maildev\" \"npm:serve:emails\" \"npm:serve\"",
+    "serve": "vercel dev --listen 4200",
     "build": "nx build",
-    "build:emails": "nx build emails --skip-nx-cache",
     "test": "nx test",
-    "maildev": "maildev --ip 127.0.0.1"
+    "serve:emails": "nx serve emails",
+    "maildev": "maildev --ip localhost"
   },
   "private": true,
   "devDependencies": {
@@ -30,6 +31,7 @@
     "@vitest/coverage-c8": "~0.25.8",
     "@vitest/ui": "^0.25.8",
     "autoprefixer": "10.4.13",
+    "concurrently": "^7.6.0",
     "cypress": "^12.2.0",
     "eslint": "~8.15.0",
     "eslint-config-prettier": "8.1.0",

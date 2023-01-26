@@ -13,7 +13,7 @@
       "configurations": {
         "development": {},
         "production": {
-          "command": "maizzle build production && shx cp -r dist/emails/* public/templates/emails/"
+          "command": "maizzle build production && shx cp -r dist/emails/* public/emails/"
         }
       }
     },

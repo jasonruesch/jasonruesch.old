@@ -31,9 +31,14 @@ export default async function handler(
       ignoreTLS: Boolean(process.env.SMTP_IGNORE_TLS || false),
     });
 
+    const templatesPath = join(
+      process.cwd(),
+      process.env.NODE_ENV === 'production' ? 'public' : 'dist',
+      'emails'
+    );
     const templateName = body.template;
     const templateFile = resolve(
-      join(process.cwd(), 'public/templates/emails'),
+      templatesPath,
       `${templateName.toLowerCase()}.html`
     );
 
@@ -48,8 +53,8 @@ export default async function handler(
     });
 
     const mailOptions = {
-      from: 'noreply@jasonruesch.dev',
-      to: ['jason.ruesch@me.com'],
+      from: '"No Reply" <noreply@jasonruesch.dev>',
+      to: ['"Jason Ruesch" <jason.ruesch@me.com>'],
       subject: `[${templateName.toUpperCase()}] Jason Ruesch`,
       text: body.message,
       html,

@@ -42,5 +42,5 @@ Thumbs.db
 .vercel
 
 # Maizzle
-**/public/templates/emails/*
-!**/public/templates/emails/README.md
+**/public/emails/*
+!**/public/emails/README.md
