@@ -1,6 +1,7 @@
 # This workflow will do a clean installation of node dependencies, cache/restore them and run tests
+# It will also automerge dependabot PRs
 
-name: Automatically Merge Dependabot PRs
+name: CI
 
 on:
   pull_request:
