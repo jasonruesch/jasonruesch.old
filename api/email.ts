@@ -4,10 +4,7 @@ import { join, resolve } from 'path';
 import { readFileSync } from 'fs';
 import * as handlebars from 'handlebars';
 
-export default async function handler(
-  request: VercelRequest,
-  response: VercelResponse
-) {
+export default async (request: VercelRequest, response: VercelResponse) => {
   const body = request.body;
 
   if (!body) {
@@ -68,6 +65,7 @@ export default async function handler(
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     console.error(error);
+
     return response.status(500).json({ error: error.message });
   }
-}
+};

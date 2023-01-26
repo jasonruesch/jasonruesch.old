@@ -13,5 +13,5 @@
       ]
     }
   ],
-  "devCommand": "nx serve --port $PORT"
+  "devCommand": "nx run jasonruesch:serve-dev --port $PORT"
 }

@@ -20,7 +20,7 @@
         }
       }
     },
-    "serve": {
+    "serve-dev": {
       "executor": "@nrwl/vite:dev-server",
       "defaultConfiguration": "development",
       "options": {
@@ -35,6 +35,16 @@
           "buildTarget": "jasonruesch:build:production",
           "hmr": false
         }
+      }
+    },
+    "serve": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "vercel dev --listen 4200"
+      },
+      "configurations": {
+        "development": {},
+        "production": {}
       }
     },
     "test": {

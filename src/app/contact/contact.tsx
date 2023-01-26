@@ -54,6 +54,15 @@ export function Contact(props: ContactProps) {
           },
           method: 'POST',
         });
+
+        // fetch('/api/sms', {
+        //   body: JSON.stringify({ ...values, template: 'contact' }),
+        //   headers: {
+        //     'Content-Type': 'application/json',
+        //   },
+        //   method: 'POST',
+        // })
+
         const { error } = await response.json();
 
         if (error) {
