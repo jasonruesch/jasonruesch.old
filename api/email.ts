@@ -1,10 +1,13 @@
+import { VercelRequest, VercelResponse } from '@vercel/node';
 import * as nodemailer from 'nodemailer';
 import { join, resolve } from 'path';
 import { readFileSync } from 'fs';
 import * as handlebars from 'handlebars';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default async function handler(request: any, response: any) {
+export default async function handler(
+  request: VercelRequest,
+  response: VercelResponse
+) {
   const body = request.body;
 
   if (!body) {
