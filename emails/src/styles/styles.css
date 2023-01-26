@@ -6,13 +6,8 @@
   :root {
     --color-primary: theme(colors.cyan.500);
     --color-secondary: theme(colors.fuchsia.500);
-  }
-
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --color-primary: theme(colors.violet.400);
-      --color-secondary: theme(colors.teal.400);
-    }
+    --color-dark-primary: theme(colors.violet.400);
+    --color-dark-secondary: theme(colors.teal.400);
   }
 
   * {
