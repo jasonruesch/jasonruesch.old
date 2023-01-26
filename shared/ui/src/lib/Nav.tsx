@@ -12,12 +12,12 @@ export interface NavProps {
 }
 
 export function Nav({ className }: NavProps) {
-  const { pathname: asPath } = useLocation();
+  const { pathname } = useLocation();
 
   const isCurrentRoute = (href: string): boolean => {
     return (
-      (href === '/' && asPath === '/') ||
-      (href !== '/' && asPath.startsWith(href))
+      (href === '/' && pathname === '/') ||
+      (href !== '/' && pathname.startsWith(href))
     );
   };
 

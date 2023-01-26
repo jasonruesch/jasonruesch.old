@@ -1,1 +1,2 @@
-export * from './SpinnerIcon';
+export * from './PuffLoader';
+export * from './ThreeDotsLoader';

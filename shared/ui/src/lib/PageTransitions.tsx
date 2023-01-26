@@ -4,74 +4,87 @@ import {
   useReducedMotion,
   Variants,
 } from 'framer-motion';
-import { ReactNode } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import useWindowSize from './hooks/useWindowSize';
 
-const DURATION = 0.4;
-const DELAY = 0.5;
-const SCALE = 0.6;
-const BORDER_RADIUS = '16px';
+const DURATION = 1; // seconds
 
 const variants: Variants = {
-  in: {
-    height: '100vh',
-    // width: '100vh',
-    overflow: 'hidden',
-    scale: SCALE,
-    opacity: 0,
-    originX: 0.5,
-    x: '100vw',
-    borderRadius: BORDER_RADIUS,
-    transition: {
-      duration: 0,
-    },
+  hidden: ({ windowSize, didNavigate }) => {
+    const height = Math.min(windowSize.width, windowSize.height);
+
+    return didNavigate
+      ? {
+          x: `${windowSize.width}px`,
+          opacity: 0,
+          overflow: 'hidden',
+          borderRadius: '16px',
+          height: `${windowSize.height}px`,
+          width: `${height}px`,
+          scale: 0.6,
+        }
+      : {};
   },
-  center: {
-    opacity: 1,
-    x: 0,
-    transition: {
-      duration: DURATION,
-    },
+  enter: ({ windowSize, didNavigate }) => {
+    const height = Math.min(windowSize.width, windowSize.height);
+    const centerX = windowSize.width / 2 - height / 2;
+
+    return didNavigate
+      ? {
+          x: [`${windowSize.width}px`, `${centerX}px`, '0px'],
+          opacity: 1,
+          overflow: 'visible',
+          borderRadius: '0',
+          height: 'auto',
+          width: 'auto',
+          scale: 1,
+          transition: {
+            x: {
+              duration: DURATION,
+              times: [0, 0.5, 1],
+            },
+            opacity: { duration: DURATION / 3 },
+            overflow: { delay: DURATION, duration: 0.1 },
+            borderRadius: { delay: DURATION, duration: 0.1 },
+            height: { delay: DURATION, duration: 0.1 },
+            width:
+              windowSize.width < windowSize.height
+                ? { delay: DURATION, duration: 0.1 }
+                : { delay: DURATION / 2, duration: DURATION / 2 },
+            default: { delay: DURATION / 2, duration: DURATION / 2 },
+          },
+        }
+      : {};
   },
-  scaleUp: {
-    // width: 'auto',
-    scale: 1,
-    borderRadius: 0,
-    transition: {
-      duration: DURATION,
-      delay: DELAY,
-    },
-  },
-  resetPage: {
-    height: 'auto',
-    overflow: 'visible',
-    transition: {
-      duration: 0.1,
-      delay: DURATION + DELAY,
-    },
-  },
-  adjustPage: {
-    height: '100vh',
-    overflow: 'hidden',
-    transition: {
-      duration: 0,
-    },
-  },
-  scaleDown: {
-    // width: '100vh',
-    scale: SCALE,
-    borderRadius: BORDER_RADIUS,
-    transition: {
-      duration: DURATION,
-    },
-  },
-  out: {
-    opacity: 0,
-    x: '-100vw',
-    transition: {
-      duration: DURATION,
-      delay: DELAY,
-    },
+  exit: ({ windowSize }) => {
+    const height = Math.min(windowSize.width, windowSize.height);
+    const centerX = windowSize.width / 2 - height / 2;
+
+    return {
+      x: ['0px', `${centerX}px`, `-${windowSize.width}px`],
+      opacity: 0,
+      overflow: 'hidden',
+      borderRadius: '16px',
+      height: `${windowSize.height}px`,
+      width: `${height}px`,
+      scale: 0.6,
+      transition: {
+        x: {
+          duration: DURATION,
+          times: [0, 0.5, 1],
+        },
+        opacity: { delay: 2 * (DURATION / 3), duration: DURATION / 3 },
+        overflow: { duration: 0 },
+        borderRadius: { duration: 0 },
+        height: { duration: 0 },
+        width:
+          windowSize.width < windowSize.height
+            ? { duration: 0 }
+            : { duration: DURATION / 2 },
+        default: { duration: DURATION / 2 },
+      },
+    };
   },
 };
 
@@ -88,8 +101,19 @@ export const PageTransitions = ({
   children,
   className,
 }: PageTransitionsProps) => {
-  const { pathname: route } = useLocation();
   const shouldReduceMotion = useReducedMotion();
+  const { pathname } = useLocation();
+  const [previousPathname, setPreviousPathname] = useState(pathname);
+  const [didNavigate, setDidNavigate] = useState(false);
+  const windowSize = useWindowSize();
+
+  useEffect(() => {
+    if (previousPathname !== pathname) {
+      setDidNavigate(true);
+    }
+
+    setPreviousPathname(pathname);
+  }, [pathname, previousPathname]);
 
   return (
     <div
@@ -98,24 +122,30 @@ export const PageTransitions = ({
       after:to-fuchsia-500 dark:after:from-neutral-800 dark:after:via-violet-400 dark:after:to-teal-400"
     >
       <AnimatePresence
-        initial={false}
+        initial={false} // Disabled for now because the animate keyframes are running when the page loads
         mode="wait"
         onExitComplete={() => window.scrollTo(0, 0)}
       >
         <motion.div
           id="page"
-          key={route}
+          key={pathname}
           className={className}
-          initial="in"
-          animate={['center', 'scaleUp', 'resetPage']}
-          exit={['adjustPage', 'scaleDown', 'out']}
+          custom={{
+            windowSize,
+            didNavigate,
+          }}
           variants={!shouldReduceMotion ? variants : undefined}
+          initial="hidden"
+          animate="enter"
+          exit="exit"
           onAnimationComplete={(definition) => {
-            if (definition === 'resetPage') {
+            if (definition === 'enter') {
               setTimeout(() => {
                 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
                 const page = document.getElementById('page')!;
                 page.style.transform = 'none';
+
+                setDidNavigate(false);
               }, 100);
             }
           }}

@@ -10,14 +10,14 @@ const navItems = [
 ];
 
 export function MobileNav() {
-  const { pathname: asPath } = useLocation();
+  const { pathname } = useLocation();
 
   return (
     <>
       {navItems.map((item) => {
         const isCurrent =
-          (item.href === '/' && asPath === '/') ||
-          (item.href !== '/' && asPath.startsWith(item.href));
+          (item.href === '/' && pathname === '/') ||
+          (item.href !== '/' && pathname.startsWith(item.href));
 
         return (
           <Disclosure.Button

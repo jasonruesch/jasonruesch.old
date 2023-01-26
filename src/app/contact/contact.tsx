@@ -3,7 +3,7 @@ import { ExclamationCircleIcon } from '@heroicons/react/24/solid';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import clsx from 'clsx';
-import { SpinnerIcon, Notification } from '@jasonruesch/shared/ui';
+import { PuffLoader, Notification } from '@jasonruesch/shared/ui';
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
@@ -228,7 +228,7 @@ export function Contact(props: ContactProps) {
               >
                 {isSubmitting ? (
                   <>
-                    <SpinnerIcon className="mr-3 h-4 w-4 fill-cyan-500 dark:fill-violet-400" />
+                    <PuffLoader className="mr-3 h-4 w-4" />
                     Sending...
                   </>
                 ) : (
