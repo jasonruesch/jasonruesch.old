@@ -17,7 +17,15 @@ export default async (request: VercelRequest, response: VercelResponse) => {
     `Connecting to ${process.env.SMTP_HOST}:${process.env.SMTP_PORT}`
   );
 
+  const isDevelopment = process.env.NODE_ENV === 'development';
+  const isProduction = process.env.NODE_ENV === 'production';
+
   try {
+    if (isDevelopment) {
+      // We add this setting to tell nodemailer the host isn't secure during dev
+      process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+    }
+
     const transport = nodemailer.createTransport({
       host: process.env.SMTP_HOST,
       port: Number(process.env.SMTP_PORT),
@@ -25,12 +33,11 @@ export default async (request: VercelRequest, response: VercelResponse) => {
         user: process.env.SMTP_USERNAME,
         pass: process.env.SMTP_PASSWORD,
       },
-      ignoreTLS: Boolean(process.env.SMTP_IGNORE_TLS || false),
     });
 
     const templatesPath = join(
       process.cwd(),
-      process.env.NODE_ENV === 'production' ? 'public' : 'dist',
+      isProduction ? 'public' : 'dist',
       'emails'
     );
     const templateName = body.template;

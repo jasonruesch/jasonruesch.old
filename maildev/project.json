@@ -7,7 +7,7 @@
     "serve": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "maildev --ip localhost"
+        "command": "maildev --web-ip localhost"
       },
       "configurations": {
         "development": {},
