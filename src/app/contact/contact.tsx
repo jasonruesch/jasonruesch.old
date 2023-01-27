@@ -3,7 +3,11 @@ import { ExclamationCircleIcon } from '@heroicons/react/24/solid';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import clsx from 'clsx';
-import { PuffLoader, Notification } from '@jasonruesch/shared/ui';
+import {
+  PuffLoader,
+  Notification,
+  LogoImageNeutral,
+} from '@jasonruesch/shared/ui';
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
@@ -85,8 +89,8 @@ export function Contact(props: ContactProps) {
   });
 
   return (
-    <div className="mx-auto grid h-full max-w-xl pt-16 pb-4 sm:place-items-center sm:py-20">
-      <div className="w-full">
+    <div className="mx-auto grid max-w-xl pt-16 pb-4 sm:h-full sm:place-items-center sm:py-20">
+      <div className="w-full pt-6">
         <h1>Get In Touch</h1>
         <form onSubmit={handleSubmit}>
           <div className="grid grid-cols-1 gap-x-4 sm:grid-cols-6">
@@ -247,6 +251,8 @@ export function Contact(props: ContactProps) {
             </div>
           </div>
         </form>
+
+        <LogoImageNeutral className="mx-auto my-6 h-12 w-12" />
       </div>
 
       {notification && (

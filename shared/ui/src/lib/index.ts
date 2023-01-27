@@ -2,6 +2,7 @@ export * from './Beams';
 export * from './GitHubLink';
 export * from './Header';
 export * from './LogoImage';
+export * from './LogoImageNeutral';
 export * from './MobileNav';
 export * from './Nav';
 export * from './NavMenu';

@@ -7,11 +7,15 @@
   .light {
     --color-primary: theme(colors.cyan.500);
     --color-secondary: theme(colors.fuchsia.500);
+    --color-primary-neutral: theme(colors.neutral.500);
+    --color-secondary-neutral: theme(colors.neutral.400);
   }
 
   .dark {
     --color-primary: theme(colors.violet.400);
     --color-secondary: theme(colors.teal.400);
+    --color-primary-neutral: theme(colors.neutral.400);
+    --color-secondary-neutral: theme(colors.neutral.500);
   }
 
   h1 {

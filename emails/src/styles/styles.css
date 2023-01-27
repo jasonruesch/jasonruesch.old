@@ -8,6 +8,10 @@
     --color-secondary: theme(colors.fuchsia.500);
     --color-dark-primary: theme(colors.violet.400);
     --color-dark-secondary: theme(colors.teal.400);
+    --color-primary-neutral: theme(colors.neutral.500);
+    --color-secondary-neutral: theme(colors.neutral.400);
+    --color-dark-primary-neutral: theme(colors.neutral.400);
+    --color-dark-secondary-neutral: theme(colors.neutral.500);
   }
 
   * {
