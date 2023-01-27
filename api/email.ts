@@ -57,7 +57,7 @@ export default async (request: VercelRequest, response: VercelResponse) => {
     });
 
     const mailOptions = {
-      from: '"No Reply" <noreply@jasonruesch.dev>',
+      from: '"Jason Ruesch" <noreply@jasonruesch.dev>',
       to: ['"Jason Ruesch" <jason.ruesch@me.com>'],
       subject: `[${templateName.toUpperCase()}] Jason Ruesch`,
       text: body.message,
