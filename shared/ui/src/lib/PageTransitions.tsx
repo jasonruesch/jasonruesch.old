@@ -54,6 +54,9 @@ const variants: Variants = {
                 : { delay: DURATION / 2, duration: DURATION / 2 },
             default: { delay: DURATION / 2, duration: DURATION / 2 },
           },
+          // transitionEnd: {
+          //   transform: 'none',
+          // },
         }
       : {};
   },
@@ -128,7 +131,7 @@ export const PageTransitions = ({
       >
         <motion.div
           id="page"
-          key={pathname}
+          key={`${pathname}-page`}
           className={className}
           custom={{
             windowSize,
@@ -152,6 +155,19 @@ export const PageTransitions = ({
         >
           {children}
         </motion.div>
+        {/* <motion.div
+          key={pathname}
+          className="absolute inset-0"
+          initial={{ zIndex: -10 }}
+          animate={{
+            zIndex: [-10, 30, 30],
+            transition: {
+              times: [0, 0.1, DURATION - 0.1],
+            },
+            transitionEnd: { zIndex: -10 },
+          }}
+          exit={{ zIndex: -10 }}
+        ></motion.div> */}
       </AnimatePresence>
     </div>
   );
