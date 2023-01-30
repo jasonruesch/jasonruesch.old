@@ -30,7 +30,7 @@
     "@vitest/ui": "^0.25.8",
     "autoprefixer": "10.4.13",
     "concurrently": "^7.6.0",
-    "cypress": "^12.2.0",
+    "cypress": "^12.4.1",
     "eslint": "~8.15.0",
     "eslint-config-prettier": "8.1.0",
     "eslint-plugin-cypress": "^2.10.3",
