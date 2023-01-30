@@ -6,8 +6,7 @@ import {
   Variants,
 } from 'framer-motion';
 import { useRef, useCallback, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
-import { ProfileImage } from '@jasonruesch/shared/ui';
+import { ProfileImage, NavLink } from '@jasonruesch/shared/ui';
 
 /* eslint-disable-next-line */
 export interface HomeProps {}
@@ -69,12 +68,14 @@ export function Home(props: HomeProps) {
           Web Development and Design
         </h1>
 
-        <NavLink to="/about">
+        <NavLink
+          to="/about"
+          aria-label="Learn more about me"
+          className="mx-auto flex w-24 cursor-pointer justify-end text-sm font-medium text-cyan-500 hover:text-cyan-600 dark:text-violet-400 dark:hover:text-violet-500"
+        >
           <motion.div
             onHoverStart={() => handleHoverStart()}
             onHoverEnd={() => handleHoverEnd()}
-            aria-label="Learn more about me"
-            className="mx-auto flex w-24 cursor-pointer justify-end text-sm font-medium text-cyan-500 hover:text-cyan-600 dark:text-violet-400 dark:hover:text-violet-500"
           >
             <motion.div
               ref={el}

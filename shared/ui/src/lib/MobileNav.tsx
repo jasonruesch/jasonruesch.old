@@ -1,6 +1,7 @@
 import { Disclosure } from '@headlessui/react';
 import clsx from 'clsx';
-import { NavLink, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import { NavLink } from './NavLink';
 
 const navItems = [
   { href: '/', name: 'Home' },

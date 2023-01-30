@@ -5,6 +5,7 @@ export * from './LogoImage';
 export * from './LogoImageNeutral';
 export * from './MobileNav';
 export * from './Nav';
+export * from './NavLink';
 export * from './NavMenu';
 export * from './Navbar';
 export * from './Notification';
