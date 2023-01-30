@@ -2,7 +2,8 @@ import { Fragment } from 'react';
 import { Menu, Transition } from '@headlessui/react';
 import { EllipsisVerticalIcon } from '@heroicons/react/24/outline';
 import clsx from 'clsx';
-import { NavLink, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import { NavLink } from './NavLink';
 
 const menuItems = [{ name: 'Privacy Policy', href: '/privacy' }];
 

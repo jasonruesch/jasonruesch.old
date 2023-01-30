@@ -26,7 +26,7 @@ export function App() {
       <Header className="z-30">
         {(disclosureRenderPropArg) => (
           <Navbar
-            className="mx-auto max-w-screen-lg px-4 sm:px-8"
+            className="relative mx-auto max-w-screen-lg px-4 sm:px-8"
             disclosureRenderPropArg={disclosureRenderPropArg}
           />
         )}
