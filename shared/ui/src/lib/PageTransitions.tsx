@@ -6,17 +6,18 @@ import {
 } from 'framer-motion';
 import { ReactNode, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { eventBus } from '@jasonruesch/shared/utils';
 import useWindowSize from './hooks/useWindowSize';
 
 const DURATION = 1; // seconds
 
 const variants: Variants = {
-  hidden: ({ windowSize, didNavigate }) => {
+  hidden: ({ windowSize, didNavigate, slideRight }) => {
     const height = Math.min(windowSize.width, windowSize.height);
 
     return didNavigate
       ? {
-          x: `${windowSize.width}px`,
+          x: `${windowSize.width * (slideRight ? -1 : 1)}px`,
           opacity: 0,
           overflow: 'hidden',
           borderRadius: '16px',
@@ -26,13 +27,17 @@ const variants: Variants = {
         }
       : {};
   },
-  enter: ({ windowSize, didNavigate }) => {
+  enter: ({ windowSize, didNavigate, slideRight }) => {
     const height = Math.min(windowSize.width, windowSize.height);
     const centerX = windowSize.width / 2 - height / 2;
 
     return didNavigate
       ? {
-          x: [`${windowSize.width}px`, `${centerX}px`, '0px'],
+          x: [
+            `${windowSize.width * (slideRight ? -1 : 1)}px`,
+            `${centerX}px`,
+            '0px',
+          ],
           opacity: 1,
           overflow: 'visible',
           borderRadius: '0',
@@ -60,12 +65,16 @@ const variants: Variants = {
         }
       : {};
   },
-  exit: ({ windowSize }) => {
+  exit: ({ windowSize, slideRight }) => {
     const height = Math.min(windowSize.width, windowSize.height);
     const centerX = windowSize.width / 2 - height / 2;
 
     return {
-      x: ['0px', `${centerX}px`, `-${windowSize.width}px`],
+      x: [
+        '0px',
+        `${centerX}px`,
+        `${windowSize.width * (slideRight ? 1 : -1)}px`,
+      ],
       opacity: 0,
       overflow: 'hidden',
       borderRadius: '16px',
@@ -109,14 +118,41 @@ export const PageTransitions = ({
   const [previousPathname, setPreviousPathname] = useState(pathname);
   const [didNavigate, setDidNavigate] = useState(false);
   const windowSize = useWindowSize();
+  const [slideRight, setSlideRight] = useState(false);
+
+  const isDirectionRight = (current: string, next: string) => {
+    if (current === '/about' && next === '/') {
+      return true;
+    }
+
+    if (current === '/contact') {
+      return true;
+    }
+
+    return false;
+  };
 
   useEffect(() => {
     if (previousPathname !== pathname) {
       setDidNavigate(true);
+      eventBus.dispatch('isNavigating', { isNavigating: true });
     }
 
     setPreviousPathname(pathname);
   }, [pathname, previousPathname]);
+
+  useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const handleIntendToNavigate = ({ to }: any) => {
+      setSlideRight(isDirectionRight(pathname, to));
+    };
+
+    eventBus.on('intendToNavigate', handleIntendToNavigate);
+
+    return () => {
+      eventBus.remove('intendToNavigate', handleIntendToNavigate);
+    };
+  }, [pathname]);
 
   return (
     <div
@@ -136,6 +172,7 @@ export const PageTransitions = ({
           custom={{
             windowSize,
             didNavigate,
+            slideRight,
           }}
           variants={!shouldReduceMotion ? variants : undefined}
           initial="hidden"
@@ -149,6 +186,7 @@ export const PageTransitions = ({
                 page.style.transform = 'none';
 
                 setDidNavigate(false);
+                eventBus.dispatch('isNavigating', { isNavigating: false });
               }, 100);
             }
           }}

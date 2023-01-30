@@ -1,6 +1,7 @@
 import { Disclosure } from '@headlessui/react';
 import { Bars3CenterLeftIcon, XMarkIcon } from '@heroicons/react/24/outline';
-import { NavLink } from 'react-router-dom';
+import { eventBus } from '@jasonruesch/shared/utils';
+import { useState } from 'react';
 import { GitHubLink } from './GitHubLink';
 import { DisclosureRenderPropArg } from './Header';
 import { LogoImage } from './LogoImage';
@@ -8,6 +9,7 @@ import { MobileNav } from './MobileNav';
 import { Nav } from './Nav';
 import { NavMenu } from './NavMenu';
 import { ThemeSelector } from './ThemeSelector';
+import { NavLink } from './NavLink';
 
 export interface NavbarProps {
   disclosureRenderPropArg: DisclosureRenderPropArg;
@@ -18,6 +20,13 @@ export function Navbar({
   disclosureRenderPropArg: { open, close },
   className,
 }: NavbarProps) {
+  const [isNavigating, setIsNavigating] = useState(false);
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  eventBus.on('isNavigating', ({ isNavigating }: any) => {
+    setIsNavigating(isNavigating);
+  });
+
   return (
     <div className={className}>
       <div className="relative flex h-14 w-full items-center sm:h-16">
@@ -58,6 +67,9 @@ export function Navbar({
           <MobileNav />
         </div>
       </Disclosure.Panel>
+
+      {/* Disable navbar with overlay while navigating */}
+      {isNavigating && <div className="absolute inset-0"></div>}
     </div>
   );
 }

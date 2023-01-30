@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@jasonruesch/shared/ui": ["shared/ui/src/index.ts"]
+      "@jasonruesch/shared/ui": ["shared/ui/src/index.ts"],
+      "@jasonruesch/shared/utils": ["shared/utils/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
