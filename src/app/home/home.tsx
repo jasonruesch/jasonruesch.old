@@ -1,5 +1,10 @@
 import { ChevronRightIcon } from '@heroicons/react/24/outline';
-import { motion, useAnimation, Variants } from 'framer-motion';
+import {
+  motion,
+  useAnimation,
+  useReducedMotion,
+  Variants,
+} from 'framer-motion';
 import { useRef, useCallback, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { ProfileImage } from '@jasonruesch/shared/ui';
@@ -9,6 +14,7 @@ export interface HomeProps {}
 
 export function Home(props: HomeProps) {
   const el = useRef<HTMLDivElement>(null);
+  const shouldReduceMotion = useReducedMotion();
   const controls = useAnimation();
 
   const variants: Variants = {
@@ -74,7 +80,7 @@ export function Home(props: HomeProps) {
               ref={el}
               initial="initial"
               animate={controls}
-              variants={variants}
+              variants={!shouldReduceMotion ? variants : undefined}
               className="w-12 -translate-x-6"
             >
               <ChevronRightIcon className="h-12 w-12" aria-hidden="true" />
