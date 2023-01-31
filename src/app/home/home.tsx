@@ -61,9 +61,9 @@ export function Home(props: HomeProps) {
   return (
     <div className="mx-auto grid h-full max-w-xl place-items-center py-16 sm:py-20">
       <div className="w-full">
-        <ProfileImage large className="pb-4" />
+        <ProfileImage large className="mb-4" />
 
-        <h1 className="text-center text-neutral-500 dark:text-neutral-400">
+        <h1 className="mb-4 text-center text-neutral-500 dark:text-neutral-400">
           Hi, I&apos;m
           <br />
           <span className="text-cyan-500 dark:text-violet-400">

@@ -91,7 +91,7 @@ export function Contact(props: ContactProps) {
   return (
     <div className="mx-auto grid max-w-xl pt-16 pb-4 sm:h-full sm:place-items-center sm:py-20">
       <div className="w-full pt-6">
-        <h1>Get In Touch</h1>
+        <h1 className="mb-4">Get In Touch</h1>
         <form onSubmit={handleSubmit}>
           <div className="grid grid-cols-1 gap-x-4 sm:grid-cols-6">
             <div className="sm:col-span-3">

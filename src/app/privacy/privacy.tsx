@@ -58,9 +58,9 @@ export function Privacy(props: PrivacyProps) {
   return (
     <div className="pt-16 pb-4">
       <div className="w-full pt-6">
-        <h1>Privacy Policy</h1>
-        <small>Last updated July 01, 2022</small>
         <div className="space-y-4">
+          <h1>Privacy Policy</h1>
+          <small>Last updated July 01, 2022</small>
           <p>
             This privacy notice for Jason Ruesch (&quot;Company,&quot;
             &quot;we,&quot; &quot;us,&quot; or &quot;our&quot;), describes how
@@ -68,7 +68,7 @@ export function Privacy(props: PrivacyProps) {
             (&quot;process&quot;) your information when you use our services
             (&quot;Services&quot;), such as when you:
           </p>
-          <ul className="ml-4 list-disc pl-2">
+          <ul className="ml-4 mt-4 list-disc pl-4">
             <li>
               Visit our website at{' '}
               <a
@@ -98,7 +98,7 @@ export function Privacy(props: PrivacyProps) {
             privacy@jasonruesch.dev.
           </p>
 
-          <section id="summaryOfKeyPoints">
+          <section id="summaryOfKeyPoints" className="space-y-4">
             <h2>Summary Of Key Points</h2>
             <p>
               <em>
@@ -212,9 +212,9 @@ export function Privacy(props: PrivacyProps) {
               </a>
             </p>
           </section>
-          <section id="toc">
+          <section id="toc" className="space-y-4">
             <h2>Table Of Contents</h2>
-            <ol className="ml-4 list-decimal pl-2">
+            <ol className="list-inside list-decimal">
               {navigation.map((item) => (
                 <li key={item.name}>
                   <a
@@ -227,10 +227,10 @@ export function Privacy(props: PrivacyProps) {
               ))}
             </ol>
           </section>
-          <section id="infocollect">
+          <section id="infocollect" className="space-y-4">
             <h2>1. WHAT INFORMATION DO WE COLLECT?</h2>
             <h3 id="personalinfo">Personal information you disclose to us</h3>
-            <p>
+            <p className="mb-4">
               <em>
                 In Short: We collect personal information that you provide to
                 us.
@@ -249,11 +249,13 @@ export function Privacy(props: PrivacyProps) {
               features you use. The personal information we collect may include
               the following:
             </p>
-            <ul className="ml-4 list-disc">
+            <ul className="ml-4 mt-4 list-disc pl-4">
               <li>names</li>
               <li>email addresses</li>
             </ul>
-            <h3 id="sensitiveinfo">Sensitive Information</h3>
+            <h3 id="sensitiveinfo" className="mt-4">
+              Sensitive Information
+            </h3>
             <p>We do not process sensitive information.</p>
             <p>
               All personal information that you provide to us must be true,
@@ -288,9 +290,9 @@ export function Privacy(props: PrivacyProps) {
               </a>
             </p>
           </section>
-          <section id="infouse">
+          <section id="infouse" className="space-y-4">
             <h2>2. HOW DO WE PROCESS YOUR INFORMATION?</h2>
-            <p>
+            <p className="mb-4">
               <em>
                 In Short: We process your information to provide, improve, and
                 administer our Services, communicate with you, for security and
@@ -302,7 +304,7 @@ export function Privacy(props: PrivacyProps) {
               We process your personal information for a variety of reasons,
               depending on how you interact with our Services, including:
             </p>
-            <ul className="ml-4 list-disc">
+            <ul className="ml-4 mt-4 list-disc pl-4">
               <li>
                 To deliver and facilitate delivery of services to the user. We
                 may process your information to provide you with the requested
@@ -315,11 +317,11 @@ export function Privacy(props: PrivacyProps) {
               </li>
             </ul>
           </section>
-          <section id="whoshare">
+          <section id="whoshare" className="space-y-4">
             <h2>
               3. WHEN AND WITH WHOM DO WE SHARE YOUR PERSONAL INFORMATION?
             </h2>
-            <p>
+            <p className="mb-4">
               <em>
                 In Short: We may share information in specific situations
                 described in this section and/or with the following third
@@ -330,7 +332,7 @@ export function Privacy(props: PrivacyProps) {
               We may need to share your personal information in the following
               situations:
             </p>
-            <ul className="ml-4 list-disc">
+            <ul className="ml-4 mt-4 list-disc pl-4">
               <li>
                 Business Transfers. We may share or transfer your information in
                 connection with, or during negotiations of, any merger, sale of
@@ -339,9 +341,9 @@ export function Privacy(props: PrivacyProps) {
               </li>
             </ul>
           </section>
-          <section id="inforetain">
+          <section id="inforetain" className="space-y-4">
             <h2>4. HOW LONG DO WE KEEP YOUR INFORMATION?</h2>
-            <p>
+            <p className="mb-4">
               <em>
                 In Short: We keep your information for as long as necessary to
                 fulfill the purposes outlined in this privacy notice unless
@@ -365,9 +367,9 @@ export function Privacy(props: PrivacyProps) {
               it from any further processing until deletion is possible.
             </p>
           </section>
-          <section id="infosafe">
+          <section id="infosafe" className="space-y-4">
             <h2>5. HOW DO WE KEEP YOUR INFORMATION SAFE?</h2>
-            <p>
+            <p className="mb-4">
               <em>
                 In Short: We aim to protect your personal information through a
                 system of organizational and technical security measures.
@@ -389,9 +391,9 @@ export function Privacy(props: PrivacyProps) {
               secure environment.
             </p>
           </section>
-          <section id="infominors">
+          <section id="infominors" className="space-y-4">
             <h2>6. DO WE COLLECT INFORMATION FROM MINORS?</h2>
-            <p>
+            <p className="mb-4">
               <em>
                 In Short: We do not knowingly collect data from or market to
                 children under 18 years of age.
@@ -410,9 +412,9 @@ export function Privacy(props: PrivacyProps) {
               privacy@jasonruesch.dev.
             </p>
           </section>
-          <section id="privacyrights">
+          <section id="privacyrights" className="space-y-4">
             <h2>7. WHAT ARE YOUR PRIVACY RIGHTS?</h2>
-            <p>
+            <p className="mb-4">
               <em>
                 In Short: You may review, change, or terminate your account at
                 any time.
@@ -473,7 +475,7 @@ export function Privacy(props: PrivacyProps) {
               may email us at privacy@jasonruesch.dev.
             </p>
           </section>
-          <section id="DNT">
+          <section id="DNT" className="space-y-4">
             <h2>8. CONTROLS FOR DO-NOT-TRACK FEATURES</h2>
             <p>
               Most web browsers and some mobile operating systems and mobile
@@ -489,9 +491,9 @@ export function Privacy(props: PrivacyProps) {
               practice in a revised version of this privacy notice.
             </p>
           </section>
-          <section id="caresidents">
+          <section id="caresidents" className="space-y-4">
             <h2>9. DO CALIFORNIA RESIDENTS HAVE SPECIFIC PRIVACY RIGHTS?</h2>
-            <p>
+            <p className="mb-4">
               <em>
                 In Short: Yes, if you are a resident of California, you are
                 granted specific rights regarding access to your personal
@@ -524,9 +526,9 @@ export function Privacy(props: PrivacyProps) {
               backups, etc.).
             </p>
           </section>
-          <section id="policyupdates">
+          <section id="policyupdates" className="space-y-4">
             <h2>10. DO WE MAKE UPDATES TO THIS NOTICE?</h2>
-            <p>
+            <p className="mb-4">
               <em>
                 In Short: Yes, we will update this notice as necessary to stay
                 compliant with relevant laws.
@@ -543,14 +545,14 @@ export function Privacy(props: PrivacyProps) {
               we are protecting your information.
             </p>
           </section>
-          <section id="contact">
+          <section id="contact" className="space-y-4">
             <h2>11. HOW CAN YOU CONTACT US ABOUT THIS NOTICE?</h2>
             <p>
               If you have questions or comments about this notice, you may email
               us at privacy@jasonruesch.dev.
             </p>
           </section>
-          <section id="request">
+          <section id="request" className="space-y-4">
             <h2>
               12. HOW CAN YOU REVIEW, UPDATE, OR DELETE THE DATA WE COLLECT FROM
               YOU?

@@ -11,10 +11,10 @@ export function About(props: AboutProps) {
   return (
     <div className="mx-auto grid h-full max-w-xl pt-16 pb-4 sm:place-items-center sm:py-20">
       <div className="w-full pt-6">
-        <ProfileImage className="pb-4" />
-
-        <h1>About Me</h1>
         <div className="mb-4 space-y-4">
+          <ProfileImage />
+
+          <h1>About Me</h1>
           <p className="text-neutral-500 dark:text-neutral-400">
             My name is Jason Ruesch. I am a software engineer, web developer,
             and designer currently living in Raleigh, NC. I enjoy creating

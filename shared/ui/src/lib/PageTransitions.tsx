@@ -42,7 +42,8 @@ export const PageTransitions = ({
 
   useEffect(() => {
     const shouldSlideRight = (current: string, next: string) =>
-      (current === '/about' && next === '/') || current === '/contact';
+      (current === '/about' && next === '/') ||
+      (current === '/contact' && (next === '/about' || next === '/'));
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const handleIntendToNavigate = ({ to }: any) => {

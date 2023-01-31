@@ -19,19 +19,19 @@
   }
 
   h1 {
-    @apply pb-4 font-display text-2xl font-medium sm:text-4xl;
+    @apply font-display text-2xl font-medium sm:text-4xl;
   }
 
   h2 {
-    @apply pb-4 font-display text-xl font-medium sm:text-3xl;
+    @apply font-display text-xl font-medium sm:text-3xl;
   }
 
   h3 {
-    @apply pb-4 font-display text-lg font-medium sm:text-2xl;
+    @apply font-display text-lg font-medium sm:text-2xl;
   }
 
   h4 {
-    @apply pb-4 font-display font-medium sm:text-xl;
+    @apply font-display font-medium sm:text-xl;
   }
 }
 
