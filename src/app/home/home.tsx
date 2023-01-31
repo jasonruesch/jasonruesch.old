@@ -1,4 +1,4 @@
-import { ChevronRightIcon } from '@heroicons/react/24/outline';
+import { ChevronDoubleRightIcon } from '@heroicons/react/24/outline';
 import {
   motion,
   useAnimation,
@@ -84,7 +84,10 @@ export function Home(props: HomeProps) {
               variants={!shouldReduceMotion ? variants : undefined}
               className="w-12 -translate-x-6"
             >
-              <ChevronRightIcon className="h-12 w-12" aria-hidden="true" />
+              <ChevronDoubleRightIcon
+                className="h-12 w-12"
+                aria-hidden="true"
+              />
             </motion.div>
           </motion.div>
         </NavLink>
