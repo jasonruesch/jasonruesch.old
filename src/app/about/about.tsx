@@ -18,9 +18,9 @@ export function About(props: AboutProps) {
           <p className="text-neutral-500 dark:text-neutral-400">
             My name is Jason Ruesch. I am a software engineer, web developer,
             and designer currently living in Raleigh, NC. I enjoy creating
-            software that not only looks amazing, but is also easy to use! I
-            have a passion for learning new technologies and building things
-            that are useful to others.
+            software that not only looks amazing, but is also engaging and easy
+            to use! I have a passion for learning new technologies and building
+            things that are useful to others.
           </p>
           <p className="text-neutral-500 dark:text-neutral-400">
             Outside of work, I like to spend time with my family outdoors, play
@@ -30,8 +30,7 @@ export function About(props: AboutProps) {
           </p>
           <p className="text-neutral-500 dark:text-neutral-400">
             I am always open to connect. If you are interested in learning more
-            about me or how I can help you with your web needs, please reach
-            out.
+            about how I can help you with your web needs, please reach out.
           </p>
         </div>
         <NavLink

@@ -23,8 +23,8 @@ export const PageTransitions = ({
 }: PageTransitionsProps) => {
   const pageRef = useRef<HTMLDivElement>(null);
   const windowSize = useWindowSize();
-  const shouldReduceMotion =
-    useReducedMotion() || (windowSize.width && windowSize.width < 640); // disable animations on small screens
+  const isXSmallScreen = windowSize.width && windowSize.width < 640;
+  const shouldReduceMotion = useReducedMotion() || isXSmallScreen; // disable animations on x-small screens
   const { pathname } = useLocation();
   const [previousPathname, setPreviousPathname] = useState(pathname);
   const [isNavigating, setIsNavigating] = useState(false);
@@ -41,17 +41,8 @@ export const PageTransitions = ({
   }, [pathname, previousPathname]);
 
   useEffect(() => {
-    const shouldSlideRight = (current: string, next: string) => {
-      if (current === '/about' && next === '/') {
-        return true;
-      }
-
-      if (current === '/contact') {
-        return true;
-      }
-
-      return false;
-    };
+    const shouldSlideRight = (current: string, next: string) =>
+      (current === '/about' && next === '/') || current === '/contact';
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const handleIntendToNavigate = ({ to }: any) => {

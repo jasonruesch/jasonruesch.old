@@ -5,23 +5,30 @@ import {
   useReducedMotion,
   Variants,
 } from 'framer-motion';
-import { useCallback, useEffect } from 'react';
-import { ProfileImage, NavLink } from '@jasonruesch/shared/ui';
-import useWindowSize from 'shared/ui/src/lib/hooks/useWindowSize';
+import { useCallback, useEffect, useState } from 'react';
+import { ProfileImage, NavLink, useWindowSize } from '@jasonruesch/shared/ui';
+import { eventBus } from '@jasonruesch/shared/utils';
 
 /* eslint-disable-next-line */
 export interface HomeProps {}
 
 export function Home(props: HomeProps) {
   const { width } = useWindowSize();
-  const shouldReduceMotion = useReducedMotion() || (width && width < 640); // disable animations on small screens
+  const isXSmallScreen = width && width < 640;
+  const shouldReduceMotion = useReducedMotion();
   const controls = useAnimation();
+  const [isNavigating, setIsNavigating] = useState(true);
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  eventBus.on('isNavigating', ({ isNavigating }: any) => {
+    setIsNavigating(isNavigating);
+  });
 
   const variants: Variants = {
-    initial: { x: -24 },
-    hover: { x: -24 },
-    animate: {
-      x: [-24, -48, 0, -24],
+    initial: (isXSmallScreen) => ({ x: !isXSmallScreen ? -24 : -12 }),
+    hover: (isXSmallScreen) => ({ x: !isXSmallScreen ? -24 : -12 }),
+    animate: (isXSmallScreen) => ({
+      x: !isXSmallScreen ? [-24, -48, 0, -24] : [-12, -24, 0, -12],
       transition: {
         delay: 0.5,
         times: [0, 0.5, 0.675, 1],
@@ -30,7 +37,7 @@ export function Home(props: HomeProps) {
         repeat: Infinity,
         repeatDelay: 0.5,
       },
-    },
+    }),
   };
 
   const handleHoverStart = useCallback(async () => {
@@ -43,8 +50,13 @@ export function Home(props: HomeProps) {
   }, [controls]);
 
   useEffect(() => {
-    controls.start('animate');
-  }, [controls]);
+    if (isNavigating) {
+      controls.stop();
+      controls.set('hover');
+    } else {
+      controls.start('animate');
+    }
+  }, [controls, isNavigating]);
 
   return (
     <div className="mx-auto grid h-full max-w-xl place-items-center py-16 sm:py-20">
@@ -72,7 +84,7 @@ export function Home(props: HomeProps) {
         <NavLink
           to="/about"
           aria-label="Learn more about me"
-          className="mx-auto flex w-24 cursor-pointer justify-end text-sm font-medium text-cyan-500 hover:text-cyan-600 dark:text-violet-400 dark:hover:text-violet-500"
+          className="mx-auto flex w-12 cursor-pointer justify-end text-sm font-medium text-cyan-500 hover:text-cyan-600 dark:text-violet-400 dark:hover:text-violet-500 sm:w-24"
         >
           <motion.div
             onHoverStart={() => handleHoverStart()}
@@ -80,12 +92,13 @@ export function Home(props: HomeProps) {
           >
             <motion.div
               initial="initial"
+              custom={isXSmallScreen}
               animate={controls}
               variants={!shouldReduceMotion ? variants : undefined}
-              className="w-12 -translate-x-6"
+              className="w-6 -translate-x-3 sm:w-12 sm:-translate-x-6"
             >
               <ChevronDoubleRightIcon
-                className="h-12 w-12"
+                className="h-6 w-6 sm:h-12 sm:w-12"
                 aria-hidden="true"
               />
             </motion.div>
