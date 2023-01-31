@@ -8,7 +8,7 @@ export function Beams({ className }: BeamsProps) {
   return (
     <div
       className={clsx(
-        'pointer-events-none fixed inset-x-0 bottom-0 flex rotate-180 justify-center overflow-hidden',
+        'pointer-events-none fixed inset-x-0 bottom-0 flex -scale-y-[1] justify-center overflow-hidden',
         className
       )}
     >
