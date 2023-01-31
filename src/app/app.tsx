@@ -31,10 +31,10 @@ export function App() {
           />
         )}
       </Header>
-      <Beams className="z-10" />
       <PageTransitions>
         <main className="flex min-h-screen bg-neutral-100 text-neutral-900 dark:bg-neutral-800 dark:text-neutral-50">
-          <div className="mx-auto w-full max-w-screen-lg px-4 sm:px-8">
+          <Beams className="z-10" />
+          <div className="relative z-20 mx-auto w-full max-w-screen-lg px-4 sm:px-8">
             <AnimatedOutlet />
           </div>
         </main>
