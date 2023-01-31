@@ -8,17 +8,18 @@ import { ReactNode, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { eventBus } from '@jasonruesch/shared/utils';
 import useWindowSize from './hooks/useWindowSize';
+import clsx from 'clsx';
 
 const DURATION = 1; // seconds
 
 const variants: Variants = {
-  hidden: ({ windowSize, didNavigate, slideRight }) => {
+  hidden: ({ windowSize, didNavigate, slideRight, shouldReduceMotion }) => {
     const height = Math.min(windowSize.width, windowSize.height);
-    const slideAnimation = {
-      x: `${windowSize.width * (slideRight ? -1 : 1)}px`,
+    const opacityAnimation = {
+      opacity: 0,
     };
     const otherAnimations = {
-      opacity: 0,
+      x: `${windowSize.width * (slideRight ? -1 : 1)}px`,
       overflow: 'hidden',
       borderRadius: '16px',
       height: `${windowSize.height}px`,
@@ -28,12 +29,18 @@ const variants: Variants = {
 
     return didNavigate
       ? {
-          ...slideAnimation,
-          ...otherAnimations,
+          ...opacityAnimation,
+          ...(!shouldReduceMotion ? otherAnimations : {}),
         }
       : {};
   },
-  enter: ({ windowSize, didNavigate, slideRight, duration }) => {
+  enter: ({
+    windowSize,
+    didNavigate,
+    slideRight,
+    duration,
+    shouldReduceMotion,
+  }) => {
     const height = Math.min(windowSize.width, windowSize.height);
     const centerX = windowSize.width / 2 - height / 2;
     const x = [
@@ -41,23 +48,23 @@ const variants: Variants = {
       `${centerX}px`,
       '0px',
     ];
-    const slideAnimation = { x };
+    const opacityAnimation = { opacity: 1 };
     const otherAnimations = {
-      opacity: 1,
+      x,
       overflow: 'visible',
       borderRadius: '0',
       height: 'auto',
       width: 'auto',
       scale: 1,
     };
-    const slideTransition = {
+    const opacityTransition = {
+      opacity: !shouldReduceMotion ? { duration: duration / 3 } : { duration },
+    };
+    const otherTransitions = {
       x: {
         duration,
         times: [0, 0.5, 1],
       },
-    };
-    const otherTransitions = {
-      opacity: { duration: duration / 3 },
       overflow: { delay: duration, duration: 0.1 },
       borderRadius: { delay: duration, duration: 0.1 },
       height: { delay: duration, duration: 0.1 },
@@ -70,16 +77,16 @@ const variants: Variants = {
 
     return didNavigate
       ? {
-          ...slideAnimation,
-          ...otherAnimations,
+          ...opacityAnimation,
+          ...(!shouldReduceMotion ? otherAnimations : {}),
           transition: {
-            ...slideTransition,
-            ...otherTransitions,
+            ...opacityTransition,
+            ...(!shouldReduceMotion ? otherTransitions : {}),
           },
         }
       : {};
   },
-  exit: ({ windowSize, slideRight, duration }) => {
+  exit: ({ windowSize, slideRight, duration, shouldReduceMotion }) => {
     const height = Math.min(windowSize.width, windowSize.height);
     const centerX = windowSize.width / 2 - height / 2;
     const x = [
@@ -87,23 +94,25 @@ const variants: Variants = {
       `${centerX}px`,
       `${windowSize.width * (slideRight ? 1 : -1)}px`,
     ];
-    const slideAnimation = { x };
+    const opacityAnimation = { opacity: 0 };
     const otherAnimations = {
-      opacity: 0,
+      x,
       overflow: 'hidden',
       borderRadius: '16px',
       height: `${windowSize.height}px`,
       width: `${height}px`,
       scale: 0.6,
     };
-    const slideTransition = {
+    const opacityTransition = {
+      opacity: !shouldReduceMotion
+        ? { delay: 2 * (duration / 3), duration: duration / 3 }
+        : { duration },
+    };
+    const otherTransitions = {
       x: {
         duration,
         times: [0, 0.5, 1],
       },
-    };
-    const otherTransitions = {
-      opacity: { delay: 2 * (duration / 3), duration: duration / 3 },
       overflow: { duration: 0 },
       borderRadius: { duration: 0 },
       height: { duration: 0 },
@@ -115,11 +124,11 @@ const variants: Variants = {
     };
 
     return {
-      ...slideAnimation,
-      ...otherAnimations,
+      ...opacityAnimation,
+      ...(!shouldReduceMotion ? otherAnimations : {}),
       transition: {
-        ...slideTransition,
-        ...otherTransitions,
+        ...opacityTransition,
+        ...(!shouldReduceMotion ? otherTransitions : {}),
       },
     };
   },
@@ -145,7 +154,7 @@ export const PageTransitions = ({
   const [previousPathname, setPreviousPathname] = useState(pathname);
   const [didNavigate, setDidNavigate] = useState(false);
   const [slideRight, setSlideRight] = useState(false);
-  const duration = shouldReduceMotion ? DURATION / 2 : DURATION;
+  const duration = !shouldReduceMotion ? DURATION : DURATION / 2;
 
   const isDirectionRight = (current: string, next: string) => {
     if (current === '/about' && next === '/') {
@@ -184,9 +193,12 @@ export const PageTransitions = ({
 
   return (
     <div
-      className="overflow-hidden after:fixed after:inset-0 after:-z-[1] after:block after:h-full after:w-full
-      after:bg-gradient-to-b after:from-neutral-100 after:via-cyan-500
-      after:to-fuchsia-500 dark:after:from-neutral-800 dark:after:via-violet-400 dark:after:to-teal-400"
+      className={clsx(
+        'overflow-hidden after:fixed after:inset-0 after:-z-[1] after:block after:h-full after:w-full',
+        !shouldReduceMotion
+          ? 'after:bg-gradient-to-b after:from-neutral-100 after:via-cyan-500 after:to-fuchsia-500 dark:after:from-neutral-800 dark:after:via-violet-400 dark:after:to-teal-400'
+          : ''
+      )}
     >
       <AnimatePresence
         initial={false} // Disabled for now because the animate keyframes are running when the page loads
@@ -202,8 +214,9 @@ export const PageTransitions = ({
             didNavigate,
             slideRight,
             duration,
+            shouldReduceMotion,
           }}
-          variants={!shouldReduceMotion ? variants : undefined}
+          variants={variants}
           initial="hidden"
           animate="enter"
           exit="exit"
