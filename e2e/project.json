@@ -1,5 +1,5 @@
 {
-  "name": "e2e",
+  "name": "jasonruesch-e2e",
   "$schema": "../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "e2e/src",
   "projectType": "application",
@@ -8,12 +8,12 @@
       "executor": "@nrwl/cypress:cypress",
       "options": {
         "cypressConfig": "e2e/cypress.config.ts",
-        "devServerTarget": "jasonruesch:serve:development",
+        "devServerTarget": "jasonruesch:serve-dev:development",
         "testingType": "e2e"
       },
       "configurations": {
         "production": {
-          "devServerTarget": "jasonruesch:serve:production"
+          "devServerTarget": "jasonruesch:serve-dev:production"
         }
       }
     },
