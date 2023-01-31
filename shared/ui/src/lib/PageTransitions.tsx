@@ -14,87 +14,112 @@ const DURATION = 1; // seconds
 const variants: Variants = {
   hidden: ({ windowSize, didNavigate, slideRight }) => {
     const height = Math.min(windowSize.width, windowSize.height);
-
-    return didNavigate
-      ? {
-          x: `${windowSize.width * (slideRight ? -1 : 1)}px`,
-          opacity: 0,
-          overflow: 'hidden',
-          borderRadius: '16px',
-          height: `${windowSize.height}px`,
-          width: `${height}px`,
-          scale: 0.6,
-        }
-      : {};
-  },
-  enter: ({ windowSize, didNavigate, slideRight }) => {
-    const height = Math.min(windowSize.width, windowSize.height);
-    const centerX = windowSize.width / 2 - height / 2;
-
-    return didNavigate
-      ? {
-          x: [
-            `${windowSize.width * (slideRight ? -1 : 1)}px`,
-            `${centerX}px`,
-            '0px',
-          ],
-          opacity: 1,
-          overflow: 'visible',
-          borderRadius: '0',
-          height: 'auto',
-          width: 'auto',
-          scale: 1,
-          transition: {
-            x: {
-              duration: DURATION,
-              times: [0, 0.5, 1],
-            },
-            opacity: { duration: DURATION / 3 },
-            overflow: { delay: DURATION, duration: 0.1 },
-            borderRadius: { delay: DURATION, duration: 0.1 },
-            height: { delay: DURATION, duration: 0.1 },
-            width:
-              windowSize.width < windowSize.height
-                ? { delay: DURATION, duration: 0.1 }
-                : { delay: DURATION / 2, duration: DURATION / 2 },
-            default: { delay: DURATION / 2, duration: DURATION / 2 },
-          },
-          // transitionEnd: {
-          //   transform: 'none',
-          // },
-        }
-      : {};
-  },
-  exit: ({ windowSize, slideRight }) => {
-    const height = Math.min(windowSize.width, windowSize.height);
-    const centerX = windowSize.width / 2 - height / 2;
-
-    return {
-      x: [
-        '0px',
-        `${centerX}px`,
-        `${windowSize.width * (slideRight ? 1 : -1)}px`,
-      ],
+    const slideAnimation = {
+      x: `${windowSize.width * (slideRight ? -1 : 1)}px`,
+    };
+    const otherAnimations = {
       opacity: 0,
       overflow: 'hidden',
       borderRadius: '16px',
       height: `${windowSize.height}px`,
       width: `${height}px`,
       scale: 0.6,
+    };
+
+    return didNavigate
+      ? {
+          ...slideAnimation,
+          ...otherAnimations,
+        }
+      : {};
+  },
+  enter: ({ windowSize, didNavigate, slideRight, duration }) => {
+    const height = Math.min(windowSize.width, windowSize.height);
+    const centerX = windowSize.width / 2 - height / 2;
+    const x = [
+      `${windowSize.width * (slideRight ? -1 : 1)}px`,
+      `${centerX}px`,
+      '0px',
+    ];
+    const slideAnimation = { x };
+    const otherAnimations = {
+      opacity: 1,
+      overflow: 'visible',
+      borderRadius: '0',
+      height: 'auto',
+      width: 'auto',
+      scale: 1,
+    };
+    const slideTransition = {
+      x: {
+        duration,
+        times: [0, 0.5, 1],
+      },
+    };
+    const otherTransitions = {
+      opacity: { duration: duration / 3 },
+      overflow: { delay: duration, duration: 0.1 },
+      borderRadius: { delay: duration, duration: 0.1 },
+      height: { delay: duration, duration: 0.1 },
+      width:
+        windowSize.width < windowSize.height
+          ? { delay: duration, duration: 0.1 }
+          : { delay: duration / 2, duration: duration / 2 },
+      default: { delay: duration / 2, duration: duration / 2 },
+    };
+
+    return didNavigate
+      ? {
+          ...slideAnimation,
+          ...otherAnimations,
+          transition: {
+            ...slideTransition,
+            ...otherTransitions,
+          },
+        }
+      : {};
+  },
+  exit: ({ windowSize, slideRight, duration }) => {
+    const height = Math.min(windowSize.width, windowSize.height);
+    const centerX = windowSize.width / 2 - height / 2;
+    const x = [
+      '0px',
+      `${centerX}px`,
+      `${windowSize.width * (slideRight ? 1 : -1)}px`,
+    ];
+    const slideAnimation = { x };
+    const otherAnimations = {
+      opacity: 0,
+      overflow: 'hidden',
+      borderRadius: '16px',
+      height: `${windowSize.height}px`,
+      width: `${height}px`,
+      scale: 0.6,
+    };
+    const slideTransition = {
+      x: {
+        duration,
+        times: [0, 0.5, 1],
+      },
+    };
+    const otherTransitions = {
+      opacity: { delay: 2 * (duration / 3), duration: duration / 3 },
+      overflow: { duration: 0 },
+      borderRadius: { duration: 0 },
+      height: { duration: 0 },
+      width:
+        windowSize.width < windowSize.height
+          ? { duration: 0 }
+          : { duration: duration / 2 },
+      default: { duration: duration / 2 },
+    };
+
+    return {
+      ...slideAnimation,
+      ...otherAnimations,
       transition: {
-        x: {
-          duration: DURATION,
-          times: [0, 0.5, 1],
-        },
-        opacity: { delay: 2 * (DURATION / 3), duration: DURATION / 3 },
-        overflow: { duration: 0 },
-        borderRadius: { duration: 0 },
-        height: { duration: 0 },
-        width:
-          windowSize.width < windowSize.height
-            ? { duration: 0 }
-            : { duration: DURATION / 2 },
-        default: { duration: DURATION / 2 },
+        ...slideTransition,
+        ...otherTransitions,
       },
     };
   },
@@ -113,12 +138,14 @@ export const PageTransitions = ({
   children,
   className,
 }: PageTransitionsProps) => {
-  const shouldReduceMotion = useReducedMotion();
+  const windowSize = useWindowSize();
+  const shouldReduceMotion =
+    useReducedMotion() || (windowSize.width && windowSize.width < 640); // disable animations on small screens
   const { pathname } = useLocation();
   const [previousPathname, setPreviousPathname] = useState(pathname);
   const [didNavigate, setDidNavigate] = useState(false);
-  const windowSize = useWindowSize();
   const [slideRight, setSlideRight] = useState(false);
+  const duration = shouldReduceMotion ? DURATION / 2 : DURATION;
 
   const isDirectionRight = (current: string, next: string) => {
     if (current === '/about' && next === '/') {
@@ -168,12 +195,13 @@ export const PageTransitions = ({
       >
         <motion.div
           id="page"
-          key={`${pathname}-page`}
+          key={pathname}
           className={className}
           custom={{
             windowSize,
             didNavigate,
             slideRight,
+            duration,
           }}
           variants={!shouldReduceMotion ? variants : undefined}
           initial="hidden"
@@ -194,19 +222,6 @@ export const PageTransitions = ({
         >
           {children}
         </motion.div>
-        {/* <motion.div
-          key={pathname}
-          className="absolute inset-0"
-          initial={{ zIndex: -10 }}
-          animate={{
-            zIndex: [-10, 30, 30],
-            transition: {
-              times: [0, 0.1, DURATION - 0.1],
-            },
-            transitionEnd: { zIndex: -10 },
-          }}
-          exit={{ zIndex: -10 }}
-        ></motion.div> */}
       </AnimatePresence>
     </div>
   );

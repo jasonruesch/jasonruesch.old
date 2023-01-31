@@ -5,15 +5,16 @@ import {
   useReducedMotion,
   Variants,
 } from 'framer-motion';
-import { useRef, useCallback, useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { ProfileImage, NavLink } from '@jasonruesch/shared/ui';
+import useWindowSize from 'shared/ui/src/lib/hooks/useWindowSize';
 
 /* eslint-disable-next-line */
 export interface HomeProps {}
 
 export function Home(props: HomeProps) {
-  const el = useRef<HTMLDivElement>(null);
-  const shouldReduceMotion = useReducedMotion();
+  const { width } = useWindowSize();
+  const shouldReduceMotion = useReducedMotion() || (width && width < 640); // disable animations on small screens
   const controls = useAnimation();
 
   const variants: Variants = {
@@ -78,7 +79,6 @@ export function Home(props: HomeProps) {
             onHoverEnd={() => handleHoverEnd()}
           >
             <motion.div
-              ref={el}
               initial="initial"
               animate={controls}
               variants={!shouldReduceMotion ? variants : undefined}
