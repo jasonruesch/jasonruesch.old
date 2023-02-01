@@ -93,7 +93,7 @@ export function Contact(props: ContactProps) {
       <div className="w-full pt-6">
         <h1 className="mb-4">Get In Touch</h1>
         <form onSubmit={handleSubmit}>
-          <div className="grid grid-cols-1 gap-x-4 sm:grid-cols-6">
+          <div className="grid grid-cols-1 gap-x-6 gap-y-1 sm:grid-cols-6">
             <div className="sm:col-span-3">
               <label htmlFor="name" className="block text-sm font-medium">
                 Name <span className="text-red-500 dark:text-red-400">*</span>
@@ -130,7 +130,7 @@ export function Contact(props: ContactProps) {
                 )}
               </div>
               <p
-                className="mt-1 h-5 text-sm text-red-600 dark:text-red-300"
+                className="mt-2 h-5 text-sm text-red-600 dark:text-red-300"
                 id="name-error"
               >
                 {!!errors.name && touched.name && errors.name}
@@ -174,7 +174,7 @@ export function Contact(props: ContactProps) {
                 )}
               </div>
               <p
-                className="mt-1 h-5 text-sm text-red-600 dark:text-red-300"
+                className="mt-2 h-5 text-sm text-red-600 dark:text-red-300"
                 id="email-error"
               >
                 {!!errors.email && touched.email && errors.email}
@@ -217,7 +217,7 @@ export function Contact(props: ContactProps) {
                 )}
               </div>
               <p
-                className="mt-1 h-5 text-sm text-red-600 dark:text-red-300"
+                className="mt-2 h-5 text-sm text-red-600 dark:text-red-300"
                 id="message-error"
               >
                 {!!errors.message && touched.message && errors.message}
@@ -225,7 +225,7 @@ export function Contact(props: ContactProps) {
             </div>
           </div>
 
-          <div className="pt-1">
+          <div className="mt-2">
             <div className="flex justify-end">
               <button
                 type="button"

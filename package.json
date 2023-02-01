@@ -5,7 +5,8 @@
   "scripts": {
     "start": "nx run-many --target=serve --projects=maildev,emails,jasonruesch --parallel --maxParallel=3",
     "build": "nx build",
-    "test": "nx test"
+    "test": "nx run-many --target=test --all --parallel --maxParallel=3",
+    "lint": "nx run-many --target=lint --all --parallel --maxParallel=3"
   },
   "private": true,
   "devDependencies": {
