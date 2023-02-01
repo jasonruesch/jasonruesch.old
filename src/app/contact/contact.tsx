@@ -89,8 +89,8 @@ export function Contact(props: ContactProps) {
   });
 
   return (
-    <div className="mx-auto grid max-w-xl pt-16 pb-4 sm:h-full sm:place-items-center sm:py-20">
-      <div className="w-full pt-6">
+    <div className="mx-auto grid h-full max-w-xl pt-16 pb-40 sm:place-items-center sm:pb-16">
+      <div className="w-full pt-6 sm:pt-0">
         <h1 className="mb-4">Get In Touch</h1>
         <form onSubmit={handleSubmit}>
           <div className="grid grid-cols-1 gap-x-6 gap-y-1 sm:grid-cols-6">
@@ -252,7 +252,9 @@ export function Contact(props: ContactProps) {
           </div>
         </form>
 
-        <LogoImageNeutral className="mx-auto my-6 h-12 w-12" />
+        <div className="absolute inset-x-0 bottom-0 h-40 py-14">
+          <LogoImageNeutral className="mx-auto h-12 w-12" />
+        </div>
       </div>
 
       {notification && (

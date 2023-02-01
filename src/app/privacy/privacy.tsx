@@ -56,7 +56,7 @@ export interface PrivacyProps {}
 
 export function Privacy(props: PrivacyProps) {
   return (
-    <div className="pt-16 pb-4">
+    <div className="pt-16 pb-40">
       <div className="w-full pt-6">
         <div className="space-y-4">
           <h1>Privacy Policy</h1>
@@ -575,7 +575,9 @@ export function Privacy(props: PrivacyProps) {
           </section>
         </div>
 
-        <LogoImageNeutral className="mx-auto my-6 h-12 w-12" />
+        <div className="absolute inset-x-0 bottom-0 h-40 py-14">
+          <LogoImageNeutral className="mx-auto h-12 w-12" />
+        </div>
       </div>
     </div>
   );

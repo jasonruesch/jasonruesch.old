@@ -9,8 +9,8 @@ export interface AboutProps {}
 
 export function About(props: AboutProps) {
   return (
-    <div className="mx-auto grid h-full max-w-xl pt-16 pb-4 sm:place-items-center sm:py-20">
-      <div className="w-full pt-6">
+    <div className="mx-auto grid h-full max-w-xl pt-16 pb-40 sm:place-items-center sm:pb-16">
+      <div className="w-full pt-6 sm:pt-0">
         <div className="mb-4 space-y-4">
           <ProfileImage />
 
@@ -41,7 +41,9 @@ export function About(props: AboutProps) {
           <span aria-hidden="true"> &rarr;</span>
         </NavLink>
 
-        <LogoImageNeutral className="mx-auto my-6 h-12 w-12" />
+        <div className="absolute inset-x-0 bottom-0 h-40 py-14">
+          <LogoImageNeutral className="mx-auto h-12 w-12" />
+        </div>
       </div>
     </div>
   );
