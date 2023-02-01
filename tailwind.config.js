@@ -20,7 +20,17 @@ module.exports = {
       sans: ['Inter', ...defaultTheme.fontFamily.sans],
       display: ['Alegreya Sans SC', ...defaultTheme.fontFamily.sans],
     },
-    extend: {},
+    extend: {
+      // backgroundImage: {
+      //   'beam-light': "url('/images/beams/docs@tinypng.png')",
+      //   'beam-dark': "url('/images/beams/docs-dark@tinypng.png')",
+      // },
+    },
+    // variants: {
+    //   extend: {
+    //     backgroundImage: ['dark'],
+    //   },
+    // },
   },
   plugins: [require('@tailwindcss/forms')],
 };
