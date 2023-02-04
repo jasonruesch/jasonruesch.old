@@ -41,9 +41,15 @@ export const PageTransitions = ({
   }, [pathname, previousPathname]);
 
   useEffect(() => {
+    const pageMap = new Map<string, number>([
+      ['/', 0],
+      ['/about', 1],
+      ['/contact', 2],
+      ['/privacy', 3],
+    ]);
     const shouldSlideRight = (current: string, next: string) =>
-      (current === '/about' && next === '/') ||
-      (current === '/contact' && (next === '/about' || next === '/'));
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      pageMap.get(current)! < pageMap.get(next)!;
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const handleIntendToNavigate = ({ to }: any) => {

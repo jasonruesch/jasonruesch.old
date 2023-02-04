@@ -24,7 +24,8 @@
         "command": "maizzle serve"
       },
       "configurations": {
-        "development": {}
+        "development": {},
+        "production": {}
       }
     }
   },

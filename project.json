@@ -39,6 +39,7 @@
     },
     "serve": {
       "executor": "nx:run-commands",
+      "defaultConfiguration": "development",
       "options": {
         "command": "vercel dev --listen 4200"
       },

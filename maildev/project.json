@@ -6,6 +6,7 @@
   "targets": {
     "serve": {
       "executor": "nx:run-commands",
+      "defaultConfiguration": "development",
       "options": {
         "command": "maildev --web-ip localhost"
       },
