@@ -49,7 +49,7 @@ export const PageTransitions = ({
     ]);
     const shouldSlideRight = (current: string, next: string) =>
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      pageMap.get(current)! < pageMap.get(next)!;
+      pageMap.get(next)! < pageMap.get(current)!;
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const handleIntendToNavigate = ({ to }: any) => {
