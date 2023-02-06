@@ -2,3 +2,5 @@
 
 /dist
 /coverage
+**/.next
+/apps/web/public/emails/**/*.html

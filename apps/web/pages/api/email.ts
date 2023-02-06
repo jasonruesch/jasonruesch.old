@@ -38,7 +38,7 @@ export default async function handler(
 
     const templatesPath = join(
       process.cwd(),
-      isProduction ? 'public' : 'dist',
+      isProduction ? 'public' : 'dist/apps',
       'emails'
     );
     const templateName = body.template;
