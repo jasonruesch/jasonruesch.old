@@ -24,7 +24,7 @@ export const PageTransitions = ({
   const pageRef = useRef<HTMLDivElement>(null);
   const windowSize = useWindowSize();
   const isXSmallScreen = windowSize.width && windowSize.width < 640;
-  const shouldReduceMotion = useReducedMotion() || isXSmallScreen; // disable animations on x-small screens
+  const shouldReduceMotion = useReducedMotion() || isXSmallScreen; // always reduce motion on x-small screens
   const pathname = usePathname();
   const [previousPathname, setPreviousPathname] = useState(pathname);
   const [isNavigating, setIsNavigating] = useState(false);
@@ -41,15 +41,27 @@ export const PageTransitions = ({
   }, [pathname, previousPathname]);
 
   useEffect(() => {
-    const pageMap = new Map<string, number>([
-      ['/', 0],
-      ['/about', 1],
-      ['/contact', 2],
-      ['/privacy', 3],
+    const pages = new Set<string>([
+      '/',
+      '/about',
+      '/contact',
+      '/articles',
+      '/privacy',
     ]);
-    const shouldSlideRight = (current: string | null, next: string) =>
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      current ? pageMap.get(next)! < pageMap.get(current)! : false;
+    const shouldSlideRight = (current: string | null, next: string) => {
+      if (!current) {
+        return false;
+      }
+
+      const currentIndex = Array.from(pages.keys()).findIndex((key) =>
+        key === '/' ? current === key : current.startsWith(key)
+      );
+      const nextIndex = Array.from(pages.keys()).findIndex((key) =>
+        key === '/' ? next === key : next.startsWith(key)
+      );
+
+      return nextIndex < currentIndex;
+    };
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const handleIntendToNavigate = ({ to }: any) => {

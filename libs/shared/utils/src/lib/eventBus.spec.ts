@@ -1,4 +1,4 @@
-import { eventBus } from './event-bus';
+import { eventBus } from './eventBus';
 
 describe.skip('eventBus', () => {
   it('should be defined', () => {

@@ -1,10 +1,12 @@
 import { AppProps } from 'next/app';
 import Head from 'next/head';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ThemeProvider } from 'next-themes';
 import { Inter, Alegreya_Sans_SC } from '@next/font/google';
 import { Beams, Header, Navbar, PageTransitions } from '@jasonruesch/web/ui';
-import './styles.css';
+
+import '../styles/tailwind.css';
+import 'focus-visible';
 
 const inter = Inter({ subsets: ['latin'] });
 const alegreyaSansSC = Alegreya_Sans_SC({
@@ -12,7 +14,19 @@ const alegreyaSansSC = Alegreya_Sans_SC({
   weight: ['100', '300', '400', '500', '700', '800', '900'],
 });
 
-function CustomApp({ Component, pageProps }: AppProps) {
+function usePrevious(value) {
+  const ref = useRef();
+
+  useEffect(() => {
+    ref.current = value;
+  }, [value]);
+
+  return ref.current;
+}
+
+function CustomApp({ Component, pageProps, router }: AppProps) {
+  const previousPathname = usePrevious(router.pathname);
+
   const [isHydrated, setIsHydrated] = useState(false);
   useEffect(() => {
     setIsHydrated(true);
@@ -48,7 +62,7 @@ function CustomApp({ Component, pageProps }: AppProps) {
           <main className="flex min-h-screen bg-neutral-100 text-neutral-900 dark:bg-neutral-800 dark:text-neutral-50">
             <Beams className="z-10" />
             <div className="relative z-20 mx-auto w-full max-w-screen-lg px-4 sm:px-8">
-              <Component {...pageProps} />
+              <Component previousPathname={previousPathname} {...pageProps} />
             </div>
           </main>
         </PageTransitions>
