@@ -23,7 +23,8 @@ export default function About() {
           </p>
           <p className="text-neutral-500 dark:text-neutral-400">
             I am always open to connect. If you are interested in learning more
-            about how I can help you with your web needs, please reach out.
+            about how I can help you with your web development or design needs,
+            please reach out.
           </p>
         </div>
         <NavLink
