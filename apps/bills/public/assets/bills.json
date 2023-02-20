@@ -1,0 +1,62 @@
+[
+  {
+    "id": "1",
+    "name": "ACME Corp",
+    "amount": 100,
+    "dueDate": "2023-03-01"
+  },
+  {
+    "id": "2",
+    "name": "Wonka Industries",
+    "amount": 2000,
+    "dueDate": "2023-03-01"
+  },
+  {
+    "id": "3",
+    "name": "Wayne Enterprises",
+    "amount": 35.99,
+    "dueDate": "2023-03-15"
+  },
+  {
+    "id": "4",
+    "name": "Stark Industries",
+    "amount": 33,
+    "dueDate": "2023-03-09"
+  },
+  {
+    "id": "5",
+    "name": "LexCorp",
+    "amount": 112,
+    "dueDate": "2023-03-20"
+  },
+  {
+    "id": "6",
+    "name": "Spectre",
+    "amount": 332.23,
+    "dueDate": "2023-03-28"
+  },
+  {
+    "id": "7",
+    "name": "Evil Corp",
+    "amount": 500,
+    "dueDate": "2023-03-31"
+  },
+  {
+    "id": "8",
+    "name": "Umbrella Corp",
+    "amount": 1050.32,
+    "dueDate": "2023-03-15"
+  },
+  {
+    "id": "9",
+    "name": "Aperture Science",
+    "amount": 1393,
+    "dueDate": "2023-03-20"
+  },
+  {
+    "id": "10",
+    "name": "Soylent Corp",
+    "amount": 33.23,
+    "dueDate": "2023-03-31"
+  }
+]

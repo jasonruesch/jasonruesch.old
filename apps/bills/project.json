@@ -25,7 +25,8 @@
       "options": {
         "buildTarget": "bills:build",
         "dev": true,
-        "port": 4201
+        "port": 4201,
+        "proxyConfig": "apps/bills/proxy.conf.json"
       },
       "configurations": {
         "development": {
