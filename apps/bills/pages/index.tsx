@@ -3,7 +3,8 @@ import useBills from '../lib/use-bills';
 import { toCurrency } from '../lib/utils';
 
 export function Index() {
-  const { bills, loading, error, handleCreateBill } = useBills();
+  const { bills, loading, error, handleCreateBill, handleUpdateBill } =
+    useBills();
 
   return (
     <div className="px-6 lg:px-8">
@@ -20,7 +21,6 @@ export function Index() {
             className="block rounded-md bg-indigo-600 py-1.5 px-3 text-center text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             onClick={() =>
               handleCreateBill({
-                id: '',
                 name: 'New Bill',
                 amount: 100,
                 dueDate: '2024-01-01',
@@ -107,12 +107,21 @@ export function Index() {
                         {bill.dueDate}
                       </td>
                       <td className="relative whitespace-nowrap py-2 pl-3 pr-6 text-right text-sm font-medium sm:pr-0 hidden sm:table-cell">
-                        <a
-                          href="#"
+                        <button
+                          type="button"
                           className="text-indigo-600 hover:text-indigo-900"
+                          onClick={() =>
+                            handleUpdateBill({
+                              id: bill.id,
+                              name: bill.name + ' (updated)',
+                              amount: bill.amount + 0.01,
+                              dueDate: bill.dueDate,
+                              createdAt: bill.createdAt,
+                            })
+                          }
                         >
                           Edit<span className="sr-only">, {bill.name}</span>
-                        </a>
+                        </button>
                       </td>
                     </tr>
                   ))}

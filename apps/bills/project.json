@@ -25,17 +25,21 @@
       "options": {
         "buildTarget": "bills:build",
         "dev": true,
-        "port": 4201,
-        "proxyConfig": "apps/bills/proxy.conf.json"
+        "port": 4201
       },
       "configurations": {
         "development": {
           "buildTarget": "bills:build:development",
-          "dev": true
+          "dev": true,
+          "proxyConfig": "apps/bills/proxy.conf.dev.json"
         },
         "production": {
           "buildTarget": "bills:build:production",
           "dev": false
+        },
+        "production-dev": {
+          "buildTarget": "bills:build:production",
+          "dev": true
         }
       }
     },

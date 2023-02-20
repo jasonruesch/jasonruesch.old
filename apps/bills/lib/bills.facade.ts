@@ -3,6 +3,7 @@ import {
   addEntities,
   selectAllEntities,
   setEntities,
+  updateEntities,
   withEntities,
 } from '@ngneat/elf-entities';
 import {
@@ -40,6 +41,12 @@ function addBill(bill: Bill) {
   store.update(addEntities(bill), setSuccess());
 }
 
+function updateBillById(bill: Bill) {
+  if (!bill) return;
+
+  store.update(updateEntities(bill.id, bill), setSuccess());
+}
+
 export const fethBills = (): Observable<Bill[]> => {
   const request$ = fromFetch<Bill[]>('/api/bills', {
     selector: (res) => res.json(),
@@ -57,4 +64,15 @@ export const createBill = (bill: Bill): Observable<Bill> => {
   });
 
   return request$.pipe(tap(addBill));
+};
+
+export const updateBill = (bill: Bill): Observable<Bill> => {
+  const request$ = fromFetch<Bill>(`/api/bills/${bill.id}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(bill),
+    selector: (res) => res.json(),
+  });
+
+  return request$.pipe(tap(updateBillById));
 };

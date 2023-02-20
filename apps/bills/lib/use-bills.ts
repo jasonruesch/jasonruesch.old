@@ -1,18 +1,17 @@
 import { useObservable } from '@ngneat/react-rxjs';
-import { useCallback, useEffect } from 'react';
-import { billsDataSource, createBill, fethBills } from './bills.facade';
+import { useEffect } from 'react';
+import {
+  billsDataSource,
+  createBill,
+  fethBills,
+  updateBill,
+} from './bills.facade';
 
 export const useBills = () => {
   const [{ bills, error, loading }] = useObservable(billsDataSource);
 
-  const handleCreateBill = useCallback((bill) => {
-    const subscription = createBill(bill).subscribe();
-
-    return () => {
-      console.log('unsubscribing createBill');
-      return subscription.unsubscribe();
-    };
-  }, []);
+  const handleCreateBill = (bill) => createBill(bill).subscribe();
+  const handleUpdateBill = (bill) => updateBill(bill).subscribe();
 
   useEffect(() => {
     const subscription = fethBills().subscribe();
@@ -20,7 +19,7 @@ export const useBills = () => {
     return () => subscription.unsubscribe();
   }, []);
 
-  return { bills, error, loading, handleCreateBill };
+  return { bills, error, loading, handleCreateBill, handleUpdateBill };
 };
 
 export default useBills;

@@ -3,4 +3,6 @@ export interface Bill {
   name: string;
   amount: number;
   dueDate: string;
+  createdAt: Date;
+  updatedAt?: Date;
 }
