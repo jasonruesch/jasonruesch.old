@@ -1,14 +1,14 @@
+import { faker } from '@faker-js/faker';
 import { NextApiRequest, NextApiResponse } from 'next';
-import { v4 as uuid } from 'uuid';
-import { bills } from '../../../data/bills';
 import { Bill } from '../../../lib/bill.model';
+import { bills } from '../data/bills';
 
 function getBills(res: NextApiResponse<Bill[]>) {
   res.status(200).json(bills);
 }
 
 function createBill(bill: Bill, res: NextApiResponse<Bill>) {
-  bill.id = uuid();
+  bill.id = faker.datatype.uuid();
   bill.createdAt = new Date();
   bills.push(bill);
   res.status(201).json(bill);

@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker';
 import * as _ from 'lodash';
-import { Bill, BillType } from '../lib/bill.model';
+import { Bill, BillType } from '../../../lib/bill.model';
 
 export const bills = _.times<Bill>(10, () => {
   const type = faker.helpers.arrayElement<BillType>([

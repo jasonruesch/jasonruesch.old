@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { bills } from '../../../data/bills';
 import { Bill } from '../../../lib/bill.model';
+import { bills } from '../data/bills';
 
 function updateBill(bill: Bill, res: NextApiResponse<Bill>) {
   bill.updatedAt = new Date();
