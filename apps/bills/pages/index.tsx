@@ -70,7 +70,7 @@ export function Index() {
                       />
                     )} */}
                       <h1 className="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:leading-9">
-                        {greeting}, {session?.user.name}
+                        {greeting}, {session?.user.name || 'Anonymous User'}
                       </h1>
                     </div>
                   </div>

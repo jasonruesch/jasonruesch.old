@@ -25,6 +25,15 @@ export const bills = _.times<Bill>(10, () => {
     name: faker.company.name(),
     amount: faker.datatype.float({ min: 0, max: 1000, precision: 2 }),
     dueDate,
+    autoPaid: faker.datatype.boolean(),
+    balance: faker.helpers.arrayElement([
+      null,
+      faker.datatype.float({ min: 0, max: 1000, precision: 2 }),
+    ]),
+    owner: faker.helpers.arrayElement([null, faker.name.firstName()]),
+    website: faker.helpers.arrayElement([null, faker.internet.url()]),
+    username: faker.helpers.arrayElement([null, faker.internet.userName()]),
+    password: faker.helpers.arrayElement([null, faker.internet.password()]),
     createdAt: faker.date.past(),
   };
 });

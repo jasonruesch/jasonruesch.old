@@ -14,6 +14,12 @@ import { toCurrency, toOrdinalString } from '../lib/utils';
 export function BillList() {
   const { bills, deleteBill } = useBills();
 
+  const handleDeleteBill = (id: string) => {
+    if (confirm('Are you sure you want to delete this bill?')) {
+      deleteBill(id);
+    }
+  };
+
   return (
     <>
       {/* Bill list (smallest breakpoint only) */}
@@ -252,7 +258,7 @@ export function BillList() {
                           <button
                             type="button"
                             className="ml-3 text-red-400 hover:text-red-600"
-                            onClick={() => deleteBill(bill.id)}
+                            onClick={() => handleDeleteBill(bill.id)}
                           >
                             <TrashIcon className="h-5 w-5 inline" />
                             <span className="sr-only">Delete, {bill.name}</span>
