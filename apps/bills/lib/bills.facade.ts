@@ -10,6 +10,7 @@ import {
 } from '@ngneat/elf-entities';
 import {
   createRequestDataSource,
+  updateRequestStatus,
   withRequestsStatus,
 } from '@ngneat/elf-requests';
 import { delay, lastValueFrom, map, of, tap } from 'rxjs';
@@ -27,11 +28,14 @@ const { setSuccess, trackRequestStatus, data$ } = createRequestDataSource({
   requestKey: 'bills',
   dataKey: 'bills',
   store,
+  idleAsPending: true,
 });
 
 export const billsDataSource = data$();
 
 export const getBills = async (): Promise<Bill[]> => {
+  store.update(updateRequestStatus('bills', 'pending'));
+
   const updateStore = (bills: Bill[]) => {
     store.update(setEntities(bills), setSuccess());
   };
@@ -41,7 +45,7 @@ export const getBills = async (): Promise<Bill[]> => {
   });
 
   return await lastValueFrom(
-    request$.pipe(delay(500), trackRequestStatus(), tap(updateStore))
+    request$.pipe(trackRequestStatus(), delay(500), tap(updateStore))
   );
 };
 

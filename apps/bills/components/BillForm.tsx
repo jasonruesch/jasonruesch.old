@@ -1,13 +1,18 @@
 import { useFormik } from 'formik';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useCallback, useEffect } from 'react';
+import { useEffect } from 'react';
 import CurrencyInput from 'react-currency-input-field';
 import DatePicker from 'react-datepicker';
 import * as Yup from 'yup';
 import { Bill, BillType } from '../lib/bill.model';
-
-const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+import {
+  dateOptions,
+  maxDueDate,
+  minDueDate,
+  parseDueDate,
+  sleep,
+} from '../lib/utils';
 
 export type BillFormProps = {
   onSave: (bill: Partial<Bill>) => void;
@@ -16,52 +21,6 @@ export type BillFormProps = {
 
 export function BillForm({ onSave, bill: initialValues }: BillFormProps) {
   const router = useRouter();
-
-  const minDueDate = useCallback((type?: BillType) => {
-    const year = new Date().getFullYear();
-
-    if (type === BillType.YEARLY) {
-      return new Date(year, 0, 1);
-    }
-
-    const month = new Date().getMonth();
-    const day = 1;
-
-    return new Date(year, month, day);
-  }, []);
-
-  const maxDueDate = useCallback((type?: BillType) => {
-    const year = new Date().getFullYear();
-
-    if (type === BillType.YEARLY) {
-      return new Date(year + 1, 11, 31);
-    }
-
-    const month = new Date().getMonth() + 1;
-    const day = 0;
-
-    return new Date(year, month, day);
-  }, []);
-
-  const parseDueDate = ({ type, dueDate }: Bill) => {
-    if (type === BillType.YEARLY) {
-      const year = new Date().getFullYear();
-      const [month, day] = dueDate.split('/').map(Number);
-
-      return new Date(year, month - 1, day);
-    }
-
-    const year = new Date().getFullYear();
-    const month = new Date().getMonth();
-    const day = Number(dueDate);
-
-    return new Date(year, month, day);
-  };
-
-  const dateOptions: Intl.DateTimeFormatOptions = {
-    dateStyle: 'full',
-    timeStyle: 'medium',
-  };
 
   const validationSchema = Yup.object({
     type: Yup.string(),
@@ -122,7 +81,7 @@ export function BillForm({ onSave, bill: initialValues }: BillFormProps) {
         bill.dueDate = String(maxDay);
       }
     }
-  }, [bill, maxDueDate]);
+  }, [bill]);
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">

@@ -1,10 +1,14 @@
+import { SessionProvider } from 'next-auth/react';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 import { useEffect } from 'react';
 import { getBills } from '../lib/bills.facade';
 import './styles.css';
 
-function CustomApp({ Component, pageProps }: AppProps) {
+function CustomApp({
+  Component,
+  pageProps: { session, ...pageProps },
+}: AppProps) {
   useEffect(() => {
     getBills();
   }, []);
@@ -12,11 +16,11 @@ function CustomApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title>Welcome to bills!</title>
+        <title>Bills - Jason Ruesch</title>
       </Head>
-      <main className="app">
+      <SessionProvider session={session}>
         <Component {...pageProps} />
-      </main>
+      </SessionProvider>
     </>
   );
 }
