@@ -1,7 +1,7 @@
 import { faker } from '@faker-js/faker';
 import { NextApiRequest, NextApiResponse } from 'next';
+import { bills } from '../../../data/bills';
 import { Bill } from '../../../lib/bill.model';
-import { bills } from '../data/bills';
 
 function getBills(res: NextApiResponse<Bill[]>) {
   res.status(200).json(bills);

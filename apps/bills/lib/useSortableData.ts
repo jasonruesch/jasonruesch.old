@@ -24,10 +24,14 @@ export function useSortableData<T>(
         const aValue =
           keyTypes?.[sortConfig.key] === 'number'
             ? Number(rawAValue)
+            : keyTypes?.[sortConfig.key] === 'date'
+            ? new Date(rawAValue)
             : rawAValue;
         const bValue =
           keyTypes?.[sortConfig.key] === 'number'
             ? Number(rawBValue)
+            : keyTypes?.[sortConfig.key] === 'date'
+            ? new Date(rawBValue)
             : rawBValue;
 
         if (aValue < bValue) {

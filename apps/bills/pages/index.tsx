@@ -1,6 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
+import { PlusIcon } from '@heroicons/react/20/solid';
 import { HashtagIcon, ScaleIcon } from '@heroicons/react/24/outline';
 import { useSession } from 'next-auth/react';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import BillList from '../components/BillList';
 import BillListSkeleton from '../components/BillListSkeleton';
@@ -75,14 +77,15 @@ export function Index() {
                   </div>
                 </div>
               </div>
-              {/* <div className="mt-6 flex space-x-3 md:mt-0 md:ml-4">
+              <div className="mt-6 flex space-x-3 md:mt-0 md:ml-4">
                 <Link
                   href="/bills/new"
                   className="inline-flex items-center rounded-md border border-transparent bg-cyan-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2"
                 >
+                  <PlusIcon className="h-3.5 w-3.5 mr-2" aria-hidden="true" />
                   Add bill
                 </Link>
-              </div> */}
+              </div>
             </div>
           </div>
         </div>

@@ -1,9 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import {
-  ChevronDownIcon,
-  ChevronUpIcon,
-  MagnifyingGlassIcon,
-} from '@heroicons/react/20/solid';
+import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/20/solid';
 import {
   BanknotesIcon,
   ChevronRightIcon,
@@ -12,13 +8,25 @@ import {
 } from '@heroicons/react/24/outline';
 import clsx from 'clsx';
 import Link from 'next/link';
+import { useState } from 'react';
 import { Bill, BillType } from '../lib/bill.model';
 import useBills from '../lib/useBills';
 import useSortableData from '../lib/useSortableData';
 import { toCurrency, toOrdinalString } from '../lib/utils';
 
+const billTypes = [
+  { id: BillType.MONTHLY, title: 'Monthly' },
+  { id: BillType.YEARLY, title: 'Yearly' },
+];
+
 export function BillList() {
-  const { bills: data, deleteBill } = useBills();
+  const { bills: items, deleteBill } = useBills();
+  const [type, setType] = useState(BillType.MONTHLY);
+
+  // Filter bills
+  const data = items.filter((bill) => bill.type === type);
+
+  // Sort bills
   const {
     items: bills,
     handleSort,
@@ -30,7 +38,7 @@ export function BillList() {
       direction: 'ascending',
     },
     {
-      // dueDate: type === BillType.MONTHLY ? 'number' : 'date',
+      dueDate: type === BillType.MONTHLY ? 'number' : 'date',
     }
   );
 
@@ -105,7 +113,7 @@ export function BillList() {
                 <div className="flex flex-col items-center justify-between p-4 space-y-3 md:flex-row md:space-y-0 md:space-x-4 text-gray-900 border-b border-gray-200 bg-white">
                   <div className="w-full md:w-1/2">
                     <form className="flex items-center">
-                      <label htmlFor="simple-search" className="sr-only">
+                      {/* <label htmlFor="simple-search" className="sr-only">
                         Search
                       </label>
                       <div className="relative w-full">
@@ -122,27 +130,45 @@ export function BillList() {
                           placeholder="Search"
                           required
                         />
-                      </div>
+                      </div> */}
+
+                      <label htmlFor="bill-type" className="mr-4">
+                        Show only:
+                      </label>
+                      <fieldset>
+                        <legend className="sr-only">Bill type</legend>
+                        <div className="space-y-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-4">
+                          {billTypes.map((type) => (
+                            <div key={type.id} className="flex items-center">
+                              <input
+                                type="radio"
+                                id={type.id}
+                                name="bill-type"
+                                className="h-4 w-4 border-gray-300 text-cyan-600 focus:ring-cyan-500"
+                                defaultChecked={type.id === BillType.MONTHLY}
+                                onChange={() => setType(type.id)}
+                              />
+                              <label
+                                htmlFor={type.id}
+                                className="ml-3 block text-sm font-medium text-gray-700"
+                              >
+                                {type.title}
+                              </label>
+                            </div>
+                          ))}
+                        </div>
+                      </fieldset>
                     </form>
                   </div>
-                  <div className="flex flex-col items-stretch justify-end flex-shrink-0 w-full space-y-2 md:w-auto md:flex-row md:space-y-0 md:items-center md:space-x-3">
+                  {/* <div className="flex flex-col items-stretch justify-end flex-shrink-0 w-full space-y-2 md:w-auto md:flex-row md:space-y-0 md:items-center md:space-x-3">
                     <Link
                       href="/bills/new"
-                      className="flex items-center justify-center px-4 py-2 text-sm font-medium text-white rounded-lg bg-cyan-700 hover:bg-cyan-800 focus:ring-4 focus:ring-cyan-300 dark:bg-cyan-600 dark:hover:bg-cyan-700 focus:outline-none dark:focus:ring-cyan-800"
+                      className="inline-flex items-center rounded-md border border-transparent bg-cyan-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2"
                     >
-                      <svg
+                      <PlusIcon
                         className="h-3.5 w-3.5 mr-2"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg"
                         aria-hidden="true"
-                      >
-                        <path
-                          clip-rule="evenodd"
-                          fill-rule="evenodd"
-                          d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
-                        />
-                      </svg>
+                      />
                       Add bill
                     </Link>
                     <div className="flex items-center w-full space-x-3 md:w-auto">
@@ -150,55 +176,28 @@ export function BillList() {
                         className="flex items-center justify-center w-full px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg md:w-auto focus:outline-none hover:bg-gray-100 hover:text-cyan-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
                         type="button"
                       >
-                        <svg
+                        <ChevronDownIcon
                           className="-ml-1 mr-1.5 w-5 h-5"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                          xmlns="http://www.w3.org/2000/svg"
                           aria-hidden="true"
-                        >
-                          <path
-                            clip-rule="evenodd"
-                            fill-rule="evenodd"
-                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                          />
-                        </svg>
+                        />
                         Actions
                       </button>
                       <button
                         className="flex items-center justify-center w-full px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg md:w-auto focus:outline-none hover:bg-gray-100 hover:text-cyan-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
                         type="button"
                       >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          aria-hidden="true"
+                        <FunnelIcon
                           className="w-4 h-4 mr-2 text-gray-400"
-                          viewBox="0 0 20 20"
-                          fill="currentColor"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z"
-                            clip-rule="evenodd"
-                          />
-                        </svg>
-                        Filter
-                        <svg
-                          className="-mr-1 ml-1.5 w-5 h-5"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                          xmlns="http://www.w3.org/2000/svg"
                           aria-hidden="true"
-                        >
-                          <path
-                            clip-rule="evenodd"
-                            fill-rule="evenodd"
-                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                          />
-                        </svg>
+                        />
+                        Filter
+                        <ChevronDownIcon
+                          className="-mr-1 ml-1.5 w-5 h-5"
+                          aria-hidden="true"
+                        />
                       </button>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
 
                 <table className="min-w-full divide-y divide-gray-200">
@@ -248,7 +247,7 @@ export function BillList() {
                         >
                           <span
                             className={clsx(
-                              'ml-2 flex-none rounded text-gray-900',
+                              'mr-2 flex-none rounded text-gray-900',
                               sortKey === 'amount'
                                 ? 'bg-gray-100 group-hover:bg-gray-200'
                                 : 'invisible text-gray-400 group-hover:visible group-focus:visible'
@@ -281,7 +280,7 @@ export function BillList() {
                         >
                           <span
                             className={clsx(
-                              'ml-2 flex-none rounded text-gray-900',
+                              'mr-2 flex-none rounded text-gray-900',
                               sortKey === 'dueDate'
                                 ? 'bg-gray-100 group-hover:bg-gray-200'
                                 : 'invisible text-gray-400 group-hover:visible group-focus:visible'
@@ -314,7 +313,7 @@ export function BillList() {
                         >
                           <span
                             className={clsx(
-                              'ml-2 flex-none rounded text-gray-900',
+                              'mr-2 flex-none rounded text-gray-900',
                               sortKey === 'autoPaid'
                                 ? 'bg-gray-100 group-hover:bg-gray-200'
                                 : 'invisible text-gray-400 group-hover:visible group-focus:visible'
@@ -347,7 +346,7 @@ export function BillList() {
                         >
                           <span
                             className={clsx(
-                              'ml-2 flex-none rounded text-gray-900',
+                              'mr-2 flex-none rounded text-gray-900',
                               sortKey === 'balance'
                                 ? 'bg-gray-100 group-hover:bg-gray-200'
                                 : 'invisible text-gray-400 group-hover:visible group-focus:visible'
@@ -424,7 +423,10 @@ export function BillList() {
                             href={`/bills/${bill.id}`}
                             className="text-cyan-600 hover:text-cyan-700"
                           >
-                            <PencilSquareIcon className="h-5 w-5 inline" />
+                            <PencilSquareIcon
+                              className="h-5 w-5 inline"
+                              aria-hidden="true"
+                            />
                             <span className="sr-only">Edit, {bill.name}</span>
                           </Link>
                           <button
@@ -432,7 +434,10 @@ export function BillList() {
                             className="ml-3 text-red-400 hover:text-red-600"
                             onClick={() => handleDeleteBill(bill.id)}
                           >
-                            <TrashIcon className="h-5 w-5 inline" />
+                            <TrashIcon
+                              className="h-5 w-5 inline"
+                              aria-hidden="true"
+                            />
                             <span className="sr-only">Delete, {bill.name}</span>
                           </button>
                         </td>
