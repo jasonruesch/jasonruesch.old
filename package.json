@@ -30,6 +30,7 @@
     "lodash": "^4.17.21",
     "next": "13.1.1",
     "next-auth": "^4.19.2",
+    "papaparse": "^5.3.2",
     "react": "18.2.0",
     "react-currency-input-field": "^3.6.10",
     "react-datepicker": "^4.10.0",

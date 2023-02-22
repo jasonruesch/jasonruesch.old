@@ -1,6 +1,6 @@
 import BillForm from '../../components/BillForm';
 import Layout from '../../components/Layout';
-import useBills from '../../lib/use-bills';
+import useBills from '../../lib/useBills';
 
 export function AddBill() {
   const { addBill } = useBills();

@@ -6,13 +6,12 @@ import {
 } from '@heroicons/react/20/solid';
 import {
   ArrowUpOnSquareStackIcon,
+  BanknotesIcon,
   Bars3CenterLeftIcon,
   CogIcon,
   CurrencyDollarIcon,
-  MoonIcon,
   QuestionMarkCircleIcon,
   ShieldCheckIcon,
-  SunIcon,
   XMarkIcon,
 } from '@heroicons/react/24/outline';
 import clsx from 'clsx';
@@ -22,15 +21,14 @@ import { useRouter } from 'next/router';
 import { Fragment, useState } from 'react';
 
 const navigation = [
-  { name: 'Monthly bills', href: '/dashboard/monthly', icon: MoonIcon },
-  { name: 'Yearly bills', href: '/dashboard/yearly', icon: SunIcon },
-];
-const secondaryNavigation = [
+  { name: 'Bills', href: '/', icon: BanknotesIcon },
   {
     name: 'Upload bills',
     href: '/bills/upload',
     icon: ArrowUpOnSquareStackIcon,
   },
+];
+const secondaryNavigation = [
   { name: 'Settings', href: '#', icon: CogIcon },
   { name: 'Help', href: '#', icon: QuestionMarkCircleIcon },
   { name: 'Privacy', href: '#', icon: ShieldCheckIcon },
@@ -49,10 +47,10 @@ export function Layout({ children }: LayoutProps) {
     return <div className="grid h-screen place-content-center">Loading...</div>;
   }
 
-  // if (!session) {
-  //   router.push('/api/auth/signin');
-  //   return;
-  // }
+  if (!session) {
+    router.push('/api/auth/signin');
+    return;
+  }
 
   const isCurrentPage = (href: string) => {
     return router.asPath === href;
@@ -113,7 +111,7 @@ export function Layout({ children }: LayoutProps) {
                   </div>
                 </Transition.Child>
                 <div className="flex flex-shrink-0 items-center px-4">
-                  <Link href="/dashboard/monthly">
+                  <Link href="/">
                     <CurrencyDollarIcon className="h-8 w-8 text-white" />
                   </Link>
                 </div>
@@ -176,7 +174,7 @@ export function Layout({ children }: LayoutProps) {
         {/* Sidebar component, swap this element with another sidebar if you like */}
         <div className="flex flex-grow flex-col overflow-y-auto bg-cyan-700 pt-5 pb-4">
           <div className="flex flex-shrink-0 items-center px-4">
-            <Link href="/dashboard/monthly">
+            <Link href="/">
               <CurrencyDollarIcon className="h-8 w-8 text-white" />
             </Link>
           </div>
@@ -236,8 +234,8 @@ export function Layout({ children }: LayoutProps) {
             <span className="sr-only">Open sidebar</span>
             <Bars3CenterLeftIcon className="h-6 w-6" aria-hidden="true" />
           </button>
-          {/* Search bar */}
           <div className="flex flex-1 justify-between px-4 sm:px-6 lg:mx-auto lg:max-w-6xl lg:px-8">
+            {/* Search bar */}
             <div className="flex flex-1">
               <form className="flex w-full md:ml-0" action="#" method="GET">
                 <label htmlFor="search-field" className="sr-only">
@@ -263,8 +261,9 @@ export function Layout({ children }: LayoutProps) {
                 </div>
               </form>
             </div>
+
+            {/* Profile dropdown */}
             <div className="ml-4 flex items-center md:ml-6">
-              {/* Profile dropdown */}
               <Menu as="div" className="relative ml-3">
                 <div>
                   <Menu.Button className="flex max-w-xs items-center rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 lg:rounded-md lg:p-2 lg:hover:bg-gray-50">
@@ -305,19 +304,6 @@ export function Layout({ children }: LayoutProps) {
                           )}
                         >
                           Your Profile
-                        </Link>
-                      )}
-                    </Menu.Item>
-                    <Menu.Item>
-                      {({ active }) => (
-                        <Link
-                          href="/bills/upload"
-                          className={clsx(
-                            active ? 'bg-gray-100' : '',
-                            'block px-4 py-2 text-sm text-gray-700'
-                          )}
-                        >
-                          Upload bills
                         </Link>
                       )}
                     </Menu.Item>

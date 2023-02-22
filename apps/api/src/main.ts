@@ -1,5 +1,7 @@
 import * as jsonServer from 'json-server';
 import { v4 as uuid } from 'uuid';
+import authRoutes from './auth/index';
+// import authHandler from './auth/nextauth';
 import { bills } from './data/bills';
 
 const data = {
@@ -21,7 +23,11 @@ server.use(middlewares);
 // To handle POST, PUT and PATCH you need to use a body-parser
 // You can use the one used by JSON Server
 server.use(jsonServer.bodyParser);
-server.use((req, _, next) => {
+
+authRoutes(server);
+// server.use('/api/auth', authHandler);
+
+server.use('/api/bills', (req, _, next) => {
   if (req.method === 'POST') {
     req.body.createdAt = new Date();
   } else if (req.method === 'PUT') {

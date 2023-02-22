@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import BillForm from '../../components/BillForm';
 import Layout from '../../components/Layout';
-import useBills from '../../lib/use-bills';
+import useBills from '../../lib/useBills';
 
 export function EditBill() {
   const router = useRouter();
