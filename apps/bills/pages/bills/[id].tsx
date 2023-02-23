@@ -1,23 +1,24 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
+import { Bill } from '../..//lib/bill.model';
 import BillForm from '../../components/BillForm';
 import Layout from '../../components/Layout';
-import { useBillStore } from '../../lib/bill-store.context';
+import useBills from '../../lib/use-bills';
 
 export function EditBill() {
   const router = useRouter();
   const id = router.query.id as string;
-  const { getBill, updateBill } = useBillStore();
-  const [bill, setBill] = useState(null);
+  const { getBill, updateBill } = useBills();
 
+  const [bill, setBill] = useState<Bill | null>(null);
   useEffect(() => {
-    const fetchBill = async () => {
+    const fetchBill = async (id: string) => {
       const bill = await getBill(id);
       setBill(bill);
     };
 
-    fetchBill();
-  }, [id, getBill]);
+    fetchBill(id);
+  }, [getBill, id]);
 
   return (
     <Layout>

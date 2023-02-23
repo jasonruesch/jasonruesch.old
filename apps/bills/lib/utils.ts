@@ -3,7 +3,7 @@ import { Bill, BillType } from './bill.model';
 export const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
 export const toCurrency = (value?: number) =>
-  value !== null
+  value !== undefined && value !== null
     ? new Intl.NumberFormat('en-US', {
         style: 'currency',
         currency: 'USD',
@@ -57,7 +57,7 @@ export const maxDueDate = (type?: BillType) => {
   return new Date(year, month, day);
 };
 
-export const parseDueDate = ({ type, dueDate }: Bill) => {
+export const parseDueDate = ({ type, dueDate }: Partial<Bill>) => {
   if (type === BillType.YEARLY) {
     const year = new Date().getFullYear();
     const [month, day] = dueDate.split('/').map(Number);

@@ -107,7 +107,7 @@ export function BillList({ bills: items, onDelete }: BillListProps) {
       <div className="hidden sm:block">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="mt-2 flex flex-col">
-            {bills?.length && (
+            {bills.length && (
               <div className="min-w-full overflow-hidden overflow-x-auto align-middle shadow sm:rounded-lg">
                 <div className="flex flex-col items-center justify-between p-4 space-y-3 md:flex-row md:space-y-0 md:space-x-4 text-gray-900 border-b border-gray-200 bg-white">
                   <div className="w-full md:w-1/2">

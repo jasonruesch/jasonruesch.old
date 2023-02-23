@@ -1,36 +1,42 @@
 /* eslint-disable @next/next/no-img-element */
 import { PlusIcon } from '@heroicons/react/20/solid';
 import { HashtagIcon, ScaleIcon } from '@heroicons/react/24/outline';
-import { useObservable } from '@ngneat/react-rxjs';
 import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import BillList from '../components/BillList';
 import BillListSkeleton from '../components/BillListSkeleton';
 import Layout from '../components/Layout';
-import { useBillStore } from '../lib/bill-store.context';
+import { BillType } from '../lib/bill.model';
+import { useBills } from '../lib/use-bills';
 import { toCurrency } from '../lib/utils';
 
 export function Index() {
-  const { data, deleteBill } = useBillStore();
-  const [{ bills, error, loading: isLoading }] = useObservable(data);
-
   const { data: session } = useSession();
+  const { bills, isLoading, isError, deleteBill } = useBills();
+
   const cards = [
     {
       name: 'Number of Bills',
       icon: HashtagIcon,
-      value: bills?.length,
+      value: (
+        <dl className="grid grid-cols-2">
+          <dt className="text-sm leading-7">Monthly:</dt>
+          <dd>{bills.filter((b) => b.type === BillType.MONTHLY).length}</dd>
+          <dt className="text-sm leading-7">Yearly:</dt>
+          <dd>{bills.filter((b) => b.type === BillType.YEARLY).length}</dd>
+        </dl>
+      ),
     },
     {
       name: 'Total Amount',
       icon: ScaleIcon,
-      value: toCurrency(bills?.reduce((acc, bill) => acc + bill.amount, 0)),
+      value: toCurrency(bills.reduce((acc, { amount }) => acc + amount, 0)),
     },
     {
       name: 'Total Balance',
       icon: ScaleIcon,
-      value: toCurrency(bills?.reduce((acc, bill) => acc + bill.balance, 0)),
+      value: toCurrency(bills.reduce((acc, { balance }) => acc + balance, 0)),
     },
   ];
 
@@ -106,8 +112,8 @@ export function Index() {
                   className="overflow-hidden rounded-lg bg-white shadow"
                 >
                   <div className="p-5">
-                    <div className="flex items-center">
-                      <div className="flex-shrink-0">
+                    <div className="flex">
+                      <div className="flex-shrink-0 pt-3">
                         <card.icon
                           className="h-6 w-6 text-gray-400"
                           aria-hidden="true"
@@ -136,7 +142,7 @@ export function Index() {
             Bills
           </h2>
 
-          {error ? (
+          {isError ? (
             <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
               <div className="mt-2 flex flex-col">
                 <p>An unexpected error occurred.</p>

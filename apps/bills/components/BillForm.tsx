@@ -19,7 +19,7 @@ import {
 
 export type BillFormProps = {
   onSave: (bill: Partial<Bill>) => void;
-  bill?: Bill;
+  bill: Partial<Bill>;
 };
 
 export function BillForm({ onSave, bill: initialValues }: BillFormProps) {
@@ -28,10 +28,10 @@ export function BillForm({ onSave, bill: initialValues }: BillFormProps) {
   const validationSchema = Yup.object({
     type: Yup.string(),
     name: Yup.string().required('Name is required.'),
-    amount: Yup.string().required('Amount is required.'),
+    amount: Yup.number().required('Amount is required.'),
     dueDate: Yup.string().required('Due date is required.'),
     autoPaid: Yup.boolean(),
-    balance: Yup.string().nullable(),
+    balance: Yup.number().nullable(),
     owner: Yup.string().nullable(),
     website: Yup.string().nullable(),
     username: Yup.string().nullable(),
@@ -49,15 +49,21 @@ export function BillForm({ onSave, bill: initialValues }: BillFormProps) {
     isValid,
     dirty,
     resetForm,
-  } = useFormik<Bill>({
-    initialValues: initialValues ?? ({} as Bill),
+  } = useFormik<Partial<Bill>>({
+    initialValues,
     validationSchema,
     onSubmit: async (values) => {
       // console.log(JSON.stringify(values, null, 2));
 
       await sleep(500);
 
-      onSave(values);
+      const bill: Partial<Bill> = {
+        ...values,
+        amount: +values.amount,
+        balance: values.balance ? +values.balance : null,
+      };
+
+      onSave(bill);
       router.push('/');
     },
   });
@@ -71,7 +77,7 @@ export function BillForm({ onSave, bill: initialValues }: BillFormProps) {
     const day = date.getDate();
     let dueDate: string;
 
-    if (bill?.type === BillType.YEARLY) {
+    if (bill.type === BillType.YEARLY) {
       const month = date.getMonth() + 1;
       dueDate = `${month}/${day}`;
     } else {
@@ -82,9 +88,9 @@ export function BillForm({ onSave, bill: initialValues }: BillFormProps) {
   };
 
   useEffect(() => {
-    if (bill?.type !== BillType.YEARLY && bill?.dueDate) {
+    if (bill.type !== BillType.YEARLY && bill.dueDate) {
       const day = Number(bill.dueDate);
-      const max = maxDueDate(bill?.type);
+      const max = maxDueDate(bill.type);
       const maxDay = max.getDate();
       if (day > maxDay) {
         bill.dueDate = String(maxDay);
@@ -132,7 +138,7 @@ export function BillForm({ onSave, bill: initialValues }: BillFormProps) {
                   aria-describedby={
                     !!errors.name && touched.name ? 'name-error' : ''
                   }
-                  value={bill?.name || ''}
+                  value={bill.name || ''}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   required
@@ -177,7 +183,7 @@ export function BillForm({ onSave, bill: initialValues }: BillFormProps) {
                   prefix={'$'}
                   decimalScale={2}
                   allowNegativeValue={false}
-                  value={bill?.amount || ''}
+                  value={bill.amount || ''}
                   onValueChange={(value) =>
                     handleChange({ target: { name: 'amount', value } })
                   }
@@ -209,7 +215,7 @@ export function BillForm({ onSave, bill: initialValues }: BillFormProps) {
                 name="type"
                 id="type"
                 className="mt-1 mb-6 block w-full rounded-md border-gray-300 placeholder-gray-400 focus:border-cyan-500 focus:ring-cyan-500 disabled:cursor-not-allowed disabled:bg-gray-50 sm:text-sm"
-                value={bill?.type || (BillType.MONTHLY as string)}
+                value={bill.type || (BillType.MONTHLY as string)}
                 onChange={handleTypeChange}
                 onBlur={handleBlur}
               >
@@ -230,9 +236,9 @@ export function BillForm({ onSave, bill: initialValues }: BillFormProps) {
                   name="dueDate"
                   id="dueDate"
                   placeholderText={
-                    bill?.type === BillType.YEARLY ? '6/15' : '15'
+                    bill.type === BillType.YEARLY ? '6/15' : '15'
                   }
-                  dateFormat={bill?.type === BillType.YEARLY ? 'M/d' : 'd'}
+                  dateFormat={bill.type === BillType.YEARLY ? 'M/d' : 'd'}
                   minDate={minDueDate()}
                   maxDate={maxDueDate()}
                   showPopperArrow={false}
@@ -246,7 +252,7 @@ export function BillForm({ onSave, bill: initialValues }: BillFormProps) {
                   aria-describedby={
                     !!errors.dueDate && touched.dueDate ? 'dueDate-error' : ''
                   }
-                  selected={bill?.dueDate ? parseDueDate(bill) : null}
+                  selected={bill.dueDate ? parseDueDate(bill) : null}
                   onChange={(date) => handleDueDateChange(date)}
                   onBlur={handleBlur}
                   required
@@ -269,10 +275,10 @@ export function BillForm({ onSave, bill: initialValues }: BillFormProps) {
               <Switch.Group as="div" className="mt-1 mb-6 flex items-center">
                 <Switch
                   className={clsx(
-                    bill?.autoPaid ? 'bg-cyan-600' : 'bg-gray-200',
+                    bill.autoPaid ? 'bg-cyan-600' : 'bg-gray-200',
                     'relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2'
                   )}
-                  checked={bill?.autoPaid || false}
+                  checked={bill.autoPaid || false}
                   onChange={(autoPaid) =>
                     handleChange({
                       target: { name: 'autoPaid', value: autoPaid },
@@ -283,7 +289,7 @@ export function BillForm({ onSave, bill: initialValues }: BillFormProps) {
                   <span
                     aria-hidden="true"
                     className={clsx(
-                      bill?.autoPaid ? 'translate-x-5' : 'translate-x-0',
+                      bill.autoPaid ? 'translate-x-5' : 'translate-x-0',
                       'pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out'
                     )}
                   />
@@ -324,7 +330,7 @@ export function BillForm({ onSave, bill: initialValues }: BillFormProps) {
                 prefix={'$'}
                 decimalScale={2}
                 allowNegativeValue={false}
-                value={bill?.balance || ''}
+                value={bill.balance || ''}
                 onValueChange={(value) =>
                   handleChange({ target: { name: 'balance', value } })
                 }
@@ -345,7 +351,7 @@ export function BillForm({ onSave, bill: initialValues }: BillFormProps) {
                 id="owner"
                 placeholder="Jane"
                 className="mt-1 mb-6 block w-full rounded-md border-gray-300 placeholder-gray-400 focus:border-cyan-500 focus:ring-cyan-500 sm:text-sm"
-                value={bill?.owner || ''}
+                value={bill.owner || ''}
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
@@ -364,7 +370,7 @@ export function BillForm({ onSave, bill: initialValues }: BillFormProps) {
                 id="website"
                 placeholder="https://example.com"
                 className="mt-1 mb-6 block w-full rounded-md border-gray-300 placeholder-gray-400 focus:border-cyan-500 focus:ring-cyan-500 sm:text-sm"
-                value={bill?.website || ''}
+                value={bill.website || ''}
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
@@ -383,7 +389,7 @@ export function BillForm({ onSave, bill: initialValues }: BillFormProps) {
                 id="username"
                 placeholder="janedoe"
                 className="mt-1 mb-6 block w-full rounded-md border-gray-300 placeholder-gray-400 focus:border-cyan-500 focus:ring-cyan-500 sm:text-sm"
-                value={bill?.username || ''}
+                value={bill.username || ''}
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
@@ -402,7 +408,7 @@ export function BillForm({ onSave, bill: initialValues }: BillFormProps) {
                 id="password"
                 placeholder="********"
                 className="mt-1 mb-6 block w-full rounded-md border-gray-300 placeholder-gray-400 focus:border-cyan-500 focus:ring-cyan-500 sm:text-sm"
-                value={bill?.password || ''}
+                value={bill.password || ''}
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
@@ -458,7 +464,7 @@ export function BillForm({ onSave, bill: initialValues }: BillFormProps) {
             >
               Reset
             </button>
-            {!bill?.id && (
+            {!bill.id && (
               <button
                 type="submit"
                 className="order-2 mb-5 inline-flex w-full justify-center rounded-md border border-transparent bg-cyan-700 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-cyan-800 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:bg-gray-300 disabled:text-gray-500 sm:order-3 sm:mb-0 sm:ml-5 sm:w-auto"

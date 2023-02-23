@@ -19,6 +19,7 @@ import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { Fragment, useState } from 'react';
+import { mutate } from 'swr';
 
 const navigation = [
   { name: 'Bills', href: '/', icon: BanknotesIcon },
@@ -328,7 +329,16 @@ export function Layout({ children }: LayoutProps) {
                             active ? 'bg-gray-100' : '',
                             'block w-full px-4 py-2 text-left text-sm text-gray-700'
                           )}
-                          onClick={() => signOut()}
+                          onClick={() => {
+                            signOut();
+                            const clearCache = () =>
+                              mutate(() => true, undefined, {
+                                revalidate: false,
+                              });
+
+                            // ...clear cache on logout
+                            clearCache();
+                          }}
                         >
                           Logout
                         </button>

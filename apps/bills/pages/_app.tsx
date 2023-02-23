@@ -1,7 +1,6 @@
 import { SessionProvider } from 'next-auth/react';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
-import { BillStoreProvider } from '../lib/bill-store.context';
 import './styles.css';
 
 function CustomApp({
@@ -14,9 +13,7 @@ function CustomApp({
         <title>Bills - Jason Ruesch</title>
       </Head>
       <SessionProvider session={session}>
-        <BillStoreProvider>
-          <Component {...pageProps} />
-        </BillStoreProvider>
+        <Component {...pageProps} />
       </SessionProvider>
     </>
   );
