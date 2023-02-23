@@ -2,19 +2,22 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import BillForm from '../../components/BillForm';
 import Layout from '../../components/Layout';
-import useBills from '../../lib/useBills';
+import { useBillStore } from '../../lib/bill-store.context';
 
 export function EditBill() {
   const router = useRouter();
-  const { getBill, updateBill } = useBills();
   const id = router.query.id as string;
+  const { getBill, updateBill } = useBillStore();
   const [bill, setBill] = useState(null);
 
   useEffect(() => {
-    getBill(id).then((bill) => {
+    const fetchBill = async () => {
+      const bill = await getBill(id);
       setBill(bill);
-    });
-  }, [getBill, id]);
+    };
+
+    fetchBill();
+  }, [id, getBill]);
 
   return (
     <Layout>
@@ -37,7 +40,17 @@ export function EditBill() {
         </div>
       </div>
 
-      {bill && <BillForm onSave={updateBill} bill={bill} />}
+      {bill ? (
+        <BillForm onSave={updateBill} bill={bill} />
+      ) : (
+        <div className="mx-auto max-w-6xl px-4 py-6 sm:px-6 lg:px-8 divide-y divide-gray-200">
+          <div>
+            <div>
+              <p className="mt-1 text-sm text-gray-500">Bill was not found.</p>
+            </div>
+          </div>
+        </div>
+      )}
     </Layout>
   );
 }

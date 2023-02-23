@@ -1,17 +1,20 @@
 /* eslint-disable @next/next/no-img-element */
 import { PlusIcon } from '@heroicons/react/20/solid';
 import { HashtagIcon, ScaleIcon } from '@heroicons/react/24/outline';
+import { useObservable } from '@ngneat/react-rxjs';
 import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import BillList from '../components/BillList';
 import BillListSkeleton from '../components/BillListSkeleton';
 import Layout from '../components/Layout';
-import useBills from '../lib/useBills';
+import { useBillStore } from '../lib/bill-store.context';
 import { toCurrency } from '../lib/utils';
 
 export function Index() {
-  const { bills, loading, error } = useBills();
+  const { data, deleteBill } = useBillStore();
+  const [{ bills, error, loading: isLoading }] = useObservable(data);
+
   const { data: session } = useSession();
   const cards = [
     {
@@ -134,17 +137,21 @@ export function Index() {
           </h2>
 
           {error ? (
-            <div className="hidden sm:block">
-              <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-                <div className="mt-2 flex flex-col">
-                  <p>An unexpected error occurred.</p>
-                </div>
+            <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+              <div className="mt-2 flex flex-col">
+                <p>An unexpected error occurred.</p>
               </div>
             </div>
-          ) : loading ? (
+          ) : isLoading ? (
             <BillListSkeleton />
+          ) : bills.length ? (
+            <BillList bills={bills} onDelete={deleteBill} />
           ) : (
-            <BillList />
+            <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+              <div className="mt-2 flex flex-col">
+                <p>You have no bills. Add one above to get started.</p>
+              </div>
+            </div>
           )}
         </div>
       </>

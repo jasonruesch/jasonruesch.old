@@ -17,87 +17,98 @@ import { delay, lastValueFrom, map, of, tap } from 'rxjs';
 import { fromFetch } from 'rxjs/fetch';
 import { Bill } from './bill.model';
 
-const store = createStore(
-  { name: 'bills' },
-  withEntities<Bill>(),
-  withRequestsStatus()
-);
+export type BillStore = ReturnType<typeof createBillStore>;
 
-const { setSuccess, trackRequestStatus, data$ } = createRequestDataSource({
-  data$: () => store.pipe(selectAllEntities()),
-  requestKey: 'bills',
-  dataKey: 'bills',
-  store,
-  idleAsPending: true,
-});
-
-export const billsDataSource = data$();
-
-export const getBills = async (): Promise<Bill[]> => {
-  store.update(updateRequestStatus('bills', 'pending'));
-
-  const updateStore = (bills: Bill[]) => {
-    store.update(setEntities(bills), setSuccess());
-  };
-
-  const request$ = fromFetch<Bill[]>('/api/bills', {
-    selector: (res) => res.json(),
-  });
-
-  return await lastValueFrom(
-    request$.pipe(trackRequestStatus(), delay(500), tap(updateStore))
+export const createBillStore = () => {
+  const store = createStore(
+    { name: 'bills' },
+    withEntities<Bill>(),
+    withRequestsStatus()
   );
-};
 
-export const getBill = async (id: string): Promise<Bill> => {
-  const bill = store.query(getEntity(id));
-
-  const request$ = fromFetch<Bill>(`/api/bills/${id}`, {
-    selector: (res) => res.json(),
+  const { setSuccess, trackRequestStatus, data$ } = createRequestDataSource({
+    data$: () => store.pipe(selectAllEntities()),
+    requestKey: 'bills',
+    dataKey: 'bills',
+    store,
+    idleAsPending: true,
   });
 
-  return bill ? bill : id ? await lastValueFrom(request$) : null;
-};
+  const getBills = async (): Promise<Bill[]> => {
+    store.update(updateRequestStatus('bills', 'pending'));
 
-export const addBill = async (bill: Partial<Bill>): Promise<Bill> => {
-  const updateStore = (bill: Bill) => {
-    store.update(addEntities(bill));
+    const updateStore = (bills: Bill[]) => {
+      store.update(setEntities(bills), setSuccess());
+    };
+
+    const request$ = fromFetch<Bill[]>('/api/bills', {
+      selector: (res) => res.json(),
+    });
+
+    return await lastValueFrom(
+      request$.pipe(trackRequestStatus(), delay(500), tap(updateStore))
+    );
   };
 
-  const request$ = fromFetch<Bill>('/api/bills', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(bill),
-    selector: (res) => res.json(),
-  });
+  const getBill = async (id: string): Promise<Bill> => {
+    const bill = store.query(getEntity(id));
 
-  return await lastValueFrom(request$.pipe(tap(updateStore)));
-};
+    const request$ = fromFetch<Bill>(`/api/bills/${id}`, {
+      selector: (res) => res.json(),
+    });
 
-export const updateBill = async (bill: Bill): Promise<Bill> => {
-  const updateStore = (bill: Bill) => {
-    store.update(updateEntities(bill.id, bill));
+    return bill ? bill : id ? await lastValueFrom(request$) : null;
   };
 
-  const request$ = fromFetch<Bill>(`/api/bills/${bill.id}`, {
-    method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(bill),
-    selector: (res) => res.json(),
-  });
+  const addBill = async (bill: Partial<Bill>): Promise<Bill> => {
+    const updateStore = (bill: Bill) => {
+      store.update(addEntities(bill));
+    };
 
-  return await lastValueFrom(request$.pipe(tap(updateStore)));
-};
+    const request$ = fromFetch<Bill>('/api/bills', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(bill),
+      selector: (res) => res.json(),
+    });
 
-export const deleteBill = async (id: string): Promise<void> => {
-  const updateStore = (id: string) => {
-    store.update(deleteEntities(id));
+    return await lastValueFrom(request$.pipe(tap(updateStore)));
   };
 
-  const request$ = fromFetch<string>(`/api/bills/${id}`, {
-    method: 'DELETE',
-    selector: () => of(id),
-  });
+  const updateBill = async (bill: Bill): Promise<Bill> => {
+    const updateStore = (bill: Bill) => {
+      store.update(updateEntities(bill.id, bill));
+    };
 
-  return await lastValueFrom(request$.pipe(map(updateStore)));
+    const request$ = fromFetch<Bill>(`/api/bills/${bill.id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(bill),
+      selector: (res) => res.json(),
+    });
+
+    return await lastValueFrom(request$.pipe(tap(updateStore)));
+  };
+
+  const deleteBill = async (id: string): Promise<void> => {
+    const updateStore = (id: string) => {
+      store.update(deleteEntities(id));
+    };
+
+    const request$ = fromFetch<string>(`/api/bills/${id}`, {
+      method: 'DELETE',
+      selector: () => of(id),
+    });
+
+    return await lastValueFrom(request$.pipe(map(updateStore)));
+  };
+
+  return {
+    data: data$(),
+    getBills,
+    getBill,
+    addBill,
+    updateBill,
+    deleteBill,
+  };
 };

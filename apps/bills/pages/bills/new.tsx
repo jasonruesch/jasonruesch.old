@@ -1,9 +1,9 @@
 import BillForm from '../../components/BillForm';
 import Layout from '../../components/Layout';
-import useBills from '../../lib/useBills';
+import { useBillStore } from '../../lib/bill-store.context';
 
 export function AddBill() {
-  const { addBill } = useBills();
+  const { addBill } = useBillStore();
 
   return (
     <Layout>

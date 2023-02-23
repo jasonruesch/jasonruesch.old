@@ -10,8 +10,7 @@ import clsx from 'clsx';
 import Link from 'next/link';
 import { useState } from 'react';
 import { Bill, BillType } from '../lib/bill.model';
-import useBills from '../lib/useBills';
-import useSortableData from '../lib/useSortableData';
+import useSortableData from '../lib/use-sortable-data';
 import { toCurrency, toOrdinalString } from '../lib/utils';
 
 const billTypes = [
@@ -19,8 +18,12 @@ const billTypes = [
   { id: BillType.YEARLY, title: 'Yearly' },
 ];
 
-export function BillList() {
-  const { bills: items, deleteBill } = useBills();
+export interface BillListProps {
+  onDelete: (id: string) => void;
+  bills: Bill[];
+}
+
+export function BillList({ bills: items, onDelete }: BillListProps) {
   const [type, setType] = useState(BillType.MONTHLY);
 
   // Filter bills
@@ -44,14 +47,14 @@ export function BillList() {
 
   const handleDeleteBill = (id: string) => {
     if (confirm('Are you sure you want to delete this bill?')) {
-      deleteBill(id);
+      onDelete(id);
     }
   };
 
   return (
     <>
       {/* Bill list (smallest breakpoint only) */}
-      {bills?.length ? (
+      {bills.length && (
         <div className="shadow sm:hidden">
           <ul
             role="list"
@@ -98,17 +101,13 @@ export function BillList() {
             ))}
           </ul>
         </div>
-      ) : (
-        <p className="px-4 sm:hidden">
-          You have no bills. Add one above to get started.
-        </p>
       )}
 
       {/* Bill table (small breakpoint and up) */}
       <div className="hidden sm:block">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="mt-2 flex flex-col">
-            {bills?.length ? (
+            {bills?.length && (
               <div className="min-w-full overflow-hidden overflow-x-auto align-middle shadow sm:rounded-lg">
                 <div className="flex flex-col items-center justify-between p-4 space-y-3 md:flex-row md:space-y-0 md:space-x-4 text-gray-900 border-b border-gray-200 bg-white">
                   <div className="w-full md:w-1/2">
@@ -446,8 +445,6 @@ export function BillList() {
                   </tbody>
                 </table>
               </div>
-            ) : (
-              <p>You have no bills. Add one above to get started.</p>
             )}
           </div>
         </div>
