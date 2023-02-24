@@ -39,12 +39,14 @@ export default function authRoutes(app) {
 
     // Authenticated
     res.json({
+      id: '0dbb00e1-938a-4c97-a1dd-efb256ea9a29',
       user: {
+        id: '0dbb00e1-938a-4c97-a1dd-efb256ea9a29',
         name: 'Jason Ruesch',
         email: 'jason.ruesch@me.com',
         image: 'https://avatars.githubusercontent.com/u/1501490?v=4',
       },
-      expires: '2023-03-23T23:00:55.426Z',
+      expires: '9999-03-23T23:00:55.426Z',
     });
   });
 

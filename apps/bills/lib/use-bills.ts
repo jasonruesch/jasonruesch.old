@@ -1,21 +1,12 @@
-import { delay, lastValueFrom, of } from 'rxjs';
-import { fromFetch } from 'rxjs/fetch';
 import useSWR from 'swr';
+
 import { Bill } from './bill.model';
-
-// export const fetcher = (url: string) => fetch(url).then((res) => res.json());
-const fetcher = async (url) => {
-  const request$ = fromFetch<Bill[]>(url, {
-    selector: (res) => res.json(),
-  });
-
-  return await lastValueFrom(request$.pipe(delay(500)));
-};
+import { api } from './bills.api';
 
 export const useBills = () => {
   const { data, error, isLoading, mutate } = useSWR<Bill[]>(
     '/api/bills',
-    fetcher,
+    api.loadAll,
     {
       revalidateIfStale: false,
       revalidateOnFocus: false,
@@ -24,83 +15,46 @@ export const useBills = () => {
   );
 
   const getBill = async (id: string) => {
-    try {
-      const bill = data?.find((b) => b.id === id);
-      if (bill) {
-        return bill;
-      }
+    const bill = data?.find((b) => b.id === id);
 
-      const request$ = fromFetch<Bill>(`/api/bills/${id}`, {
-        selector: (res) => res.json(),
-      });
-
-      return await lastValueFrom(request$);
-    } catch (error) {
-      console.error(error);
-    }
+    return bill || (await api.load(id));
   };
 
   const addBill = async (bill: Partial<Bill>) => {
-    try {
-      mutate(
-        async (bills) => {
-          const request$ = fromFetch<Bill>('/api/bills', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(bill),
-            selector: (res) => res.json(),
-          });
+    mutate(
+      async (bills) => {
+        const addedBill = await api.create(bill);
 
-          const addedBill = await lastValueFrom(request$);
-          return [...bills, addedBill];
-        },
-        { revalidate: false }
-      );
-    } catch (error) {
-      console.error(error);
-    }
+        return [...bills, addedBill];
+      },
+      { revalidate: false }
+    );
   };
 
   const updateBill = async (bill: Bill) => {
-    try {
-      mutate(
-        async (bills) => {
-          const request$ = fromFetch<Bill>(`/api/bills/${bill.id}`, {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(bill),
-            selector: (res) => res.json(),
-          });
+    mutate(
+      async (bills) => {
+        const updatedBill = await api.update(bill);
+        const filteredBills = bills.filter((b) => b.id !== bill.id);
 
-          const updatedBill = await lastValueFrom(request$);
-          const filteredBills = bills.filter((b) => b.id !== bill.id);
-          return [...filteredBills, updatedBill];
-        },
-        { revalidate: false }
-      );
-    } catch (error) {
-      console.error(error);
-    }
+        return [...filteredBills, updatedBill];
+      },
+      { revalidate: false }
+    );
   };
 
-  const deleteBill = async (id: string) => {
-    try {
-      mutate(
-        async (bills) => {
-          const request$ = fromFetch<void>(`/api/bills/${id}`, {
-            method: 'DELETE',
-            selector: () => of(undefined),
-          });
+  const deleteBill = async (bill: Bill) => {
+    mutate(
+      async (bills) => {
+        const success = await api.delete(bill);
+        const filteredBills = success
+          ? bills.filter((b) => b.id !== bill.id)
+          : bills;
 
-          await lastValueFrom(request$);
-          const filteredBills = bills.filter((b) => b.id !== id);
-          return [...filteredBills];
-        },
-        { revalidate: false }
-      );
-    } catch (error) {
-      console.error(error);
-    }
+        return [...filteredBills];
+      },
+      { revalidate: false }
+    );
   };
 
   return {

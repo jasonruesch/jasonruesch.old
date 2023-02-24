@@ -8,6 +8,7 @@ import { ChangeEvent, useEffect } from 'react';
 import CurrencyInput from 'react-currency-input-field';
 import DatePicker from 'react-datepicker';
 import * as Yup from 'yup';
+
 import { Bill, BillType } from '../lib/bill.model';
 import {
   dateOptions,
@@ -70,6 +71,7 @@ export function BillForm({ onSave, bill: initialValues }: BillFormProps) {
 
       const query = router.query;
       delete query.filter; // Clear the filter before returning to the list
+
       router.push(`/${queryString(query, bill.type)}`);
     },
   });
@@ -95,6 +97,13 @@ export function BillForm({ onSave, bill: initialValues }: BillFormProps) {
     }
 
     handleChange({ target: { name: 'dueDate', value: dueDate } });
+  };
+
+  const cancelQueryString = () => {
+    const query = router.query;
+    delete query.id; // Clear the id before returning to the list
+
+    return queryString(query, type || initialValues?.type);
   };
 
   useEffect(() => {
@@ -458,7 +467,7 @@ export function BillForm({ onSave, bill: initialValues }: BillFormProps) {
         <div className="pt-5">
           <div className="flex flex-col py-2 px-4 sm:flex-row sm:justify-end sm:px-6">
             <Link
-              href={`/${queryString(router.query, type)}`}
+              href={`/${cancelQueryString()}`}
               className="order-4 mb-5 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 sm:order-1 sm:mb-0 sm:w-auto"
             >
               Cancel

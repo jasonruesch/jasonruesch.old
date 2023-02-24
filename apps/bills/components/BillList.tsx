@@ -8,6 +8,7 @@ import {
 } from '@heroicons/react/24/outline';
 import clsx from 'clsx';
 import Link from 'next/link';
+
 import { Bill, BillType } from '../lib/bill.model';
 import useSortableData from '../lib/use-sortable-data';
 import { toCurrency, toOrdinalString } from '../lib/utils';
@@ -30,7 +31,7 @@ export interface BillListProps {
     filter: string;
   };
   onFiltersChange: (filters: { type: BillType; filter: string }) => void;
-  onDelete: (id: string) => void;
+  onDelete: (bill: Bill) => void;
 }
 
 export function BillList({
@@ -82,9 +83,9 @@ export function BillList({
     onFiltersChange({ ...filterParams, filter });
   };
 
-  const handleDeleteBill = (id: string) => {
+  const handleDeleteBill = (bill: Bill) => {
     if (confirm('Are you sure you want to delete this bill?')) {
-      onDelete(id);
+      onDelete(bill);
     }
   };
 
@@ -439,7 +440,7 @@ export function BillList({
                           <button
                             type="button"
                             className="ml-3 text-red-400 hover:text-red-600"
-                            onClick={() => handleDeleteBill(bill.id)}
+                            onClick={() => handleDeleteBill(bill)}
                           >
                             <TrashIcon
                               className="h-5 w-5 inline"

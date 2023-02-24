@@ -1,7 +1,8 @@
-// import { Prisma } from '@prisma/client';
 // import { getServerSession } from 'next-auth/next';
-// import prisma from '../../../lib/prisma';
+// import { Prisma } from '@prisma/client';
+
 // import { authOptions } from '../auth/[...nextauth]';
+// import prisma from '../../../lib/prisma';
 
 // POST /api/bill/batch
 export default async function handle(req, res) {

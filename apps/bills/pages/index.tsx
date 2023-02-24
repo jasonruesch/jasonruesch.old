@@ -4,9 +4,12 @@ import { HashtagIcon, ScaleIcon } from '@heroicons/react/24/outline';
 import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+
 import BillList from '../components/BillList';
 import BillListSkeleton from '../components/BillListSkeleton';
 import Layout from '../components/Layout';
+import { OverviewCards } from '../components/OverviewCards';
+import { OverviewCardsSkeleton } from '../components/OverviewCardsSkeleton';
 import { BillType } from '../lib/bill.model';
 import { useBills } from '../lib/use-bills';
 import useFilters from '../lib/use-filters';
@@ -111,36 +114,12 @@ export function Index() {
               Overview
             </h2>
             <div className="mt-2 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-              {/* Card */}
-              {cards.map((card) => (
-                <div
-                  key={card.name}
-                  className="overflow-hidden rounded-lg bg-white shadow"
-                >
-                  <div className="p-5">
-                    <div className="flex">
-                      <div className="flex-shrink-0 pt-3">
-                        <card.icon
-                          className="h-6 w-6 text-gray-400"
-                          aria-hidden="true"
-                        />
-                      </div>
-                      <div className="ml-5 w-0 flex-1">
-                        <dl>
-                          <dt className="truncate text-sm font-medium text-gray-500">
-                            {card.name}
-                          </dt>
-                          <dd>
-                            <div className="text-lg font-medium text-gray-900">
-                              {card.value}
-                            </div>
-                          </dd>
-                        </dl>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
+              {/* Cards */}
+              {isLoading ? (
+                <OverviewCardsSkeleton />
+              ) : (
+                <OverviewCards cards={cards} />
+              )}
             </div>
           </div>
 
@@ -148,6 +127,7 @@ export function Index() {
             Bills
           </h2>
 
+          {/* Bills */}
           {isError ? (
             <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
               <div className="mt-2 flex flex-col">

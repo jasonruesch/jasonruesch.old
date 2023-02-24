@@ -1,5 +1,12 @@
 import { ParsedUrlQuery, stringify } from 'querystring';
+
 import { Bill, BillType } from './bill.model';
+
+// const mergeQueryStrings = (...queries: ParsedUrlQuery[]) => {
+//   return queries.reduce((acc, curr) => {
+//     return { ...acc, ...curr };
+//   }, {});
+// }
 
 export const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 

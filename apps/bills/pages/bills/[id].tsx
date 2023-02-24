@@ -1,8 +1,9 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import { Bill } from '../..//lib/bill.model';
+
 import BillForm from '../../components/BillForm';
 import Layout from '../../components/Layout';
+import { Bill } from '../../lib/bill.model';
 import useBills from '../../lib/use-bills';
 
 export function EditBill() {

@@ -1,5 +1,6 @@
 import { faker } from '@faker-js/faker';
 import { NextApiRequest, NextApiResponse } from 'next';
+
 import { bills } from '../../../data/bills';
 import { Bill } from '../../../lib/bill.model';
 

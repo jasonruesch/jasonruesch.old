@@ -1,5 +1,6 @@
-import { catchError, lastValueFrom, of } from 'rxjs';
+import { catchError, delay, lastValueFrom, of } from 'rxjs';
 import { fromFetch } from 'rxjs/fetch';
+
 import { Bill } from './bill.model';
 
 const toJSON = (res) => res.json();
@@ -22,10 +23,10 @@ export const api = {
       selector: toJSON,
     }).pipe(catchError(reportError([])));
 
-    return lastValueFrom(request$);
+    return lastValueFrom(request$.pipe(delay(500)));
   },
   /**
-   * Load specific Bill by id
+   * Load a specific Bill by id
    */
   load: async (id: string): Promise<Bill | null> => {
     const request$ = fromFetch<Bill>(`/api/bills/${id}`, {
@@ -35,13 +36,25 @@ export const api = {
     return lastValueFrom(request$);
   },
   /**
-   * Update or Create a Bill
+   * Create a Bill
    */
-  update: async (bill: Partial<Bill>) => {
-    const url = !bill.id ? '/api/bills' : `/api/bills/${bill.id}`;
-    const request$ = fromFetch<Bill>(url, {
+  create: async (bill: Partial<Bill>) => {
+    const request$ = fromFetch<Bill>('/api/bills', {
       selector: toJSON,
-      method: !bill.id ? 'POST' : 'PUT',
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(bill),
+    }).pipe(catchError(reportError(null)));
+
+    return lastValueFrom(request$);
+  },
+  /**
+   * Update a Bill
+   */
+  update: async (bill: Bill) => {
+    const request$ = fromFetch<Bill>(`/api/bills/${bill.id}`, {
+      selector: toJSON,
+      method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(bill),
     }).pipe(catchError(reportError(null)));
