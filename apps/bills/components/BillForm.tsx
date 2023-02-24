@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { useFormik } from 'formik';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, useEffect } from 'react';
 import CurrencyInput from 'react-currency-input-field';
 import DatePicker from 'react-datepicker';
 import * as Yup from 'yup';
@@ -26,9 +26,7 @@ export type BillFormProps = {
 export function BillForm({ onSave, bill: initialValues }: BillFormProps) {
   const router = useRouter();
   const { type: typeParam } = router.query;
-  const [type, setType] = useState<BillType | null>(
-    typeParam ? (String(typeParam).toUpperCase() as BillType) : null
-  );
+  const type = typeParam ? (String(typeParam).toUpperCase() as BillType) : null;
 
   const validationSchema = Yup.object({
     type: Yup.string(),
@@ -70,7 +68,9 @@ export function BillForm({ onSave, bill: initialValues }: BillFormProps) {
 
       onSave(bill);
 
-      router.push(`/${queryString(router.query, bill.type)}`);
+      const query = router.query;
+      delete query.filter; // Clear the filter before returning to the list
+      router.push(`/${queryString(query, bill.type)}`);
     },
   });
 
@@ -79,16 +79,6 @@ export function BillForm({ onSave, bill: initialValues }: BillFormProps) {
   };
 
   const handleTypeChange = (event: Partial<ChangeEvent<HTMLSelectElement>>) => {
-    if (type) {
-      const value = event.target.value as BillType;
-      router.push(
-        router.asPath,
-        { query: { type: value.toLowerCase() } },
-        { shallow: true }
-      );
-      setType(value);
-    }
-
     handleChange({ target: { name: 'dueDate', value: '' } });
     handleChange(event);
   };
@@ -468,7 +458,7 @@ export function BillForm({ onSave, bill: initialValues }: BillFormProps) {
         <div className="pt-5">
           <div className="flex flex-col py-2 px-4 sm:flex-row sm:justify-end sm:px-6">
             <Link
-              href={`/${queryString(router.query, bill.type)}`}
+              href={`/${queryString(router.query, type)}`}
               className="order-4 mb-5 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 sm:order-1 sm:mb-0 sm:w-auto"
             >
               Cancel

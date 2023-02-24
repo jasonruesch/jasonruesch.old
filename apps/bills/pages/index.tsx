@@ -3,46 +3,19 @@ import { PlusIcon } from '@heroicons/react/20/solid';
 import { HashtagIcon, ScaleIcon } from '@heroicons/react/24/outline';
 import { useSession } from 'next-auth/react';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import BillList from '../components/BillList';
 import BillListSkeleton from '../components/BillListSkeleton';
 import Layout from '../components/Layout';
 import { BillType } from '../lib/bill.model';
 import { useBills } from '../lib/use-bills';
-import { queryString, toCurrency } from '../lib/utils';
+import useFilters from '../lib/use-filters';
+import { toCurrency } from '../lib/utils';
 
 export function Index() {
-  const router = useRouter();
-  const { type: typeParam, filter: filterParam } = router.query;
-  const [filters, setFilters] = useState<{ type: BillType; filter: string }>({
-    type: typeParam
-      ? (String(typeParam).toUpperCase() as BillType)
-      : BillType.MONTHLY,
-    filter: filterParam ? (filterParam as string) : 'all',
-  });
-  const [query, setQuery] = useState<string>(() => {
-    const query = Object.keys(filters).includes('type')
-      ? { ...filters, type: filters.type.toLowerCase() }
-      : filters;
-
-    return queryString(query);
-  });
-
-  const handleFiltersChange = (filters: { type: BillType; filter: string }) => {
-    setFilters(filters);
-
-    const query = Object.keys(filters).includes('type')
-      ? { ...filters, type: filters.type.toLowerCase() }
-      : filters;
-
-    setQuery(queryString(query));
-
-    router.push(router.asPath, { query }, { shallow: true });
-  };
-
   const { data: session } = useSession();
   const { bills, isLoading, isError, deleteBill } = useBills();
+  const { filters, query, onFiltersChange } = useFilters();
 
   const cards = [
     {
@@ -187,7 +160,7 @@ export function Index() {
             <BillList
               bills={bills}
               filters={filters}
-              onFiltersChange={handleFiltersChange}
+              onFiltersChange={onFiltersChange}
               onDelete={deleteBill}
             />
           ) : (
