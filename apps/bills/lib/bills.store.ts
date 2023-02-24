@@ -34,33 +34,42 @@ const isLoading = (status: boolean) => (state: BillStore) => {
 
 export function makeBillStore() {
   return createStore<BillStore>()(
-    immer((set) => ({
+    immer((set, get) => ({
       ...initState(),
 
-      loadAll: async () => {
-        set(isLoading(true));
+      loadAll: async (): Promise<Bill[]> => {
+        let { bills } = get();
 
-        const bills = await api.getAll();
-        set((state) => {
-          state.bills = bills;
-          state.isLoading = false;
-        });
-      },
+        if (!bills.length) {
+          set(isLoading(true));
 
-      loadById: async (id: string) => {
-        set(isLoading(true));
-
-        const bill = await api.get(id);
-        if (bill) {
+          bills = await api.getAll();
           set((state) => {
-            state.bills = [...new Set([...state.bills, bill])];
+            state.bills = bills;
             state.isLoading = false;
           });
+        }
+        return bills;
+      },
+
+      loadById: async (id: string): Promise<Bill> => {
+        let bill = get().bills.find((b) => b.id === id);
+
+        if (!bill) {
+          set(isLoading(true));
+
+          bill = await api.get(id);
+          if (bill) {
+            set((state) => {
+              state.bills = [...new Set([...state.bills, bill])];
+              state.isLoading = false;
+            });
+          }
         }
         return bill;
       },
 
-      add: async (bill: Partial<Bill>) => {
+      add: async (bill: Partial<Bill>): Promise<boolean> => {
         set(isLoading(true));
 
         const createdBill = await api.create(bill);
@@ -70,9 +79,10 @@ export function makeBillStore() {
             state.isLoading = false;
           });
         }
+        return !!createdBill;
       },
 
-      update: async (bill: Bill) => {
+      update: async (bill: Bill): Promise<boolean> => {
         set(isLoading(true));
 
         const updatedBill = await api.update(bill);
@@ -85,9 +95,10 @@ export function makeBillStore() {
             state.isLoading = false;
           });
         }
+        return !!updatedBill;
       },
 
-      remove: async (bill: Bill) => {
+      remove: async (bill: Bill): Promise<boolean> => {
         set(isLoading(true));
 
         const success = await api.delete(bill);
@@ -97,6 +108,7 @@ export function makeBillStore() {
             state.isLoading = false;
           });
         }
+        return success;
       },
     }))
   );
@@ -106,6 +118,8 @@ export function makeBillStore() {
  * Global singleton store
  */
 const store = makeBillStore();
+
+store.getState().loadAll();
 
 export function useBillStore(): BillStore {
   return useStore(store);

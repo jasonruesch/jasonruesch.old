@@ -17,13 +17,8 @@ import { toCurrency } from '../lib/utils';
 
 export function Index() {
   const { data: session } = useSession();
-  const { bills, isLoading, hasError, loadAll, remove } = useBillStore();
+  const { bills, isLoading, hasError, remove } = useBillStore();
   const { filters, query, onFiltersChange } = useFilters();
-
-  useEffect(() => {
-    loadAll();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   const cards = [
     {
