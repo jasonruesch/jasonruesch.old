@@ -17,8 +17,9 @@ export function EditBill() {
       setBill(bill);
     };
 
-    fetchBill(id);
-  }, [getBill, id]);
+    id && fetchBill(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id]);
 
   return (
     <Layout>
@@ -41,7 +42,7 @@ export function EditBill() {
         </div>
       </div>
 
-      {bill ? (
+      {bill?.id ? (
         <BillForm onSave={updateBill} bill={bill} />
       ) : (
         <div className="mx-auto max-w-6xl px-4 py-6 sm:px-6 lg:px-8 divide-y divide-gray-200">

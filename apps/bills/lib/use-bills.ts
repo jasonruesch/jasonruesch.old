@@ -17,8 +17,6 @@ export const useBills = () => {
     '/api/bills',
     fetcher,
     {
-      // fallbackData: [],
-      // keepPreviousData: true,
       revalidateIfStale: false,
       revalidateOnFocus: false,
       revalidateOnReconnect: false,
@@ -27,7 +25,7 @@ export const useBills = () => {
 
   const getBill = async (id: string) => {
     try {
-      const bill = data.find((b) => b.id === id);
+      const bill = data?.find((b) => b.id === id);
       if (bill) {
         return bill;
       }

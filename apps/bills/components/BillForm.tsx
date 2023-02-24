@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { useFormik } from 'formik';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import CurrencyInput from 'react-currency-input-field';
 import DatePicker from 'react-datepicker';
 import * as Yup from 'yup';
@@ -19,11 +19,15 @@ import {
 
 export type BillFormProps = {
   onSave: (bill: Partial<Bill>) => void;
-  bill: Partial<Bill>;
+  bill?: Partial<Bill>;
 };
 
 export function BillForm({ onSave, bill: initialValues }: BillFormProps) {
   const router = useRouter();
+  const { type: typeParam } = router.query;
+  const [type, setType] = useState<BillType | null>(
+    typeParam ? (String(typeParam).toUpperCase() as BillType) : null
+  );
 
   const validationSchema = Yup.object({
     type: Yup.string(),
@@ -50,7 +54,7 @@ export function BillForm({ onSave, bill: initialValues }: BillFormProps) {
     dirty,
     resetForm,
   } = useFormik<Partial<Bill>>({
-    initialValues,
+    initialValues: initialValues || { type: type || BillType.MONTHLY },
     validationSchema,
     onSubmit: async (values) => {
       // console.log(JSON.stringify(values, null, 2));
@@ -64,11 +68,26 @@ export function BillForm({ onSave, bill: initialValues }: BillFormProps) {
       };
 
       onSave(bill);
-      router.push('/');
+
+      router.push(`/?type=${bill.type.toLowerCase()}`);
     },
   });
 
-  const handleTypeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleNumberChange = (value: string, name?: string) => {
+    handleChange({ target: { name, value } });
+  };
+
+  const handleTypeChange = (event: Partial<ChangeEvent<HTMLSelectElement>>) => {
+    if (type) {
+      const value = event.target.value as BillType;
+      router.push(
+        router.asPath,
+        { query: { type: value.toLowerCase() } },
+        { shallow: true }
+      );
+      setType(value);
+    }
+
     handleChange({ target: { name: 'dueDate', value: '' } });
     handleChange(event);
   };
@@ -88,8 +107,8 @@ export function BillForm({ onSave, bill: initialValues }: BillFormProps) {
   };
 
   useEffect(() => {
-    if (bill.type !== BillType.YEARLY && bill.dueDate) {
-      const day = Number(bill.dueDate);
+    if (bill.type !== BillType.YEARLY && bill?.dueDate) {
+      const day = Number(bill?.dueDate);
       const max = maxDueDate(bill.type);
       const maxDay = max.getDate();
       if (day > maxDay) {
@@ -138,7 +157,7 @@ export function BillForm({ onSave, bill: initialValues }: BillFormProps) {
                   aria-describedby={
                     !!errors.name && touched.name ? 'name-error' : ''
                   }
-                  value={bill.name || ''}
+                  value={bill?.name || ''}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   required
@@ -183,10 +202,8 @@ export function BillForm({ onSave, bill: initialValues }: BillFormProps) {
                   prefix={'$'}
                   decimalScale={2}
                   allowNegativeValue={false}
-                  value={bill.amount || ''}
-                  onValueChange={(value) =>
-                    handleChange({ target: { name: 'amount', value } })
-                  }
+                  value={bill?.amount || ''}
+                  onValueChange={handleNumberChange}
                   onBlur={handleBlur}
                   required
                 />
@@ -252,7 +269,7 @@ export function BillForm({ onSave, bill: initialValues }: BillFormProps) {
                   aria-describedby={
                     !!errors.dueDate && touched.dueDate ? 'dueDate-error' : ''
                   }
-                  selected={bill.dueDate ? parseDueDate(bill) : null}
+                  selected={bill?.dueDate ? parseDueDate(bill) : null}
                   onChange={(date) => handleDueDateChange(date)}
                   onBlur={handleBlur}
                   required
@@ -275,10 +292,10 @@ export function BillForm({ onSave, bill: initialValues }: BillFormProps) {
               <Switch.Group as="div" className="mt-1 mb-6 flex items-center">
                 <Switch
                   className={clsx(
-                    bill.autoPaid ? 'bg-cyan-600' : 'bg-gray-200',
+                    bill?.autoPaid ? 'bg-cyan-600' : 'bg-gray-200',
                     'relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2'
                   )}
-                  checked={bill.autoPaid || false}
+                  checked={bill?.autoPaid || false}
                   onChange={(autoPaid) =>
                     handleChange({
                       target: { name: 'autoPaid', value: autoPaid },
@@ -289,7 +306,7 @@ export function BillForm({ onSave, bill: initialValues }: BillFormProps) {
                   <span
                     aria-hidden="true"
                     className={clsx(
-                      bill.autoPaid ? 'translate-x-5' : 'translate-x-0',
+                      bill?.autoPaid ? 'translate-x-5' : 'translate-x-0',
                       'pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out'
                     )}
                   />
@@ -330,10 +347,8 @@ export function BillForm({ onSave, bill: initialValues }: BillFormProps) {
                 prefix={'$'}
                 decimalScale={2}
                 allowNegativeValue={false}
-                value={bill.balance || ''}
-                onValueChange={(value) =>
-                  handleChange({ target: { name: 'balance', value } })
-                }
+                value={bill?.balance || ''}
+                onValueChange={handleNumberChange}
                 onBlur={handleBlur}
               />
             </div>
@@ -351,7 +366,7 @@ export function BillForm({ onSave, bill: initialValues }: BillFormProps) {
                 id="owner"
                 placeholder="Jane"
                 className="mt-1 mb-6 block w-full rounded-md border-gray-300 placeholder-gray-400 focus:border-cyan-500 focus:ring-cyan-500 sm:text-sm"
-                value={bill.owner || ''}
+                value={bill?.owner || ''}
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
@@ -370,7 +385,7 @@ export function BillForm({ onSave, bill: initialValues }: BillFormProps) {
                 id="website"
                 placeholder="https://example.com"
                 className="mt-1 mb-6 block w-full rounded-md border-gray-300 placeholder-gray-400 focus:border-cyan-500 focus:ring-cyan-500 sm:text-sm"
-                value={bill.website || ''}
+                value={bill?.website || ''}
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
@@ -389,7 +404,7 @@ export function BillForm({ onSave, bill: initialValues }: BillFormProps) {
                 id="username"
                 placeholder="janedoe"
                 className="mt-1 mb-6 block w-full rounded-md border-gray-300 placeholder-gray-400 focus:border-cyan-500 focus:ring-cyan-500 sm:text-sm"
-                value={bill.username || ''}
+                value={bill?.username || ''}
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
@@ -408,13 +423,13 @@ export function BillForm({ onSave, bill: initialValues }: BillFormProps) {
                 id="password"
                 placeholder="********"
                 className="mt-1 mb-6 block w-full rounded-md border-gray-300 placeholder-gray-400 focus:border-cyan-500 focus:ring-cyan-500 sm:text-sm"
-                value={bill.password || ''}
+                value={bill?.password || ''}
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
             </div>
 
-            {bill.id && (
+            {bill?.id && (
               <div className="col-span-12 sm:col-span-6">
                 <label className="block text-sm font-medium text-gray-700">
                   Metadata
@@ -425,7 +440,7 @@ export function BillForm({ onSave, bill: initialValues }: BillFormProps) {
                       <tr>
                         <td>Created:</td>
                         <td className="pl-4">
-                          {new Date(bill.createdAt).toLocaleString(
+                          {new Date(bill?.createdAt).toLocaleString(
                             'en-US',
                             dateOptions
                           )}
@@ -434,8 +449,8 @@ export function BillForm({ onSave, bill: initialValues }: BillFormProps) {
                       <tr>
                         <td>Modified:</td>
                         <td className="pl-4">
-                          {bill.updatedAt &&
-                            new Date(bill.updatedAt).toLocaleString(
+                          {bill?.updatedAt &&
+                            new Date(bill?.updatedAt).toLocaleString(
                               'en-US',
                               dateOptions
                             )}
@@ -452,7 +467,7 @@ export function BillForm({ onSave, bill: initialValues }: BillFormProps) {
         <div className="pt-5">
           <div className="flex flex-col py-2 px-4 sm:flex-row sm:justify-end sm:px-6">
             <Link
-              href="/"
+              href={`/?type=${bill.type.toLowerCase()}`}
               className="order-4 mb-5 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 sm:order-1 sm:mb-0 sm:w-auto"
             >
               Cancel
@@ -464,7 +479,7 @@ export function BillForm({ onSave, bill: initialValues }: BillFormProps) {
             >
               Reset
             </button>
-            {!bill.id && (
+            {!bill?.id && (
               <button
                 type="submit"
                 className="order-2 mb-5 inline-flex w-full justify-center rounded-md border border-transparent bg-cyan-700 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-cyan-800 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:bg-gray-300 disabled:text-gray-500 sm:order-3 sm:mb-0 sm:ml-5 sm:w-auto"

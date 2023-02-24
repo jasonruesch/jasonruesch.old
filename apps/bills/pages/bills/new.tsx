@@ -1,23 +1,9 @@
 import useBills from '../..//lib/use-bills';
 import BillForm from '../../components/BillForm';
 import Layout from '../../components/Layout';
-import { Bill, BillType } from '../../lib/bill.model';
 
 export function AddBill() {
   const { addBill } = useBills();
-
-  const bill: Partial<Bill> = {
-    type: BillType.MONTHLY,
-    name: '',
-    amount: 0,
-    dueDate: '',
-    balance: null,
-    autoPaid: false,
-    owner: null,
-    website: null,
-    username: null,
-    password: null,
-  };
 
   return (
     <Layout>
@@ -40,7 +26,7 @@ export function AddBill() {
         </div>
       </div>
 
-      <BillForm onSave={addBill} bill={bill} />
+      <BillForm onSave={addBill} />
     </Layout>
   );
 }

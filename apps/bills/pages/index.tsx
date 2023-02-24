@@ -3,6 +3,7 @@ import { PlusIcon } from '@heroicons/react/20/solid';
 import { HashtagIcon, ScaleIcon } from '@heroicons/react/24/outline';
 import { useSession } from 'next-auth/react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import BillList from '../components/BillList';
 import BillListSkeleton from '../components/BillListSkeleton';
@@ -12,6 +13,12 @@ import { useBills } from '../lib/use-bills';
 import { toCurrency } from '../lib/utils';
 
 export function Index() {
+  const router = useRouter();
+  const { type: typeParam } = router.query;
+  const [type, setType] = useState<BillType>(
+    typeParam ? (String(typeParam).toUpperCase() as BillType) : BillType.MONTHLY
+  );
+
   const { data: session } = useSession();
   const { bills, isLoading, isError, deleteBill } = useBills();
 
@@ -20,11 +27,15 @@ export function Index() {
       name: 'Number of Bills',
       icon: HashtagIcon,
       value: (
-        <dl className="grid grid-cols-2">
-          <dt className="text-sm leading-7">Monthly:</dt>
-          <dd>{bills?.filter((b) => b.type === BillType.MONTHLY).length}</dd>
-          <dt className="text-sm leading-7">Yearly:</dt>
-          <dd>{bills?.filter((b) => b.type === BillType.YEARLY).length}</dd>
+        <dl className="grid grid-cols-2 py-1">
+          <dt className="text-sm">Monthly:</dt>
+          <dd className="leading-5">
+            {bills?.filter((b) => b.type === BillType.MONTHLY).length}
+          </dd>
+          <dt className="text-sm">Yearly:</dt>
+          <dd className="leading-5">
+            {bills?.filter((b) => b.type === BillType.YEARLY).length}
+          </dd>
         </dl>
       ),
     },
@@ -88,7 +99,7 @@ export function Index() {
               </div>
               <div className="mt-6 flex space-x-3 md:mt-0 md:ml-4">
                 <Link
-                  href="/bills/new"
+                  href={`/bills/new?type=${type.toLowerCase()}`}
                   className="inline-flex items-center rounded-md border border-transparent bg-cyan-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2"
                 >
                   <PlusIcon className="h-3.5 w-3.5 mr-2" aria-hidden="true" />
@@ -151,7 +162,12 @@ export function Index() {
           ) : isLoading ? (
             <BillListSkeleton />
           ) : bills?.length ? (
-            <BillList bills={bills} onDelete={deleteBill} />
+            <BillList
+              bills={bills}
+              type={type}
+              setType={setType}
+              onDelete={deleteBill}
+            />
           ) : (
             <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
               <div className="mt-2 flex flex-col">
