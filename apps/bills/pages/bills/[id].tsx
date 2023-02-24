@@ -1,20 +1,20 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
+import { Bill } from '../../lib/bill.model';
 
 import BillForm from '../../components/BillForm';
 import Layout from '../../components/Layout';
-import { Bill } from '../../lib/bill.model';
-import useBills from '../../lib/use-bills';
+import { useBillStore } from '../../lib/bills.store';
 
 export function EditBill() {
   const router = useRouter();
   const id = router.query.id as string;
-  const { getBill, updateBill } = useBills();
+  const { loadById, update } = useBillStore();
 
   const [bill, setBill] = useState<Bill | null>(null);
   useEffect(() => {
     const fetchBill = async (id: string) => {
-      const bill = await getBill(id);
+      const bill = await loadById(id);
       setBill(bill);
     };
 
@@ -44,7 +44,7 @@ export function EditBill() {
       </div>
 
       {bill?.id ? (
-        <BillForm onSave={updateBill} bill={bill} />
+        <BillForm onSave={update} bill={bill} />
       ) : (
         <div className="mx-auto max-w-6xl px-4 py-6 sm:px-6 lg:px-8 divide-y divide-gray-200">
           <div>

@@ -16,9 +16,9 @@ const reportError =
  */
 export const api = {
   /**
-   * Load All Bills
+   * Get all Bills
    */
-  loadAll: async (): Promise<Bill[]> => {
+  getAll: async (): Promise<Bill[]> => {
     const request$ = fromFetch<Bill[]>('/api/bills', {
       selector: toJSON,
     }).pipe(catchError(reportError([])));
@@ -26,9 +26,9 @@ export const api = {
     return lastValueFrom(request$.pipe(delay(500)));
   },
   /**
-   * Load a specific Bill by id
+   * Get a specific Bill by id
    */
-  load: async (id: string): Promise<Bill | null> => {
+  get: async (id: string): Promise<Bill | null> => {
     const request$ = fromFetch<Bill>(`/api/bills/${id}`, {
       selector: toJSON,
     }).pipe(catchError(reportError(null)));
@@ -38,7 +38,7 @@ export const api = {
   /**
    * Create a Bill
    */
-  create: async (bill: Partial<Bill>) => {
+  create: async (bill: Partial<Bill>): Promise<Bill | null> => {
     const request$ = fromFetch<Bill>('/api/bills', {
       selector: toJSON,
       method: 'POST',
@@ -51,7 +51,7 @@ export const api = {
   /**
    * Update a Bill
    */
-  update: async (bill: Bill) => {
+  update: async (bill: Bill): Promise<Bill | null> => {
     const request$ = fromFetch<Bill>(`/api/bills/${bill.id}`, {
       selector: toJSON,
       method: 'PUT',

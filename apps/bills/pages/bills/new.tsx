@@ -1,9 +1,9 @@
 import BillForm from '../../components/BillForm';
 import Layout from '../../components/Layout';
-import useBills from '../../lib/use-bills';
+import { useBillStore } from '../../lib/bills.store';
 
 export function AddBill() {
-  const { addBill } = useBills();
+  const { add } = useBillStore();
 
   return (
     <Layout>
@@ -26,7 +26,7 @@ export function AddBill() {
         </div>
       </div>
 
-      <BillForm onSave={addBill} />
+      <BillForm onSave={add} />
     </Layout>
   );
 }

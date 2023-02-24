@@ -11,14 +11,19 @@ import Layout from '../components/Layout';
 import { OverviewCards } from '../components/OverviewCards';
 import { OverviewCardsSkeleton } from '../components/OverviewCardsSkeleton';
 import { BillType } from '../lib/bill.model';
-import { useBills } from '../lib/use-bills';
+import { useBillStore } from '../lib/bills.store';
 import useFilters from '../lib/use-filters';
 import { toCurrency } from '../lib/utils';
 
 export function Index() {
   const { data: session } = useSession();
-  const { bills, isLoading, isError, deleteBill } = useBills();
+  const { bills, isLoading, hasError, loadAll, remove } = useBillStore();
   const { filters, query, onFiltersChange } = useFilters();
+
+  useEffect(() => {
+    loadAll();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const cards = [
     {
@@ -127,8 +132,7 @@ export function Index() {
             Bills
           </h2>
 
-          {/* Bills */}
-          {isError ? (
+          {hasError ? (
             <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
               <div className="mt-2 flex flex-col">
                 <p>An unexpected error occurred.</p>
@@ -141,7 +145,7 @@ export function Index() {
               bills={bills}
               filters={filters}
               onFiltersChange={onFiltersChange}
-              onDelete={deleteBill}
+              onDelete={remove}
             />
           ) : (
             <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
