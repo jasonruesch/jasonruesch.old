@@ -22,21 +22,21 @@ export function Index() {
       value: (
         <dl className="grid grid-cols-2">
           <dt className="text-sm leading-7">Monthly:</dt>
-          <dd>{bills.filter((b) => b.type === BillType.MONTHLY).length}</dd>
+          <dd>{bills?.filter((b) => b.type === BillType.MONTHLY).length}</dd>
           <dt className="text-sm leading-7">Yearly:</dt>
-          <dd>{bills.filter((b) => b.type === BillType.YEARLY).length}</dd>
+          <dd>{bills?.filter((b) => b.type === BillType.YEARLY).length}</dd>
         </dl>
       ),
     },
     {
       name: 'Total Amount',
       icon: ScaleIcon,
-      value: toCurrency(bills.reduce((acc, { amount }) => acc + amount, 0)),
+      value: toCurrency(bills?.reduce((acc, { amount }) => acc + amount, 0)),
     },
     {
       name: 'Total Balance',
       icon: ScaleIcon,
-      value: toCurrency(bills.reduce((acc, { balance }) => acc + balance, 0)),
+      value: toCurrency(bills?.reduce((acc, { balance }) => acc + balance, 0)),
     },
   ];
 
@@ -150,7 +150,7 @@ export function Index() {
             </div>
           ) : isLoading ? (
             <BillListSkeleton />
-          ) : bills.length ? (
+          ) : bills?.length ? (
             <BillList bills={bills} onDelete={deleteBill} />
           ) : (
             <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">

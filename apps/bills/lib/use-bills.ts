@@ -17,10 +17,11 @@ export const useBills = () => {
     '/api/bills',
     fetcher,
     {
-      fallbackData: [],
-      // revalidateOnMount: false,
+      // fallbackData: [],
+      // keepPreviousData: true,
+      revalidateIfStale: false,
       revalidateOnFocus: false,
-      keepPreviousData: true,
+      revalidateOnReconnect: false,
     }
   );
 

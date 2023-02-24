@@ -239,8 +239,8 @@ export function BillForm({ onSave, bill: initialValues }: BillFormProps) {
                     bill.type === BillType.YEARLY ? '6/15' : '15'
                   }
                   dateFormat={bill.type === BillType.YEARLY ? 'M/d' : 'd'}
-                  minDate={minDueDate()}
-                  maxDate={maxDueDate()}
+                  minDate={minDueDate(bill.type)}
+                  maxDate={maxDueDate(bill.type)}
                   showPopperArrow={false}
                   className={clsx(
                     'block w-full rounded-md placeholder-gray-400 sm:text-sm',
