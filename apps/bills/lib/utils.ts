@@ -1,3 +1,4 @@
+import { ParsedUrlQuery, stringify } from 'querystring';
 import { Bill, BillType } from './bill.model';
 
 export const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
@@ -75,4 +76,10 @@ export const parseDueDate = ({ type, dueDate }: Partial<Bill>) => {
 export const dateOptions: Intl.DateTimeFormatOptions = {
   dateStyle: 'full',
   timeStyle: 'medium',
+};
+
+export const queryString = (query: ParsedUrlQuery, type?: BillType) => {
+  const q = type ? { ...query, type: type.toLowerCase() } : query;
+
+  return Object.keys(q).length ? `?${stringify(q)}` : '';
 };

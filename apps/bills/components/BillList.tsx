@@ -8,8 +8,6 @@ import {
 } from '@heroicons/react/24/outline';
 import clsx from 'clsx';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { useState } from 'react';
 import { Bill, BillType } from '../lib/bill.model';
 import useSortableData from '../lib/use-sortable-data';
 import { toCurrency, toOrdinalString } from '../lib/utils';
@@ -27,22 +25,21 @@ const filters = [
 
 export interface BillListProps {
   bills: Bill[];
-  type: BillType;
-  setType: (type: BillType) => void;
+  filters: {
+    type: BillType;
+    filter: string;
+  };
+  onFiltersChange: (filters: { type: BillType; filter: string }) => void;
   onDelete: (id: string) => void;
 }
 
 export function BillList({
   bills: initialValues,
-  type,
-  setType,
+  filters: filterParams,
+  onFiltersChange,
   onDelete,
 }: BillListProps) {
-  const router = useRouter();
-  const { filter: filterParam } = router.query;
-  const [filter, setFilter] = useState<string>(
-    filterParam ? (filterParam as string) : 'all'
-  );
+  const { type, filter } = filterParams;
 
   // Filter bill type
   const data = initialValues.filter((bill) => bill.type === type);
@@ -78,21 +75,11 @@ export function BillList({
   const bills = items.filter(filterBills);
 
   const handleTypeChange = (type: BillType) => {
-    router.push(
-      router.asPath,
-      { query: { type: type.toLowerCase(), filter } },
-      { shallow: true }
-    );
-    setType(type);
+    onFiltersChange({ ...filterParams, type });
   };
 
   const handleFilterChange = (filter: string) => {
-    router.push(
-      router.asPath,
-      { query: { type: type.toLowerCase(), filter } },
-      { shallow: true }
-    );
-    setFilter(filter);
+    onFiltersChange({ ...filterParams, filter });
   };
 
   const handleDeleteBill = (id: string) => {

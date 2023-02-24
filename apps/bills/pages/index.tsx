@@ -10,14 +10,36 @@ import BillListSkeleton from '../components/BillListSkeleton';
 import Layout from '../components/Layout';
 import { BillType } from '../lib/bill.model';
 import { useBills } from '../lib/use-bills';
-import { toCurrency } from '../lib/utils';
+import { queryString, toCurrency } from '../lib/utils';
 
 export function Index() {
   const router = useRouter();
-  const { type: typeParam } = router.query;
-  const [type, setType] = useState<BillType>(
-    typeParam ? (String(typeParam).toUpperCase() as BillType) : BillType.MONTHLY
-  );
+  const { type: typeParam, filter: filterParam } = router.query;
+  const [filters, setFilters] = useState<{ type: BillType; filter: string }>({
+    type: typeParam
+      ? (String(typeParam).toUpperCase() as BillType)
+      : BillType.MONTHLY,
+    filter: filterParam ? (filterParam as string) : 'all',
+  });
+  const [query, setQuery] = useState<string>(() => {
+    const query = Object.keys(filters).includes('type')
+      ? { ...filters, type: filters.type.toLowerCase() }
+      : filters;
+
+    return queryString(query);
+  });
+
+  const handleFiltersChange = (filters: { type: BillType; filter: string }) => {
+    setFilters(filters);
+
+    const query = Object.keys(filters).includes('type')
+      ? { ...filters, type: filters.type.toLowerCase() }
+      : filters;
+
+    setQuery(queryString(query));
+
+    router.push(router.asPath, { query }, { shallow: true });
+  };
 
   const { data: session } = useSession();
   const { bills, isLoading, isError, deleteBill } = useBills();
@@ -99,7 +121,7 @@ export function Index() {
               </div>
               <div className="mt-6 flex space-x-3 md:mt-0 md:ml-4">
                 <Link
-                  href={`/bills/new?type=${type.toLowerCase()}`}
+                  href={`/bills/new${query}`}
                   className="inline-flex items-center rounded-md border border-transparent bg-cyan-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2"
                 >
                   <PlusIcon className="h-3.5 w-3.5 mr-2" aria-hidden="true" />
@@ -164,8 +186,8 @@ export function Index() {
           ) : bills?.length ? (
             <BillList
               bills={bills}
-              type={type}
-              setType={setType}
+              filters={filters}
+              onFiltersChange={handleFiltersChange}
               onDelete={deleteBill}
             />
           ) : (

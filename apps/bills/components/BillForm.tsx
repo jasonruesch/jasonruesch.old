@@ -14,6 +14,7 @@ import {
   maxDueDate,
   minDueDate,
   parseDueDate,
+  queryString,
   sleep,
 } from '../lib/utils';
 
@@ -69,7 +70,7 @@ export function BillForm({ onSave, bill: initialValues }: BillFormProps) {
 
       onSave(bill);
 
-      router.push(`/?type=${bill.type.toLowerCase()}`);
+      router.push(`/${queryString(router.query, bill.type)}`);
     },
   });
 
@@ -467,7 +468,7 @@ export function BillForm({ onSave, bill: initialValues }: BillFormProps) {
         <div className="pt-5">
           <div className="flex flex-col py-2 px-4 sm:flex-row sm:justify-end sm:px-6">
             <Link
-              href={`/?type=${bill.type.toLowerCase()}`}
+              href={`/${queryString(router.query, bill.type)}`}
               className="order-4 mb-5 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 sm:order-1 sm:mb-0 sm:w-auto"
             >
               Cancel
