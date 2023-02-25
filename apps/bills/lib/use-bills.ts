@@ -6,7 +6,7 @@ import { api } from './bills.api';
 export const useBills = () => {
   const { data, error, isLoading, mutate } = useSWR<Bill[]>(
     '/api/bills',
-    api.loadAll,
+    api.getAll,
     {
       revalidateIfStale: false,
       revalidateOnFocus: false,
@@ -17,7 +17,7 @@ export const useBills = () => {
   const getBill = async (id: string) => {
     const bill = data?.find((b) => b.id === id);
 
-    return bill || (await api.load(id));
+    return bill || (await api.get(id));
   };
 
   const addBill = async (bill: Partial<Bill>) => {
@@ -60,7 +60,7 @@ export const useBills = () => {
   return {
     bills: data,
     isLoading,
-    isError: !!error,
+    hasError: !!error,
     getBill,
     addBill,
     updateBill,

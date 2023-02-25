@@ -17,7 +17,7 @@ import { toCurrency } from '../lib/utils';
 
 export function Index() {
   const { data: session } = useSession();
-  const { bills, isLoading, isError, deleteBill } = useBills();
+  const { bills, isLoading, hasError, deleteBill } = useBills();
   const { filters, query, onFiltersChange } = useFilters();
 
   const cards = [
@@ -128,7 +128,7 @@ export function Index() {
           </h2>
 
           {/* Bills */}
-          {isError ? (
+          {hasError ? (
             <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
               <div className="mt-2 flex flex-col">
                 <p>An unexpected error occurred.</p>
