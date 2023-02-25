@@ -11,7 +11,7 @@ import Link from 'next/link';
 
 import { Bill, BillType } from '../lib/bill.model';
 import useSortableData from '../lib/use-sortable-data';
-import { toCurrency, toOrdinalString } from '../lib/utils';
+import { queryString, toCurrency, toOrdinalString } from '../lib/utils';
 
 const billTypes = [
   { id: BillType.MONTHLY, title: 'Monthly' },
@@ -390,7 +390,9 @@ export function BillList({
                         <td className="w-full max-w-0 whitespace-nowrap px-6 py-4 text-sm text-gray-900">
                           <div className="flex">
                             <Link
-                              href={`/bills/${bill.id}`}
+                              href={`/bills/${bill.id}${queryString(
+                                filterParams
+                              )}`}
                               className="group inline-flex space-x-2 truncate text-sm"
                             >
                               <BanknotesIcon
@@ -428,7 +430,9 @@ export function BillList({
                         </td>
                         <td className="whitespace-nowrap px-6 py-4 text-right text-sm text-gray-500">
                           <Link
-                            href={`/bills/${bill.id}`}
+                            href={`/bills/${bill.id}${queryString(
+                              filterParams
+                            )}`}
                             className="text-cyan-600 hover:text-cyan-700"
                           >
                             <PencilSquareIcon

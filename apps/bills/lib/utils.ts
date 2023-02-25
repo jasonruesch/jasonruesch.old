@@ -2,12 +2,6 @@ import { ParsedUrlQuery, stringify } from 'querystring';
 
 import { Bill, BillType } from './bill.model';
 
-// const mergeQueryStrings = (...queries: ParsedUrlQuery[]) => {
-//   return queries.reduce((acc, curr) => {
-//     return { ...acc, ...curr };
-//   }, {});
-// }
-
 export const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
 export const toCurrency = (value?: number) =>
@@ -85,8 +79,6 @@ export const dateOptions: Intl.DateTimeFormatOptions = {
   timeStyle: 'medium',
 };
 
-export const queryString = (query: ParsedUrlQuery, type?: BillType) => {
-  const q = type ? { ...query, type: type.toLowerCase() } : query;
-
-  return Object.keys(q).length ? `?${stringify(q)}` : '';
+export const queryString = (query: ParsedUrlQuery) => {
+  return Object.keys(query).length ? `?${stringify(query).toLowerCase()}` : '';
 };

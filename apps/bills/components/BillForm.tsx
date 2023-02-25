@@ -72,7 +72,7 @@ export function BillForm({ onSave, bill: initialValues }: BillFormProps) {
       const query = router.query;
       delete query.filter; // Clear the filter before returning to the list
 
-      router.push(`/${queryString(query, bill.type)}`);
+      router.push(`/${queryString({ type: bill.type })}`);
     },
   });
 
@@ -103,7 +103,7 @@ export function BillForm({ onSave, bill: initialValues }: BillFormProps) {
     const query = router.query;
     delete query.id; // Clear the id before returning to the list
 
-    return queryString(query, type || initialValues?.type);
+    return queryString({ ...query, type: type || initialValues?.type });
   };
 
   useEffect(() => {
