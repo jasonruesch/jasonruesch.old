@@ -127,6 +127,7 @@ export function Index() {
             Bills
           </h2>
 
+          {/* Bills */}
           {hasError ? (
             <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
               <div className="mt-2 flex flex-col">
