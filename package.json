@@ -10,7 +10,7 @@
   },
   "private": true,
   "devDependencies": {
-    "@nrwl/cypress": "15.6.2",
+    "@nrwl/cypress": "15.8.7",
     "@nrwl/eslint-plugin-nx": "15.5.3",
     "@nrwl/linter": "15.8.7",
     "@nrwl/react": "15.5.1",
