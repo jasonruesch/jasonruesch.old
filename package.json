@@ -26,7 +26,7 @@
     "@types/twilio": "^3.19.3",
     "@typescript-eslint/eslint-plugin": "^5.36.1",
     "@typescript-eslint/parser": "^5.36.1",
-    "@vitejs/plugin-react": "^3.0.0",
+    "@vitejs/plugin-react": "^3.1.0",
     "@vitest/coverage-c8": "~0.28.4",
     "@vitest/ui": "^0.28.4",
     "autoprefixer": "10.4.13",
