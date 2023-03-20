@@ -1,13 +1,13 @@
-import { useState } from 'react';
 import { ExclamationCircleIcon } from '@heroicons/react/24/solid';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
-import clsx from 'clsx';
 import {
-  PuffLoader,
-  Notification,
   LogoImageNeutral,
+  Notification,
+  PuffLoader,
 } from '@jasonruesch/shared/ui';
+import clsx from 'clsx';
+import { useFormik } from 'formik';
+import { useState } from 'react';
+import * as Yup from 'yup';
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
@@ -27,16 +27,59 @@ export function Contact(props: ContactProps) {
     message: string;
   }>();
 
+  const onSubmit = async (values: {
+    name: string;
+    email: string;
+    message: string;
+  }) => {
+    console.debug(JSON.stringify(values, null, 2));
+
+    await sleep(500);
+
+    try {
+      const response = await fetch('/api/email', {
+        body: JSON.stringify({ ...values, template: 'contact' }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        method: 'POST',
+      });
+
+      // fetch('/api/sms', {
+      //   body: JSON.stringify({ ...values, template: 'contact' }),
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //   },
+      //   method: 'POST',
+      // })
+
+      const { error } = await response.json();
+
+      if (error) {
+        throw new Error(error);
+      }
+
+      resetForm();
+      setNotification({
+        type: 'success',
+        message: 'Thank you for your message!',
+      });
+    } catch (error) {
+      console.error(error);
+      setNotification({
+        type: 'error',
+        message: 'Something went wrong. Please try again.',
+      });
+    }
+  };
+
   const {
     handleSubmit,
     handleChange,
-    handleBlur,
-    touched,
     values,
     errors,
+    touched,
     isSubmitting,
-    isValid,
-    dirty,
     resetForm,
   } = useFormik({
     initialValues: {
@@ -45,54 +88,15 @@ export function Contact(props: ContactProps) {
       message: '',
     },
     validationSchema,
-    onSubmit: async (values, { resetForm }) => {
-      console.debug(JSON.stringify(values, null, 2));
-
-      await sleep(500);
-
-      try {
-        const response = await fetch('/api/email', {
-          body: JSON.stringify({ ...values, template: 'contact' }),
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          method: 'POST',
-        });
-
-        // fetch('/api/sms', {
-        //   body: JSON.stringify({ ...values, template: 'contact' }),
-        //   headers: {
-        //     'Content-Type': 'application/json',
-        //   },
-        //   method: 'POST',
-        // })
-
-        const { error } = await response.json();
-
-        if (error) {
-          throw new Error(error);
-        }
-
-        resetForm();
-        setNotification({
-          type: 'success',
-          message: 'Thank you for your message!',
-        });
-      } catch (error) {
-        console.error(error);
-        setNotification({
-          type: 'error',
-          message: 'Something went wrong. Please try again.',
-        });
-      }
-    },
+    validateOnBlur: false,
+    onSubmit,
   });
 
   return (
     <div className="mx-auto grid h-full max-w-xl pt-16 pb-40 sm:place-items-center sm:pb-16">
       <div className="w-full pt-6 sm:pt-0">
         <h1 className="mb-4">Get In Touch</h1>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} noValidate>
           <div className="grid grid-cols-1 gap-x-6 gap-y-1 sm:grid-cols-6">
             <div className="sm:col-span-3">
               <label htmlFor="name" className="block text-sm font-medium">
@@ -118,7 +122,6 @@ export function Contact(props: ContactProps) {
                   }
                   value={values.name}
                   onChange={handleChange}
-                  onBlur={handleBlur}
                 />
                 {!!errors.name && touched.name && (
                   <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
@@ -162,7 +165,6 @@ export function Contact(props: ContactProps) {
                   }
                   value={values.email}
                   onChange={handleChange}
-                  onBlur={handleBlur}
                 />
                 {!!errors.email && touched.email && (
                   <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
@@ -205,7 +207,6 @@ export function Contact(props: ContactProps) {
                   }
                   value={values.message}
                   onChange={handleChange}
-                  onBlur={handleBlur}
                 />
                 {!!errors.message && touched.message && (
                   <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
@@ -237,7 +238,7 @@ export function Contact(props: ContactProps) {
               <button
                 type="submit"
                 className="btn-primary ml-3 focus:ring-offset-neutral-100 dark:focus:ring-offset-neutral-800"
-                disabled={!dirty || !isValid || isSubmitting}
+                disabled={isSubmitting}
               >
                 {isSubmitting ? (
                   <>
