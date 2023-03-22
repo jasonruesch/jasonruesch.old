@@ -99,21 +99,18 @@ export function Contact(props: ContactProps) {
         <form onSubmit={handleSubmit} noValidate>
           <div className="grid grid-cols-1 gap-x-6 gap-y-1 sm:grid-cols-6">
             <div className="sm:col-span-3">
-              <label htmlFor="name" className="block text-sm font-medium">
-                Name <span className="text-red-500 dark:text-red-400">*</span>
-              </label>
-              <div className="relative mt-1 rounded-md">
+              <div className="group relative z-0 mt-2 w-full">
                 <input
                   type="text"
                   name="name"
                   id="name"
-                  autoComplete="name"
                   className={clsx(
-                    'block w-full rounded-md placeholder-neutral-400 dark:bg-neutral-900 dark:placeholder-neutral-500 sm:text-sm',
+                    'peer block w-full appearance-none border-0 border-b-2 bg-transparent py-2.5 px-0 text-sm placeholder:invisible focus:outline-none focus:ring-0 focus:placeholder:visible',
                     !!errors.name && touched.name
-                      ? 'border-red-300 pr-10 text-red-900 focus:border-red-500 focus:ring-red-500 dark:border-red-600 dark:text-red-50 dark:focus:border-red-400 dark:focus:ring-red-400'
-                      : 'border-neutral-300 focus:border-cyan-500 focus:ring-cyan-500 dark:border-neutral-600 dark:focus:border-violet-400 dark:focus:ring-violet-400'
+                      ? 'border-red-300 text-red-900 focus:border-red-600 dark:border-red-600 dark:text-red-50 dark:focus:border-red-500'
+                      : 'border-neutral-300 text-neutral-900 focus:border-cyan-600 dark:border-neutral-600 dark:text-white dark:focus:border-violet-500'
                   )}
+                  autoComplete="name"
                   placeholder="Jane Doe"
                   required
                   aria-invalid={!!errors.name && touched.name}
@@ -123,8 +120,19 @@ export function Contact(props: ContactProps) {
                   value={values.name}
                   onChange={handleChange}
                 />
+                <label
+                  htmlFor="name"
+                  className={clsx(
+                    'absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:font-medium',
+                    !!errors.name && touched.name
+                      ? 'text-red-500 peer-focus:text-red-600 dark:text-red-400 dark:peer-focus:text-red-500'
+                      : 'text-neutral-500 peer-focus:text-cyan-600 dark:text-neutral-400 dark:peer-focus:text-violet-500'
+                  )}
+                >
+                  Name
+                </label>
                 {!!errors.name && touched.name && (
-                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center">
                     <ExclamationCircleIcon
                       className="h-5 w-5 text-red-500 dark:text-red-400"
                       aria-hidden="true"
@@ -133,7 +141,7 @@ export function Contact(props: ContactProps) {
                 )}
               </div>
               <p
-                className="mt-2 h-5 text-sm text-red-600 dark:text-red-300"
+                className="mt-2 h-4 text-xs text-red-600 dark:text-red-300"
                 id="name-error"
               >
                 {!!errors.name && touched.name && errors.name}
@@ -141,23 +149,19 @@ export function Contact(props: ContactProps) {
             </div>
 
             <div className="sm:col-span-3">
-              <label htmlFor="email" className="block text-sm font-medium">
-                Email address{' '}
-                <span className="text-red-500 dark:text-red-400">*</span>
-              </label>
-              <div className="relative mt-1 rounded-md">
+              <div className="group relative z-0 mt-2 w-full">
                 <input
-                  id="email"
-                  name="email"
                   type="email"
-                  autoComplete="email"
+                  name="email"
+                  id="email"
                   className={clsx(
-                    'block w-full rounded-md placeholder-neutral-400 dark:bg-neutral-900 dark:placeholder-neutral-500 sm:text-sm',
+                    'peer block w-full appearance-none border-0 border-b-2 bg-transparent py-2.5 px-0 text-sm placeholder:invisible focus:outline-none focus:ring-0 focus:placeholder:visible',
                     !!errors.email && touched.email
-                      ? 'border-red-300 pr-10 text-red-900 focus:border-red-500 focus:ring-red-500 dark:border-red-600 dark:text-red-50 dark:focus:border-red-400 dark:focus:ring-red-400'
-                      : 'border-neutral-300 focus:border-cyan-500 focus:ring-cyan-500 dark:border-neutral-600 dark:focus:border-violet-400 dark:focus:ring-violet-400'
+                      ? 'border-red-300 text-red-900 focus:border-red-600 dark:border-red-600 dark:text-red-50 dark:focus:border-red-500'
+                      : 'border-neutral-300 text-neutral-900 focus:border-cyan-600 dark:border-neutral-600 dark:text-white dark:focus:border-violet-500'
                   )}
                   placeholder="jane.doe@example.com"
+                  autoComplete="email"
                   required
                   aria-invalid={!!errors.email && touched.email}
                   aria-describedby={
@@ -166,8 +170,19 @@ export function Contact(props: ContactProps) {
                   value={values.email}
                   onChange={handleChange}
                 />
+                <label
+                  htmlFor="email"
+                  className={clsx(
+                    'absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:font-medium',
+                    !!errors.email && touched.email
+                      ? 'text-red-500 peer-focus:text-red-600 dark:text-red-400 dark:peer-focus:text-red-500'
+                      : 'text-neutral-500 peer-focus:text-cyan-600 dark:text-neutral-400 dark:peer-focus:text-violet-500'
+                  )}
+                >
+                  Email address
+                </label>
                 {!!errors.email && touched.email && (
-                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center">
                     <ExclamationCircleIcon
                       className="h-5 w-5 text-red-500 dark:text-red-400"
                       aria-hidden="true"
@@ -176,7 +191,7 @@ export function Contact(props: ContactProps) {
                 )}
               </div>
               <p
-                className="mt-2 h-5 text-sm text-red-600 dark:text-red-300"
+                className="mt-2 h-4 text-xs text-red-600 dark:text-red-300"
                 id="email-error"
               >
                 {!!errors.email && touched.email && errors.email}
@@ -184,22 +199,18 @@ export function Contact(props: ContactProps) {
             </div>
 
             <div className="sm:col-span-6">
-              <label htmlFor="message" className="block text-sm font-medium">
-                Message{' '}
-                <span className="text-red-500 dark:text-red-400">*</span>
-              </label>
-              <div className="relative mt-1 rounded-md">
+              <div className="group relative z-0 mt-2 w-full">
                 <textarea
                   id="message"
                   name="message"
                   rows={3}
                   className={clsx(
-                    'block w-full rounded-md placeholder-neutral-400 dark:bg-neutral-900 dark:placeholder-neutral-500 sm:text-sm',
+                    'peer block w-full appearance-none border-0 border-b-2 bg-transparent py-2.5 px-0 text-sm placeholder:invisible focus:outline-none focus:ring-0 focus:placeholder:visible',
                     !!errors.message && touched.message
-                      ? 'border-red-300 pr-10 text-red-900 focus:border-red-500 focus:ring-red-500 dark:border-red-600 dark:text-red-50 dark:focus:border-red-400 dark:focus:ring-red-400'
-                      : 'border-neutral-300 focus:border-cyan-500 focus:ring-cyan-500 dark:border-neutral-600 dark:focus:border-violet-400 dark:focus:ring-violet-400'
+                      ? 'border-red-300 text-red-900 focus:border-red-600 dark:border-red-600 dark:text-red-50 dark:focus:border-red-500'
+                      : 'border-neutral-300 text-neutral-900 focus:border-cyan-600 dark:border-neutral-600 dark:text-white dark:focus:border-violet-500'
                   )}
-                  placeholder="How can I help?"
+                  placeholder="How can I help you?"
                   required
                   aria-invalid={!!errors.message && touched.message}
                   aria-describedby={
@@ -208,8 +219,19 @@ export function Contact(props: ContactProps) {
                   value={values.message}
                   onChange={handleChange}
                 />
+                <label
+                  htmlFor="message"
+                  className={clsx(
+                    'absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:font-medium',
+                    !!errors.message && touched.message
+                      ? 'text-red-500 peer-focus:text-red-600 dark:text-red-400 dark:peer-focus:text-red-500'
+                      : 'text-neutral-500 peer-focus:text-cyan-600 dark:text-neutral-400 dark:peer-focus:text-violet-500'
+                  )}
+                >
+                  Message
+                </label>
                 {!!errors.message && touched.message && (
-                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center">
                     <ExclamationCircleIcon
                       className="h-5 w-5 text-red-500 dark:text-red-400"
                       aria-hidden="true"
@@ -218,7 +240,7 @@ export function Contact(props: ContactProps) {
                 )}
               </div>
               <p
-                className="mt-2 h-5 text-sm text-red-600 dark:text-red-300"
+                className="mt-2 h-4 text-xs text-red-600 dark:text-red-300"
                 id="message-error"
               >
                 {!!errors.message && touched.message && errors.message}
