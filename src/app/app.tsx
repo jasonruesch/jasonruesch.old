@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
 import { ThemeProvider } from 'next-themes';
+import { useEffect, useState } from 'react';
 import { useOutlet } from 'react-router-dom';
 
 import { Beams, Header, Navbar, PageTransitions } from '@jasonruesch/shared/ui';
@@ -18,11 +18,7 @@ export function App() {
   }, []);
 
   return !isHydrated ? null : (
-    <ThemeProvider
-      defaultTheme="system"
-      attribute="class"
-      // forcedTheme={pageProps.theme || null}
-    >
+    <ThemeProvider defaultTheme="system" attribute="class">
       <Header className="z-30">
         {(disclosureRenderPropArg) => (
           <Navbar

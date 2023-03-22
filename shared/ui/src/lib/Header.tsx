@@ -1,13 +1,7 @@
 import { Disclosure } from '@headlessui/react';
 import clsx from 'clsx';
-import {
-  MutableRefObject,
-  ReactElement,
-  // useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import { useTheme } from 'next-themes';
+import { MutableRefObject, ReactElement, useEffect, useState } from 'react';
 
 export interface DisclosureRenderPropArg {
   open?: boolean;
@@ -22,8 +16,11 @@ export interface HeaderProps {
 }
 
 export function Header({ children, className }: HeaderProps) {
-  // Detect when the page has been scrolled to help style the header.
+  const { resolvedTheme } = useTheme();
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+
+  // Detect when the page has been scrolled to help style the header.
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 0);
@@ -36,22 +33,15 @@ export function Header({ children, className }: HeaderProps) {
   }, []);
 
   // Update the theme color when the discosure is opened or closed, or when the page has been scrolled.
-  // const { resolvedTheme } = useTheme();
-  const isOpened = useRef(false);
-  // const updateThemeColor = useCallback(() => {
-  //   const themeColor = document.head.querySelector(
-  //     'meta[name="theme-color"]'
-  //   ) as HTMLMetaElement;
+  useEffect(() => {
+    const themeColor = document.head.querySelector(
+      'meta[name="theme-color"]'
+    ) as HTMLMetaElement;
 
-  //   if (isOpened.current || isScrolled) {
-  //     themeColor.content = resolvedTheme === 'dark' ? '#171717' : '#fafafa';
-  //   } else {
-  //     themeColor.content = resolvedTheme === 'dark' ? '#262626' : '#f5f5f5';
-  //   }
-  // }, [isScrolled, resolvedTheme]);
-  // useEffect(() => {
-  //   updateThemeColor();
-  // }, [updateThemeColor]);
+    const darkColor = isOpen || isScrolled ? '#171717' : '#262626';
+    const lightColor = isOpen || isScrolled ? '#fafafa' : '#f5f5f5';
+    themeColor.content = resolvedTheme === 'dark' ? darkColor : lightColor;
+  }, [isOpen, isScrolled, resolvedTheme]);
 
   return (
     <Disclosure
@@ -67,8 +57,8 @@ export function Header({ children, className }: HeaderProps) {
       }
     >
       {({ open, close }) => {
-        isOpened.current = open;
-        // updateThemeColor();
+        setIsOpen(open);
+
         return children({ open, close });
       }}
     </Disclosure>

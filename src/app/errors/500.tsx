@@ -1,6 +1,6 @@
-import { useRouteError } from 'react-router-dom';
-import { useEffect, useState } from 'react';
 import { ThemeProvider } from 'next-themes';
+import { useEffect, useState } from 'react';
+import { useRouteError } from 'react-router-dom';
 
 import { Beams, Header, Navbar } from '@jasonruesch/shared/ui';
 
@@ -14,11 +14,7 @@ export function Error500() {
   }, []);
 
   return !isHydrated ? null : (
-    <ThemeProvider
-      defaultTheme="system"
-      attribute="class"
-      // forcedTheme={pageProps.theme || null}
-    >
+    <ThemeProvider defaultTheme="system" attribute="class">
       <Header className="z-30">
         {(disclosureRenderPropArg) => (
           <Navbar
