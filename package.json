@@ -43,6 +43,7 @@
     "maildev": "^2.0.5",
     "nx": "15.6.3",
     "postcss": "8.4.21",
+    "postcss-100vh-fix": "^1.0.2",
     "prettier": "^2.8.4",
     "prettier-plugin-tailwindcss": "^0.2.2",
     "react-test-renderer": "18.2.0",
