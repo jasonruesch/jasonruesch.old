@@ -42,7 +42,7 @@
     "jsdom": "~21.1.1",
     "maildev": "^2.0.5",
     "nx": "15.9.2",
-    "postcss": "8.4.22",
+    "postcss": "8.4.23",
     "postcss-100vh-fix": "^1.0.2",
     "prettier": "^2.8.8",
     "prettier-plugin-tailwindcss": "^0.2.7",
