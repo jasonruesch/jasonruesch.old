@@ -41,7 +41,7 @@
     "eslint-plugin-react-hooks": "4.6.0",
     "jsdom": "~21.1.1",
     "maildev": "^2.0.5",
-    "nx": "16.0.1",
+    "nx": "16.1.1",
     "postcss": "8.4.23",
     "postcss-100vh-fix": "^1.0.2",
     "prettier": "^2.8.8",
