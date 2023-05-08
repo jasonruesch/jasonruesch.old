@@ -20,7 +20,7 @@
     "@testing-library/react": "14.0.0",
     "@types/node": "18.16.3",
     "@types/nodemailer": "^6.4.7",
-    "@types/react": "18.2.0",
+    "@types/react": "18.2.6",
     "@types/react-dom": "18.0.11",
     "@types/react-helmet": "^6.1.6",
     "@types/twilio": "^3.19.3",
