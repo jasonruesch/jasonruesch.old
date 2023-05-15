@@ -66,7 +66,7 @@
     "framer-motion": "^10.12.4",
     "handlebars": "^4.7.7",
     "next-themes": "^0.2.1",
-    "nodemailer": "^6.9.1",
+    "nodemailer": "^6.9.2",
     "pwa-asset-generator": "^6.2.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
