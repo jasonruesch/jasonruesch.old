@@ -59,7 +59,7 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.7.14",
-    "@heroicons/react": "^2.0.14",
+    "@heroicons/react": "^2.0.18",
     "@maizzle/framework": "^4.4.4",
     "clsx": "^1.2.1",
     "formik": "^2.2.9",
