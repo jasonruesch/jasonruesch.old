@@ -12,7 +12,7 @@
   "devDependencies": {
     "@nrwl/cypress": "16.2.1",
     "@nrwl/eslint-plugin-nx": "15.9.2",
-    "@nrwl/linter": "15.9.2",
+    "@nrwl/linter": "16.2.1",
     "@nrwl/react": "16.0.1",
     "@nrwl/vite": "16.0.1",
     "@nrwl/workspace": "16.2.1",
