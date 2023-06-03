@@ -3,9 +3,10 @@ import { usePathname } from 'next/navigation';
 import { NavLink } from './NavLink';
 
 const navItems = [
-  { name: 'Home', href: '/' },
-  { name: 'About', href: '/about' },
-  { name: 'Contact', href: '/contact' },
+  { href: '/', name: 'Home' },
+  { href: '/about', name: 'About' },
+  { href: '/contact', name: 'Contact' },
+  { href: '/articles', name: 'Articles' },
 ];
 
 export interface NavProps {

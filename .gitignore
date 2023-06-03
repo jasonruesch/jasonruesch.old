@@ -45,3 +45,6 @@ Thumbs.db
 # Maizzle
 **/public/emails/*
 !**/public/emails/README.md
+
+# generated files
+/apps/web/public/rss/
