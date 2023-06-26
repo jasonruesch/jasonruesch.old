@@ -14,7 +14,7 @@
     "@nrwl/eslint-plugin-nx": "16.2.2",
     "@nrwl/linter": "16.3.2",
     "@nrwl/react": "16.4.0",
-    "@nrwl/vite": "16.3.2",
+    "@nrwl/vite": "16.4.0",
     "@nrwl/workspace": "16.4.0",
     "@tailwindcss/forms": "^0.5.3",
     "@testing-library/react": "14.0.0",
