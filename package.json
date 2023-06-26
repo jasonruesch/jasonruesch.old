@@ -13,7 +13,7 @@
     "@nrwl/cypress": "16.3.2",
     "@nrwl/eslint-plugin-nx": "16.2.2",
     "@nrwl/linter": "16.3.2",
-    "@nrwl/react": "16.3.2",
+    "@nrwl/react": "16.4.0",
     "@nrwl/vite": "16.3.2",
     "@nrwl/workspace": "16.3.2",
     "@tailwindcss/forms": "^0.5.3",
