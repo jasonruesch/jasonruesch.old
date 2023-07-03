@@ -60,7 +60,7 @@
   "dependencies": {
     "@headlessui/react": "^1.7.15",
     "@heroicons/react": "^2.0.18",
-    "@maizzle/framework": "^4.4.4",
+    "@maizzle/framework": "^4.4.6",
     "clsx": "^1.2.1",
     "formik": "^2.4.2",
     "framer-motion": "^10.12.17",
