@@ -1,10 +1,10 @@
-import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
+import { eventBus } from '@jasonruesch/shared/utils';
+import clsx from 'clsx';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { ReactNode, useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import clsx from 'clsx';
-import { eventBus } from '@jasonruesch/shared/utils';
-import useWindowSize from './hooks/useWindowSize';
 import { variants } from './PageTransitionsVariants';
+import useWindowSize from './hooks/useWindowSize';
 
 const DURATION = 1; // seconds
 

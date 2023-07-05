@@ -1,5 +1,7 @@
 import { Variants } from 'framer-motion';
 
+const scale = 0.6;
+
 export const variants: Variants = {
   hidden: ({ windowSize, isNavigating, slideRight, shouldReduceMotion }) => {
     const height = Math.min(windowSize.width, windowSize.height);
@@ -7,12 +9,14 @@ export const variants: Variants = {
       opacity: 0,
     };
     const otherAnimations = {
-      x: `${windowSize.width * (slideRight ? -1 : 1)}px`,
+      x: slideRight
+        ? `-${windowSize.width * scale}px`
+        : `${windowSize.width}px`,
       overflow: 'hidden',
       borderRadius: '16px',
       height: `${windowSize.height}px`,
       width: `${height}px`,
-      scale: 0.6,
+      scale,
     };
 
     return isNavigating
@@ -32,7 +36,7 @@ export const variants: Variants = {
     const height = Math.min(windowSize.width, windowSize.height);
     const centerX = windowSize.width / 2 - height / 2;
     const x = [
-      `${windowSize.width * (slideRight ? -1 : 1)}px`,
+      slideRight ? `-${windowSize.width * scale}px` : `${windowSize.width}px`,
       `${centerX}px`,
       '0px',
     ];
@@ -80,7 +84,7 @@ export const variants: Variants = {
     const x = [
       '0px',
       `${centerX}px`,
-      `${windowSize.width * (slideRight ? 1 : -1)}px`,
+      slideRight ? `${windowSize.width}px` : `-${windowSize.width * scale}px`,
     ];
     const opacityAnimation = { opacity: 0 };
     const otherAnimations = {
@@ -89,7 +93,7 @@ export const variants: Variants = {
       borderRadius: '16px',
       height: `${windowSize.height}px`,
       width: `${height}px`,
-      scale: 0.6,
+      scale,
     };
     const opacityTransition = {
       opacity: !shouldReduceMotion
