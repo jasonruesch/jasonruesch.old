@@ -1,5 +1,5 @@
 import { Disclosure } from '@headlessui/react';
-import { Bars3CenterLeftIcon, XMarkIcon } from '@heroicons/react/24/outline';
+import { Bars2Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { eventBus } from '@jasonruesch/shared/utils';
 import { useState } from 'react';
 import { GitHubLink } from './GitHubLink';
@@ -7,9 +7,9 @@ import { DisclosureRenderPropArg } from './Header';
 import { LogoImage } from './LogoImage';
 import { MobileNav } from './MobileNav';
 import { Nav } from './Nav';
+import { NavLink } from './NavLink';
 import { NavMenu } from './NavMenu';
 import { ThemeSelector } from './ThemeSelector';
-import { NavLink } from './NavLink';
 
 export interface NavbarProps {
   disclosureRenderPropArg: DisclosureRenderPropArg;
@@ -37,10 +37,7 @@ export function Navbar({
             {open ? (
               <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
             ) : (
-              <Bars3CenterLeftIcon
-                className="block h-6 w-6"
-                aria-hidden="true"
-              />
+              <Bars2Icon className="block h-6 w-6" aria-hidden="true" />
             )}
           </Disclosure.Button>
         </div>
@@ -63,7 +60,7 @@ export function Navbar({
       </div>
 
       <Disclosure.Panel as="nav" className="sm:hidden" unmount={false}>
-        <div className="space-y-1 pt-2 pb-4">
+        <div className="space-y-1 pb-4 pt-2">
           <MobileNav />
         </div>
       </Disclosure.Panel>

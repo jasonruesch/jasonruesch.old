@@ -6,8 +6,6 @@ import { useLocation } from 'react-router-dom';
 import { variants } from './PageTransitionsVariants';
 import useWindowSize from './hooks/useWindowSize';
 
-const DURATION = 1; // seconds
-
 export interface PageTransitionsProps {
   children: ReactNode;
   className?: string;
@@ -22,14 +20,12 @@ export const PageTransitions = ({
   className,
 }: PageTransitionsProps) => {
   const pageRef = useRef<HTMLDivElement>(null);
-  const windowSize = useWindowSize();
-  const isXSmallScreen = windowSize.width && windowSize.width < 640;
-  const shouldReduceMotion = useReducedMotion() || isXSmallScreen; // disable animations on x-small screens
+  const [windowSize, isXSmallScreen] = useWindowSize();
+  const shouldReduceMotion = useReducedMotion() || isXSmallScreen; // Disable animations if reduce motion is requested or on x-small screens
   const { pathname } = useLocation();
   const [previousPathname, setPreviousPathname] = useState(pathname);
   const [isNavigating, setIsNavigating] = useState(false);
   const [slideRight, setSlideRight] = useState(false);
-  const duration = !shouldReduceMotion ? DURATION : DURATION / 2;
 
   useEffect(() => {
     if (previousPathname !== pathname) {
@@ -87,7 +83,6 @@ export const PageTransitions = ({
             windowSize,
             isNavigating,
             slideRight,
-            duration,
             shouldReduceMotion,
           }}
           variants={variants}

@@ -1,52 +1,53 @@
 import { LogoImageNeutral } from '@jasonruesch/shared/ui';
+import { useCallback, useEffect, useRef } from 'react';
 
 const navigation = [
   {
-    href: '/privacy#infocollect',
+    id: 'infocollect',
     name: 'WHAT INFORMATION DO WE COLLECT?',
   },
   {
-    href: '/privacy#infouse',
+    id: 'infouse',
     name: 'HOW DO WE PROCESS YOUR INFORMATION?',
   },
   {
-    href: '/privacy#whoshare',
+    id: 'whoshare',
     name: 'WHEN AND WITH WHOM DO WE SHARE YOUR PERSONAL INFORMATION?',
   },
   {
-    href: '/privacy#inforetain',
+    id: 'inforetain',
     name: 'HOW LONG DO WE KEEP YOUR INFORMATION?',
   },
   {
-    href: '/privacy#infosafe',
+    id: 'infosafe',
     name: 'HOW DO WE KEEP YOUR INFORMATION SAFE?',
   },
   {
-    href: '/privacy#infominors',
+    id: 'infominors',
     name: 'DO WE COLLECT INFORMATION FROM MINORS?',
   },
   {
-    href: '/privacy#privacyrights',
+    id: 'privacyrights',
     name: 'WHAT ARE YOUR PRIVACY RIGHTS?',
   },
   {
-    href: '/privacy#DNT',
+    id: 'DNT',
     name: 'CONTROLS FOR DO-NOT-TRACK FEATURES',
   },
   {
-    href: '/privacy#caresidents',
+    id: 'caresidents',
     name: 'DO CALIFORNIA RESIDENTS HAVE SPECIFIC PRIVACY RIGHTS?',
   },
   {
-    href: '/privacy#policyupdates',
+    id: 'policyupdates',
     name: 'DO WE MAKE UPDATES TO THIS NOTICE?',
   },
   {
-    href: '/privacy#contact',
+    id: 'contact',
     name: 'HOW CAN YOU CONTACT US ABOUT THIS NOTICE?',
   },
   {
-    href: '/privacy#request',
+    id: 'request',
     name: 'HOW CAN YOU REVIEW, UPDATE, OR DELETE THE DATA WE COLLECT FROM YOU?',
   },
 ];
@@ -55,8 +56,27 @@ const navigation = [
 export interface PrivacyProps {}
 
 export function Privacy(props: PrivacyProps) {
+  const targetRefs = useRef<Map<string, HTMLElement>>(new Map());
+
+  const handleScrollTo = useCallback((target: string) => {
+    targetRefs.current.get(target)?.scrollIntoView(true);
+
+    const url = new URL(window.location.href);
+    if (url.hash !== `#${target}`) {
+      url.hash = `#${target}`;
+      window.history.pushState({}, '', url);
+    }
+  }, []);
+
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash) {
+      handleScrollTo(hash.slice(1));
+    }
+  }, [handleScrollTo]);
+
   return (
-    <div className="pt-16 pb-40">
+    <div className="pb-40 pt-16">
       <div className="w-full pt-6">
         <div className="space-y-4">
           <h1>Privacy Policy</h1>
@@ -98,7 +118,11 @@ export function Privacy(props: PrivacyProps) {
             privacy@jasonruesch.dev.
           </p>
 
-          <section id="summaryOfKeyPoints" className="space-y-4">
+          <section
+            id="summaryofkeypoints"
+            className="space-y-4"
+            ref={(el) => el && targetRefs.current.set('summaryofkeypoints', el)}
+          >
             <h2>Summary Of Key Points</h2>
             <p>
               <em>
@@ -107,12 +131,13 @@ export function Privacy(props: PrivacyProps) {
                 clicking the link following each key point or by using our table
                 of contents below to find the section you are looking for. You
                 can also{' '}
-                <a
-                  href="/privacy#toc"
+                <button
+                  type="button"
                   className="font-medium text-cyan-500 hover:text-cyan-600 dark:text-violet-400 dark:hover:text-violet-500"
+                  onClick={() => handleScrollTo('toc')}
                 >
                   click here to go directly to our table of contents.
-                </a>
+                </button>
               </em>
             </p>
             <p>
@@ -120,12 +145,13 @@ export function Privacy(props: PrivacyProps) {
               navigate our Services, we may process personal information
               depending on how you interact with Jason Ruesch and the Services,
               the choices you make, and the products and features you use.{' '}
-              <a
+              <button
+                type="button"
                 className="cursor-pointer text-cyan-500 dark:text-violet-400"
-                href="/privacy#personalinfo"
+                onClick={() => handleScrollTo('personalinfo')}
               >
                 Click here to learn more.
-              </a>
+              </button>
             </p>
             <p>
               Do we process any sensitive personal information? We do not
@@ -142,23 +168,25 @@ export function Privacy(props: PrivacyProps) {
               may also process your information for other purposes with your
               consent. We process your information only when we have a valid
               legal reason to do so.{' '}
-              <a
-                href="/privacy#infouse"
+              <button
+                type="button"
                 className="font-medium text-cyan-500 hover:text-cyan-600 dark:text-violet-400 dark:hover:text-violet-500"
+                onClick={() => handleScrollTo('infouse')}
               >
                 Click here to learn more.
-              </a>
+              </button>
             </p>
             <p>
               In what situations and with which parties do we share personal
               information? We may share information in specific situations and
               with specific third parties.{' '}
-              <a
-                href="/privacy#whoshare"
+              <button
+                type="button"
                 className="font-medium text-cyan-500 hover:text-cyan-600 dark:text-violet-400 dark:hover:text-violet-500"
+                onClick={() => handleScrollTo('whoshare')}
               >
                 Click here to learn more.
-              </a>
+              </button>
             </p>
             <p>
               How do we keep your information safe? We have organizational and
@@ -169,23 +197,25 @@ export function Privacy(props: PrivacyProps) {
               cybercriminals, or other unauthorized third parties will not be
               able to defeat our security and improperly collect, access, steal,
               or modify your information.{' '}
-              <a
-                href="/privacy#infosafe"
+              <button
+                type="button"
                 className="font-medium text-cyan-500 hover:text-cyan-600 dark:text-violet-400 dark:hover:text-violet-500"
+                onClick={() => handleScrollTo('infosafe')}
               >
                 Click here to learn more.
-              </a>
+              </button>
             </p>
             <p>
               What are your rights? Depending on where you are located
               geographically, the applicable privacy law may mean you have
               certain rights regarding your personal information.{' '}
-              <a
-                href="/privacy#privacyrights"
+              <button
+                type="button"
                 className="font-medium text-cyan-500 hover:text-cyan-600 dark:text-violet-400 dark:hover:text-violet-500"
+                onClick={() => handleScrollTo('privacyrights')}
               >
                 Click here to learn more.
-              </a>
+              </button>
             </p>
             <p>
               How do you exercise your rights? The easiest way to exercise your
@@ -204,32 +234,47 @@ export function Privacy(props: PrivacyProps) {
             <p>
               Want to learn more about what Jason Ruesch does with any
               information we collect?{' '}
-              <a
-                href="/privacy#toc"
+              <button
+                type="button"
                 className="font-medium text-cyan-500 hover:text-cyan-600 dark:text-violet-400 dark:hover:text-violet-500"
+                onClick={() => handleScrollTo('toc')}
               >
                 Click here to review the notice in full.
-              </a>
+              </button>
             </p>
           </section>
-          <section id="toc" className="space-y-4">
+          <section
+            id="toc"
+            className="space-y-4"
+            ref={(el) => el && targetRefs.current.set('toc', el)}
+          >
             <h2>Table Of Contents</h2>
             <ol className="list-inside list-decimal">
               {navigation.map((item) => (
                 <li key={item.name}>
-                  <a
-                    href={item.href}
+                  <button
+                    type="button"
                     className="font-medium text-cyan-500 hover:text-cyan-600 dark:text-violet-400 dark:hover:text-violet-500"
+                    onClick={() => handleScrollTo(item.id)}
                   >
                     {item.name}
-                  </a>
+                  </button>
                 </li>
               ))}
             </ol>
           </section>
-          <section id="infocollect" className="space-y-4">
+          <section
+            id="infocollect"
+            className="space-y-4"
+            ref={(el) => el && targetRefs.current.set('infocollect', el)}
+          >
             <h2>1. WHAT INFORMATION DO WE COLLECT?</h2>
-            <h3 id="personalinfo">Personal information you disclose to us</h3>
+            <h3
+              id="personalinfo"
+              ref={(el) => el && targetRefs.current.set('personalinfo', el)}
+            >
+              Personal information you disclose to us
+            </h3>
             <p className="mb-4">
               <em>
                 In Short: We collect personal information that you provide to
@@ -253,7 +298,11 @@ export function Privacy(props: PrivacyProps) {
               <li>names</li>
               <li>email addresses</li>
             </ul>
-            <h3 id="sensitiveinfo" className="mt-4">
+            <h3
+              id="sensitiveinfo"
+              className="mt-4"
+              ref={(el) => el && targetRefs.current.set('sensitiveinfo', el)}
+            >
               Sensitive Information
             </h3>
             <p>We do not process sensitive information.</p>
@@ -290,7 +339,11 @@ export function Privacy(props: PrivacyProps) {
               </a>
             </p>
           </section>
-          <section id="infouse" className="space-y-4">
+          <section
+            id="infouse"
+            className="space-y-4"
+            ref={(el) => el && targetRefs.current.set('infouse', el)}
+          >
             <h2>2. HOW DO WE PROCESS YOUR INFORMATION?</h2>
             <p className="mb-4">
               <em>
@@ -317,7 +370,11 @@ export function Privacy(props: PrivacyProps) {
               </li>
             </ul>
           </section>
-          <section id="whoshare" className="space-y-4">
+          <section
+            id="whoshare"
+            className="space-y-4"
+            ref={(el) => el && targetRefs.current.set('whoshare', el)}
+          >
             <h2>
               3. WHEN AND WITH WHOM DO WE SHARE YOUR PERSONAL INFORMATION?
             </h2>
@@ -341,7 +398,11 @@ export function Privacy(props: PrivacyProps) {
               </li>
             </ul>
           </section>
-          <section id="inforetain" className="space-y-4">
+          <section
+            id="inforetain"
+            className="space-y-4"
+            ref={(el) => el && targetRefs.current.set('inforetain', el)}
+          >
             <h2>4. HOW LONG DO WE KEEP YOUR INFORMATION?</h2>
             <p className="mb-4">
               <em>
@@ -367,7 +428,11 @@ export function Privacy(props: PrivacyProps) {
               it from any further processing until deletion is possible.
             </p>
           </section>
-          <section id="infosafe" className="space-y-4">
+          <section
+            id="infosafe"
+            className="space-y-4"
+            ref={(el) => el && targetRefs.current.set('infosafe', el)}
+          >
             <h2>5. HOW DO WE KEEP YOUR INFORMATION SAFE?</h2>
             <p className="mb-4">
               <em>
@@ -391,7 +456,11 @@ export function Privacy(props: PrivacyProps) {
               secure environment.
             </p>
           </section>
-          <section id="infominors" className="space-y-4">
+          <section
+            id="infominors"
+            className="space-y-4"
+            ref={(el) => el && targetRefs.current.set('infominors', el)}
+          >
             <h2>6. DO WE COLLECT INFORMATION FROM MINORS?</h2>
             <p className="mb-4">
               <em>
@@ -412,7 +481,11 @@ export function Privacy(props: PrivacyProps) {
               privacy@jasonruesch.dev.
             </p>
           </section>
-          <section id="privacyrights" className="space-y-4">
+          <section
+            id="privacyrights"
+            className="space-y-4"
+            ref={(el) => el && targetRefs.current.set('privacyrights', el)}
+          >
             <h2>7. WHAT ARE YOUR PRIVACY RIGHTS?</h2>
             <p className="mb-4">
               <em>
@@ -446,7 +519,10 @@ export function Privacy(props: PrivacyProps) {
                 edoeb.admin.ch/edoeb/en/home.html.
               </a>
             </p>
-            <p id="withdrawconsent">
+            <p
+              id="withdrawconsent"
+              ref={(el) => el && targetRefs.current.set('withdrawconsent', el)}
+            >
               <u>
                 Withdrawing your consent: If we are relying on your consent to
                 process your personal information, which may be express and/or
@@ -454,12 +530,13 @@ export function Privacy(props: PrivacyProps) {
                 right to withdraw your consent at any time. You can withdraw
                 your consent at any time by contacting us by using the contact
                 details provided in the section{' '}
-                <a
-                  href="/privacy#contact"
+                <button
+                  type="button"
                   className="font-medium text-cyan-500 hover:text-cyan-600 dark:text-violet-400 dark:hover:text-violet-500"
+                  onClick={() => handleScrollTo('contact')}
                 >
                   &quot;HOW CAN YOU CONTACT US ABOUT THIS NOTICE?&quot;
-                </a>{' '}
+                </button>{' '}
                 below.
               </u>
             </p>
@@ -475,7 +552,11 @@ export function Privacy(props: PrivacyProps) {
               may email us at privacy@jasonruesch.dev.
             </p>
           </section>
-          <section id="DNT" className="space-y-4">
+          <section
+            id="DNT"
+            className="space-y-4"
+            ref={(el) => el && targetRefs.current.set('DNT', el)}
+          >
             <h2>8. CONTROLS FOR DO-NOT-TRACK FEATURES</h2>
             <p>
               Most web browsers and some mobile operating systems and mobile
@@ -491,7 +572,11 @@ export function Privacy(props: PrivacyProps) {
               practice in a revised version of this privacy notice.
             </p>
           </section>
-          <section id="caresidents" className="space-y-4">
+          <section
+            id="caresidents"
+            className="space-y-4"
+            ref={(el) => el && targetRefs.current.set('caresidents', el)}
+          >
             <h2>9. DO CALIFORNIA RESIDENTS HAVE SPECIFIC PRIVACY RIGHTS?</h2>
             <p className="mb-4">
               <em>
@@ -526,7 +611,11 @@ export function Privacy(props: PrivacyProps) {
               backups, etc.).
             </p>
           </section>
-          <section id="policyupdates" className="space-y-4">
+          <section
+            id="policyupdates"
+            className="space-y-4"
+            ref={(el) => el && targetRefs.current.set('policyupdates', el)}
+          >
             <h2>10. DO WE MAKE UPDATES TO THIS NOTICE?</h2>
             <p className="mb-4">
               <em>
@@ -545,14 +634,22 @@ export function Privacy(props: PrivacyProps) {
               we are protecting your information.
             </p>
           </section>
-          <section id="contact" className="space-y-4">
+          <section
+            id="contact"
+            className="space-y-4"
+            ref={(el) => el && targetRefs.current.set('contact', el)}
+          >
             <h2>11. HOW CAN YOU CONTACT US ABOUT THIS NOTICE?</h2>
             <p>
               If you have questions or comments about this notice, you may email
               us at privacy@jasonruesch.dev.
             </p>
           </section>
-          <section id="request" className="space-y-4">
+          <section
+            id="request"
+            className="space-y-4"
+            ref={(el) => el && targetRefs.current.set('request', el)}
+          >
             <h2>
               12. HOW CAN YOU REVIEW, UPDATE, OR DELETE THE DATA WE COLLECT FROM
               YOU?
