@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 export function useWindowSize() {
   const hasWindow = typeof window !== 'undefined';
@@ -14,13 +14,20 @@ export function useWindowSize() {
   }, [hasWindow]);
 
   const [windowSize, setWindowSize] = useState(getWindowSize());
+  const [isXSmallScreen, setIsXSmallScreen] = useState(
+    windowSize.width ? windowSize.width < 640 : false
+  );
 
   useEffect(() => {
     const handleResize = () => {
-      setWindowSize(getWindowSize());
+      const size = getWindowSize();
+      setWindowSize(size);
+      setIsXSmallScreen(size.width ? size.width < 640 : false);
     };
 
-    setWindowSize(getWindowSize());
+    const size = getWindowSize();
+    setWindowSize(size);
+    setIsXSmallScreen(size.width ? size.width < 640 : false);
 
     if (hasWindow) {
       window.addEventListener('resize', handleResize);
@@ -29,7 +36,7 @@ export function useWindowSize() {
     }
   }, [hasWindow, getWindowSize]);
 
-  return windowSize;
+  return [windowSize, isXSmallScreen] as const;
 }
 
 export default useWindowSize;

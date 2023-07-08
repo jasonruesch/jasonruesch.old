@@ -1,6 +1,7 @@
 import { Variants } from 'framer-motion';
 
-const scale = 0.6;
+const SCALE = 0.6;
+const DURATION = 2; // seconds
 
 export const variants: Variants = {
   hidden: ({ windowSize, isNavigating, slideRight, shouldReduceMotion }) => {
@@ -9,14 +10,13 @@ export const variants: Variants = {
       opacity: 0,
     };
     const otherAnimations = {
-      x: slideRight
-        ? `-${windowSize.width * scale}px`
-        : `${windowSize.width}px`,
+      x: slideRight ? `-${windowSize.width / 2}px` : `${windowSize.width}px`,
       overflow: 'hidden',
       borderRadius: '16px',
+      boxShadow: '0 25px 50px -12px rgb(0 0 0)',
       height: `${windowSize.height}px`,
       width: `${height}px`,
-      scale,
+      scale: SCALE,
     };
 
     return isNavigating
@@ -26,17 +26,12 @@ export const variants: Variants = {
         }
       : {};
   },
-  enter: ({
-    windowSize,
-    isNavigating,
-    slideRight,
-    duration,
-    shouldReduceMotion,
-  }) => {
+  enter: ({ windowSize, isNavigating, slideRight, shouldReduceMotion }) => {
+    const duration = !shouldReduceMotion ? DURATION : DURATION / 2;
     const height = Math.min(windowSize.width, windowSize.height);
     const centerX = windowSize.width / 2 - height / 2;
     const x = [
-      slideRight ? `-${windowSize.width * scale}px` : `${windowSize.width}px`,
+      slideRight ? `-${windowSize.width / 2}px` : `${windowSize.width}px`,
       `${centerX}px`,
       '0px',
     ];
@@ -45,6 +40,7 @@ export const variants: Variants = {
       x,
       overflow: 'visible',
       borderRadius: '0',
+      boxShadow: 'none',
       height: 'auto',
       width: 'auto',
       scale: 1,
@@ -59,6 +55,7 @@ export const variants: Variants = {
       },
       overflow: { delay: duration, duration: 0.1 },
       borderRadius: { delay: duration, duration: 0.1 },
+      boxShadow: { delay: duration, duration: 0.1 },
       height: { delay: duration, duration: 0.1 },
       width:
         windowSize.width < windowSize.height
@@ -78,22 +75,24 @@ export const variants: Variants = {
         }
       : {};
   },
-  exit: ({ windowSize, slideRight, duration, shouldReduceMotion }) => {
+  exit: ({ windowSize, slideRight, shouldReduceMotion }) => {
+    const duration = !shouldReduceMotion ? DURATION : DURATION / 2;
     const height = Math.min(windowSize.width, windowSize.height);
     const centerX = windowSize.width / 2 - height / 2;
     const x = [
       '0px',
       `${centerX}px`,
-      slideRight ? `${windowSize.width}px` : `-${windowSize.width * scale}px`,
+      slideRight ? `${windowSize.width}px` : `-${windowSize.width / 2}px`,
     ];
     const opacityAnimation = { opacity: 0 };
     const otherAnimations = {
       x,
       overflow: 'hidden',
       borderRadius: '16px',
+      boxShadow: '0 25px 50px -12px rgb(0 0 0)',
       height: `${windowSize.height}px`,
       width: `${height}px`,
-      scale,
+      scale: SCALE,
     };
     const opacityTransition = {
       opacity: !shouldReduceMotion
@@ -107,6 +106,7 @@ export const variants: Variants = {
       },
       overflow: { duration: 0 },
       borderRadius: { duration: 0 },
+      boxShadow: { duration: 0 },
       height: { duration: 0 },
       width:
         windowSize.width < windowSize.height

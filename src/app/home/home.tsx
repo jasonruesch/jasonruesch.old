@@ -1,20 +1,19 @@
 import { ChevronDoubleRightIcon } from '@heroicons/react/24/outline';
+import { NavLink, ProfileImage, useWindowSize } from '@jasonruesch/shared/ui';
+import { eventBus } from '@jasonruesch/shared/utils';
 import {
+  Variants,
   motion,
   useAnimation,
   useReducedMotion,
-  Variants,
 } from 'framer-motion';
 import { useCallback, useEffect, useState } from 'react';
-import { ProfileImage, NavLink, useWindowSize } from '@jasonruesch/shared/ui';
-import { eventBus } from '@jasonruesch/shared/utils';
 
 /* eslint-disable-next-line */
 export interface HomeProps {}
 
 export function Home(props: HomeProps) {
-  const { width } = useWindowSize();
-  const isXSmallScreen = width && width < 640;
+  const [, isXSmallScreen] = useWindowSize();
   const shouldReduceMotion = useReducedMotion();
   const controls = useAnimation();
   const [isNavigating, setIsNavigating] = useState(true);
@@ -49,14 +48,20 @@ export function Home(props: HomeProps) {
     controls.start('animate');
   }, [controls]);
 
+  // Pause animation when navigating
   useEffect(() => {
     if (isNavigating) {
-      controls.stop();
-      controls.set('hover');
+      handleHoverStart();
     } else {
-      controls.start('animate');
+      handleHoverEnd();
     }
-  }, [controls, isNavigating]);
+  }, [isNavigating, handleHoverStart, handleHoverEnd]);
+
+  // Reset animation when screen size changes
+  useEffect(() => {
+    handleHoverStart();
+    handleHoverEnd();
+  }, [isXSmallScreen, handleHoverStart, handleHoverEnd]);
 
   return (
     <div className="mx-auto grid h-full max-w-xl place-items-center py-16 sm:py-20">
@@ -94,7 +99,9 @@ export function Home(props: HomeProps) {
               initial="initial"
               custom={isXSmallScreen}
               animate={controls}
-              variants={!shouldReduceMotion ? variants : undefined}
+              variants={
+                !shouldReduceMotion && !isNavigating ? variants : undefined
+              }
               className="w-6 -translate-x-3 sm:w-12 sm:-translate-x-6"
             >
               <ChevronDoubleRightIcon
