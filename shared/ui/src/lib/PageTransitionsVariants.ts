@@ -3,35 +3,57 @@ import { Variants } from 'framer-motion';
 const SCALE = 0.6;
 const DURATION = 2; // seconds
 
+export interface VariantProps {
+  windowSize: { width: number; height: number };
+  isNavigating: boolean;
+  slideRight: boolean;
+  shouldReduceMotion: boolean;
+  theme: 'light' | 'dark';
+}
+
 export const variants: Variants = {
-  hidden: ({ windowSize, isNavigating, slideRight, shouldReduceMotion }) => {
-    const height = Math.min(windowSize.width, windowSize.height);
+  hidden: ({
+    windowSize,
+    isNavigating,
+    slideRight,
+    shouldReduceMotion,
+    theme,
+  }: VariantProps) => {
+    const width = Math.min(windowSize.width, windowSize.height);
     const opacityAnimation = {
       opacity: 0,
     };
     const otherAnimations = {
-      x: slideRight ? `-${windowSize.width / 2}px` : `${windowSize.width}px`,
+      x: slideRight ? `-${windowSize.width}px` : `${windowSize.width}px`,
       overflow: 'hidden',
       borderRadius: '16px',
-      boxShadow: '0 25px 50px -12px rgb(0 0 0)',
+      boxShadow: `0 25px 50px -12px rgb(0 0 0 / ${
+        theme === 'dark' ? '1' : '0.25'
+      })`,
       height: `${windowSize.height}px`,
-      width: `${height}px`,
+      width: `${width}px`,
       scale: SCALE,
     };
 
     return isNavigating
       ? {
-          ...opacityAnimation,
+          ...(shouldReduceMotion ? opacityAnimation : {}),
           ...(!shouldReduceMotion ? otherAnimations : {}),
         }
       : {};
   },
-  enter: ({ windowSize, isNavigating, slideRight, shouldReduceMotion }) => {
+
+  enter: ({
+    windowSize,
+    isNavigating,
+    slideRight,
+    shouldReduceMotion,
+  }: VariantProps) => {
     const duration = !shouldReduceMotion ? DURATION : DURATION / 2;
-    const height = Math.min(windowSize.width, windowSize.height);
-    const centerX = windowSize.width / 2 - height / 2;
+    const width = Math.min(windowSize.width, windowSize.height);
+    const centerX = windowSize.width / 2 - width / 2;
     const x = [
-      slideRight ? `-${windowSize.width / 2}px` : `${windowSize.width}px`,
+      slideRight ? `-${windowSize.width}px` : `${windowSize.width}px`,
       `${centerX}px`,
       '0px',
     ];
@@ -46,7 +68,8 @@ export const variants: Variants = {
       scale: 1,
     };
     const opacityTransition = {
-      opacity: !shouldReduceMotion ? { duration: duration / 3 } : { duration },
+      // opacity: !shouldReduceMotion ? { duration: duration / 3 } : { duration },
+      opacity: { duration },
     };
     const otherTransitions = {
       x: {
@@ -66,38 +89,47 @@ export const variants: Variants = {
 
     return isNavigating
       ? {
-          ...opacityAnimation,
+          ...(shouldReduceMotion ? opacityAnimation : {}),
           ...(!shouldReduceMotion ? otherAnimations : {}),
           transition: {
-            ...opacityTransition,
+            ...(shouldReduceMotion ? opacityTransition : {}),
             ...(!shouldReduceMotion ? otherTransitions : {}),
           },
         }
       : {};
   },
-  exit: ({ windowSize, slideRight, shouldReduceMotion }) => {
+
+  exit: ({
+    windowSize,
+    slideRight,
+    shouldReduceMotion,
+    theme,
+  }: VariantProps) => {
     const duration = !shouldReduceMotion ? DURATION : DURATION / 2;
-    const height = Math.min(windowSize.width, windowSize.height);
-    const centerX = windowSize.width / 2 - height / 2;
+    const width = Math.min(windowSize.width, windowSize.height);
+    const centerX = windowSize.width / 2 - width / 2;
     const x = [
       '0px',
       `${centerX}px`,
-      slideRight ? `${windowSize.width}px` : `-${windowSize.width / 2}px`,
+      slideRight ? `${windowSize.width}px` : `-${windowSize.width}px`,
     ];
     const opacityAnimation = { opacity: 0 };
     const otherAnimations = {
       x,
       overflow: 'hidden',
       borderRadius: '16px',
-      boxShadow: '0 25px 50px -12px rgb(0 0 0)',
+      boxShadow: `0 25px 50px -12px rgb(0 0 0 / ${
+        theme === 'dark' ? '1' : '0.25'
+      })`,
       height: `${windowSize.height}px`,
-      width: `${height}px`,
+      width: `${width}px`,
       scale: SCALE,
     };
     const opacityTransition = {
-      opacity: !shouldReduceMotion
-        ? { delay: 2 * (duration / 3), duration: duration / 3 }
-        : { duration },
+      // opacity: !shouldReduceMotion
+      //   ? { delay: 2 * (duration / 3), duration: duration / 3 }
+      //   : { duration },
+      opacity: { duration },
     };
     const otherTransitions = {
       x: {
@@ -116,10 +148,10 @@ export const variants: Variants = {
     };
 
     return {
-      ...opacityAnimation,
+      ...(shouldReduceMotion ? opacityAnimation : {}),
       ...(!shouldReduceMotion ? otherAnimations : {}),
       transition: {
-        ...opacityTransition,
+        ...(shouldReduceMotion ? opacityTransition : {}),
         ...(!shouldReduceMotion ? otherTransitions : {}),
       },
     };

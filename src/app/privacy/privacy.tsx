@@ -1,4 +1,4 @@
-import { LogoImageNeutral } from '@jasonruesch/shared/ui';
+import { Footer } from '@jasonruesch/shared/ui';
 import { useCallback, useEffect, useRef } from 'react';
 
 const navigation = [
@@ -672,9 +672,7 @@ export function Privacy(props: PrivacyProps) {
           </section>
         </div>
 
-        <div className="absolute inset-x-0 bottom-0 h-40 py-14">
-          <LogoImageNeutral className="mx-auto h-12 w-12" />
-        </div>
+        <Footer />
       </div>
     </div>
   );

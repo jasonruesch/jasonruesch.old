@@ -1,9 +1,5 @@
 import { ExclamationCircleIcon } from '@heroicons/react/24/solid';
-import {
-  LogoImageNeutral,
-  Notification,
-  PuffLoader,
-} from '@jasonruesch/shared/ui';
+import { Footer, Notification, PuffLoader } from '@jasonruesch/shared/ui';
 import clsx from 'clsx';
 import { useFormik } from 'formik';
 import { useState } from 'react';
@@ -93,7 +89,7 @@ export function Contact(props: ContactProps) {
   });
 
   return (
-    <div className="mx-auto grid h-full max-w-xl pt-16 pb-40 sm:place-items-center sm:pb-16">
+    <div className="mx-auto grid h-full max-w-xl pb-40 pt-16 sm:place-items-center sm:pb-16">
       <div className="w-full pt-6 sm:pt-0">
         <h1 className="mb-4">Get In Touch</h1>
         <form onSubmit={handleSubmit} noValidate>
@@ -105,7 +101,7 @@ export function Contact(props: ContactProps) {
                   name="name"
                   id="name"
                   className={clsx(
-                    'peer block w-full appearance-none border-0 border-b-2 bg-transparent py-2.5 px-0 text-sm placeholder:invisible focus:outline-none focus:ring-0 focus:placeholder:visible',
+                    'peer block w-full appearance-none border-0 border-b-2 bg-transparent px-0 py-2.5 text-sm placeholder:invisible focus:outline-none focus:ring-0 focus:placeholder:visible',
                     !!errors.name && touched.name
                       ? 'border-red-300 text-red-900 focus:border-red-600 dark:border-red-600 dark:text-red-50 dark:focus:border-red-500'
                       : 'border-neutral-300 text-neutral-900 focus:border-cyan-600 dark:border-neutral-600 dark:text-white dark:focus:border-violet-500'
@@ -155,7 +151,7 @@ export function Contact(props: ContactProps) {
                   name="email"
                   id="email"
                   className={clsx(
-                    'peer block w-full appearance-none border-0 border-b-2 bg-transparent py-2.5 px-0 text-sm placeholder:invisible focus:outline-none focus:ring-0 focus:placeholder:visible',
+                    'peer block w-full appearance-none border-0 border-b-2 bg-transparent px-0 py-2.5 text-sm placeholder:invisible focus:outline-none focus:ring-0 focus:placeholder:visible',
                     !!errors.email && touched.email
                       ? 'border-red-300 text-red-900 focus:border-red-600 dark:border-red-600 dark:text-red-50 dark:focus:border-red-500'
                       : 'border-neutral-300 text-neutral-900 focus:border-cyan-600 dark:border-neutral-600 dark:text-white dark:focus:border-violet-500'
@@ -205,7 +201,7 @@ export function Contact(props: ContactProps) {
                   name="message"
                   rows={3}
                   className={clsx(
-                    'peer block w-full appearance-none border-0 border-b-2 bg-transparent py-2.5 px-0 text-sm placeholder:invisible focus:outline-none focus:ring-0 focus:placeholder:visible',
+                    'peer block w-full appearance-none border-0 border-b-2 bg-transparent px-0 py-2.5 text-sm placeholder:invisible focus:outline-none focus:ring-0 focus:placeholder:visible',
                     !!errors.message && touched.message
                       ? 'border-red-300 text-red-900 focus:border-red-600 dark:border-red-600 dark:text-red-50 dark:focus:border-red-500'
                       : 'border-neutral-300 text-neutral-900 focus:border-cyan-600 dark:border-neutral-600 dark:text-white dark:focus:border-violet-500'
@@ -275,9 +271,7 @@ export function Contact(props: ContactProps) {
           </div>
         </form>
 
-        <div className="absolute inset-x-0 bottom-0 h-40 py-14">
-          <LogoImageNeutral className="mx-auto h-12 w-12" />
-        </div>
+        <Footer />
       </div>
 
       {notification && (

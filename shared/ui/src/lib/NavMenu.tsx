@@ -1,7 +1,7 @@
-import { Fragment } from 'react';
 import { Menu, Transition } from '@headlessui/react';
 import { EllipsisVerticalIcon } from '@heroicons/react/24/outline';
 import clsx from 'clsx';
+import { Fragment } from 'react';
 import { useLocation } from 'react-router-dom';
 import { NavLink } from './NavLink';
 
@@ -60,18 +60,23 @@ export function NavMenu({ className }: NavMenuProps) {
           <div className="py-1">
             {menuItems.map(({ name, href }) => (
               <Menu.Item key={name}>
-                <NavLink
-                  to={href}
-                  className={clsx(
-                    'group flex w-full items-center px-4 py-2 text-sm text-neutral-900 hover:bg-neutral-200 dark:text-neutral-50 dark:hover:bg-neutral-700',
-                    isCurrentRoute(href)
-                      ? '!text-cyan-500 hover:!text-neutral-900 dark:!text-violet-400 dark:hover:!text-neutral-50'
-                      : ''
-                  )}
-                  aria-current={isCurrentRoute(href) ? 'page' : undefined}
-                >
-                  {name}
-                </NavLink>
+                {({ active }) => (
+                  <NavLink
+                    to={href}
+                    className={clsx(
+                      'group flex w-full items-center px-4 py-2 text-sm',
+                      active ? 'bg-neutral-200 dark:bg-neutral-700' : '',
+                      isCurrentRoute(href)
+                        ? active
+                          ? 'text-neutral-900 dark:text-neutral-50'
+                          : 'text-cyan-500 dark:text-violet-400'
+                        : 'text-neutral-900 dark:text-neutral-50'
+                    )}
+                    aria-current={isCurrentRoute(href) ? 'page' : undefined}
+                  >
+                    {name}
+                  </NavLink>
+                )}
               </Menu.Item>
             ))}
           </div>

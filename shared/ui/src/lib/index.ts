@@ -1,4 +1,5 @@
 export * from './Beams';
+export * from './Footer';
 export * from './GitHubLink';
 export * from './Header';
 export * from './LogoImage';
@@ -12,5 +13,5 @@ export * from './Notification';
 export * from './PageTransitions';
 export * from './ProfileImage';
 export * from './ThemeSelector';
-export * from './icons';
 export * from './hooks';
+export * from './icons';
