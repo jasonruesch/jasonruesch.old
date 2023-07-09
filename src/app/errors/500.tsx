@@ -23,11 +23,10 @@ export function Error500() {
           />
         )}
       </Header>
-      <Beams className="z-10" />
       <main className="flex min-h-screen bg-neutral-100 text-neutral-900 dark:bg-neutral-800 dark:text-neutral-50">
-        <div className="mx-auto w-full max-w-screen-lg px-4 sm:px-8">
-          <div className="mx-auto grid h-full max-w-xl pt-16 pb-4 sm:place-items-center sm:py-20">
-            <div className="w-full">
+        <div className="relative z-20 mx-auto w-full max-w-screen-lg px-4 py-16 sm:px-8 sm:py-20">
+          <div className="grid h-full sm:place-items-center">
+            <div className="mx-auto w-full max-w-xl pt-6 sm:pt-0">
               <div className="space-y-4">
                 <h1>500</h1>
                 <p className="text-neutral-500 dark:text-neutral-400">
@@ -37,6 +36,7 @@ export function Error500() {
             </div>
           </div>
         </div>
+        <Beams className="z-10" />
       </main>
     </ThemeProvider>
   );

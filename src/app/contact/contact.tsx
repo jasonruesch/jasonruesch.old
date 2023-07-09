@@ -89,8 +89,8 @@ export function Contact(props: ContactProps) {
   });
 
   return (
-    <div className="mx-auto grid h-full max-w-xl pb-40 pt-16 sm:place-items-center sm:pb-16">
-      <div className="w-full pt-6 sm:pt-0">
+    <div className="grid h-full sm:place-items-center">
+      <div className="mx-auto w-full max-w-xl pt-6 sm:pt-0">
         <h1 className="mb-4">Get In Touch</h1>
         <form onSubmit={handleSubmit} noValidate>
           <div className="grid grid-cols-1 gap-x-6 gap-y-1 sm:grid-cols-6">
@@ -271,7 +271,7 @@ export function Contact(props: ContactProps) {
           </div>
         </form>
 
-        <Footer />
+        <Footer className="pt-16 sm:pt-20" />
       </div>
 
       {notification && (

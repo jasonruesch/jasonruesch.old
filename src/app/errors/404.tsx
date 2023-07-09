@@ -1,7 +1,7 @@
 export function Error404() {
   return (
-    <div className="mx-auto grid h-full max-w-xl pt-16 pb-4 sm:place-items-center sm:py-20">
-      <div className="w-full">
+    <div className="grid h-full sm:place-items-center">
+      <div className="mx-auto w-full max-w-xl pt-6 sm:pt-0">
         <div className="space-y-4">
           <h1>404</h1>
           <p className="text-neutral-500 dark:text-neutral-400">

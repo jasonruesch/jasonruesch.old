@@ -1,7 +1,7 @@
 import { Variants } from 'framer-motion';
 
 const SCALE = 0.6;
-const DURATION = 2; // seconds
+const DURATION = 1.5; // seconds
 
 export interface VariantProps {
   windowSize: { width: number; height: number };

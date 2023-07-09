@@ -28,6 +28,7 @@ export const PageTransitions = ({
   const [isNavigating, setIsNavigating] = useState(false);
   const [slideRight, setSlideRight] = useState(false);
   const { resolvedTheme } = useTheme();
+  const [routingPageOffset, setRoutingPageOffset] = useState(0);
 
   useEffect(() => {
     if (previousPathname !== pathname) {
@@ -50,9 +51,10 @@ export const PageTransitions = ({
       pageMap.get(next)! < pageMap.get(current)!;
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const handleIntendToNavigate = ({ to }: any) => {
+    const handleIntendToNavigate = ({ to, y }: any) => {
       const slideRight = shouldSlideRight(pathname, to);
       setSlideRight(slideRight);
+      setRoutingPageOffset(y);
     };
 
     eventBus.on('intendToNavigate', handleIntendToNavigate);
@@ -74,7 +76,7 @@ export const PageTransitions = ({
       <AnimatePresence
         initial={false} // Disabled for now because the animate keyframes are running when the page loads
         mode="wait"
-        onExitComplete={() => window.scrollTo(0, 0)}
+        // onExitComplete={() => window.scrollTo(0, 0)}
       >
         <motion.div
           ref={pageRef}
@@ -107,7 +109,20 @@ export const PageTransitions = ({
             }
           }}
         >
-          {children}
+          <motion.div
+            initial={false}
+            animate={{
+              y: 0,
+            }}
+            exit={{
+              y: `-${routingPageOffset}px`,
+              transition: {
+                duration: 0,
+              },
+            }}
+          >
+            {children}
+          </motion.div>
         </motion.div>
       </AnimatePresence>
     </div>

@@ -1,11 +1,14 @@
-import { forwardRef, Ref } from 'react';
-import { NavLink as RouterNavLink, NavLinkProps, To } from 'react-router-dom';
 import { eventBus } from '@jasonruesch/shared/utils';
+import { forwardRef, Ref } from 'react';
+import { NavLinkProps, NavLink as RouterNavLink, To } from 'react-router-dom';
 
 export const NavLink = forwardRef(
   ({ to, ...props }: NavLinkProps, ref: Ref<HTMLAnchorElement>) => {
     const intendToNavigate = (to: To) => {
-      eventBus.dispatch('intendToNavigate', { to: to as string });
+      eventBus.dispatch('intendToNavigate', {
+        to: to as string,
+        y: window.scrollY,
+      });
     };
 
     return (

@@ -1,5 +1,6 @@
 import { Footer } from '@jasonruesch/shared/ui';
-import { useCallback, useEffect, useRef } from 'react';
+import { MouseEvent, useCallback, useEffect, useRef } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const navigation = [
   {
@@ -56,28 +57,32 @@ const navigation = [
 export interface PrivacyProps {}
 
 export function Privacy(props: PrivacyProps) {
+  const { hash } = useLocation();
+  const navigate = useNavigate();
   const targetRefs = useRef<Map<string, HTMLElement>>(new Map());
 
-  const handleScrollTo = useCallback((target: string) => {
-    targetRefs.current.get(target)?.scrollIntoView(true);
+  const handleScrollTo = useCallback(
+    (target: string, e?: MouseEvent<HTMLAnchorElement>) => {
+      e?.preventDefault();
 
-    const url = new URL(window.location.href);
-    if (url.hash !== `#${target}`) {
-      url.hash = `#${target}`;
-      window.history.pushState({}, '', url);
-    }
-  }, []);
+      targetRefs.current.get(target)?.scrollIntoView(true);
+
+      if (`#${target}` !== hash) {
+        navigate(`#${target}`);
+      }
+    },
+    [hash, navigate]
+  );
 
   useEffect(() => {
-    const hash = window.location.hash;
     if (hash) {
       handleScrollTo(hash.slice(1));
     }
-  }, [handleScrollTo]);
+  }, [hash, handleScrollTo]);
 
   return (
-    <div className="pb-40 pt-16">
-      <div className="w-full pt-6">
+    <div className="grid h-full sm:place-items-center">
+      <div className="mx-auto w-full pt-6">
         <div className="space-y-4">
           <h1>Privacy Policy</h1>
           <small>Last updated July 01, 2022</small>
@@ -131,13 +136,13 @@ export function Privacy(props: PrivacyProps) {
                 clicking the link following each key point or by using our table
                 of contents below to find the section you are looking for. You
                 can also{' '}
-                <button
-                  type="button"
+                <a
+                  href="#toc"
                   className="font-medium text-cyan-500 hover:text-cyan-600 dark:text-violet-400 dark:hover:text-violet-500"
-                  onClick={() => handleScrollTo('toc')}
+                  onClick={(e) => handleScrollTo('toc', e)}
                 >
                   click here to go directly to our table of contents.
-                </button>
+                </a>
               </em>
             </p>
             <p>
@@ -145,13 +150,13 @@ export function Privacy(props: PrivacyProps) {
               navigate our Services, we may process personal information
               depending on how you interact with Jason Ruesch and the Services,
               the choices you make, and the products and features you use.{' '}
-              <button
-                type="button"
+              <a
+                href="#personalinfo"
                 className="cursor-pointer text-cyan-500 dark:text-violet-400"
                 onClick={() => handleScrollTo('personalinfo')}
               >
                 Click here to learn more.
-              </button>
+              </a>
             </p>
             <p>
               Do we process any sensitive personal information? We do not
@@ -168,25 +173,25 @@ export function Privacy(props: PrivacyProps) {
               may also process your information for other purposes with your
               consent. We process your information only when we have a valid
               legal reason to do so.{' '}
-              <button
-                type="button"
+              <a
+                href="infouse"
                 className="font-medium text-cyan-500 hover:text-cyan-600 dark:text-violet-400 dark:hover:text-violet-500"
                 onClick={() => handleScrollTo('infouse')}
               >
                 Click here to learn more.
-              </button>
+              </a>
             </p>
             <p>
               In what situations and with which parties do we share personal
               information? We may share information in specific situations and
               with specific third parties.{' '}
-              <button
-                type="button"
+              <a
+                href="whoshare"
                 className="font-medium text-cyan-500 hover:text-cyan-600 dark:text-violet-400 dark:hover:text-violet-500"
                 onClick={() => handleScrollTo('whoshare')}
               >
                 Click here to learn more.
-              </button>
+              </a>
             </p>
             <p>
               How do we keep your information safe? We have organizational and
@@ -197,25 +202,25 @@ export function Privacy(props: PrivacyProps) {
               cybercriminals, or other unauthorized third parties will not be
               able to defeat our security and improperly collect, access, steal,
               or modify your information.{' '}
-              <button
-                type="button"
+              <a
+                href="infosafe"
                 className="font-medium text-cyan-500 hover:text-cyan-600 dark:text-violet-400 dark:hover:text-violet-500"
                 onClick={() => handleScrollTo('infosafe')}
               >
                 Click here to learn more.
-              </button>
+              </a>
             </p>
             <p>
               What are your rights? Depending on where you are located
               geographically, the applicable privacy law may mean you have
               certain rights regarding your personal information.{' '}
-              <button
-                type="button"
+              <a
+                href="privacyrights"
                 className="font-medium text-cyan-500 hover:text-cyan-600 dark:text-violet-400 dark:hover:text-violet-500"
                 onClick={() => handleScrollTo('privacyrights')}
               >
                 Click here to learn more.
-              </button>
+              </a>
             </p>
             <p>
               How do you exercise your rights? The easiest way to exercise your
@@ -234,13 +239,13 @@ export function Privacy(props: PrivacyProps) {
             <p>
               Want to learn more about what Jason Ruesch does with any
               information we collect?{' '}
-              <button
-                type="button"
+              <a
+                href="toc"
                 className="font-medium text-cyan-500 hover:text-cyan-600 dark:text-violet-400 dark:hover:text-violet-500"
                 onClick={() => handleScrollTo('toc')}
               >
                 Click here to review the notice in full.
-              </button>
+              </a>
             </p>
           </section>
           <section
@@ -252,13 +257,13 @@ export function Privacy(props: PrivacyProps) {
             <ol className="list-inside list-decimal">
               {navigation.map((item) => (
                 <li key={item.name}>
-                  <button
-                    type="button"
+                  <a
+                    href={`#${item.id}`}
                     className="font-medium text-cyan-500 hover:text-cyan-600 dark:text-violet-400 dark:hover:text-violet-500"
                     onClick={() => handleScrollTo(item.id)}
                   >
                     {item.name}
-                  </button>
+                  </a>
                 </li>
               ))}
             </ol>
@@ -530,13 +535,13 @@ export function Privacy(props: PrivacyProps) {
                 right to withdraw your consent at any time. You can withdraw
                 your consent at any time by contacting us by using the contact
                 details provided in the section{' '}
-                <button
-                  type="button"
+                <a
+                  href="contact"
                   className="font-medium text-cyan-500 hover:text-cyan-600 dark:text-violet-400 dark:hover:text-violet-500"
                   onClick={() => handleScrollTo('contact')}
                 >
                   &quot;HOW CAN YOU CONTACT US ABOUT THIS NOTICE?&quot;
-                </button>{' '}
+                </a>{' '}
                 below.
               </u>
             </p>
@@ -672,7 +677,7 @@ export function Privacy(props: PrivacyProps) {
           </section>
         </div>
 
-        <Footer />
+        <Footer className="pt-16 sm:pt-20" />
       </div>
     </div>
   );
