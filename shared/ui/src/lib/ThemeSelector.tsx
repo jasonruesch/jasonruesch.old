@@ -1,16 +1,34 @@
-import { Fragment, useEffect } from 'react';
 import { Menu, Transition } from '@headlessui/react';
 import {
-  SunIcon,
-  MoonIcon,
-  ComputerDesktopIcon,
-} from '@heroicons/react/24/solid';
-import {
-  SunIcon as SunIconOutline,
   MoonIcon as MoonIconOutline,
+  SunIcon as SunIconOutline,
 } from '@heroicons/react/24/outline';
+import {
+  ComputerDesktopIcon,
+  MoonIcon,
+  SunIcon,
+} from '@heroicons/react/24/solid';
 import clsx from 'clsx';
 import { useTheme } from 'next-themes';
+import { Fragment, useEffect } from 'react';
+
+const menuItems = [
+  {
+    name: 'Light',
+    theme: 'light',
+    icon: <SunIcon className="mr-3 h-5 w-5" aria-hidden="true" />,
+  },
+  {
+    name: 'Dark',
+    theme: 'dark',
+    icon: <MoonIcon className="mr-3 h-5 w-5" aria-hidden="true" />,
+  },
+  {
+    name: 'System',
+    theme: 'system',
+    icon: <ComputerDesktopIcon className="mr-3 h-5 w-5" aria-hidden="true" />,
+  },
+];
 
 export interface ThemeSelectorProps {
   className?: string;
@@ -66,72 +84,27 @@ export function ThemeSelector({ className }: ThemeSelectorProps) {
       >
         <Menu.Items className="absolute right-0 z-50 mt-2 w-36 origin-top-right rounded-md bg-neutral-50 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-neutral-900 dark:shadow-black dark:ring-opacity-50">
           <div className="py-1">
-            <Menu.Item>
-              <button
-                className={clsx(
-                  'group flex w-full items-center px-4 py-2 text-sm text-neutral-900 hover:bg-neutral-200 dark:text-neutral-50 dark:hover:bg-neutral-700',
-                  theme === 'light'
-                    ? '!text-cyan-500 hover:!text-neutral-900 dark:!text-violet-400 dark:hover:!text-neutral-50'
-                    : ''
+            {menuItems.map((item) => (
+              <Menu.Item key={item.name}>
+                {({ active }) => (
+                  <button
+                    className={clsx(
+                      'group flex w-full items-center px-4 py-2 text-sm',
+                      active ? 'bg-neutral-200 dark:bg-neutral-700' : '',
+                      theme === item.theme
+                        ? active
+                          ? 'text-neutral-900 dark:text-neutral-50'
+                          : 'text-cyan-500 dark:text-violet-400'
+                        : 'text-neutral-900 dark:text-neutral-50'
+                    )}
+                    onClick={() => setTheme(item.theme)}
+                  >
+                    {item.icon}
+                    {item.name}
+                  </button>
                 )}
-                onClick={() => setTheme('light')}
-              >
-                <SunIcon
-                  className={clsx(
-                    'mr-3 h-5 w-5',
-                    theme === 'light'
-                      ? 'text-cyan-500 group-hover:text-neutral-900 dark:text-violet-400 dark:group-hover:text-neutral-50'
-                      : ''
-                  )}
-                  aria-hidden="true"
-                />
-                <span>Light</span>
-              </button>
-            </Menu.Item>
-            <Menu.Item>
-              <button
-                className={clsx(
-                  'group flex w-full items-center px-4 py-2 text-sm text-neutral-900 hover:bg-neutral-200 dark:text-neutral-50 dark:hover:bg-neutral-700',
-                  theme === 'dark'
-                    ? '!text-cyan-500 hover:!text-neutral-900 dark:!text-violet-400 dark:hover:!text-neutral-50'
-                    : ''
-                )}
-                onClick={() => setTheme('dark')}
-              >
-                <MoonIcon
-                  className={clsx(
-                    'mr-3 h-5 w-5',
-                    theme === 'dark'
-                      ? 'text-cyan-500 group-hover:text-neutral-900 dark:text-violet-400 dark:group-hover:text-neutral-50'
-                      : ''
-                  )}
-                  aria-hidden="true"
-                />
-                <span>Dark</span>
-              </button>
-            </Menu.Item>
-            <Menu.Item>
-              <button
-                className={clsx(
-                  'group flex w-full items-center px-4 py-2 text-sm text-neutral-900 hover:bg-neutral-200 dark:text-neutral-50 dark:hover:bg-neutral-700',
-                  theme === 'system'
-                    ? '!text-cyan-500 hover:!text-neutral-900 dark:!text-violet-400 dark:hover:!text-neutral-50'
-                    : ''
-                )}
-                onClick={() => setTheme('system')}
-              >
-                <ComputerDesktopIcon
-                  className={clsx(
-                    'mr-3 h-5 w-5',
-                    theme === 'system'
-                      ? 'text-cyan-500 group-hover:text-neutral-900 dark:text-violet-400 dark:group-hover:text-neutral-50'
-                      : ''
-                  )}
-                  aria-hidden="true"
-                />
-                <span>System</span>
-              </button>
-            </Menu.Item>
+              </Menu.Item>
+            ))}
           </div>
         </Menu.Items>
       </Transition>

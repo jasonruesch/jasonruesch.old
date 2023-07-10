@@ -5,8 +5,8 @@ export interface AboutProps {}
 
 export function About(props: AboutProps) {
   return (
-    <div className="mx-auto grid h-full max-w-xl pb-40 pt-16 sm:place-items-center sm:pb-16">
-      <div className="w-full pt-6 sm:pt-0">
+    <div className="grid h-full sm:place-items-center">
+      <div className="mx-auto w-full max-w-xl pt-6 sm:pt-0">
         <div className="mb-4 space-y-4">
           <ProfileImage />
 
@@ -38,7 +38,7 @@ export function About(props: AboutProps) {
           <span aria-hidden="true"> &rarr;</span>
         </NavLink>
 
-        <Footer />
+        <Footer className="pt-16 sm:pt-20" />
       </div>
     </div>
   );

@@ -64,8 +64,8 @@ export function Home(props: HomeProps) {
   }, [isXSmallScreen, handleHoverStart, handleHoverEnd]);
 
   return (
-    <div className="mx-auto grid h-full max-w-xl place-items-center py-16 sm:py-20">
-      <div className="w-full">
+    <div className="grid h-full place-items-center">
+      <div className="mx-auto max-w-xl w-full">
         <ProfileImage large className="mb-4" />
 
         <h1 className="mb-4 text-center text-neutral-500 dark:text-neutral-400">
@@ -86,14 +86,14 @@ export function Home(props: HomeProps) {
           Web Development and Design
         </h1>
 
-        <NavLink
-          to="/about"
-          aria-label="Learn more about me"
-          className="mx-auto flex w-12 cursor-pointer justify-end text-sm font-medium text-cyan-500 hover:text-cyan-600 dark:text-violet-400 dark:hover:text-violet-500 sm:w-24"
+        <motion.div
+          onHoverStart={() => handleHoverStart()}
+          onHoverEnd={() => handleHoverEnd()}
         >
-          <motion.div
-            onHoverStart={() => handleHoverStart()}
-            onHoverEnd={() => handleHoverEnd()}
+          <NavLink
+            to="/about"
+            aria-label="Learn more about me"
+            className="mx-auto flex w-12 cursor-pointer justify-end text-sm font-medium text-cyan-500 hover:text-cyan-600 dark:text-violet-400 dark:hover:text-violet-500 sm:w-24"
           >
             <motion.div
               initial="initial"
@@ -109,8 +109,8 @@ export function Home(props: HomeProps) {
                 aria-hidden="true"
               />
             </motion.div>
-          </motion.div>
-        </NavLink>
+          </NavLink>
+        </motion.div>
       </div>
     </div>
   );

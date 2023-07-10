@@ -1,7 +1,11 @@
 import { LogoImageNeutral } from './LogoImageNeutral';
 
-export const Footer = () => (
-  <div className="absolute inset-x-0 bottom-0 h-40 py-14">
+export interface FooterProps {
+  className?: string;
+}
+
+export const Footer = ({ className }: FooterProps) => (
+  <div className={className}>
     <LogoImageNeutral className="mx-auto h-12 w-12" />
   </div>
 );
