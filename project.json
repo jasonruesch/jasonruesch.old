@@ -24,7 +24,8 @@
       "executor": "@nx/vite:dev-server",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "jasonruesch:build"
+        "buildTarget": "jasonruesch:build",
+        "host": "0.0.0.0"
       },
       "configurations": {
         "development": {

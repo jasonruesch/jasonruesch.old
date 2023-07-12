@@ -20,7 +20,7 @@ export function ProfileImage({ className, large = false }: ProfileImageProps) {
   return (
     <figure
       className={clsx(
-        'relative mx-auto mb-4 h-36 w-36 overflow-hidden rounded-full ring-1 ring-neutral-500 dark:ring-neutral-400',
+        'relative mx-auto h-36 w-36 overflow-hidden rounded-full ring-1 ring-neutral-500 dark:ring-neutral-400',
         large ? 'sm:h-72 sm:w-72 sm:ring-2' : '',
         className
       )}
