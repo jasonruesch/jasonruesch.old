@@ -1,0 +1,17 @@
+{
+  "framework": "vite",
+  "outputDirectory": "dist/jasonruesch",
+  "rewrites": [
+    {
+      "source": "/((?!api/.*).*)",
+      "destination": "/index.html",
+      "has": [
+        {
+          "type": "host",
+          "value": "(?!localhost).*"
+        }
+      ]
+    }
+  ],
+  "devCommand": "nx run jasonruesch:serve-dev --port $PORT"
+}
