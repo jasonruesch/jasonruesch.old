@@ -2,7 +2,7 @@ import { ProfileImage } from '../../components';
 
 export function Home() {
   return (
-    <div className="pt-24 pb-8 sm:mx-auto sm:grid sm:h-screen sm:max-w-xl sm:place-items-center sm:py-0">
+    <div className="pt-16 pb-8 sm:mx-auto sm:grid sm:h-screen sm:max-w-xl sm:place-items-center sm:py-0">
       <div className="w-full space-y-4 text-center">
         <ProfileImage large />
 

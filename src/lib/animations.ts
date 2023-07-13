@@ -13,10 +13,6 @@ export const AnimatedOutlet: React.FC = () => {
   return outlet;
 };
 
-interface VariantProps {
-  shouldSlideLeft?: boolean;
-}
-
 export const headerVariants = {
   initial: {
     y: '-100%',
@@ -63,10 +59,16 @@ export const headerVariants = {
   },
 };
 
+interface MainVariantProps {
+  shouldSlideLeft?: boolean;
+}
+
 export const mainVariants = {
-  initial: ({ shouldSlideLeft }: VariantProps) => ({
+  initial: ({ shouldSlideLeft }: MainVariantProps) => ({
     x: shouldSlideLeft ? '100%' : '-100%',
     overflow: 'hidden',
+    height: '100vh',
+    minHeight: '0vh',
     boxShadow:
       '0 0 0 1px rgb(0 0 0 / 0.5), 0 25px 50px -12px rgb(0 0 0 / 0.75)',
     borderRadius: '2rem',
@@ -74,7 +76,9 @@ export const mainVariants = {
   }),
   animate: {
     x: 0,
-    overflow: 'scroll',
+    overflow: 'auto',
+    height: 'auto',
+    minHeight: '100vh',
     boxShadow: '0 0 0 0 rgb(0 0 0 / 0), 0 0 0 0 rgb(0 0 0 / 0)',
     borderRadius: '0rem',
     scale: 1,
@@ -84,6 +88,14 @@ export const mainVariants = {
         type: 'spring',
       },
       overflow: {
+        delay: DURATION,
+        duration: 0,
+      },
+      height: {
+        delay: DURATION,
+        duration: 0,
+      },
+      minHeight: {
         delay: DURATION,
         duration: 0,
       },
@@ -98,9 +110,11 @@ export const mainVariants = {
       },
     },
   },
-  exit: ({ shouldSlideLeft }: VariantProps) => ({
+  exit: ({ shouldSlideLeft }: MainVariantProps) => ({
     x: shouldSlideLeft ? '-100%' : '100%',
     overflow: 'hidden',
+    height: '100vh',
+    minHeight: '0vh',
     boxShadow:
       '0 0 0 1px rgb(0 0 0 / 0.5), 0 25px 50px -12px rgb(0 0 0 / 0.75)',
     borderRadius: '2rem',
@@ -112,7 +126,13 @@ export const mainVariants = {
         ease: 'anticipate',
       },
       overflow: {
-        duration: DURATION,
+        duration: 0,
+      },
+      height: {
+        duration: 0,
+      },
+      minHeight: {
+        duration: 0,
       },
       boxShadow: {
         duration: 0,
@@ -121,6 +141,18 @@ export const mainVariants = {
         duration: DURATION / 2,
         ease: 'backOut',
       },
+    },
+  }),
+};
+
+export const mainInnerVariants = {
+  animate: {
+    y: 0,
+  },
+  exit: (pageScrollOffset: number) => ({
+    y: `-${pageScrollOffset}px`,
+    transition: {
+      duration: 0,
     },
   }),
 };

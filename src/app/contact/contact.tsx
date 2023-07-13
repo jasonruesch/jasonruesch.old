@@ -63,14 +63,14 @@ export function Contact() {
   });
 
   return (
-    <div className="pt-24 pb-8 sm:mx-auto sm:grid sm:h-screen sm:max-w-xl sm:place-items-center sm:py-0">
+    <div className="pt-16 pb-8 sm:mx-auto sm:grid sm:h-screen sm:max-w-xl sm:place-items-center sm:py-0">
       <div className="w-full space-y-4">
         <h1 className="font-display text-2xl font-medium text-neutral-500 dark:text-neutral-400 sm:text-4xl">
           Get In Touch
         </h1>
         <form onSubmit={handleSubmit} noValidate>
-          <div className="grid grid-cols-1 gap-x-6 gap-y-3 sm:grid-cols-6">
-            <div className="sm:col-span-3">
+          <div className="grid grid-cols-1 gap-x-6 gap-y-3 sm:grid-cols-2">
+            <div className="sm:col-span-1">
               <Input
                 type="text"
                 name="name"
@@ -85,7 +85,7 @@ export function Contact() {
               />
             </div>
 
-            <div className="sm:col-span-3">
+            <div className="sm:col-span-1">
               <Input
                 type="email"
                 name="email"
@@ -100,7 +100,7 @@ export function Contact() {
               />
             </div>
 
-            <div className="sm:col-span-6">
+            <div className="sm:col-span-2">
               <Textarea
                 rows={3}
                 name="message"

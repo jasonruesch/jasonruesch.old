@@ -1,4 +1,5 @@
 export * from './background';
+export * from './beams';
 export * from './github-link';
 export * from './input';
 export * from './logo';

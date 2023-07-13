@@ -14,6 +14,7 @@ interface NavbarProps {
   isScrolled?: boolean;
   pages: Map<string, Page>;
   onWillNavigate?: (page: Page) => void;
+  onOpenChange?: (open: boolean) => void;
 }
 
 export function Navbar({
@@ -21,6 +22,7 @@ export function Navbar({
   isScrolled,
   pages,
   onWillNavigate,
+  onOpenChange,
 }: NavbarProps) {
   const { pathname } = useLocation();
 
@@ -37,10 +39,10 @@ export function Navbar({
       as="nav"
       className={({ open }) =>
         clsx(
-          open ? 'min-h-screen overflow-y-scroll' : '',
           isScrolled || open
-            ? 'bg-gradient-to-b from-neutral-100 via-neutral-50 to-neutral-50 dark:from-neutral-800 dark:via-neutral-900 dark:to-neutral-900'
+            ? 'bg-gradient-to-b from-neutral-100 to-neutral-50/95 backdrop-blur-sm dark:from-neutral-800 dark:to-neutral-900/75'
             : 'bg-neutral-100 dark:bg-neutral-800',
+          open ? 'min-h-screen via-neutral-50/95 dark:via-neutral-900/75' : '',
           'relative w-full',
           className
         )
@@ -48,10 +50,13 @@ export function Navbar({
     >
       {({ open }) => (
         <>
-          <div className="relative z-10 flex h-16 justify-between">
+          <div className="relative z-10 flex h-12 justify-between sm:h-16">
             <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
               {/* Mobile menu button */}
-              <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-50">
+              <Disclosure.Button
+                className="inline-flex items-center justify-center rounded-md p-2 text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-50"
+                onClick={() => onOpenChange && onOpenChange(!open)}
+              >
                 <span className="sr-only">Open main menu</span>
                 {open ? (
                   <XMarkIcon className="block h-6 w-6" aria-hidden="true" />

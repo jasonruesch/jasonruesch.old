@@ -77,7 +77,7 @@ export function Privacy() {
   }, [hash, handleScrollTo]);
 
   return (
-    <div className="space-y-4 pt-24 pb-8">
+    <div className="space-y-4 pt-16 pb-8 sm:pt-20">
       <h1 className="font-display text-2xl font-medium text-neutral-500 dark:text-neutral-400 sm:text-4xl">
         Privacy Policy
       </h1>
