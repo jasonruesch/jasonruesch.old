@@ -28,19 +28,25 @@ export const pages = new Map<string, Page>([
 export function App() {
   const { pathname } = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [shouldSlideLeft, setShouldSlideLeft] = useState(false);
   const [pageScrollOffset, setPageScrollOffset] = useState(0);
 
   const handleWillNavigate = useCallback(
-    (page: Page) => {
-      const shouldSlideLeft =
-        (pages.get(pathname)?.index as number) > page.index;
-      setShouldSlideLeft(shouldSlideLeft);
+    (page?: Page) => {
+      if (page) {
+        const shouldSlideLeft =
+          (pages.get(pathname)?.index as number) > page.index;
+        setShouldSlideLeft(shouldSlideLeft);
+      }
+
       setPageScrollOffset(window.scrollY);
     },
     [pathname]
   );
+
+  const handleOpenChange = useCallback((open: boolean) => {
+    document.body.classList.toggle('overflow-hidden', open);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -58,12 +64,14 @@ export function App() {
   // Reset the scroll and menu open statuses when the route changes
   useEffect(() => {
     setIsScrolled(false);
-    setIsMenuOpen(false);
     setPageScrollOffset(0);
+
+    // Reset what handleOpenChange does
+    document.body.classList.remove('overflow-hidden');
   }, [pathname]);
 
   return (
-    <ThemeProvider defaultTheme="system" attribute="class">
+    <ThemeProvider attribute="class">
       <AnimatePresence initial={false} mode="wait">
         <motion.div
           className="relative overflow-x-hidden bg-gradient-to-b from-neutral-100 via-cyan-600 to-fuchsia-600 dark:from-neutral-800 dark:via-violet-500 dark:to-teal-500"
@@ -86,11 +94,11 @@ export function App() {
             variants={ANIMATIONS_DISABLED ? undefined : headerVariants}
           >
             <Navbar
-              className="px-4 sm:px-8"
+              className="px-safe-offset-4 sm:px-safe-offset-8"
               isScrolled={isScrolled}
               pages={pages}
               onWillNavigate={handleWillNavigate}
-              onOpenChange={(open) => setIsMenuOpen(open)}
+              onOpenChange={handleOpenChange}
             />
           </motion.header>
 
@@ -98,17 +106,18 @@ export function App() {
             className={clsx(
               ANIMATIONS_DISABLED
                 ? 'h-screen scale-[0.6] overflow-hidden rounded-2xl shadow-2xl shadow-black/75 ring-1 ring-black ring-opacity-5'
-                : isMenuOpen
-                ? // height and overflow marked as important to override the animate variant
-                  '!h-screen !overflow-hidden'
-                : 'min-h-screen',
+                : '',
+              // ANIMATIONS_DISABLED
+              //   ? 'w-[min(100vw,100vh)] translate-x-[calc(100vw/2-min(100vw,100vh)/2)]'
+              //   : '',
               // 'hidden', // Uncomment to test hiding the main content
-              'relative z-10 bg-neutral-100 px-4 text-neutral-900 dark:bg-neutral-800 dark:text-neutral-50 sm:px-8'
+              'relative z-10 min-h-screen bg-neutral-100 text-neutral-900 px-safe-offset-4 dark:bg-neutral-800 dark:text-neutral-50 sm:px-safe-offset-8'
             )}
             custom={{ shouldSlideLeft }}
             variants={ANIMATIONS_DISABLED ? undefined : mainVariants}
           >
             <motion.div
+              className="grid min-h-screen place-items-center py-16"
               initial={false}
               animate="animate"
               exit="exit"

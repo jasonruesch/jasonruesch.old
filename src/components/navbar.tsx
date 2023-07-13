@@ -13,7 +13,7 @@ interface NavbarProps {
   className?: string;
   isScrolled?: boolean;
   pages: Map<string, Page>;
-  onWillNavigate?: (page: Page) => void;
+  onWillNavigate?: (page?: Page) => void;
   onOpenChange?: (open: boolean) => void;
 }
 
@@ -42,7 +42,7 @@ export function Navbar({
           isScrolled || open
             ? 'bg-gradient-to-b from-neutral-100 to-neutral-50/95 backdrop-blur-sm dark:from-neutral-800 dark:to-neutral-900/75'
             : 'bg-neutral-100 dark:bg-neutral-800',
-          open ? 'min-h-screen via-neutral-50/95 dark:via-neutral-900/75' : '',
+          open ? 'via-neutral-50/95 dark:via-neutral-900/75' : '',
           'relative w-full',
           className
         )
@@ -110,7 +110,7 @@ export function Navbar({
             </div>
           </div>
 
-          <Disclosure.Panel className="sm:hidden">
+          <Disclosure.Panel className="h-[calc(100vh-3rem)] overflow-scroll sm:hidden sm:h-[calc(100vh-4rem)]">
             <div className="space-y-1 pb-4 pt-2">
               {primaryNavItems.concat(secondaryNavItems).map(([path, page]) => (
                 <Disclosure.Button

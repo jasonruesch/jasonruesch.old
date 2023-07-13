@@ -63,87 +63,85 @@ export function Contact() {
   });
 
   return (
-    <div className="pt-16 pb-8 sm:mx-auto sm:grid sm:h-screen sm:max-w-xl sm:place-items-center sm:py-0">
-      <div className="w-full space-y-4">
-        <h1 className="font-display text-2xl font-medium text-neutral-500 dark:text-neutral-400 sm:text-4xl">
-          Get In Touch
-        </h1>
-        <form onSubmit={handleSubmit} noValidate>
-          <div className="grid grid-cols-1 gap-x-6 gap-y-3 sm:grid-cols-2">
-            <div className="sm:col-span-1">
-              <Input
-                type="text"
-                name="name"
-                id="name"
-                autoComplete="name"
-                placeholder="Jane Doe"
-                required
-                value={values.name}
-                onChange={handleChange}
-                labelText="Name"
-                errorText={!!errors.name && touched.name ? errors.name : ''}
-              />
-            </div>
-
-            <div className="sm:col-span-1">
-              <Input
-                type="email"
-                name="email"
-                id="email"
-                autoComplete="email"
-                placeholder="jane.doe@example.com"
-                required
-                value={values.email}
-                onChange={handleChange}
-                labelText="Email address"
-                errorText={!!errors.email && touched.email ? errors.email : ''}
-              />
-            </div>
-
-            <div className="sm:col-span-2">
-              <Textarea
-                rows={3}
-                name="message"
-                id="message"
-                placeholder="How can I help you?"
-                required
-                value={values.message}
-                onChange={handleChange}
-                labelText="Message"
-                errorText={
-                  !!errors.message && touched.message ? errors.message : ''
-                }
-              />
-            </div>
+    <div className="mx-auto w-full max-w-xl space-y-4">
+      <h1 className="font-display text-2xl font-medium text-neutral-500 dark:text-neutral-400 sm:text-4xl">
+        Get In Touch
+      </h1>
+      <form onSubmit={handleSubmit} noValidate>
+        <div className="grid grid-cols-1 gap-x-6 gap-y-3 sm:grid-cols-2">
+          <div className="sm:col-span-1">
+            <Input
+              type="text"
+              name="name"
+              id="name"
+              autoComplete="name"
+              placeholder="Jane Doe"
+              required
+              value={values.name}
+              onChange={handleChange}
+              labelText="Name"
+              errorText={!!errors.name && touched.name ? errors.name : ''}
+            />
           </div>
 
-          <div className="mt-2">
-            <div className="flex justify-end">
-              <button
-                type="button"
-                className="btn-secondary focus:ring-offset-neutral-100 dark:focus:ring-offset-neutral-800"
-                onClick={() => resetForm()}
-              >
-                Reset
-              </button>
-              <button
-                type="submit"
-                className="btn-primary ml-3 focus:ring-offset-neutral-100 dark:focus:ring-offset-neutral-800"
-                disabled={isSubmitting}
-              >
-                {isSubmitting ? (
-                  <>
-                    {/* <PuffLoader className="mr-3 h-4 w-4" /> */}
-                    Sending...
-                  </>
-                ) : (
-                  <>Send</>
-                )}
-              </button>
-            </div>
+          <div className="sm:col-span-1">
+            <Input
+              type="email"
+              name="email"
+              id="email"
+              autoComplete="email"
+              placeholder="jane.doe@example.com"
+              required
+              value={values.email}
+              onChange={handleChange}
+              labelText="Email address"
+              errorText={!!errors.email && touched.email ? errors.email : ''}
+            />
           </div>
-        </form>
-      </div>
+
+          <div className="sm:col-span-2">
+            <Textarea
+              rows={3}
+              name="message"
+              id="message"
+              placeholder="How can I help you?"
+              required
+              value={values.message}
+              onChange={handleChange}
+              labelText="Message"
+              errorText={
+                !!errors.message && touched.message ? errors.message : ''
+              }
+            />
+          </div>
+        </div>
+
+        <div className="mt-2">
+          <div className="flex justify-end">
+            <button
+              type="button"
+              className="btn-secondary focus:ring-offset-neutral-100 dark:focus:ring-offset-neutral-800"
+              onClick={() => resetForm()}
+            >
+              Reset
+            </button>
+            <button
+              type="submit"
+              className="btn-primary ml-3 focus:ring-offset-neutral-100 dark:focus:ring-offset-neutral-800"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? (
+                <>
+                  {/* <PuffLoader className="mr-3 h-4 w-4" /> */}
+                  Sending...
+                </>
+              ) : (
+                <>Send</>
+              )}
+            </button>
+          </div>
+        </div>
+      </form>
     </div>
   );
 }

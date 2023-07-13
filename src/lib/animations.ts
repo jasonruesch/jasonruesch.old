@@ -64,85 +64,84 @@ interface MainVariantProps {
 }
 
 export const mainVariants = {
-  initial: ({ shouldSlideLeft }: MainVariantProps) => ({
-    x: shouldSlideLeft ? '100%' : '-100%',
-    overflow: 'hidden',
-    height: '100vh',
-    minHeight: '0vh',
-    boxShadow:
-      '0 0 0 1px rgb(0 0 0 / 0.5), 0 25px 50px -12px rgb(0 0 0 / 0.75)',
-    borderRadius: '2rem',
-    scale: SCALE,
-  }),
-  animate: {
-    x: 0,
-    overflow: 'auto',
-    height: 'auto',
-    minHeight: '100vh',
-    boxShadow: '0 0 0 0 rgb(0 0 0 / 0), 0 0 0 0 rgb(0 0 0 / 0)',
-    borderRadius: '0rem',
-    scale: 1,
-    transition: {
-      x: {
-        duration: DURATION / 2,
-        type: 'spring',
-      },
-      overflow: {
-        delay: DURATION,
-        duration: 0,
-      },
-      height: {
-        delay: DURATION,
-        duration: 0,
-      },
-      minHeight: {
-        delay: DURATION,
-        duration: 0,
-      },
-      boxShadow: {
-        delay: DURATION,
-        duration: 0,
-      },
-      default: {
-        delay: DURATION / 2,
-        duration: DURATION / 2,
-        ease: 'backIn',
-      },
-    },
+  initial: ({ shouldSlideLeft }: MainVariantProps) => {
+    return {
+      x: shouldSlideLeft ? '100vw' : '-100vw',
+      overflow: 'hidden',
+      height: '100vh',
+      maxHeight: '-webkit-fill-available',
+      boxShadow:
+        '0 0 0 1px rgb(0 0 0 / 0.5), 0 25px 50px -12px rgb(0 0 0 / 0.75)',
+      borderRadius: '2rem',
+      scale: SCALE,
+    };
   },
-  exit: ({ shouldSlideLeft }: MainVariantProps) => ({
-    x: shouldSlideLeft ? '-100%' : '100%',
-    overflow: 'hidden',
-    height: '100vh',
-    minHeight: '0vh',
-    boxShadow:
-      '0 0 0 1px rgb(0 0 0 / 0.5), 0 25px 50px -12px rgb(0 0 0 / 0.75)',
-    borderRadius: '2rem',
-    scale: SCALE,
-    transition: {
-      x: {
-        delay: DURATION / 2,
-        duration: DURATION / 2,
-        ease: 'anticipate',
+  animate: ({ shouldSlideLeft }: MainVariantProps) => {
+    return {
+      x: 0,
+      overflow: 'auto',
+      height: 'auto',
+      maxHeight: 'none',
+      boxShadow: '0 0 0 0 rgb(0 0 0 / 0), 0 0 0 0 rgb(0 0 0 / 0)',
+      borderRadius: '0rem',
+      scale: 1,
+      transition: {
+        x: {
+          duration: DURATION / 2,
+          type: 'spring',
+        },
+        overflow: {
+          delay: DURATION,
+          duration: 0,
+        },
+        height: {
+          delay: DURATION,
+          duration: 0,
+        },
+        boxShadow: {
+          delay: DURATION,
+          duration: 0,
+        },
+        default: {
+          delay: DURATION / 2,
+          duration: DURATION / 2,
+          ease: 'backIn',
+        },
       },
-      overflow: {
-        duration: 0,
+    };
+  },
+  exit: ({ shouldSlideLeft }: MainVariantProps) => {
+    return {
+      x: shouldSlideLeft ? '-100vw' : '100vw',
+      overflow: 'hidden',
+      height: '100vh',
+      maxHeight: '-webkit-fill-available',
+      boxShadow:
+        '0 0 0 1px rgb(0 0 0 / 0.5), 0 25px 50px -12px rgb(0 0 0 / 0.75)',
+      borderRadius: '2rem',
+      scale: SCALE,
+      transition: {
+        x: {
+          delay: DURATION / 2,
+          duration: DURATION / 2,
+          ease: 'anticipate',
+        },
+        overflow: {
+          duration: 0,
+        },
+        height: {
+          duration: 0,
+        },
+        boxShadow: {
+          duration: 0,
+        },
+        default: {
+          duration: DURATION / 2,
+          ease: 'backOut',
+        },
       },
-      height: {
-        duration: 0,
-      },
-      minHeight: {
-        duration: 0,
-      },
-      boxShadow: {
-        duration: 0,
-      },
-      default: {
-        duration: DURATION / 2,
-        ease: 'backOut',
-      },
-    },
-  }),
+    };
+  },
 };
 
 export const mainInnerVariants = {

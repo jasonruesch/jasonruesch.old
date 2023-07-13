@@ -23,3 +23,17 @@
     @apply rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-neutral-900 shadow-sm ring-1 ring-inset ring-neutral-300 hover:bg-neutral-50 dark:bg-white/10 dark:text-white dark:ring-0 dark:hover:bg-white/20;
   }
 }
+
+@layer utilities {
+  /** iOS Safari fix to allow for padding
+    * (e.g. "h-screen py-4")
+    * Expands on the postcss-100vh-fix plugin
+    */
+  @supports (-webkit-touch-callout: none) {
+    .h-screen,
+    .min-h-screen,
+    .max-h-screen {
+      box-sizing: content-box;
+    }
+  }
+}
