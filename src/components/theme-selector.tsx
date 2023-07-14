@@ -42,8 +42,11 @@ export function ThemeSelector({ className }: ThemeSelectorProps) {
     const systemTheme = match.matches ? 'dark' : 'light';
     const themeColor = document.querySelector(
       `meta[name="theme-color"][media*="${systemTheme}"]`
-    ) as HTMLMetaElement;
-    themeColor.content = `#${resolvedTheme === 'dark' ? '262626' : 'f5f5f5'}`;
+    ) as HTMLMetaElement | null;
+
+    if (themeColor) {
+      themeColor.content = `#${resolvedTheme === 'dark' ? '262626' : 'f5f5f5'}`;
+    }
   }, [resolvedTheme]);
 
   return (
