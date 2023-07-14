@@ -107,9 +107,6 @@ export function App() {
               ANIMATIONS_DISABLED
                 ? 'h-screen scale-[0.6] overflow-hidden rounded-2xl shadow-2xl shadow-black/75 ring-1 ring-black ring-opacity-5'
                 : '',
-              // ANIMATIONS_DISABLED
-              //   ? 'w-[min(100vw,100vh)] translate-x-[calc(100vw/2-min(100vw,100vh)/2)]'
-              //   : '',
               // 'hidden', // Uncomment to test hiding the main content
               'relative z-10 min-h-screen bg-neutral-100 text-neutral-900 px-safe-offset-4 dark:bg-neutral-800 dark:text-neutral-50 sm:px-safe-offset-8'
             )}
@@ -117,7 +114,7 @@ export function App() {
             variants={ANIMATIONS_DISABLED ? undefined : mainVariants}
           >
             <motion.div
-              className="grid min-h-screen place-items-center py-16"
+              className="grid min-h-screen place-items-center py-16 sm:py-20"
               initial={false}
               animate="animate"
               exit="exit"

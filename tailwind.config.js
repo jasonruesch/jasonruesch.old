@@ -28,12 +28,6 @@ module.exports = {
       red: colors.red,
       green: colors.green,
     },
-    screens: {
-      ...defaultTheme.screens,
-      sm: {
-        raw: `(min-width: ${defaultTheme.screens.sm}) and (min-height: ${defaultTheme.screens.sm})`,
-      },
-    },
     extend: {
       fontFamily: {
         display: ['Alegreya Sans SC', ...defaultTheme.fontFamily.sans],
