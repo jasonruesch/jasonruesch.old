@@ -34,8 +34,8 @@ export function App() {
   const handleWillNavigate = useCallback(
     (page?: Page) => {
       if (page) {
-        const shouldSlideLeft =
-          (pages.get(pathname)?.index as number) > page.index;
+        const currentPageIndex = pages.get(pathname)?.index as number;
+        const shouldSlideLeft = currentPageIndex < page.index;
         setShouldSlideLeft(shouldSlideLeft);
       }
 

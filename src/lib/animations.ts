@@ -76,7 +76,7 @@ export const mainVariants = {
       scale: SCALE,
     };
   },
-  animate: ({ shouldSlideLeft }: MainVariantProps) => {
+  animate: () => {
     return {
       x: 0,
       overflow: 'auto',
