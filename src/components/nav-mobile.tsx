@@ -1,8 +1,7 @@
 import { Disclosure } from '@headlessui/react';
 import clsx from 'clsx';
 import { NavLink, useLocation } from 'react-router-dom';
-import { Page } from '../app/app';
-import { isActive } from '../lib';
+import { Page, isActive } from '../lib';
 
 export interface NavMenuProps {
   className?: string;

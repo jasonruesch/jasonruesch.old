@@ -2,7 +2,7 @@ import { Disclosure } from '@headlessui/react';
 import { Bars2Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import clsx from 'clsx';
 import { NavLink } from 'react-router-dom';
-import { Page } from '../app/app';
+import { Page } from '../lib';
 import { GitHubLink } from './github-link';
 import { Logo } from './logo';
 import { Nav } from './nav';
@@ -41,9 +41,9 @@ export function Navbar({
       className={({ open }) =>
         clsx(
           isScrolled || open
-            ? 'bg-gradient-to-b from-neutral-100 to-neutral-50/95 backdrop-blur-sm dark:from-neutral-800 dark:to-neutral-900/75'
-            : 'bg-neutral-100 dark:bg-neutral-800',
-          open ? 'via-neutral-50/95 dark:via-neutral-900/75' : '',
+            ? 'bg-gradient-to-b from-neutral-100 to-neutral-50/75 backdrop-blur-sm dark:from-neutral-800 dark:to-neutral-900/75'
+            : '', // 'bg-neutral-100 dark:bg-neutral-800',
+          open ? 'via-neutral-50/75 dark:via-neutral-900/75' : '',
           // The supports utilities here are added to fix a space between the device's status bar and the navbar on iOS
           'relative w-full supports-[-webkit-touch-callout:_none]:-mt-px supports-[-webkit-touch-callout:_none]:pt-px',
           className

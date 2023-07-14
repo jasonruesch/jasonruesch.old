@@ -3,8 +3,7 @@ import { EllipsisVerticalIcon } from '@heroicons/react/24/outline';
 import clsx from 'clsx';
 import { Fragment } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-import { Page } from '../app/app';
-import { isActive } from '../lib';
+import { Page, isActive } from '../lib';
 
 export interface NavMenuProps {
   className?: string;

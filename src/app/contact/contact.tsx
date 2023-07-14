@@ -65,6 +65,7 @@ export function Contact() {
   return (
     <div className="mx-auto w-full max-w-xl space-y-4">
       <SendMessage />
+      {/* <EnvelopeOpenIcon className="relative mx-auto h-36 w-36 text-cyan-500 dark:text-violet-400" /> */}
 
       <h1 className="font-display text-2xl font-medium text-neutral-500 dark:text-neutral-400 sm:text-4xl">
         Get In Touch

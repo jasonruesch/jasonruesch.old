@@ -9,3 +9,4 @@ export * from './profile-image';
 export * from './send-message';
 export * from './textarea';
 export * from './theme-selector';
+export * from './transition-background';

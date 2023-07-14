@@ -19,31 +19,31 @@ export function SendMessage({ className }: SendMessageProps) {
           <path
             d="M 0,19999.2 H 19999.2 V 0 H 0 v 19999.2"
             style={{
+              fill: 'none',
               fillOpacity: 1,
               fillRule: 'evenodd',
               stroke: 'none',
             }}
-            className="fill-neutral-100 dark:fill-neutral-800"
             id="path12"
           />
           <path
             d="m 9999.6,19301.4 v 0 c 5116,0 9301.8,-4185.8 9301.8,-9301.8 v 0 c 0,-5115.97 -4185.8,-9301.768 -9301.8,-9301.768 v 0 C 4883.63,697.832 697.832,4883.63 697.832,9999.6 v 0 c 0,5116 4185.798,9301.8 9301.768,9301.8"
             style={{
+              fill: 'none',
               fillOpacity: 1,
               fillRule: 'evenodd',
               stroke: 'none',
             }}
-            className="fill-neutral-100 dark:fill-neutral-800"
             id="path32"
           />
           <path
             d="m 18471.8,13828.3 c 532.4,-1169.2 829.6,-2465.9 829.6,-3828.7 v 0 c 0,-3876.09 -2403.1,-7217.62 -5792.7,-8609.92 L 8324.93,4308.64 v 4357.89 l 6916.97,6999.87 3229.9,-1838.1"
             style={{
+              fill: 'none',
               fillOpacity: 1,
               fillRule: 'evenodd',
               stroke: 'none',
             }}
-            className="fill-neutral-100 dark:fill-neutral-800"
             id="path34"
           />
           <path

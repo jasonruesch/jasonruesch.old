@@ -13,49 +13,73 @@ export const AnimatedOutlet: React.FC = () => {
   return outlet;
 };
 
+interface HeaderVariantProps {
+  theme: 'light' | 'dark';
+}
+
 export const headerVariants = {
-  initial: {
-    y: '-100%',
-    boxShadow: '0 1px 3px 0 rgb(0 0 0 / 0.5), 0 1px 2px -1px rgb(0 0 0 / 0.5)',
-    opacity: 0,
+  initial: ({ theme }: HeaderVariantProps) => {
+    return {
+      y: '-100%',
+      // backgroundColor: tw`bg-neutral-100 dark:bg-neutral-800`,
+      backgroundColor: theme === 'dark' ? '#262626' : '#f5f5f5',
+      boxShadow:
+        '0 1px 3px 0 rgb(0 0 0 / 0.5), 0 1px 2px -1px rgb(0 0 0 / 0.5)',
+      opacity: 0,
+    };
   },
-  animate: {
-    y: 0,
-    boxShadow: '0 0 0 0 rgb(0 0 0 / 0), 0 0 0 0 rgb(0 0 0 / 0)',
-    opacity: 1,
-    transition: {
-      y: {
-        delay: (DURATION / 3) * 2,
-        duration: DURATION / 3,
-        ease: 'easeInOut',
+  animate: () => {
+    return {
+      y: 0,
+      backgroundColor: 'transparent',
+      boxShadow: '0 0 0 0 rgb(0 0 0 / 0), 0 0 0 0 rgb(0 0 0 / 0)',
+      opacity: 1,
+      transition: {
+        y: {
+          delay: (DURATION / 3) * 2,
+          duration: DURATION / 3,
+          ease: 'easeInOut',
+        },
+        backgroundColor: {
+          delay: DURATION,
+          duration: 0,
+        },
+        boxShadow: {
+          delay: DURATION,
+          duration: 0,
+        },
+        opacity: {
+          delay: (DURATION / 3) * 2,
+          duration: 0,
+        },
       },
-      boxShadow: {
-        delay: DURATION,
-        duration: 0,
-      },
-      opacity: {
-        delay: (DURATION / 3) * 2,
-        duration: 0,
-      },
-    },
+    };
   },
-  exit: {
-    y: '-100%',
-    boxShadow: '0 1px 3px 0 rgb(0 0 0 / 0.5), 0 1px 2px -1px rgb(0 0 0 / 0.5)',
-    opacity: 0,
-    transition: {
-      y: {
-        duration: DURATION / 3,
-        ease: 'easeInOut',
+  exit: ({ theme }: HeaderVariantProps) => {
+    return {
+      y: '-100%',
+      // backgroundColor: tw`bg-neutral-100 dark:bg-neutral-800`,
+      backgroundColor: theme === 'dark' ? '#262626' : '#f5f5f5',
+      boxShadow:
+        '0 1px 3px 0 rgb(0 0 0 / 0.5), 0 1px 2px -1px rgb(0 0 0 / 0.5)',
+      opacity: 0,
+      transition: {
+        y: {
+          duration: DURATION / 3,
+          ease: 'easeInOut',
+        },
+        backgroundColor: {
+          duration: 0,
+        },
+        boxShadow: {
+          duration: 0,
+        },
+        opacity: {
+          delay: DURATION / 3,
+          duration: 0,
+        },
       },
-      boxShadow: {
-        duration: 0,
-      },
-      opacity: {
-        delay: DURATION / 3,
-        duration: 0,
-      },
-    },
+    };
   },
 };
 

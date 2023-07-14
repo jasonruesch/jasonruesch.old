@@ -1,7 +1,7 @@
 import { ThemeProvider } from 'next-themes';
 import { useRouteError } from 'react-router-dom';
-import { Background, Navbar } from '../components';
-import { pages } from './app';
+import { Navbar, TransitionBackground } from '../components';
+import { pages } from '../lib';
 
 export function Error() {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -14,7 +14,7 @@ export function Error() {
   return (
     <ThemeProvider defaultTheme="system" attribute="class">
       <div className="relative bg-gradient-to-b from-neutral-100 via-cyan-600 to-fuchsia-600 dark:from-neutral-800 dark:via-violet-500 dark:to-teal-500">
-        <Background />
+        <TransitionBackground />
 
         <header className="fixed inset-x-0 top-0 z-20 text-neutral-900 dark:text-neutral-50">
           <Navbar
