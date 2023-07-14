@@ -1,6 +1,6 @@
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { Input, Textarea } from '../../components';
+import { Input, SendMessage, Textarea } from '../../components';
 
 interface FormValues {
   name: string;
@@ -64,6 +64,8 @@ export function Contact() {
 
   return (
     <div className="mx-auto w-full max-w-xl space-y-4">
+      <SendMessage />
+
       <h1 className="font-display text-2xl font-medium text-neutral-500 dark:text-neutral-400 sm:text-4xl">
         Get In Touch
       </h1>

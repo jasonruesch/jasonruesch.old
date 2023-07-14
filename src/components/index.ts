@@ -6,5 +6,6 @@ export * from './logo';
 export * from './logo-neutral';
 export * from './navbar';
 export * from './profile-image';
+export * from './send-message';
 export * from './textarea';
 export * from './theme-selector';
