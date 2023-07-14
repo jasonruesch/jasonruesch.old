@@ -1,20 +1,21 @@
 import { Disclosure } from '@headlessui/react';
 import { Bars2Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import clsx from 'clsx';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { Page } from '../app/app';
-import { isActive } from '../lib';
 import { GitHubLink } from './github-link';
 import { Logo } from './logo';
+import { Nav } from './nav';
 import { NavMenu } from './nav-menu';
+import { NavMobile } from './nav-mobile';
 import { ThemeSelector } from './theme-selector';
 
 interface NavbarProps {
   className?: string;
   isScrolled?: boolean;
   pages: Map<string, Page>;
-  onWillNavigate?: (page?: Page) => void;
-  onOpenChange?: (open: boolean) => void;
+  onWillNavigate: (page?: Page) => void;
+  onOpenChange: (open: boolean) => void;
 }
 
 export function Navbar({
@@ -24,8 +25,6 @@ export function Navbar({
   onWillNavigate,
   onOpenChange,
 }: NavbarProps) {
-  const { pathname } = useLocation();
-
   const primaryNavItems = [...pages].filter(
     ([, page]) => page.type === 'primary'
   );
@@ -33,6 +32,8 @@ export function Navbar({
   const secondaryNavItems = [...pages].filter(
     ([, page]) => page.type === 'secondary'
   );
+
+  const homePage = pages.get('/') as Page;
 
   return (
     <Disclosure
@@ -43,7 +44,8 @@ export function Navbar({
             ? 'bg-gradient-to-b from-neutral-100 to-neutral-50/95 backdrop-blur-sm dark:from-neutral-800 dark:to-neutral-900/75'
             : 'bg-neutral-100 dark:bg-neutral-800',
           open ? 'via-neutral-50/95 dark:via-neutral-900/75' : '',
-          'relative w-full',
+          // The supports utilities here are added to fix a space between the device's status bar and the navbar on iOS
+          'relative w-full supports-[-webkit-touch-callout:_none]:-mt-px supports-[-webkit-touch-callout:_none]:pt-px',
           className
         )
       }
@@ -55,7 +57,7 @@ export function Navbar({
               {/* Mobile menu button */}
               <Disclosure.Button
                 className="inline-flex items-center justify-center rounded-md p-2 text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-50"
-                onClick={() => onOpenChange && onOpenChange(!open)}
+                onClick={() => onOpenChange(!open)}
               >
                 <span className="sr-only">Open main menu</span>
                 {open ? (
@@ -69,35 +71,17 @@ export function Navbar({
               <div className="flex flex-shrink-0 items-center">
                 <NavLink
                   to="/"
-                  onMouseOver={() =>
-                    onWillNavigate && onWillNavigate(pages.get('/') as Page)
-                  }
-                  onTouchStart={() =>
-                    onWillNavigate && onWillNavigate(pages.get('/') as Page)
-                  }
+                  onMouseOver={() => onWillNavigate(homePage)}
+                  onTouchStart={() => onWillNavigate(homePage)}
                 >
                   <Logo className="h-8 w-8" />
                 </NavLink>
               </div>
-              <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
-                {primaryNavItems.map(([path, page]) => (
-                  <NavLink
-                    key={path}
-                    to={path}
-                    className={clsx(
-                      'inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium',
-                      isActive(path, pathname)
-                        ? 'border-cyan-500 text-neutral-900 dark:border-violet-400 dark:text-neutral-50'
-                        : 'border-transparent text-neutral-500 hover:border-neutral-300 hover:text-neutral-700 dark:text-neutral-400 dark:hover:border-neutral-600 dark:hover:text-neutral-200'
-                    )}
-                    aria-current={isActive(path, pathname) ? 'page' : undefined}
-                    onMouseOver={() => onWillNavigate && onWillNavigate(page)}
-                    onTouchStart={() => onWillNavigate && onWillNavigate(page)}
-                  >
-                    {page.name}
-                  </NavLink>
-                ))}
-              </div>
+              <Nav
+                className="hidden sm:ml-6 sm:flex"
+                navItems={primaryNavItems}
+                onWillNavigate={onWillNavigate}
+              />
             </div>
             <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
               <ThemeSelector />
@@ -111,26 +95,10 @@ export function Navbar({
           </div>
 
           <Disclosure.Panel className="h-[calc(100vh-3rem)] overflow-scroll sm:hidden sm:h-[calc(100vh-4rem)]">
-            <div className="space-y-1 pb-4 pt-2">
-              {primaryNavItems.concat(secondaryNavItems).map(([path, page]) => (
-                <Disclosure.Button
-                  key={path}
-                  as={NavLink}
-                  to={path}
-                  className={clsx(
-                    'block border-l-4 border-transparent py-2 pl-3 pr-4 text-neutral-500 hover:border-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:border-neutral-400 dark:hover:text-neutral-50',
-                    isActive(path, pathname)
-                      ? '!border-cyan-500 hover:!border-neutral-500 dark:!border-violet-400 dark:hover:!border-neutral-400'
-                      : ''
-                  )}
-                  aria-current={isActive(path, pathname) ? 'page' : undefined}
-                  onMouseOver={() => onWillNavigate && onWillNavigate(page)}
-                  onTouchStart={() => onWillNavigate && onWillNavigate(page)}
-                >
-                  {page.name}
-                </Disclosure.Button>
-              ))}
-            </div>
+            <NavMobile
+              navItems={primaryNavItems.concat(secondaryNavItems)}
+              onWillNavigate={onWillNavigate}
+            />
           </Disclosure.Panel>
         </>
       )}

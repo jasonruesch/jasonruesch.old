@@ -9,7 +9,7 @@ import { isActive } from '../lib';
 export interface NavMenuProps {
   className?: string;
   navItems: [string, Page][];
-  onWillNavigate?: (page: Page) => void;
+  onWillNavigate: (page: Page) => void;
 }
 
 export function NavMenu({ className, navItems, onWillNavigate }: NavMenuProps) {
@@ -67,8 +67,8 @@ export function NavMenu({ className, navItems, onWillNavigate }: NavMenuProps) {
                         : 'text-neutral-900 dark:text-neutral-50'
                     )}
                     aria-current={isActive(path, pathname) ? 'page' : undefined}
-                    onMouseOver={() => onWillNavigate && onWillNavigate(page)}
-                    onTouchStart={() => onWillNavigate && onWillNavigate(page)}
+                    onMouseOver={() => onWillNavigate(page)}
+                    onTouchStart={() => onWillNavigate(page)}
                   >
                     {page.name}
                   </NavLink>

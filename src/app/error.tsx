@@ -8,13 +8,21 @@ export function Error() {
   const error = useRouteError() as any;
   console.error(error);
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  const noop = () => {};
+
   return (
     <ThemeProvider defaultTheme="system" attribute="class">
       <div className="relative bg-gradient-to-b from-neutral-100 via-cyan-600 to-fuchsia-600 dark:from-neutral-800 dark:via-violet-500 dark:to-teal-500">
         <Background />
 
         <header className="fixed inset-x-0 top-0 z-20 text-neutral-900 dark:text-neutral-50">
-          <Navbar className="px-4 sm:px-8" pages={pages} />
+          <Navbar
+            className="px-4 sm:px-8"
+            pages={pages}
+            onWillNavigate={noop}
+            onOpenChange={noop}
+          />
         </header>
 
         <main className="relative z-10 h-screen overflow-scroll bg-neutral-100 px-4 text-neutral-900 dark:bg-neutral-800 dark:text-neutral-50 sm:px-8">

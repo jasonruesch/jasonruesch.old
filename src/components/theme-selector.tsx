@@ -10,7 +10,7 @@ import {
 } from '@heroicons/react/24/solid';
 import clsx from 'clsx';
 import { useTheme } from 'next-themes';
-import { Fragment } from 'react';
+import { Fragment, useEffect } from 'react';
 
 const menuItems = [
   {
@@ -35,7 +35,16 @@ export interface ThemeSelectorProps {
 }
 
 export function ThemeSelector({ className }: ThemeSelectorProps) {
-  const { theme, setTheme } = useTheme();
+  const { theme, resolvedTheme, setTheme } = useTheme();
+
+  useEffect(() => {
+    const match = window.matchMedia('(prefers-color-scheme: dark)');
+    const systemTheme = match.matches ? 'dark' : 'light';
+    const themeColor = document.querySelector(
+      `meta[name="theme-color"][media*="${systemTheme}"]`
+    ) as HTMLMetaElement;
+    themeColor.content = `#${resolvedTheme === 'dark' ? '262626' : 'f5f5f5'}`;
+  }, [resolvedTheme]);
 
   return (
     <Menu

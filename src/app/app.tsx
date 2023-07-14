@@ -74,7 +74,7 @@ export function App() {
     <ThemeProvider attribute="class">
       <AnimatePresence initial={false} mode="wait">
         <motion.div
-          className="relative overflow-x-hidden bg-gradient-to-b from-neutral-100 via-cyan-600 to-fuchsia-600 dark:from-neutral-800 dark:via-violet-500 dark:to-teal-500"
+          className="relative bg-gradient-to-b from-neutral-100 via-cyan-600 to-fuchsia-600 dark:from-neutral-800 dark:via-violet-500 dark:to-teal-500"
           key={pathname}
           initial="initial"
           animate="animate"
