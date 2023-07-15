@@ -56,7 +56,7 @@ export function Navbar({
             <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
               {/* Mobile menu button */}
               <Disclosure.Button
-                className="inline-flex items-center justify-center rounded-md p-2 text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-50"
+                className="inline-flex items-center justify-center rounded-md p-2 text-neutral-500 hover:text-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-200"
                 onClick={() => onOpenChange(!open)}
               >
                 <span className="sr-only">Open main menu</span>

@@ -19,7 +19,7 @@ export function NavMenu({ className, navItems, onWillNavigate }: NavMenuProps) {
     <Menu
       as="div"
       className={clsx(
-        'relative inline-block text-left text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-50',
+        'relative inline-block text-left text-neutral-500 hover:text-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-200',
         className
       )}
     >
@@ -29,7 +29,7 @@ export function NavMenu({ className, navItems, onWillNavigate }: NavMenuProps) {
             clsx(
               'rounded-md p-2',
               hasActive
-                ? 'text-cyan-500 hover:text-neutral-900 dark:text-violet-400 dark:hover:text-neutral-50'
+                ? 'text-cyan-500 hover:text-neutral-700 dark:text-violet-400 dark:hover:text-neutral-200'
                 : '',
               open ? '!text-neutral-900 dark:!text-neutral-50' : ''
             )

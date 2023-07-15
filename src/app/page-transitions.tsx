@@ -1,16 +1,13 @@
 import clsx from 'clsx';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { useTheme } from 'next-themes';
 import { useCallback, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import {
-  Background,
-  Navbar,
-  TransitionBackground
-} from '../components';
+import { Background, Navbar, TransitionBackground } from '../components';
 import {
   ANIMATIONS_DISABLED,
   Page,
+  eventBus,
   headerVariants,
   mainInnerVariants,
   mainVariants,
@@ -23,10 +20,12 @@ interface LayoutProps {
 
 export function PageTransitions({ children }: LayoutProps) {
   const { pathname } = useLocation();
+  const shouldReduceMotion = useReducedMotion();
   const { resolvedTheme } = useTheme();
   const [isScrolled, setIsScrolled] = useState(false);
   const [shouldSlideLeft, setShouldSlideLeft] = useState(false);
   const [pageScrollOffset, setPageScrollOffset] = useState(0);
+  const [previousPathname, setPreviousPathname] = useState(pathname);
 
   const handleWillNavigate = useCallback(
     (page?: Page) => {
@@ -67,6 +66,14 @@ export function PageTransitions({ children }: LayoutProps) {
     document.body.classList.remove('overflow-hidden');
   }, [pathname]);
 
+  useEffect(() => {
+    if (previousPathname !== pathname) {
+      eventBus.dispatch('navigate', { isNavigating: true });
+    }
+
+    setPreviousPathname(pathname);
+  }, [pathname, previousPathname]);
+
   return (
     <AnimatePresence initial={false} mode="wait">
       <motion.div
@@ -88,7 +95,11 @@ export function PageTransitions({ children }: LayoutProps) {
             'fixed inset-x-0 top-0 z-20 text-neutral-900 dark:text-neutral-50'
           )}
           custom={{ theme: resolvedTheme }}
-          variants={ANIMATIONS_DISABLED ? undefined : headerVariants}
+          variants={
+            ANIMATIONS_DISABLED || shouldReduceMotion
+              ? undefined
+              : headerVariants
+          }
         >
           <Navbar
             className="px-safe-offset-4 sm:px-safe-offset-8"
@@ -108,7 +119,12 @@ export function PageTransitions({ children }: LayoutProps) {
             'relative z-10 min-h-screen bg-neutral-100 text-neutral-900 px-safe-offset-4 dark:bg-neutral-800 dark:text-neutral-50 sm:px-safe-offset-8'
           )}
           custom={{ shouldSlideLeft }}
-          variants={ANIMATIONS_DISABLED ? undefined : mainVariants}
+          variants={
+            ANIMATIONS_DISABLED || shouldReduceMotion ? undefined : mainVariants
+          }
+          onAnimationComplete={() => {
+            eventBus.dispatch('navigate', { isNavigating: false });
+          }}
         >
           {/* Background */}
           <Background />
@@ -119,7 +135,11 @@ export function PageTransitions({ children }: LayoutProps) {
             animate="animate"
             exit="exit"
             custom={pageScrollOffset}
-            variants={ANIMATIONS_DISABLED ? undefined : mainInnerVariants}
+            variants={
+              ANIMATIONS_DISABLED || shouldReduceMotion
+                ? undefined
+                : mainInnerVariants
+            }
           >
             {children}
           </motion.div>

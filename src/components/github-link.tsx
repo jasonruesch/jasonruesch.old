@@ -9,7 +9,7 @@ export function GitHubLink({ className }: GitHubLinkProps) {
     <a
       href="https://github.com/jasonruesch"
       className={clsx(
-        'block rounded-md p-2 text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-50',
+        'block rounded-md p-2 text-neutral-500 hover:text-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-200',
         className
       )}
       target="_blank"

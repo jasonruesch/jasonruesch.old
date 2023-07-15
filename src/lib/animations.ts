@@ -13,6 +13,22 @@ export const AnimatedOutlet: React.FC = () => {
   return outlet;
 };
 
+export const homeVariants = {
+  initial: (isXSmallScreen: boolean) => ({ x: !isXSmallScreen ? -24 : -12 }),
+  hover: (isXSmallScreen: boolean) => ({ x: !isXSmallScreen ? -24 : -12 }),
+  animate: (isXSmallScreen: boolean) => ({
+    x: !isXSmallScreen ? [-24, -48, 0, -24] : [-12, -24, 0, -12],
+    transition: {
+      delay: 0.5,
+      times: [0, 0.5, 0.675, 1],
+      ease: ['linear', 'linear', 'backOut'],
+      duration: 0.75,
+      repeat: Infinity,
+      repeatDelay: 0.5,
+    },
+  }),
+};
+
 interface HeaderVariantProps {
   theme: 'light' | 'dark';
 }
