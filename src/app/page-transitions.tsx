@@ -3,10 +3,13 @@ import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { useTheme } from 'next-themes';
 import { useCallback, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { PageNavLink } from 'src/components/page-nav-link';
 import { Background, Navbar, TransitionBackground } from '../components';
 import {
   ANIMATIONS_DISABLED,
-  Page,
+  EventDetail,
+  PagePath,
+  easterEggPath,
   eventBus,
   headerVariants,
   mainInnerVariants,
@@ -27,19 +30,6 @@ export function PageTransitions({ children }: LayoutProps) {
   const [pageScrollOffset, setPageScrollOffset] = useState(0);
   const [previousPathname, setPreviousPathname] = useState(pathname);
 
-  const handleWillNavigate = useCallback(
-    (page?: Page) => {
-      if (page) {
-        const currentPageIndex = pages.get(pathname)?.index as number;
-        const shouldSlideLeft = currentPageIndex < page.index;
-        setShouldSlideLeft(shouldSlideLeft);
-      }
-
-      setPageScrollOffset(window.scrollY);
-    },
-    [pathname]
-  );
-
   const handleOpenChange = useCallback((open: boolean) => {
     document.body.classList.toggle('overflow-hidden', open);
   }, []);
@@ -57,13 +47,29 @@ export function PageTransitions({ children }: LayoutProps) {
     };
   }, []);
 
-  // Reset the scroll and menu open statuses when the route changes
   useEffect(() => {
+    const handleWillNavigate = (detail: EventDetail) => {
+      if (detail.page) {
+        const currentPageIndex = pages.get(pathname as PagePath)
+          ?.index as number;
+        const shouldSlideLeft = currentPageIndex < detail.page.index;
+        setShouldSlideLeft(shouldSlideLeft);
+      }
+
+      setPageScrollOffset(window.scrollY);
+    };
+
+    // Reset the scroll and menu open statuses when the route changes
     setIsScrolled(false);
     setPageScrollOffset(0);
-
     // Reset what handleOpenChange does
     document.body.classList.remove('overflow-hidden');
+
+    eventBus.on('willNavigate', handleWillNavigate);
+
+    return () => {
+      eventBus.off('willNavigate', handleWillNavigate);
+    };
   }, [pathname]);
 
   useEffect(() => {
@@ -74,10 +80,12 @@ export function PageTransitions({ children }: LayoutProps) {
     setPreviousPathname(pathname);
   }, [pathname, previousPathname]);
 
+  const isEasterEggPage = pathname === easterEggPath;
+
   return (
     <AnimatePresence initial={false} mode="wait">
       <motion.div
-        className="relative bg-gradient-to-b from-neutral-100 via-cyan-600 to-fuchsia-600 dark:from-neutral-800 dark:via-violet-500 dark:to-teal-500"
+        className="relative overflow-hidden"
         key={pathname}
         initial="initial"
         animate="animate"
@@ -87,14 +95,14 @@ export function PageTransitions({ children }: LayoutProps) {
 
         <motion.header
           className={clsx(
-            ANIMATIONS_DISABLED || isScrolled
+            (ANIMATIONS_DISABLED || isScrolled) && !isEasterEggPage
               ? // shadow marked as important to override the animate variant
                 '!shadow !shadow-black/50'
               : '',
             // 'hidden', // Uncomment to test hiding the header
             'fixed inset-x-0 top-0 z-20 text-neutral-900 dark:text-neutral-50'
           )}
-          custom={{ theme: resolvedTheme }}
+          custom={{ theme: resolvedTheme, isEasterEggPage }}
           variants={
             ANIMATIONS_DISABLED || shouldReduceMotion
               ? undefined
@@ -102,10 +110,8 @@ export function PageTransitions({ children }: LayoutProps) {
           }
         >
           <Navbar
-            className="px-safe-offset-4 sm:px-safe-offset-8"
             isScrolled={isScrolled}
             pages={pages}
-            onWillNavigate={handleWillNavigate}
             onOpenChange={handleOpenChange}
           />
         </motion.header>
@@ -116,9 +122,10 @@ export function PageTransitions({ children }: LayoutProps) {
               ? 'h-screen scale-[0.6] overflow-hidden rounded-2xl shadow-2xl shadow-black/75 ring-1 ring-black ring-opacity-5'
               : '',
             // 'hidden', // Uncomment to test hiding the main content
-            'relative z-10 min-h-screen bg-neutral-100 text-neutral-900 px-safe-offset-4 dark:bg-neutral-800 dark:text-neutral-50 sm:px-safe-offset-8'
+            'relative z-10 min-h-screen text-neutral-900 px-safe-offset-4 dark:text-neutral-50 sm:px-safe-offset-8',
+            !isEasterEggPage ? 'bg-neutral-100 dark:bg-neutral-800' : ''
           )}
-          custom={{ shouldSlideLeft }}
+          custom={{ shouldSlideLeft, isEasterEggPage }}
           variants={
             ANIMATIONS_DISABLED || shouldReduceMotion ? undefined : mainVariants
           }
@@ -127,7 +134,7 @@ export function PageTransitions({ children }: LayoutProps) {
           }}
         >
           {/* Background */}
-          <Background />
+          {!isEasterEggPage && <Background />}
 
           <motion.div
             className="grid min-h-screen place-items-center py-16 sm:py-20"
@@ -144,6 +151,17 @@ export function PageTransitions({ children }: LayoutProps) {
             {children}
           </motion.div>
         </motion.main>
+
+        <footer className="fixed bottom-0 right-0 z-20 h-8 w-8">
+          <PageNavLink
+            to={easterEggPath}
+            className="flex h-full w-full cursor-default items-center justify-center"
+          >
+            <span className="sr-only">
+              You found an easter egg! Click to view.
+            </span>
+          </PageNavLink>
+        </footer>
       </motion.div>
     </AnimatePresence>
   );

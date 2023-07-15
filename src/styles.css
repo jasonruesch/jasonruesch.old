@@ -12,7 +12,6 @@
 
     @apply rounded-md bg-cyan-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-cyan-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-600 dark:bg-violet-500 dark:hover:bg-violet-400 dark:focus-visible:outline-violet-500;
   }
-
   .btn-secondary {
     /* @apply inline-flex items-center justify-center rounded-md border border-neutral-300 px-4 py-2 text-sm font-medium shadow-sm dark:border-transparent dark:shadow-black;
     @apply bg-neutral-50 text-neutral-900 dark:bg-neutral-900 dark:text-neutral-50;
@@ -36,4 +35,35 @@
       box-sizing: content-box;
     }
   }
+}
+
+/* Manually adding the following utilities, since Tailwind isn't including them for some reason */
+.scroll-smooth {
+  scroll-behavior: smooth;
+}
+.scroll-pt-16 {
+  scroll-padding-top: 5rem;
+}
+@media (min-width: 640px) and (min-height: 640px) .sm\:scroll-pt-20 {
+  scroll-padding-top: 6rem;
+}
+
+.page-transitions-gradient {
+  background-image: linear-gradient(
+    to bottom,
+    theme(colors.neutral.100),
+    theme(colors.cyan.600),
+    theme(colors.fuchsia.600),
+    theme(colors.neutral.100)
+  );
+}
+
+:is(.dark .page-transitions-gradient) {
+  background-image: linear-gradient(
+    to bottom,
+    theme(colors.neutral.800),
+    theme(colors.violet.500),
+    theme(colors.teal.500),
+    theme(colors.neutral.800)
+  );
 }

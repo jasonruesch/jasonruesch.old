@@ -3,7 +3,13 @@ import { motion, useAnimation, useReducedMotion } from 'framer-motion';
 import { useCallback, useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { ProfileImage } from '../../components';
-import { EventDetail, eventBus, homeVariants, useWindowSize } from '../../lib';
+import {
+  EventDetail,
+  aboutPage,
+  eventBus,
+  homeVariants,
+  useWindowSize,
+} from '../../lib';
 
 export function Home() {
   const shouldReduceMotion = useReducedMotion();
@@ -22,7 +28,7 @@ export function Home() {
 
   useEffect(() => {
     const handleNavigate = (detail: EventDetail) => {
-      setIsNavigating(detail.isNavigating);
+      setIsNavigating(detail.isNavigating || false);
     };
     eventBus.on('navigate', handleNavigate);
 
@@ -67,14 +73,20 @@ export function Home() {
       </h1>
 
       <motion.div
-        className="mx-auto w-12 sm:w-24"
+        className="mx-auto w-16 sm:w-24"
         onHoverStart={() => handleHoverStart()}
         onHoverEnd={() => handleHoverEnd()}
       >
         <NavLink
           to="/about"
           aria-label="Learn more about me"
-          className="flex cursor-pointer justify-end text-sm font-medium text-cyan-500 hover:text-cyan-600 dark:text-violet-400 dark:hover:text-violet-500"
+          className="flex justify-end text-sm font-medium text-cyan-500 hover:text-cyan-600 dark:text-violet-400 dark:hover:text-violet-500"
+          onMouseOver={() =>
+            eventBus.dispatch('willNavigate', { page: aboutPage })
+          }
+          onTouchStart={() =>
+            eventBus.dispatch('willNavigate', { page: aboutPage })
+          }
         >
           <motion.div
             initial="initial"
@@ -83,10 +95,10 @@ export function Home() {
             variants={
               !shouldReduceMotion && !isNavigating ? homeVariants : undefined
             }
-            className="w-6 -translate-x-3 sm:w-12 sm:-translate-x-6"
+            className="w-8 -translate-x-3 sm:w-12 sm:-translate-x-6"
           >
             <ChevronDoubleRightIcon
-              className="h-6 w-6 sm:h-12 sm:w-12"
+              className="h-8 w-8 sm:h-12 sm:w-12"
               aria-hidden="true"
             />
           </motion.div>

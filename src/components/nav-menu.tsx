@@ -2,16 +2,16 @@ import { Menu, Transition } from '@headlessui/react';
 import { EllipsisVerticalIcon } from '@heroicons/react/24/outline';
 import clsx from 'clsx';
 import { Fragment } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
-import { Page, isActive } from '../lib';
+import { useLocation } from 'react-router-dom';
+import { Page, PagePath, isActive } from '../lib';
+import { PageNavLink } from './page-nav-link';
 
 export interface NavMenuProps {
   className?: string;
-  navItems: [string, Page][];
-  onWillNavigate: (page: Page) => void;
+  navItems: [PagePath, Page][];
 }
 
-export function NavMenu({ className, navItems, onWillNavigate }: NavMenuProps) {
+export function NavMenu({ className, navItems }: NavMenuProps) {
   const { pathname } = useLocation();
   const hasActive = navItems.some(([path]) => isActive(path, pathname));
 
@@ -54,7 +54,7 @@ export function NavMenu({ className, navItems, onWillNavigate }: NavMenuProps) {
             {navItems.map(([path, page]) => (
               <Menu.Item key={path}>
                 {({ active }) => (
-                  <NavLink
+                  <PageNavLink
                     to={path}
                     className={clsx(
                       'group flex w-full items-center px-4 py-2 text-sm',
@@ -66,11 +66,9 @@ export function NavMenu({ className, navItems, onWillNavigate }: NavMenuProps) {
                         : 'text-neutral-900 dark:text-neutral-50'
                     )}
                     aria-current={isActive(path, pathname) ? 'page' : undefined}
-                    onMouseOver={() => onWillNavigate(page)}
-                    onTouchStart={() => onWillNavigate(page)}
                   >
                     {page.name}
-                  </NavLink>
+                  </PageNavLink>
                 )}
               </Menu.Item>
             ))}

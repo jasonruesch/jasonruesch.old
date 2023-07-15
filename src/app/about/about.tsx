@@ -1,4 +1,5 @@
-import { ProfileImage } from 'src/components';
+import { ArrowRightIcon } from '@heroicons/react/20/solid';
+import { PageNavLink, ProfileImage } from '../../components';
 
 export function About() {
   return (
@@ -26,6 +27,17 @@ export function About() {
         about how I can help you with your web development or design needs,
         please reach out.
       </p>
+
+      <PageNavLink
+        to="/contact"
+        className="inline-block font-medium text-cyan-500 hover:text-cyan-600 dark:text-violet-400 dark:hover:text-violet-500"
+      >
+        Get in touch
+        <ArrowRightIcon
+          className="ml-1 inline-block h-4 w-4"
+          aria-hidden="true"
+        />
+      </PageNavLink>
     </div>
   );
 }

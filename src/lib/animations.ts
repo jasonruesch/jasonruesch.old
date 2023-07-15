@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useOutlet } from 'react-router-dom';
 
-const DURATION = 2;
+const DURATION = 1.5;
 const SCALE = 0.6;
 
 export const ANIMATIONS_DISABLED = false;
@@ -14,10 +14,10 @@ export const AnimatedOutlet: React.FC = () => {
 };
 
 export const homeVariants = {
-  initial: (isXSmallScreen: boolean) => ({ x: !isXSmallScreen ? -24 : -12 }),
-  hover: (isXSmallScreen: boolean) => ({ x: !isXSmallScreen ? -24 : -12 }),
+  initial: (isXSmallScreen: boolean) => ({ x: !isXSmallScreen ? -24 : -16 }),
+  hover: (isXSmallScreen: boolean) => ({ x: !isXSmallScreen ? -24 : -16 }),
   animate: (isXSmallScreen: boolean) => ({
-    x: !isXSmallScreen ? [-24, -48, 0, -24] : [-12, -24, 0, -12],
+    x: !isXSmallScreen ? [-24, -48, 0, -24] : [-16, -32, 0, -16],
     transition: {
       delay: 0.5,
       times: [0, 0.5, 0.675, 1],
@@ -31,20 +31,26 @@ export const homeVariants = {
 
 interface HeaderVariantProps {
   theme: 'light' | 'dark';
+  isEasterEggPage?: boolean;
 }
 
 export const headerVariants = {
-  initial: ({ theme }: HeaderVariantProps) => {
+  initial: ({ theme, isEasterEggPage }: HeaderVariantProps) => {
     return {
       y: '-100%',
       // backgroundColor: tw`bg-neutral-100 dark:bg-neutral-800`,
-      backgroundColor: theme === 'dark' ? '#262626' : '#f5f5f5',
-      boxShadow:
-        '0 1px 3px 0 rgb(0 0 0 / 0.5), 0 1px 2px -1px rgb(0 0 0 / 0.5)',
+      backgroundColor: isEasterEggPage
+        ? 'transparent'
+        : theme === 'dark'
+        ? '#262626'
+        : '#f5f5f5',
+      boxShadow: isEasterEggPage
+        ? '0 0 0 0 rgb(0 0 0 / 0), 0 0 0 0 rgb(0 0 0 / 0)'
+        : '0 1px 3px 0 rgb(0 0 0 / 0.5), 0 1px 2px -1px rgb(0 0 0 / 0.5)',
       opacity: 0,
     };
   },
-  animate: () => {
+  animate: ({ isEasterEggPage }: HeaderVariantProps) => {
     return {
       y: 0,
       backgroundColor: 'transparent',
@@ -71,13 +77,18 @@ export const headerVariants = {
       },
     };
   },
-  exit: ({ theme }: HeaderVariantProps) => {
+  exit: ({ theme, isEasterEggPage }: HeaderVariantProps) => {
     return {
       y: '-100%',
       // backgroundColor: tw`bg-neutral-100 dark:bg-neutral-800`,
-      backgroundColor: theme === 'dark' ? '#262626' : '#f5f5f5',
-      boxShadow:
-        '0 1px 3px 0 rgb(0 0 0 / 0.5), 0 1px 2px -1px rgb(0 0 0 / 0.5)',
+      backgroundColor: isEasterEggPage
+        ? 'transparent'
+        : theme === 'dark'
+        ? '#262626'
+        : '#f5f5f5',
+      boxShadow: isEasterEggPage
+        ? '0 0 0 0 rgb(0 0 0 / 0), 0 0 0 0 rgb(0 0 0 / 0)'
+        : '0 1px 3px 0 rgb(0 0 0 / 0.5), 0 1px 2px -1px rgb(0 0 0 / 0.5)',
       opacity: 0,
       transition: {
         y: {
@@ -101,17 +112,21 @@ export const headerVariants = {
 
 interface MainVariantProps {
   shouldSlideLeft?: boolean;
+  isEasterEggPage?: boolean;
 }
 
 export const mainVariants = {
-  initial: ({ shouldSlideLeft }: MainVariantProps) => {
+  initial: ({ shouldSlideLeft, isEasterEggPage }: MainVariantProps) => {
     return {
-      x: shouldSlideLeft ? '100vw' : '-100vw',
+      ...(!isEasterEggPage
+        ? { x: shouldSlideLeft ? '100vw' : '-100vw' }
+        : { y: '-100vh' }),
       overflow: 'hidden',
       height: '100vh',
       maxHeight: '-webkit-fill-available',
-      boxShadow:
-        '0 0 0 1px rgb(0 0 0 / 0.5), 0 25px 50px -12px rgb(0 0 0 / 0.75)',
+      boxShadow: isEasterEggPage
+        ? '0 0 0 0 rgb(0 0 0 / 0), 0 0 0 0 rgb(0 0 0 / 0)'
+        : '0 0 0 1px rgb(0 0 0 / 0.5), 0 25px 50px -12px rgb(0 0 0 / 0.75)',
       borderRadius: '2rem',
       scale: SCALE,
     };
@@ -119,6 +134,7 @@ export const mainVariants = {
   animate: () => {
     return {
       x: 0,
+      y: 0,
       overflow: 'auto',
       height: 'auto',
       maxHeight: 'none',
@@ -127,6 +143,10 @@ export const mainVariants = {
       scale: 1,
       transition: {
         x: {
+          duration: DURATION / 2,
+          type: 'spring',
+        },
+        y: {
           duration: DURATION / 2,
           type: 'spring',
         },
@@ -150,18 +170,26 @@ export const mainVariants = {
       },
     };
   },
-  exit: ({ shouldSlideLeft }: MainVariantProps) => {
+  exit: ({ shouldSlideLeft, isEasterEggPage }: MainVariantProps) => {
     return {
-      x: shouldSlideLeft ? '-100vw' : '100vw',
+      ...(!isEasterEggPage
+        ? { x: shouldSlideLeft ? '-100vw' : '100vw' }
+        : { y: '-100vh' }),
       overflow: 'hidden',
       height: '100vh',
       maxHeight: '-webkit-fill-available',
-      boxShadow:
-        '0 0 0 1px rgb(0 0 0 / 0.5), 0 25px 50px -12px rgb(0 0 0 / 0.75)',
+      boxShadow: isEasterEggPage
+        ? '0 0 0 0 rgb(0 0 0 / 0), 0 0 0 0 rgb(0 0 0 / 0)'
+        : '0 0 0 1px rgb(0 0 0 / 0.5), 0 25px 50px -12px rgb(0 0 0 / 0.75)',
       borderRadius: '2rem',
       scale: SCALE,
       transition: {
         x: {
+          delay: DURATION / 2,
+          duration: DURATION / 2,
+          ease: 'anticipate',
+        },
+        y: {
           delay: DURATION / 2,
           duration: DURATION / 2,
           ease: 'anticipate',

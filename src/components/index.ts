@@ -5,6 +5,7 @@ export * from './input';
 export * from './logo';
 export * from './logo-neutral';
 export * from './navbar';
+export * from './page-nav-link';
 export * from './profile-image';
 export * from './send-message';
 export * from './textarea';

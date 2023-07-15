@@ -1,20 +1,20 @@
 import clsx from 'clsx';
-import { NavLink, useLocation } from 'react-router-dom';
-import { Page, isActive } from '../lib';
+import { useLocation } from 'react-router-dom';
+import { Page, PagePath, isActive } from '../lib';
+import { PageNavLink } from './page-nav-link';
 
 export interface NavMenuProps {
   className?: string;
-  navItems: [string, Page][];
-  onWillNavigate: (page: Page) => void;
+  navItems: [PagePath, Page][];
 }
 
-export function Nav({ className, navItems, onWillNavigate }: NavMenuProps) {
+export function Nav({ className, navItems }: NavMenuProps) {
   const { pathname } = useLocation();
 
   return (
     <div className={clsx('space-x-8', className)}>
       {navItems.map(([path, page]) => (
-        <NavLink
+        <PageNavLink
           key={path}
           to={path}
           className={clsx(
@@ -24,11 +24,9 @@ export function Nav({ className, navItems, onWillNavigate }: NavMenuProps) {
               : 'border-transparent text-neutral-500 hover:border-neutral-300 hover:text-neutral-700 dark:text-neutral-400 dark:hover:border-neutral-600 dark:hover:text-neutral-200'
           )}
           aria-current={isActive(path, pathname) ? 'page' : undefined}
-          onMouseOver={() => onWillNavigate(page)}
-          onTouchStart={() => onWillNavigate(page)}
         >
           {page.name}
-        </NavLink>
+        </PageNavLink>
       ))}
     </div>
   );

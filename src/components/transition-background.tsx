@@ -1,12 +1,23 @@
 import clsx from 'clsx';
+import { useLocation } from 'react-router-dom';
+import { easterEggPath } from '../lib';
 
 interface BackgroundProps {
   className?: string;
 }
 
 export function TransitionBackground({ className }: BackgroundProps) {
+  const { pathname } = useLocation();
+  const isEasterEggPage = pathname === easterEggPath;
+
   return (
-    <div className={clsx('absolute inset-0 h-screen w-screen', className)}>
+    <div
+      className={clsx(
+        'page-transitions-gradient inset-0 h-screen w-screen',
+        isEasterEggPage ? 'fixed' : 'absolute',
+        className
+      )}
+    >
       <svg
         version="1.2"
         xmlns="http://www.w3.org/2000/svg"
@@ -5046,15 +5057,6 @@ export function TransitionBackground({ className }: BackgroundProps) {
           </g>
         </g>
       </svg>
-      <div className="absolute bottom-0 right-0 pb-4 pr-4 text-xs">
-        <a
-          href="https://www.vecteezy.com/free-vector/background"
-          target="_blank"
-          rel="noreferrer"
-        >
-          Background Vectors by Vecteezy
-        </a>
-      </div>
     </div>
   );
 }

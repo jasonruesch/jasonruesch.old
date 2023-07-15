@@ -1,9 +1,12 @@
-export type EventType = 'navigate';
+import { Page } from './page';
+
+export type EventType = 'navigate' | 'willNavigate';
 export interface CustomEventListener {
   (detail: EventDetail): void;
 }
 export interface EventDetail {
-  isNavigating: boolean;
+  isNavigating?: boolean;
+  page?: Page;
 }
 
 export const eventBus = {
@@ -12,15 +15,8 @@ export const eventBus = {
       listener((e as CustomEvent).detail)
     );
   },
-  dispatch(type: EventType, detail: EventDetail) {
-    document.dispatchEvent(
-      new CustomEvent(type, {
-        detail: {
-          ...detail,
-          isNavigating: type === 'navigate' ? detail.isNavigating : false,
-        },
-      })
-    );
+  dispatch(type: EventType, detail: Partial<EventDetail>) {
+    document.dispatchEvent(new CustomEvent(type, { detail }));
   },
   off(type: EventType, listener: CustomEventListener) {
     document.removeEventListener(type, (e: Event) =>

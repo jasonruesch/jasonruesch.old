@@ -17,12 +17,7 @@ export function Error() {
         <TransitionBackground />
 
         <header className="fixed inset-x-0 top-0 z-20 text-neutral-900 dark:text-neutral-50">
-          <Navbar
-            className="px-4 sm:px-8"
-            pages={pages}
-            onWillNavigate={noop}
-            onOpenChange={noop}
-          />
+          <Navbar className="px-4 sm:px-8" pages={pages} onOpenChange={noop} />
         </header>
 
         <main className="relative z-10 h-screen overflow-scroll bg-neutral-100 px-4 text-neutral-900 dark:bg-neutral-800 dark:text-neutral-50 sm:px-8">

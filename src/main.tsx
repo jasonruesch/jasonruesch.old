@@ -1,14 +1,20 @@
 import { StrictMode } from 'react';
 import * as ReactDOM from 'react-dom/client';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import {
+  createBrowserRouter,
+  Navigate,
+  RouterProvider,
+} from 'react-router-dom';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 
 import About from './app/about/about';
 import App from './app/app';
 import Contact from './app/contact/contact';
+import EasterEgg from './app/easter-egg/easter-egg';
 import Error from './app/error';
 import Home from './app/home/home';
 import Privacy from './app/privacy/privacy';
+import { easterEggPath } from './lib';
 
 const router = createBrowserRouter([
   {
@@ -20,8 +26,10 @@ const router = createBrowserRouter([
       { path: 'about', element: <About /> },
       { path: 'contact', element: <Contact /> },
       { path: 'privacy', element: <Privacy /> },
+      { path: easterEggPath, element: <EasterEgg /> },
     ],
   },
+  { path: '*', element: <Navigate to="/" /> },
 ]);
 
 const root = ReactDOM.createRoot(
