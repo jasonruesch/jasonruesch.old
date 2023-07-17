@@ -1,8 +1,8 @@
 import { VercelRequest, VercelResponse } from '@vercel/node';
-import * as nodemailer from 'nodemailer';
-import { join, resolve } from 'path';
 import { readFileSync } from 'fs';
 import * as handlebars from 'handlebars';
+import * as nodemailer from 'nodemailer';
+import { join, resolve } from 'path';
 
 export default async (request: VercelRequest, response: VercelResponse) => {
   const body = request.body;
@@ -48,6 +48,10 @@ export default async (request: VercelRequest, response: VercelResponse) => {
 
     console.debug('Using template file: %s', templateFile);
 
+    const text = `Name: ${body.name}
+Email address: ${body.email}
+Message: ${body.message}`;
+
     const templateSource = readFileSync(templateFile, 'utf8');
     const template = handlebars.compile(templateSource);
     const html = template({
@@ -60,7 +64,7 @@ export default async (request: VercelRequest, response: VercelResponse) => {
       from: '"Jason Ruesch" <noreply@jasonruesch.dev>',
       to: ['"Jason Ruesch" <jason.ruesch@me.com>'],
       subject: `[${templateName.toUpperCase()}] Jason Ruesch`,
-      text: body.message,
+      text,
       html,
     };
 
