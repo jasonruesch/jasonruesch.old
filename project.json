@@ -20,7 +20,7 @@
         }
       }
     },
-    "serve": {
+    "serve-dev": {
       "executor": "@nx/vite:dev-server",
       "defaultConfiguration": "development",
       "options": {
@@ -36,6 +36,17 @@
           "buildTarget": "jasonruesch:build:production",
           "hmr": false
         }
+      }
+    },
+    "serve": {
+      "executor": "nx:run-commands",
+      "defaultConfiguration": "development",
+      "options": {
+        "command": "vercel dev --listen 4200"
+      },
+      "configurations": {
+        "development": {},
+        "production": {}
       }
     },
     "preview": {
@@ -75,5 +86,6 @@
       }
     }
   },
-  "tags": []
+  "tags": [],
+  "implicitDependencies": ["emails"]
 }

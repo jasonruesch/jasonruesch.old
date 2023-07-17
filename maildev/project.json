@@ -1,0 +1,20 @@
+{
+  "name": "maildev",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "./maildev",
+  "projectType": "application",
+  "targets": {
+    "serve": {
+      "executor": "nx:run-commands",
+      "defaultConfiguration": "development",
+      "options": {
+        "command": "maildev --web-ip localhost"
+      },
+      "configurations": {
+        "development": {},
+        "production": {}
+      }
+    }
+  },
+  "tags": []
+}
