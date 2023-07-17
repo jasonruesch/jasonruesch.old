@@ -6,6 +6,7 @@ const workspacePreset = require('./tailwind-workspace-preset');
 module.exports = {
   presets: [workspacePreset],
   content: [
+    join(__dirname, 'index.html'),
     join(
       __dirname,
       '{src,pages,components,app}/**/*!(*.stories|*.spec).{ts,tsx,html}'

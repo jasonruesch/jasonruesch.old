@@ -21,6 +21,43 @@
 
     @apply rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-neutral-900 shadow-sm ring-1 ring-inset ring-neutral-300 hover:bg-neutral-50 dark:bg-white/10 dark:text-white dark:ring-0 dark:hover:bg-white/20;
   }
+
+  .page-transitions-gradient {
+    background-image: linear-gradient(
+      to bottom,
+      theme(colors.neutral.100),
+      theme(colors.cyan.600),
+      theme(colors.fuchsia.600),
+      theme(colors.neutral.100)
+    );
+  }
+  :is(.dark .page-transitions-gradient) {
+    background-image: linear-gradient(
+      to bottom,
+      theme(colors.neutral.800),
+      theme(colors.violet.500),
+      theme(colors.teal.500),
+      theme(colors.neutral.800)
+    );
+  }
+
+  /* Change autocomplete styles */
+  input:autofill,
+  input:-webkit-autofill-strong-password,
+  input:-webkit-autofill-strong-password-viewable,
+  input:-webkit-autofill-and-obscured {
+    -webkit-box-shadow: 0 0 0px 1000px theme(colors.cyan.300) inset;
+    transition: background-color 5000s ease-in-out 0s;
+  }
+  :is(
+      .dark input:autofill,
+      .dark input:-webkit-autofill-strong-password,
+      .dark input:-webkit-autofill-strong-password-viewable,
+      .dark input:-webkit-autofill-and-obscured
+    ) {
+    -webkit-box-shadow: 0 0 0px 1000px theme(colors.violet.300) inset;
+    transition: background-color 5000s ease-in-out 0s;
+  }
 }
 
 @layer utilities {
@@ -35,35 +72,4 @@
       box-sizing: content-box;
     }
   }
-}
-
-/* Manually adding the following utilities, since Tailwind isn't including them for some reason */
-.scroll-smooth {
-  scroll-behavior: smooth;
-}
-.scroll-pt-16 {
-  scroll-padding-top: 5rem;
-}
-@media (min-width: 640px) and (min-height: 640px) .sm\:scroll-pt-20 {
-  scroll-padding-top: 6rem;
-}
-
-.page-transitions-gradient {
-  background-image: linear-gradient(
-    to bottom,
-    theme(colors.neutral.100),
-    theme(colors.cyan.600),
-    theme(colors.fuchsia.600),
-    theme(colors.neutral.100)
-  );
-}
-
-:is(.dark .page-transitions-gradient) {
-  background-image: linear-gradient(
-    to bottom,
-    theme(colors.neutral.800),
-    theme(colors.violet.500),
-    theme(colors.teal.500),
-    theme(colors.neutral.800)
-  );
 }
