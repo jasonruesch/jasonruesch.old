@@ -137,7 +137,7 @@ export function PageTransitions({ children }: LayoutProps) {
           {!isEasterEggPage && <Background />}
 
           <motion.div
-            className="grid min-h-screen place-items-center py-16 sm:py-20"
+            className="grid min-h-screen place-items-center pt-safe-offset-16 sm:pt-safe-offset-20 pb-safe-offset-8"
             initial={false}
             animate="animate"
             exit="exit"
