@@ -1,8 +1,9 @@
 import { Disclosure } from '@headlessui/react';
 import { Bars2Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import clsx from 'clsx';
+import { useCallback } from 'react';
 import { useLocation } from 'react-router-dom';
-import { Page, PagePath, easterEggPath } from '../lib';
+import { Page, PagePath, easterEggPath, eventBus } from '../lib';
 import { GitHubLink } from './github-link';
 import { Logo } from './logo';
 import { Nav } from './nav';
@@ -15,15 +16,9 @@ interface NavbarProps {
   className?: string;
   isScrolled?: boolean;
   pages: Map<PagePath, Page>;
-  onOpenChange: (open: boolean) => void;
 }
 
-export function Navbar({
-  className,
-  isScrolled,
-  pages,
-  onOpenChange,
-}: NavbarProps) {
+export function Navbar({ className, isScrolled, pages }: NavbarProps) {
   const { pathname } = useLocation();
   const isEasterEggPage = pathname === easterEggPath;
 
@@ -34,6 +29,10 @@ export function Navbar({
   const secondaryNavItems = [...pages].filter(
     ([, page]) => page.type === 'secondary'
   );
+
+  const handleOpenChange = useCallback((isOpen: boolean) => {
+    eventBus.dispatch('navbar:openChange', { isOpen });
+  }, []);
 
   return (
     <Disclosure
@@ -57,7 +56,7 @@ export function Navbar({
               {/* Mobile menu button */}
               <Disclosure.Button
                 className="inline-flex items-center justify-center rounded-md p-2 text-neutral-500 hover:text-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-200"
-                onClick={() => onOpenChange(!open)}
+                onClick={() => handleOpenChange(!open)}
               >
                 <span className="sr-only">Open main menu</span>
                 {open ? (

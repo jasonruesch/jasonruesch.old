@@ -1,12 +1,13 @@
 import { Page } from './page';
 
-export type EventType = 'navigate' | 'willNavigate';
+export type EventType = 'navigate' | 'willNavigate' | 'navbar:openChange';
 export interface CustomEventListener {
   (detail: EventDetail): void;
 }
 export interface EventDetail {
   isNavigating?: boolean;
   page?: Page;
+  isOpen?: boolean;
 }
 
 export const eventBus = {

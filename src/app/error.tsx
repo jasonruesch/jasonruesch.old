@@ -3,32 +3,42 @@ import { useRouteError } from 'react-router-dom';
 import { Navbar, TransitionBackground } from '../components';
 import { pages } from '../lib';
 
-export function Error() {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const error = useRouteError() as any;
-  console.error(error);
+interface RouteError {
+  statusText?: string;
+  message?: string;
+}
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  const noop = () => {};
+export function Error() {
+  const error = useRouteError() as RouteError | undefined;
+  if (error) {
+    console.error(error);
+  }
+
+  const errorMessage = error?.statusText || error?.message;
 
   return (
     <ThemeProvider defaultTheme="system" attribute="class">
-      <div className="relative bg-gradient-to-b from-neutral-100 via-cyan-600 to-fuchsia-600 dark:from-neutral-800 dark:via-violet-500 dark:to-teal-500">
+      <div className="relative overflow-hidden">
         <TransitionBackground />
 
         <header className="fixed inset-x-0 top-0 z-20 text-neutral-900 dark:text-neutral-50">
-          <Navbar className="px-4 sm:px-8" pages={pages} onOpenChange={noop} />
+          <Navbar pages={pages} />
         </header>
 
-        <main className="relative z-10 h-screen overflow-scroll bg-neutral-100 px-4 text-neutral-900 dark:bg-neutral-800 dark:text-neutral-50 sm:px-8">
-          <div className="mx-auto grid h-screen max-w-xl place-content-center text-center">
-            <h1 className="font-display text-2xl font-medium text-neutral-500 dark:text-neutral-400 sm:text-4xl">
-              Oops
-            </h1>
-            <p>Sorry, an unexpected error has occurred.</p>
-            <p>
-              <i>{error.statusText || error.message}</i>
-            </p>
+        <main className="relative z-10 min-h-screen bg-neutral-100 text-neutral-900 px-safe-offset-4 dark:bg-neutral-800 dark:text-neutral-50 sm:px-safe-offset-8">
+          <div className="grid min-h-screen place-items-center pb-safe-offset-8 pt-safe-offset-16 sm:pt-safe-offset-20">
+            <div className="mx-auto w-full max-w-xl space-y-4 text-center">
+              <h1 className="font-display text-2xl font-medium text-neutral-500 dark:text-neutral-400 sm:text-4xl">
+                Oops
+              </h1>
+              <p>Sorry, an unexpected error has occurred.</p>
+
+              {errorMessage ? (
+                <p>
+                  <i>{errorMessage}</i>
+                </p>
+              ) : null}
+            </div>
           </div>
         </main>
       </div>

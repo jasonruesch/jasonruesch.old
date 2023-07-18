@@ -1,11 +1,11 @@
 const { join } = require('path');
-const workspacePreset = require('../tailwind-workspace-preset');
+const presets = require('../tailwind/presets');
 
 /* NOTE: rem values are replaced with pixels to work better with email clients. */
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  presets: [workspacePreset],
+  presets: [presets],
   content: [join(__dirname, '**/*.html')],
   theme: {
     extend: {
@@ -67,13 +67,13 @@ module.exports = {
         '2xl': '16px',
         '3xl': '24px',
       },
-      letterSpacing: (theme) => ({
+      letterSpacing: ({ theme }) => ({
         ...theme('spacing'),
       }),
-      lineHeight: (theme) => ({
+      lineHeight: ({ theme }) => ({
         ...theme('spacing'),
       }),
-      maxWidth: (theme) => ({
+      maxWidth: ({ theme }) => ({
         ...theme('spacing'),
         xs: '160px',
         sm: '192px',
@@ -87,10 +87,10 @@ module.exports = {
         '6xl': '576px',
         '7xl': '640px',
       }),
-      minHeight: (theme) => ({
+      minHeight: ({ theme }) => ({
         ...theme('spacing'),
       }),
-      minWidth: (theme) => ({
+      minWidth: ({ theme }) => ({
         ...theme('spacing'),
       }),
     },

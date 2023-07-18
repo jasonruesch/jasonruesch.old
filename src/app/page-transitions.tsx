@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { useTheme } from 'next-themes';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { PageNavLink } from 'src/components/page-nav-link';
 import { Background, Navbar, TransitionBackground } from '../components';
@@ -30,29 +30,30 @@ export function PageTransitions({ children }: LayoutProps) {
   const [pageScrollOffset, setPageScrollOffset] = useState(0);
   const [previousPathname, setPreviousPathname] = useState(pathname);
 
-  const handleOpenChange = useCallback((open: boolean) => {
-    document.body.classList.toggle('overflow-hidden', open);
-  }, []);
-
   useEffect(() => {
     const handleScroll = () => {
       const isScrolled = window.scrollY > 0;
       setIsScrolled(isScrolled);
     };
+    const handleOpenChange = ({ isOpen }: EventDetail) => {
+      document.body.classList.toggle('overflow-hidden', isOpen);
+    };
 
     window.addEventListener('scroll', handleScroll);
+    eventBus.on('navbar:openChange', handleOpenChange);
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      eventBus.off('navbar:openChange', handleOpenChange);
     };
   }, []);
 
   useEffect(() => {
-    const handleWillNavigate = (detail: EventDetail) => {
-      if (detail.page) {
+    const handleWillNavigate = ({ page }: EventDetail) => {
+      if (page) {
         const currentPageIndex = pages.get(pathname as PagePath)
           ?.index as number;
-        const shouldSlideLeft = currentPageIndex < detail.page.index;
+        const shouldSlideLeft = currentPageIndex < page.index;
         setShouldSlideLeft(shouldSlideLeft);
       }
 
@@ -109,11 +110,7 @@ export function PageTransitions({ children }: LayoutProps) {
               : headerVariants
           }
         >
-          <Navbar
-            isScrolled={isScrolled}
-            pages={pages}
-            onOpenChange={handleOpenChange}
-          />
+          <Navbar isScrolled={isScrolled} pages={pages} />
         </motion.header>
 
         <motion.main
@@ -137,7 +134,7 @@ export function PageTransitions({ children }: LayoutProps) {
           {!isEasterEggPage && <Background />}
 
           <motion.div
-            className="grid min-h-screen place-items-center pt-safe-offset-16 sm:pt-safe-offset-20 pb-safe-offset-8"
+            className="grid min-h-screen place-items-center pb-safe-offset-8 pt-safe-offset-16 sm:pt-safe-offset-20"
             initial={false}
             animate="animate"
             exit="exit"
@@ -152,16 +149,16 @@ export function PageTransitions({ children }: LayoutProps) {
           </motion.div>
         </motion.main>
 
-        <footer className="fixed bottom-0 right-0 z-20 h-8 w-8">
+        <div className="fixed bottom-0 right-0 z-20 h-12 w-12 rounded-full mr-safe mb-safe">
           <PageNavLink
             to={easterEggPath}
-            className="flex h-full w-full cursor-default items-center justify-center"
+            className="flex h-full w-full items-center justify-center"
           >
             <span className="sr-only">
               You found an easter egg! Click to view.
             </span>
           </PageNavLink>
-        </footer>
+        </div>
       </motion.div>
     </AnimatePresence>
   );

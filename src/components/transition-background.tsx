@@ -1,6 +1,8 @@
 import clsx from 'clsx';
+import { useTheme } from 'next-themes';
 import { useLocation } from 'react-router-dom';
 import { easterEggPath } from '../lib';
+import styles from './transition-background.module.css';
 
 interface BackgroundProps {
   className?: string;
@@ -8,13 +10,17 @@ interface BackgroundProps {
 
 export function TransitionBackground({ className }: BackgroundProps) {
   const { pathname } = useLocation();
+  const { resolvedTheme } = useTheme();
   const isEasterEggPage = pathname === easterEggPath;
 
   return (
     <div
       className={clsx(
-        'page-transitions-gradient inset-0 h-screen w-screen',
+        resolvedTheme === 'dark'
+          ? styles['background-dark']
+          : styles.background,
         isEasterEggPage ? 'fixed' : 'absolute',
+        'inset-0 h-screen w-screen',
         className
       )}
     >

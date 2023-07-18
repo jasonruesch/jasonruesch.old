@@ -15,7 +15,6 @@ export const AnimatedOutlet: React.FC = () => {
 
 export const homeVariants = {
   initial: (isXSmallScreen: boolean) => ({ x: !isXSmallScreen ? -24 : -16 }),
-  hover: (isXSmallScreen: boolean) => ({ x: !isXSmallScreen ? -24 : -16 }),
   animate: (isXSmallScreen: boolean) => ({
     x: !isXSmallScreen ? [-24, -48, 0, -24] : [-16, -32, 0, -16],
     transition: {

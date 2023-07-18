@@ -1,5 +1,5 @@
 import { ChevronDoubleRightIcon } from '@heroicons/react/20/solid';
-import { motion, useAnimation, useReducedMotion } from 'framer-motion';
+import { motion, useAnimationControls, useReducedMotion } from 'framer-motion';
 import { useCallback, useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { ProfileImage } from '../../components';
@@ -13,44 +13,57 @@ import {
 
 export function Home() {
   const shouldReduceMotion = useReducedMotion();
-  const controls = useAnimation();
+  const controls = useAnimationControls();
   const [isXSmallScreen] = useWindowSize();
-  const [isNavigating, setIsNavigating] = useState(true);
+  const [isNavigating, setIsNavigating] = useState<boolean | undefined>(true);
 
-  const handleHoverStart = useCallback(async () => {
+  const stopAnimation = useCallback(async () => {
     controls.stop();
-    controls.set('hover');
+    controls.set('initial');
   }, [controls]);
 
-  const handleHoverEnd = useCallback(async () => {
+  const startAnimation = useCallback(async () => {
     controls.start('animate');
   }, [controls]);
 
+  const resetAnimation = useCallback(async () => {
+    await stopAnimation();
+    await startAnimation();
+  }, [startAnimation, stopAnimation]);
+
   useEffect(() => {
-    const handleNavigate = (detail: EventDetail) => {
-      setIsNavigating(detail.isNavigating || false);
+    const handleNavigate = ({ isNavigating }: EventDetail) => {
+      setIsNavigating(isNavigating);
     };
+    const handleOpenChange = ({ isOpen }: EventDetail) => {
+      if (isOpen) {
+        stopAnimation();
+      } else {
+        startAnimation();
+      }
+    };
+
     eventBus.on('navigate', handleNavigate);
+    eventBus.on('navbar:openChange', handleOpenChange);
 
     return () => {
       eventBus.off('navigate', handleNavigate);
+      eventBus.off('navbar:openChange', handleOpenChange);
     };
-  }, []);
+  }, [stopAnimation, startAnimation]);
 
   // Pause animation when navigating
   useEffect(() => {
     if (isNavigating) {
-      handleHoverStart();
+      stopAnimation();
     } else {
-      handleHoverEnd();
+      startAnimation();
     }
-  }, [isNavigating, handleHoverStart, handleHoverEnd]);
-
+  }, [isNavigating, stopAnimation, startAnimation]);
   // Reset animation when screen size changes
   useEffect(() => {
-    handleHoverStart();
-    handleHoverEnd();
-  }, [isXSmallScreen, handleHoverStart, handleHoverEnd]);
+    resetAnimation();
+  }, [isXSmallScreen, resetAnimation]);
 
   return (
     <div className="mx-auto w-full max-w-xl space-y-4 text-center">
@@ -74,8 +87,8 @@ export function Home() {
 
       <motion.div
         className="mx-auto w-16 sm:w-24"
-        onHoverStart={() => handleHoverStart()}
-        onHoverEnd={() => handleHoverEnd()}
+        onHoverStart={() => stopAnimation()}
+        onHoverEnd={() => startAnimation()}
       >
         <NavLink
           to="/about"
@@ -89,7 +102,7 @@ export function Home() {
           }
         >
           <motion.div
-            initial="initial"
+            initial={false}
             custom={isXSmallScreen}
             animate={controls}
             variants={

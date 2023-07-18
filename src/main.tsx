@@ -29,6 +29,7 @@ const router = createBrowserRouter([
       { path: easterEggPath, element: <EasterEgg /> },
     ],
   },
+  { path: 'error', element: <Error /> },
   { path: '*', element: <Navigate to="/" /> },
 ]);
 

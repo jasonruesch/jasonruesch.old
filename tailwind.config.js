@@ -1,10 +1,9 @@
 const { createGlobPatternsForDependencies } = require('@nx/react/tailwind');
 const { join } = require('path');
-const workspacePreset = require('./tailwind-workspace-preset');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  presets: [workspacePreset],
+  darkMode: 'class',
   content: [
     join(__dirname, 'index.html'),
     join(
@@ -13,6 +12,12 @@ module.exports = {
     ),
     ...createGlobPatternsForDependencies(__dirname),
   ],
-  darkMode: 'class',
-  plugins: [require('@tailwindcss/forms'), require('tailwindcss-safe-area')],
+  theme: {
+    extend: {},
+  },
+  plugins: [
+    require('@tailwindcss/forms'),
+    require('tailwindcss-safe-area'),
+    require('./tailwind/plugin'),
+  ],
 };
