@@ -2,7 +2,7 @@ export function Background() {
   return (
     <>
       <div
-        className="absolute inset-x-0 top-20 -z-10 transform-gpu overflow-hidden blur-3xl dark:hidden"
+        className="absolute inset-x-0 top-20 -z-10 max-h-[calc(100vh-80px)] transform-gpu overflow-hidden blur-3xl dark:hidden"
         aria-hidden="true"
       >
         <div
@@ -15,7 +15,7 @@ export function Background() {
       </div>
 
       <div
-        className="absolute inset-x-0 top-40 -z-10 hidden transform-gpu justify-center overflow-hidden blur-3xl dark:flex"
+        className="absolute inset-x-0 top-40 -z-10 hidden max-h-[calc(100vh-160px)] transform-gpu justify-center overflow-hidden blur-3xl dark:flex"
         aria-hidden="true"
       >
         <div
