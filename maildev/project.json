@@ -8,7 +8,16 @@
       "executor": "nx:run-commands",
       "defaultConfiguration": "development",
       "options": {
-        "command": "maildev --web-ip localhost"
+        "commands": [
+          {
+            "command": "maildev --web-ip localhost"
+          },
+          {
+            "command": "echo \"Starting MailDev... Available at http://localhost:1080\"",
+            "color": "cyan"
+          }
+        ],
+        "color": true
       },
       "configurations": {
         "development": {},
