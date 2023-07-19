@@ -38,13 +38,18 @@ export function ThemeSelector({ className }: ThemeSelectorProps) {
   const { theme, resolvedTheme, setTheme } = useTheme();
 
   useEffect(() => {
-    const match = window.matchMedia('(prefers-color-scheme: dark)');
-    const systemTheme = match.matches ? 'dark' : 'light';
-    const themeColor = document.querySelector(
-      `meta[name="theme-color"][media*="${systemTheme}"]`
-    ) as HTMLMetaElement | null;
+    if (resolvedTheme === 'system') {
+      return;
+    }
 
-    if (themeColor) {
+    const themeColor = document.querySelector(
+      'meta[name="theme-color"]'
+    ) as HTMLMetaElement | null;
+    if (
+      themeColor &&
+      ((resolvedTheme === 'dark' && themeColor.content !== '#262626') ||
+        (resolvedTheme === 'light' && themeColor.content !== '#f5f5f5'))
+    ) {
       themeColor.content = `#${resolvedTheme === 'dark' ? '262626' : 'f5f5f5'}`;
     }
   }, [resolvedTheme]);

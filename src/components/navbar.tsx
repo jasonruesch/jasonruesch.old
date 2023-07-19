@@ -51,7 +51,7 @@ export function Navbar({ className, isScrolled, pages }: NavbarProps) {
     >
       {({ open }) => (
         <>
-          <div className="relative z-10 flex h-12 justify-between mx-safe-offset-4 sm:h-16 sm:mx-safe-offset-8">
+          <div className="relative z-10 flex h-12 justify-between mt-safe mx-safe-offset-4 sm:h-16 sm:mx-safe-offset-8">
             <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
               {/* Mobile menu button */}
               <Disclosure.Button
