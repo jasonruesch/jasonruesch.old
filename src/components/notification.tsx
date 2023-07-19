@@ -1,8 +1,12 @@
-import { Fragment, ReactNode } from 'react';
+import { Fragment, ReactNode, useCallback, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 
 import { Transition } from '@headlessui/react';
 import { XMarkIcon } from '@heroicons/react/24/solid';
+import { eventBus } from 'src/lib';
+
+// Automatically hide the notification after 5 seconds, unless the user hovers over it
+let timer: NodeJS.Timer | null = null;
 
 export type NotificatonType = 'success' | 'error';
 
@@ -24,20 +28,39 @@ export function Notification({
   type,
   onHide,
 }: NotificationProps) {
-  // Automatically hide the notification after 2 seconds, unless the user hovers over it
-  let timer: NodeJS.Timeout;
+  const startTimer = useCallback(() => {
+    if (timer) {
+      return;
+    }
 
-  const startTimer = () => {
     timer = setTimeout(() => {
       onHide();
-    }, 2000);
-  };
+    }, 5000);
+  }, [onHide]);
 
-  const pauseTimer = () => {
+  const stopTimer = useCallback(() => {
+    if (!timer) {
+      return;
+    }
+
     clearTimeout(timer);
-  };
+    timer = null;
+  }, []);
 
-  startTimer();
+  useEffect(() => {
+    const handleNavigate = () => {
+      stopTimer();
+      onHide();
+    };
+
+    eventBus.on('navigate', handleNavigate);
+
+    startTimer();
+
+    return () => {
+      eventBus.on('navigate', handleNavigate);
+    };
+  }, [startTimer, stopTimer, onHide]);
 
   return createPortal(
     <Transition
@@ -55,7 +78,7 @@ export function Notification({
           type === 'error' ? 'bg-red-500 text-white' : ''
         } ${type === 'success' ? 'bg-green-500 text-white' : ''} ${className}`}
         onMouseEnter={() => {
-          pauseTimer();
+          stopTimer();
         }}
         onMouseLeave={() => {
           startTimer();
