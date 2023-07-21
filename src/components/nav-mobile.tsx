@@ -1,13 +1,13 @@
 import { Disclosure } from '@headlessui/react';
 import clsx from 'clsx';
 import { useLocation } from 'react-router-dom';
-import { Page, PagePath, isActive } from '../lib';
+import { Page, isActive } from '../lib';
 import { PageNavLink } from './page-nav-link';
 
 export interface NavMenuProps {
   className?: string;
-  primaryNavItems: [PagePath, Page][];
-  secondaryNavItems: [PagePath, Page][];
+  primaryNavItems: [string, Page][];
+  secondaryNavItems: [string, Page][];
 }
 
 export function NavMobile({

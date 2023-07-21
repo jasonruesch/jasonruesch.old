@@ -1,9 +1,9 @@
 import { forwardRef } from 'react';
 import { NavLink, NavLinkProps } from 'react-router-dom';
-import { PagePath, eventBus, pages } from 'src/lib';
+import { eventBus, pages } from 'src/lib';
 
 interface CustomNavLinkProps {
-  to: PagePath;
+  to: string;
 }
 
 export type PageNavLinkProps = CustomNavLinkProps &
@@ -15,17 +15,17 @@ export const PageNavLink = forwardRef(
     { to, ...props }: PageNavLinkProps,
     forwardedRef: React.ForwardedRef<HTMLAnchorElement>
   ) => {
+    const page = to.startsWith('/easter-egg')
+      ? pages.get('/easter-egg')
+      : pages.get(to);
+
     return (
       <NavLink
         ref={forwardedRef}
         {...props}
         to={to}
-        onMouseOver={() =>
-          eventBus.dispatch('willNavigate', { page: pages.get(to) })
-        }
-        onTouchStart={() =>
-          eventBus.dispatch('willNavigate', { page: pages.get(to) })
-        }
+        onMouseOver={() => eventBus.dispatch('willNavigate', { page })}
+        onTouchStart={() => eventBus.dispatch('willNavigate', { page })}
       >
         {props.children}
       </NavLink>

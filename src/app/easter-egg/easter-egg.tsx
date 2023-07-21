@@ -1,21 +1,17 @@
-// import clsx from 'clsx';
-// import { useState } from 'react';
+import { Navigate, useParams } from 'react-router-dom';
+import { easterEggId } from 'src/lib';
 import easterEgg from '../../assets/easter-egg.png';
 
 export function EasterEgg() {
-  // const [showEgg, setShowEgg] = useState(true);
+  const { uid } = useParams<{ uid: string }>();
+  if (uid !== easterEggId) {
+    return <Navigate to="/" replace />;
+  }
 
   return (
-    <div className="h-80">
-      {' '}
-      {/* onClick={() => setShowEgg(!showEgg)}> */}
-      <img
-        src={easterEgg}
-        alt="Easter Egg"
-        // className={clsx(showEgg ? '' : 'invisible', 'h-80')}
-        className="h-full"
-      />
-    </div>
+    <figure className="h-80">
+      <img src={easterEgg} alt="Easter Egg" className="h-full" />
+    </figure>
   );
 }
 

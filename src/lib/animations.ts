@@ -110,15 +110,15 @@ export const headerVariants = {
 };
 
 interface MainVariantProps {
-  shouldSlideLeft?: boolean;
+  shouldSlideRight?: boolean;
   isEasterEggPage?: boolean;
 }
 
 export const mainVariants = {
-  initial: ({ shouldSlideLeft, isEasterEggPage }: MainVariantProps) => {
+  initial: ({ shouldSlideRight, isEasterEggPage }: MainVariantProps) => {
     return {
       ...(!isEasterEggPage
-        ? { x: shouldSlideLeft ? '100vw' : '-100vw' }
+        ? { x: shouldSlideRight ? '-100vw' : '100vw' }
         : { y: '-100vh' }),
       overflow: 'hidden',
       height: '100vh',
@@ -169,10 +169,10 @@ export const mainVariants = {
       },
     };
   },
-  exit: ({ shouldSlideLeft, isEasterEggPage }: MainVariantProps) => {
+  exit: ({ shouldSlideRight, isEasterEggPage }: MainVariantProps) => {
     return {
       ...(!isEasterEggPage
-        ? { x: shouldSlideLeft ? '-100vw' : '100vw' }
+        ? { x: shouldSlideRight ? '100vw' : '-100vw' }
         : { y: '-100vh' }),
       overflow: 'hidden',
       height: '100vh',

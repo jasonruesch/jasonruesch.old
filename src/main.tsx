@@ -14,7 +14,6 @@ import EasterEgg from './app/easter-egg/easter-egg';
 import Error from './app/error';
 import Home from './app/home/home';
 import Privacy from './app/privacy/privacy';
-import { easterEggPath } from './lib';
 
 const router = createBrowserRouter([
   {
@@ -26,7 +25,7 @@ const router = createBrowserRouter([
       { path: 'about', element: <About /> },
       { path: 'contact', element: <Contact /> },
       { path: 'privacy', element: <Privacy /> },
-      { path: easterEggPath, element: <EasterEgg /> },
+      { path: 'easter-egg/:uid', element: <EasterEgg /> },
     ],
   },
   { path: 'error', element: <Error /> },

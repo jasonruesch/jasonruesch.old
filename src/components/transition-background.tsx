@@ -1,7 +1,6 @@
 import clsx from 'clsx';
 import { useTheme } from 'next-themes';
 import { useLocation } from 'react-router-dom';
-import { easterEggPath } from '../lib';
 import styles from './transition-background.module.css';
 
 interface BackgroundProps {
@@ -11,7 +10,7 @@ interface BackgroundProps {
 export function TransitionBackground({ className }: BackgroundProps) {
   const { pathname } = useLocation();
   const { resolvedTheme } = useTheme();
-  const isEasterEggPage = pathname === easterEggPath;
+  const isEasterEggPage = pathname.startsWith('/easter-egg');
 
   return (
     <div

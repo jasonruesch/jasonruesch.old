@@ -2,8 +2,8 @@ import { Disclosure } from '@headlessui/react';
 import { Bars2Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import clsx from 'clsx';
 import { useCallback } from 'react';
-import { useLocation } from 'react-router-dom';
-import { Page, PagePath, easterEggPath, eventBus } from '../lib';
+import { matchPath, useLocation } from 'react-router-dom';
+import { Page, eventBus } from '../lib';
 import { GitHubLink } from './github-link';
 import { Logo } from './logo';
 import { Nav } from './nav';
@@ -15,12 +15,12 @@ import { ThemeSelector } from './theme-selector';
 interface NavbarProps {
   className?: string;
   isScrolled?: boolean;
-  pages: Map<PagePath, Page>;
+  pages: Map<string, Page>;
 }
 
 export function Navbar({ className, isScrolled, pages }: NavbarProps) {
   const { pathname } = useLocation();
-  const isEasterEggPage = pathname === easterEggPath;
+  const isEasterEggPage = matchPath({ path: 'easter-egg/:uid' }, pathname);
 
   const primaryNavItems = [...pages].filter(
     ([, page]) => page.type === 'primary'

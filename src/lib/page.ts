@@ -1,5 +1,3 @@
-import { easterEggPath } from './path-utils';
-
 export interface Page {
   name: string;
   index: number;
@@ -16,15 +14,8 @@ export const privacyPage: Page = {
   type: 'secondary',
 };
 
-export type PagePath = string;
-// | '/'
-// | '/about'
-// | '/contact'
-// | '/privacy'
-// | typeof easterEggPath;
-
-export const pages = new Map<PagePath, Page>([
-  [easterEggPath, easterEggPage],
+export const pages = new Map<string, Page>([
+  ['/easter-egg', easterEggPage],
   ['/', homePage],
   ['/about', aboutPage],
   ['/contact', contactPage],

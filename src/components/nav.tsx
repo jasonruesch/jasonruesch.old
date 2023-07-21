@@ -1,11 +1,11 @@
 import clsx from 'clsx';
 import { useLocation } from 'react-router-dom';
-import { Page, PagePath, isActive } from '../lib';
+import { Page, isActive } from '../lib';
 import { PageNavLink } from './page-nav-link';
 
 export interface NavMenuProps {
   className?: string;
-  navItems: [PagePath, Page][];
+  navItems: [string, Page][];
 }
 
 export function Nav({ className, navItems }: NavMenuProps) {

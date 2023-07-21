@@ -8,8 +8,7 @@ import { Background, Navbar, TransitionBackground } from '../components';
 import {
   ANIMATIONS_DISABLED,
   EventDetail,
-  PagePath,
-  easterEggPath,
+  easterEggId,
   eventBus,
   headerVariants,
   mainInnerVariants,
@@ -26,7 +25,7 @@ export function PageTransitions({ children }: LayoutProps) {
   const shouldReduceMotion = useReducedMotion();
   const { resolvedTheme } = useTheme();
   const [isScrolled, setIsScrolled] = useState(false);
-  const [shouldSlideLeft, setShouldSlideLeft] = useState(false);
+  const [shouldSlideRight, setShouldSlideRight] = useState(false);
   const [pageScrollOffset, setPageScrollOffset] = useState(0);
   const [previousPathname, setPreviousPathname] = useState(pathname);
 
@@ -51,10 +50,12 @@ export function PageTransitions({ children }: LayoutProps) {
   useEffect(() => {
     const handleWillNavigate = ({ page }: EventDetail) => {
       if (page) {
-        const currentPageIndex = pages.get(pathname as PagePath)
-          ?.index as number;
-        const shouldSlideLeft = currentPageIndex < page.index;
-        setShouldSlideLeft(shouldSlideLeft);
+        const currentPage = pathname.startsWith('/easter-egg')
+          ? pages.get('/easter-egg')
+          : pages.get(pathname);
+        const currentPageIndex = currentPage?.index as number;
+        const shouldSlideRight = currentPageIndex > page.index;
+        setShouldSlideRight(shouldSlideRight);
       }
 
       setPageScrollOffset(window.scrollY);
@@ -81,7 +82,7 @@ export function PageTransitions({ children }: LayoutProps) {
     setPreviousPathname(pathname);
   }, [pathname, previousPathname]);
 
-  const isEasterEggPage = pathname === easterEggPath;
+  const isEasterEggPage = pathname.startsWith('/easter-egg');
 
   return (
     <AnimatePresence initial={false} mode="wait">
@@ -122,7 +123,7 @@ export function PageTransitions({ children }: LayoutProps) {
             'relative z-10 min-h-screen text-neutral-900 px-safe-offset-4 dark:text-neutral-50 sm:px-safe-offset-8',
             !isEasterEggPage ? 'bg-neutral-100 dark:bg-neutral-800' : ''
           )}
-          custom={{ shouldSlideLeft, isEasterEggPage }}
+          custom={{ shouldSlideRight, isEasterEggPage }}
           variants={
             ANIMATIONS_DISABLED || shouldReduceMotion ? undefined : mainVariants
           }
@@ -151,7 +152,7 @@ export function PageTransitions({ children }: LayoutProps) {
 
         <div className="fixed bottom-0 right-0 z-20 h-12 w-12 rounded-full mr-safe mb-safe">
           <PageNavLink
-            to={easterEggPath}
+            to={`/easter-egg/${easterEggId}`}
             className="flex h-full w-full items-center justify-center"
           >
             <span className="sr-only">
