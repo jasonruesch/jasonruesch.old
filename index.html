@@ -1,31 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-full">
   <head>
     <meta charset="utf-8" />
     <title>Jason Ruesch</title>
     <base href="/" />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-
-    <link rel="manifest" href="/manifest.json" crossorigin="use-credentials" />
-
     <link rel="stylesheet" href="/src/styles.css" />
 
-    <meta content="true" name="x5-fullscreen" />
-    <meta content="app" name="x5-page-mode" />
-    <meta content="application" name="browsermode" />
-    <meta content="yes" name="full-screen" />
-    <meta content="yes" name="mobile-web-app-capable" />
-    <meta content="#262626" name="theme-color" />
-    <meta content="Jason Ruesch" name="application-name" />
-    <meta content="#262626" name="msapplication-navbutton-color" />
-    <meta content="/ms-icon.png" name="msapplication-TileImage" />
-    <meta content="#262626" name="msapplication-TileColor" />
-    <meta content="yes" name="apple-touch-fullscreen" />
-    <meta content="yes" name="apple-mobile-web-app-capable" />
-    <meta content="default" name="apple-mobile-web-app-status-bar-style" />
-    <meta content="Jason Ruesch" name="apple-mobile-web-app-title" />
+    <link rel="manifest" href="/manifest.json" crossorigin="use-credentials" />
+    <meta name="x5-fullscreen" content="true" />
+    <meta name="x5-page-mode" content="app" />
+    <meta name="browsermode" content="application" />
+    <meta name="full-screen" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta
+      content="#f5f5f5"
+      name="theme-color"
+      media="(prefers-color-scheme: light)"
+    />
+    <meta
+      content="#262626"
+      name="theme-color"
+      media="(prefers-color-scheme: dark)"
+    />
+    <meta name="application-name" content="Jason Ruesch" />
+    <meta name="msapplication-navbutton-color" content="#262626" />
+    <meta name="msapplication-TileImage" content="/logo-512.png" />
+    <meta name="msapplication-TileColor" content="#262626" />
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Jason Ruesch" />
     <link sizes="180x180" href="/apple-icon.png" rel="apple-touch-icon" />
 
     <link
@@ -199,8 +209,10 @@
       href="/splash_screens/8.3__iPad_Mini_portrait.png"
     />
   </head>
-  <body>
-    <div id="root"></div>
+  <body
+    class="h-full bg-neutral-100 text-neutral-900 dark:bg-neutral-800 dark:text-neutral-50"
+  >
+    <div id="root" class="h-full"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
