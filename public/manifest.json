@@ -1,0 +1,25 @@
+{
+  "short_name": "Jason Ruesch",
+  "name": "Jason Ruesch",
+  "background_color": "#262626",
+  "theme_color": "#262626",
+  "display": "standalone",
+  "orientation": "any",
+  "start_url": "./index.html",
+  "related_applications": [],
+  "icons": [
+    {
+      "src": "./icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "./icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "categories": []
+}
