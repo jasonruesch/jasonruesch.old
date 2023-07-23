@@ -1,0 +1,18 @@
+.background {
+  background-image: linear-gradient(
+    to bottom,
+    theme(colors.neutral.100),
+    theme(colors.cyan.600),
+    theme(colors.fuchsia.600),
+    theme(colors.neutral.100)
+  );
+}
+.background-dark {
+  background-image: linear-gradient(
+    to bottom,
+    theme(colors.neutral.800),
+    theme(colors.violet.500),
+    theme(colors.teal.500),
+    theme(colors.neutral.800)
+  );
+}

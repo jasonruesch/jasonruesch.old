@@ -13,7 +13,12 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {},
+    "paths": {
+      "@/assets/*": ["src/assets/*"],
+      "@/components": ["src/components/index.ts"],
+      "@/lib": ["src/lib/index.ts"],
+      "@/pages": ["src/pages/index.ts"]
+    },
     "jsx": "react-jsx",
     "allowJs": false,
     "esModuleInterop": false,
