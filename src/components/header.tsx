@@ -1,4 +1,4 @@
-import { headerAnimations } from '@/lib';
+import { easterEggId, headerAnimations } from '@/lib';
 import { useAnimate } from 'framer-motion';
 import { useCallback } from 'react';
 import { Link, useLocation } from 'react-router-dom';
@@ -43,7 +43,7 @@ export const Header = () => {
         <Link to="/privacy" onClick={handleAnimation}>
           Privacy
         </Link>
-        <Link to="/easter-egg" onClick={handleAnimation}>
+        <Link to={`/easter-egg/${easterEggId}`} onClick={handleAnimation}>
           Easter Egg
         </Link>
       </nav>

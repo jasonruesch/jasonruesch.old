@@ -29,7 +29,7 @@ const router = createBrowserRouter([
           { path: 'about', element: <AboutPage /> },
           { path: 'contact', element: <ContactPage /> },
           { path: 'privacy', element: <PrivacyPage /> },
-          { path: 'easter-egg', element: <EasterEggPage /> },
+          { path: 'easter-egg/:uid', element: <EasterEggPage /> },
           { path: '*', element: <Navigate to="/" /> },
         ],
       },
