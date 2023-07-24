@@ -1,4 +1,5 @@
 import easterEgg from '@/assets/easter-egg.png';
+import { Page } from '@/components';
 
 export const EasterEggPage = () => {
   // const { uid } = useParams<{ uid: string }>();
@@ -7,8 +8,10 @@ export const EasterEggPage = () => {
   // }
 
   return (
-    <figure className="h-80">
-      <img src={easterEgg} alt="Easter Egg" className="h-full" />
-    </figure>
+    <Page transparent>
+      <figure className="h-80">
+        <img src={easterEgg} alt="Easter Egg" className="h-full" />
+      </figure>
+    </Page>
   );
 };

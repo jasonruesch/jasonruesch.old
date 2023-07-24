@@ -1,3 +1,9 @@
+import { Page } from '@/components';
+
 export const AboutPage = () => {
-  return <div>About</div>;
+  return (
+    <Page>
+      <div>About</div>
+    </Page>
+  );
 };

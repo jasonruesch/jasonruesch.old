@@ -1,3 +1,9 @@
+import { Page } from '@/components';
+
 export const ContactPage = () => {
-  return <div>Contact</div>;
+  return (
+    <Page>
+      <div>Contact</div>
+    </Page>
+  );
 };

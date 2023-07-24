@@ -1,3 +1,9 @@
+import { Page } from '@/components';
+
 export const HomePage = () => {
-  return <div>Home</div>;
+  return (
+    <Page>
+      <div>Home</div>
+    </Page>
+  );
 };
