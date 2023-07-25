@@ -1,14 +1,12 @@
 import { Header } from '@/components';
-import ErrorPage from 'src/pages/error';
+import ErrorPage from '../pages/error';
 
 export function AppError() {
   return (
-    <>
+    <div className="relative overflow-hidden">
       <Header />
-      <main className="relative h-full">
-        <ErrorPage />
-      </main>
-    </>
+      <ErrorPage />
+    </div>
   );
 }
 

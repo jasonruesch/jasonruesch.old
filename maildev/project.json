@@ -1,0 +1,29 @@
+{
+  "name": "maildev",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "./maildev",
+  "projectType": "application",
+  "targets": {
+    "serve": {
+      "executor": "nx:run-commands",
+      "defaultConfiguration": "development",
+      "options": {
+        "commands": [
+          {
+            "command": "maildev --web-ip localhost"
+          },
+          {
+            "command": "echo \"Starting MailDev... Available at http://localhost:1080\"",
+            "color": "cyan"
+          }
+        ],
+        "color": true
+      },
+      "configurations": {
+        "development": {},
+        "production": {}
+      }
+    }
+  },
+  "tags": []
+}

@@ -3,11 +3,10 @@ import { createPortal } from 'react-dom';
 import styles from './background.module.css';
 
 interface BackgroundProps {
-  className?: string;
   fixed?: boolean;
 }
 
-export const Background = ({ className, fixed }: BackgroundProps) => {
+export const Background = ({ fixed }: BackgroundProps) => {
   const matchMedia = window.matchMedia('(prefers-color-scheme: dark)');
   const darkMode = matchMedia.matches;
 
@@ -16,8 +15,7 @@ export const Background = ({ className, fixed }: BackgroundProps) => {
       className={clsx(
         darkMode ? styles['background-dark'] : styles.background,
         fixed ? 'fixed' : 'absolute',
-        'inset-0 h-screen w-screen',
-        className
+        'inset-0 h-screen w-screen'
       )}
     >
       <svg

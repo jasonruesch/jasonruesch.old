@@ -40,3 +40,7 @@ Thumbs.db
 
 # Vercel
 .vercel
+
+# Maizzle
+**/public/emails/*
+!**/public/emails/README.md

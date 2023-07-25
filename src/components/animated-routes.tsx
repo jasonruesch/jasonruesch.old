@@ -1,15 +1,20 @@
 import { AnimatePresence } from 'framer-motion';
-import { useLocation } from 'react-router-dom';
-import { AnimatedOutlet } from './animated-outlet';
+import { useState } from 'react';
+import { useLocation, useOutlet } from 'react-router-dom';
+
+export const AnimatedOutlet = ({ context }: { context?: unknown }) => {
+  const o = useOutlet(context);
+  const [outlet] = useState(o);
+
+  return outlet;
+};
 
 export const AnimatedRoutes = () => {
-  const location = useLocation();
+  const { pathname } = useLocation();
 
   return (
-    <main className="relative h-full">
-      <AnimatePresence initial={false}>
-        <AnimatedOutlet key={location.pathname} />
-      </AnimatePresence>
-    </main>
+    <AnimatePresence initial={false}>
+      <AnimatedOutlet key={pathname} />
+    </AnimatePresence>
   );
 };

@@ -9,7 +9,7 @@ import App from './app/app';
 import AppError from './app/app-error';
 import {
   AboutPage,
-  ContactPage,
+  ContactPageWithFormik,
   EasterEggPage,
   HomePage,
   PrivacyPage,
@@ -27,7 +27,8 @@ const router = createBrowserRouter([
         children: [
           { index: true, element: <HomePage /> },
           { path: 'about', element: <AboutPage /> },
-          { path: 'contact', element: <ContactPage /> },
+          // { path: 'contact', element: <ContactPage />, action: contactAction },
+          { path: 'contact', element: <ContactPageWithFormik /> },
           { path: 'privacy', element: <PrivacyPage /> },
           { path: 'easter-egg/:uid', element: <EasterEggPage /> },
           { path: '*', element: <Navigate to="/" /> },

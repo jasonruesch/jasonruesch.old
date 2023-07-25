@@ -1,5 +1,7 @@
 export * from './about';
-export * from './contact';
+export { ContactPage, action as contactAction } from './contact';
+export * from './contact-formik';
 export * from './easter-egg';
+export * from './error';
 export * from './home';
 export * from './privacy';
