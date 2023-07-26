@@ -169,17 +169,33 @@ export const innerPageVariants: Variants = {
 
 export const footerVariants: Variants = {
   initial: () => {
-    return { position: 'static' };
+    return { scale: 0 };
   },
   animate: ({ stageAnimations }) => {
     if (stageAnimations) {
-      return { position: 'static' };
+      return { scale: 0 };
     }
 
-    return { position: 'absolute', transition: { delay: duration } };
+    return {
+      scale: 1,
+      // A little extra delay to make sure the page is ready
+      transition: {
+        scale: {
+          delay: (11 / 10) * duration,
+          duration: 0.3,
+          type: 'spring',
+          bounce: 0.5,
+        },
+      },
+    };
   },
   exit: () => {
-    return { position: 'static', transition: { duration: 0 } };
+    return {
+      scale: 0,
+      transition: {
+        scale: { duration: 0 },
+      },
+    };
   },
 };
 

@@ -7,7 +7,11 @@ export interface PageMeta {
 }
 
 export const easterEggPage: PageMeta = { name: 'Easter Egg', index: -1 };
-export const homePage: PageMeta = { name: 'Home', index: 0, type: 'primary' };
+export const homePage: PageMeta = {
+  name: 'Home',
+  index: 0,
+  type: 'primary',
+};
 export const aboutPage: PageMeta = { name: 'About', index: 1, type: 'primary' };
 export const contactPage: PageMeta = {
   name: 'Contact',
@@ -15,7 +19,7 @@ export const contactPage: PageMeta = {
   type: 'primary',
 };
 export const privacyPage: PageMeta = {
-  name: 'Privacy',
+  name: 'Privacy Policy',
   index: 3,
   type: 'secondary',
 };

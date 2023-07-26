@@ -31,6 +31,7 @@ export const PageNavLink = forwardRef(
         ref={forwardedRef}
         {...props}
         to={to}
+        end={props.end || to === '/'}
         onMouseOver={handleMouseOver}
         onTouchStart={handleMouseOver}
       >

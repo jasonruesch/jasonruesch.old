@@ -72,19 +72,20 @@ export const Header = () => {
             ? 'bg-gradient-to-b from-neutral-100 to-neutral-50/75 shadow-sm shadow-black/20 backdrop-blur-sm dark:from-neutral-800 dark:to-neutral-900/75 dark:shadow-black/50'
             : '',
           open ? 'h-full via-neutral-50/75 dark:via-neutral-900/75' : '',
-          'fixed inset-x-0 top-0 z-20 supports-[-webkit-touch-callout:_none]:-mt-px supports-[-webkit-touch-callout:_none]:pt-px'
+          'fixed inset-x-0 top-0 z-20 flex flex-col supports-[-webkit-touch-callout:_none]:-mt-px supports-[-webkit-touch-callout:_none]:pt-px'
         )
       }
     >
       {({ open }) => {
+        // Prevent scrolling when the mobile menu is open
         document.body.classList.toggle('overflow-hidden', open);
 
         return (
           <>
-            <div className="flex h-12 items-center space-x-4 pt-safe px-safe-offset-4 sm:h-16">
+            <div className="flex h-12 items-center pt-safe px-safe-offset-4 sm:h-16">
               <div className="flex-1 sm:hidden">
                 {/* Mobile menu button */}
-                <Disclosure.Button className="inline-flex items-center rounded-md p-2 text-neutral-500 hover:text-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-200">
+                <Disclosure.Button className="inline-flex items-center rounded-md p-2 text-neutral-500 hover:text-neutral-700 focus:outline-none dark:text-neutral-400 dark:hover:text-neutral-200">
                   <span className="sr-only">Open main menu</span>
                   {open ? (
                     <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
@@ -94,7 +95,7 @@ export const Header = () => {
                 </Disclosure.Button>
               </div>
 
-              <div className="flex shrink justify-center sm:flex-none sm:justify-start">
+              <div className="flex flex-shrink justify-center sm:justify-start">
                 <PageNavLink to="/" onClick={handleAnimation}>
                   <Logo className="h-8 w-8" />
                 </PageNavLink>
@@ -116,7 +117,7 @@ export const Header = () => {
               </div>
             </div>
 
-            <Disclosure.Panel className="sm:hidden">
+            <Disclosure.Panel className="flex-1 sm:hidden">
               <NavMobile
                 primaryNavItems={primaryNavItems}
                 secondaryNavItems={secondaryNavItems}

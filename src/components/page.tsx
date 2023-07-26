@@ -27,8 +27,11 @@ export const Page = ({ children, transparent, hideFooter }: PageProps) => {
       >
         <motion.div
           className={clsx(
-            'grid min-h-screen place-items-center pb-safe-offset-32 pt-safe-offset-16 px-safe-offset-4 supports-[-webkit-touch-callout:_none]:box-content sm:pt-safe-offset-20',
-            transparent ? '' : 'bg-neutral-100 dark:bg-neutral-800'
+            'grid min-h-screen place-items-center pt-safe-offset-16 px-safe-offset-4 supports-[-webkit-touch-callout:_none]:box-content sm:pt-safe-offset-20',
+            transparent ? '' : 'bg-neutral-100 dark:bg-neutral-800',
+            hideFooter
+              ? 'pb-safe-offset-4'
+              : 'pb-safe-offset-32 sm:pb-safe-offset-40'
           )}
           initial={false}
           animate="animate"
@@ -39,16 +42,18 @@ export const Page = ({ children, transparent, hideFooter }: PageProps) => {
           {children}
         </motion.div>
 
-        <motion.footer
-          className="absolute bottom-0 grid h-28 w-full place-items-center"
-          initial="initial"
-          animate="animate"
-          exit="exit"
-          custom={{ stageAnimations }}
-          variants={footerVariants}
-        >
-          {!hideFooter && <LogoNeutral className="h-12 w-12" />}
-        </motion.footer>
+        {!hideFooter && (
+          <motion.footer
+            className="absolute bottom-0 grid h-28 w-full place-items-center sm:h-36"
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            custom={{ stageAnimations }}
+            variants={footerVariants}
+          >
+            <LogoNeutral className="h-12 w-12" />
+          </motion.footer>
+        )}
       </motion.main>
     </>
   );
