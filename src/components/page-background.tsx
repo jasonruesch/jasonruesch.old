@@ -2,7 +2,7 @@ export const PageBackground = () => {
   return (
     <>
       <div
-        className="absolute -left-20 top-80 max-h-[calc(100vh-320px)] -rotate-45 transform-gpu overflow-hidden blur-3xl dark:hidden sm:left-1/4"
+        className="absolute -left-20 top-80 max-h-[calc(100vh-320px)] -rotate-45 transform-gpu overflow-hidden blur-3xl dark:hidden sm:left-1/4 lg:left-1/2"
         aria-hidden="true"
       >
         <div
@@ -15,7 +15,7 @@ export const PageBackground = () => {
       </div>
 
       <div
-        className="absolute -left-40 top-80 hidden max-h-[calc(100vh-320px)] rotate-90 transform-gpu justify-center overflow-hidden blur-3xl dark:flex sm:left-1/4 sm:top-40 sm:max-h-[calc(100vh-160px)] sm:rotate-45"
+        className="absolute -left-40 top-80 hidden max-h-[calc(100vh-320px)] rotate-90 transform-gpu justify-center overflow-hidden blur-3xl dark:flex sm:left-1/4 sm:top-40 sm:max-h-[calc(100vh-160px)] sm:rotate-45 lg:left-1/3"
         aria-hidden="true"
       >
         <div
