@@ -9,6 +9,7 @@ import { motion } from 'framer-motion';
 import { useContext } from 'react';
 import { Background } from './background';
 import { LogoNeutral } from './logo-neutral';
+import { PageBackground } from './page-background';
 
 const stageAnimations = false; // Used for testing what the page looks like during animations
 
@@ -26,7 +27,7 @@ export const Page = ({ children, transparent, hideFooter }: PageProps) => {
       <Background fixed={transparent} />
 
       <motion.main
-        className="relative z-10 min-h-screen"
+        className="min-h-screen"
         initial="initial"
         animate="animate"
         exit="exit"
@@ -35,11 +36,8 @@ export const Page = ({ children, transparent, hideFooter }: PageProps) => {
       >
         <motion.div
           className={clsx(
-            'grid min-h-screen place-items-center pt-safe-offset-16 px-safe-offset-4 supports-[-webkit-touch-callout:_none]:box-content sm:pt-safe-offset-20',
-            transparent ? '' : 'bg-neutral-100 dark:bg-neutral-800',
-            hideFooter
-              ? 'pb-safe-offset-4'
-              : 'pb-safe-offset-32 sm:pb-safe-offset-40'
+            'relative min-h-screen',
+            transparent ? '' : 'bg-neutral-100 dark:bg-neutral-800'
           )}
           initial={false}
           animate="animate"
@@ -47,7 +45,18 @@ export const Page = ({ children, transparent, hideFooter }: PageProps) => {
           variants={innerPageVariants}
           transition={{ duration: 0 }}
         >
-          {children}
+          {!transparent && <PageBackground />}
+
+          <div
+            className={clsx(
+              'relative z-10 grid min-h-screen place-items-center pt-safe-offset-16 px-safe-offset-4 supports-[-webkit-touch-callout:_none]:box-content sm:pt-safe-offset-20',
+              hideFooter
+                ? 'pb-safe-offset-4'
+                : 'pb-safe-offset-32 sm:pb-safe-offset-40'
+            )}
+          >
+            {children}
+          </div>
         </motion.div>
 
         {!hideFooter && (

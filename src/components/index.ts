@@ -12,6 +12,7 @@ export * from './nav-menu';
 export * from './nav-mobile';
 export * from './notification';
 export * from './page';
+export * from './page-background';
 export * from './page-nav-link';
 export * from './profile-image';
 export * from './puff-loader';
