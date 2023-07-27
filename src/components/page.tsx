@@ -1,8 +1,16 @@
-import { footerVariants, innerPageVariants, pageVariants } from '@/lib';
+import {
+  WillNavigateContext,
+  footerVariants,
+  innerPageVariants,
+  pageVariants,
+} from '@/lib';
 import clsx from 'clsx';
 import { motion } from 'framer-motion';
+import { useContext } from 'react';
 import { Background } from './background';
 import { LogoNeutral } from './logo-neutral';
+
+const stageAnimations = false; // Used for testing what the page looks like during animations
 
 interface PageProps {
   children: React.ReactNode;
@@ -11,7 +19,7 @@ interface PageProps {
 }
 
 export const Page = ({ children, transparent, hideFooter }: PageProps) => {
-  const stageAnimations = false; // Used for testing what the page looks like during animations
+  const { slideRight } = useContext(WillNavigateContext);
 
   return (
     <>
@@ -22,7 +30,7 @@ export const Page = ({ children, transparent, hideFooter }: PageProps) => {
         initial="initial"
         animate="animate"
         exit="exit"
-        custom={{ transparent, stageAnimations }}
+        custom={{ transparent, slideRight, stageAnimations }}
         variants={pageVariants}
       >
         <motion.div

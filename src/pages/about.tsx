@@ -35,7 +35,7 @@ export const AboutPage = () => {
         >
           Get in touch
           <ArrowRightIcon
-            className="ml-1 inline-block h-4 w-4"
+            className="pointer-events-none ml-1 inline-block h-4 w-4"
             aria-hidden="true"
           />
         </PageNavLink>

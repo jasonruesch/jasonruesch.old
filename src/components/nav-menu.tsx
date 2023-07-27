@@ -9,10 +9,9 @@ import { PageNavLink } from './page-nav-link';
 export interface NavMenuProps {
   className?: string;
   navItems: [string, PageMeta][];
-  onLinkClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
 }
 
-export const NavMenu = ({ className, navItems, onLinkClick }: NavMenuProps) => {
+export const NavMenu = ({ className, navItems }: NavMenuProps) => {
   const { pathname } = useLocation();
   const hasActive = navItems.some(([path]) => isCurrentPath(path, pathname));
 
@@ -30,14 +29,17 @@ export const NavMenu = ({ className, navItems, onLinkClick }: NavMenuProps) => {
             clsx(
               'rounded-md p-2',
               hasActive
-                ? 'text-cyan-500 hover:text-neutral-700 dark:text-violet-400 dark:hover:text-neutral-200'
+                ? 'text-cyan-500 hover:text-neutral-700 focus:outline-none dark:text-violet-400 dark:hover:text-neutral-200'
                 : '',
               open ? '!text-neutral-900 dark:!text-neutral-50' : ''
             )
           }
         >
           <span className="sr-only">Open nav menu</span>
-          <EllipsisVerticalIcon className="h-6 w-6" aria-hidden="true" />
+          <EllipsisVerticalIcon
+            className="pointer-events-none h-6 w-6"
+            aria-hidden="true"
+          />
         </Menu.Button>
       </div>
 
@@ -55,9 +57,10 @@ export const NavMenu = ({ className, navItems, onLinkClick }: NavMenuProps) => {
             {navItems.map(([path, page]) => (
               <Menu.Item key={path}>
                 {({ active }) => (
-                  <PageNavLink
+                  <Menu.Button
+                    as={PageNavLink}
                     to={path}
-                    className={({ isActive }) =>
+                    className={({ isActive }: { isActive: boolean }) =>
                       clsx(
                         'group flex w-full items-center px-4 py-2 text-sm',
                         active ? 'bg-neutral-200 dark:bg-neutral-700' : '',
@@ -69,10 +72,9 @@ export const NavMenu = ({ className, navItems, onLinkClick }: NavMenuProps) => {
                           : ''
                       )
                     }
-                    onClick={onLinkClick}
                   >
                     {page.name}
-                  </PageNavLink>
+                  </Menu.Button>
                 )}
               </Menu.Item>
             ))}

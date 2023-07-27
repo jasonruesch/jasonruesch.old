@@ -8,14 +8,12 @@ export interface NavMobileProps {
   className?: string;
   primaryNavItems: [string, PageMeta][];
   secondaryNavItems: [string, PageMeta][];
-  onLinkClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
 }
 
 export const NavMobile = ({
   className,
   primaryNavItems,
   secondaryNavItems,
-  onLinkClick,
 }: NavMobileProps) => {
   const { pathname } = useLocation();
 
@@ -34,7 +32,6 @@ export const NavMobile = ({
                   ? 'border-cyan-500 dark:border-violet-400'
                   : 'border-transparent'
               )}
-              onClick={onLinkClick}
             >
               {page.name}
             </Disclosure.Button>
@@ -55,7 +52,6 @@ export const NavMobile = ({
                   ? 'border-cyan-500 dark:border-violet-400'
                   : 'border-transparent'
               )}
-              onClick={onLinkClick}
             >
               {page.name}
             </Disclosure.Button>

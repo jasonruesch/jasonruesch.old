@@ -18,7 +18,7 @@ export const GitHubLink = ({ className }: GitHubLinkProps) => {
       <span className="sr-only">Jason Ruesch on GitHub</span>
       <svg
         viewBox="0 0 16 16"
-        className="h-6 w-6"
+        className="pointer-events-none h-6 w-6"
         fill="currentColor"
         aria-hidden="true"
       >

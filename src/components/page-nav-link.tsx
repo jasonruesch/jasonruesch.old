@@ -1,7 +1,7 @@
-import { forwardRef, useCallback } from 'react';
+import { MouseEvent, forwardRef, useCallback } from 'react';
 import { NavLink, NavLinkProps, useLocation } from 'react-router-dom';
 
-import { getPage, navigateEventChannel } from '@/lib';
+import { duration, getPage, navigateEventChannel } from '@/lib';
 
 interface CustomNavLinkProps {
   to: string;
@@ -22,9 +22,25 @@ export const PageNavLink = forwardRef(
     const handleMouseOver = useCallback(() => {
       navigateEventChannel.emit('onWillNavigate', {
         page,
-        currentPathname: pathname,
+        pathname: pathname,
       });
     }, [page, pathname]);
+
+    const handleClick = useCallback(
+      (e: MouseEvent<HTMLAnchorElement>) => {
+        if (to === pathname) {
+          return;
+        }
+
+        navigateEventChannel.emit('onNavigateStart');
+
+        // End navigation after a delay to allow animations to complete
+        setTimeout(() => {
+          navigateEventChannel.emit('onNavigateEnd');
+        }, duration * 1000);
+      },
+      [to, pathname]
+    );
 
     return (
       <NavLink
@@ -32,8 +48,9 @@ export const PageNavLink = forwardRef(
         {...props}
         to={to}
         end={props.end || to === '/'}
-        onMouseOver={handleMouseOver}
-        onTouchStart={handleMouseOver}
+        onMouseOverCapture={handleMouseOver}
+        onTouchStartCapture={handleMouseOver}
+        onClickCapture={handleClick}
       >
         {props.children}
       </NavLink>

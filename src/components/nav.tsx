@@ -5,10 +5,9 @@ import { PageNavLink } from './page-nav-link';
 export interface NavProps {
   className?: string;
   navItems: [string, PageMeta][];
-  onLinkClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
 }
 
-export const Nav = ({ className, navItems, onLinkClick }: NavProps) => {
+export const Nav = ({ className, navItems }: NavProps) => {
   return (
     <nav className={clsx('h-full space-x-8', className)}>
       {navItems.map(([path, page]) => (
@@ -23,7 +22,6 @@ export const Nav = ({ className, navItems, onLinkClick }: NavProps) => {
                 : 'border-transparent text-neutral-500 hover:border-neutral-300 hover:text-neutral-700 dark:text-neutral-400 dark:hover:border-neutral-600 dark:hover:text-neutral-200'
             )
           }
-          onClick={onLinkClick}
         >
           {page.name}
         </PageNavLink>

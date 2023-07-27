@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom';
 import App from './app/app';
 import AppError from './app/app-error';
+import { RouteHandle } from './lib';
 import {
   AboutPage,
   ContactPageWithFormik,
@@ -30,7 +31,11 @@ const router = createBrowserRouter([
           // { path: 'contact', element: <ContactPage />, action: contactAction },
           { path: 'contact', element: <ContactPageWithFormik /> },
           { path: 'privacy', element: <PrivacyPage /> },
-          { path: 'easter-egg/:uid', element: <EasterEggPage /> },
+          {
+            path: 'easter-egg/:uid',
+            element: <EasterEggPage />,
+            handle: { transparent: true } satisfies RouteHandle,
+          },
           { path: '*', element: <Navigate to="/" /> },
         ],
       },

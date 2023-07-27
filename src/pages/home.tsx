@@ -1,34 +1,75 @@
 import { Page, PageNavLink } from '@/components';
 
 import { ProfileImage } from '@/components';
-import { homeVariants, useWindowSize } from '@/lib';
+import { NavigatingContext, homeVariants, useWindowSize } from '@/lib';
 import { ChevronDoubleRightIcon } from '@heroicons/react/20/solid';
 import { motion, useAnimationControls, useReducedMotion } from 'framer-motion';
-import { useCallback, useEffect } from 'react';
+import { useCallback, useContext, useEffect, useState } from 'react';
 
 export const HomePage = () => {
   const shouldReduceMotion = useReducedMotion();
   const controls = useAnimationControls();
+  const [ready, setReady] = useState(false);
+  const { navigating } = useContext(NavigatingContext);
   const [xSmallScreen] = useWindowSize();
 
   const stopAnimation = useCallback(async () => {
+    console.debug('[HomePage] stopAnimation');
+
     controls.stop();
     controls.set('initial');
   }, [controls]);
 
   const startAnimation = useCallback(async () => {
+    console.debug('[HomePage] startAnimation');
+
     controls.start('animate');
   }, [controls]);
 
   const resetAnimation = useCallback(async () => {
+    console.debug('[HomePage] resetAnimation');
+
     await stopAnimation();
     await startAnimation();
   }, [startAnimation, stopAnimation]);
 
+  useEffect(() => {
+    if (!ready) {
+      return;
+    }
+
+    console.debug('[HomePage] navigating', navigating);
+
+    if (navigating) {
+      stopAnimation();
+    } else {
+      startAnimation();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [navigating, startAnimation, stopAnimation]);
+
   // Reset animation when screen size changes
   useEffect(() => {
+    if (!ready) {
+      return;
+    }
+
+    console.debug('[HomePage] xSmallScreen', xSmallScreen);
+
     resetAnimation();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [xSmallScreen, resetAnimation]);
+
+  useEffect(() => {
+    if (!navigating) {
+      startAnimation();
+    }
+
+    console.debug('[HomePage] ready');
+
+    setReady(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [startAnimation]);
 
   return (
     <Page hideFooter>
@@ -68,10 +109,10 @@ export const HomePage = () => {
               custom={xSmallScreen}
               animate={controls}
               variants={shouldReduceMotion ? undefined : homeVariants}
-              className="w-8 -translate-x-3 sm:w-12 sm:-translate-x-6"
+              className="pointer-events-none w-8 -translate-x-3 sm:w-12 sm:-translate-x-6"
             >
               <ChevronDoubleRightIcon
-                className="h-8 w-8 sm:h-12 sm:w-12"
+                className="pointer-events-none h-8 w-8 sm:h-12 sm:w-12"
                 aria-hidden="true"
               />
             </motion.div>

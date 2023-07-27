@@ -11,7 +11,10 @@ export const MessageImage = ({ className }: MessageImageProps) => {
       id="svg2"
       viewBox="0 0 2666.6667 2666.6667"
       xmlns="http://www.w3.org/2000/svg"
-      className={clsx('relative mx-auto h-36 w-36', className)}
+      className={clsx(
+        'pointer-events-none relative mx-auto h-36 w-36',
+        className
+      )}
     >
       <defs id="defs6" />
       <g id="g8" transform="matrix(1.3333333,0,0,-1.3333333,0,2666.6667)">

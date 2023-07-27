@@ -95,7 +95,10 @@ export const Notification = ({
                 }}
               >
                 <span className="sr-only">Close</span>
-                <XMarkIcon className="h-5 w-5" aria-hidden="true" />
+                <XMarkIcon
+                  className="pointer-events-none h-5 w-5"
+                  aria-hidden="true"
+                />
               </button>
             </div>
           </div>

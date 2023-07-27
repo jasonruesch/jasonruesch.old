@@ -3,27 +3,8 @@ import {
   DynamicAnimationOptions,
   Variants,
 } from 'framer-motion';
-import { navigateEventChannel } from './navigate-event-channel';
-import { PageMeta, getPage } from './page-meta';
 
-let slideRight = false;
-
-export const handleWillNavigate = ({
-  page,
-  currentPathname,
-}: {
-  page?: PageMeta;
-  currentPathname: string;
-}) => {
-  if (page) {
-    const currentPage = getPage(currentPathname);
-    const currentPageIndex = currentPage?.index as number;
-    slideRight = currentPageIndex > page.index;
-  }
-};
-
-navigateEventChannel.on('onWillNavigate', handleWillNavigate);
-
+/** Duration in seconds */
 export const duration = 3;
 
 export const headerAnimations = {
@@ -57,7 +38,7 @@ export const headerAnimations = {
 };
 
 export const pageVariants: Variants = {
-  initial: ({ transparent }) => {
+  initial: ({ transparent, slideRight }) => {
     return {
       ...(transparent ? { y: '-100%' } : { x: slideRight ? '-100%' : '100%' }),
       scale: 0.6,
@@ -104,13 +85,11 @@ export const pageVariants: Variants = {
           delay: (4 / 10) * duration,
           duration: (3 / 10) * duration,
           type: 'spring',
-          bounce: 0.25,
         },
         y: {
           delay: (4 / 10) * duration,
           duration: (3 / 10) * duration,
           type: 'spring',
-          bounce: 0.25,
         },
         width: { delay: duration },
         height: { delay: duration },
@@ -126,7 +105,7 @@ export const pageVariants: Variants = {
       },
     };
   },
-  exit: ({ transparent }) => {
+  exit: ({ transparent, slideRight }) => {
     return {
       ...(transparent ? { y: '-100%' } : { x: slideRight ? '100%' : '-100%' }),
       scale: 0.6,

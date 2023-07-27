@@ -60,11 +60,11 @@ export const Input = ({
         className="absolute right-0 top-1.5 z-10 hidden items-center focus:flex peer-focus:peer-[&:not(:empty)]:flex group-hover:peer-enabled:peer-[&:not(:empty)]:flex dark:text-neutral-300"
         // onClick={resetField}
       >
-        <XCircleIcon className="h-5 w-5" />
+        <XCircleIcon className="pointer-events-none h-5 w-5" />
       </button>
 
       <div className="pointer-events-none absolute right-0 top-1.5 hidden items-center group-hover:hidden group-[.has-error]:flex peer-focus:hidden peer-focus:peer-[&:not(:empty)]:!hidden group-hover:peer-enabled:peer-[&:not(:empty)]:!hidden">
-        <ExclamationCircleIcon className="h-5 w-5 text-red-500" />
+        <ExclamationCircleIcon className="pointer-events-none h-5 w-5 text-red-500" />
       </div>
 
       <p
