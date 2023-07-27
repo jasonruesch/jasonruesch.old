@@ -22,7 +22,7 @@ export const Page = ({ children, transparent, hideFooter }: PageProps) => {
       <Background fixed={transparent} />
 
       <motion.main
-        className="relative min-h-screen"
+        className="relative min-h-screen z-10"
         initial="initial"
         animate="animate"
         exit="exit"
@@ -44,9 +44,9 @@ export const Page = ({ children, transparent, hideFooter }: PageProps) => {
 
           <div
             className={clsx(
-              'relative z-10 grid min-h-screen place-items-center pt-safe-offset-16 px-safe-offset-4 supports-[-webkit-touch-callout:_none]:box-content sm:pt-safe-offset-20',
+              'relative z-10 grid min-h-screen place-items-center pt-safe-offset-16 px-safe-offset-4 supports-[-webkit-touch-callout:_none]:box-content sm:pt-safe-offset-20 sm:px-safe-offset-6 lg:pt-safe-offset-24 lg:px-safe-offset-8',
               hideFooter
-                ? 'pb-safe-offset-4'
+                ? 'pb-safe-offset-4 lg:pb-safe-offset-8'
                 : 'pb-safe-offset-32 sm:pb-safe-offset-40'
             )}
           >

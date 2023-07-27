@@ -5,7 +5,7 @@ import {
 } from 'framer-motion';
 
 /** Duration in seconds */
-export const duration = 3;
+export const duration = 2.5;
 
 export const headerAnimations = {
   out: {

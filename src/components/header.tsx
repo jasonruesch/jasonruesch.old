@@ -90,7 +90,7 @@ export const Header = () => {
 
         return (
           <>
-            <div className="flex h-12 items-center pt-safe px-safe-offset-4 sm:h-16">
+            <div className="flex h-12 items-center pt-safe px-safe-offset-4 sm:h-16 sm:px-safe-offset-6 lg:px-safe-offset-8">
               <div className="flex-1 sm:hidden">
                 {/* Mobile menu button */}
                 <Disclosure.Button className="inline-flex items-center rounded-md p-2 text-neutral-500 hover:text-neutral-700 focus:outline-none dark:text-neutral-400 dark:hover:text-neutral-200">
