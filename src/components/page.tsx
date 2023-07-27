@@ -1,9 +1,4 @@
-import {
-  WillNavigateContext,
-  footerVariants,
-  innerPageVariants,
-  pageVariants,
-} from '@/lib';
+import { WillNavigateContext, innerPageVariants, pageVariants } from '@/lib';
 import clsx from 'clsx';
 import { motion } from 'framer-motion';
 import { useContext } from 'react';
@@ -27,7 +22,7 @@ export const Page = ({ children, transparent, hideFooter }: PageProps) => {
       <Background fixed={transparent} />
 
       <motion.main
-        className="min-h-screen"
+        className="relative min-h-screen"
         initial="initial"
         animate="animate"
         exit="exit"
@@ -57,20 +52,13 @@ export const Page = ({ children, transparent, hideFooter }: PageProps) => {
           >
             {children}
           </div>
-        </motion.div>
 
-        {!hideFooter && (
-          <motion.footer
-            className="absolute bottom-0 grid h-28 w-full place-items-center sm:h-36"
-            initial="initial"
-            animate="animate"
-            exit="exit"
-            custom={{ stageAnimations }}
-            variants={footerVariants}
-          >
-            <LogoNeutral className="h-12 w-12" />
-          </motion.footer>
-        )}
+          {!hideFooter && (
+            <footer className="absolute bottom-0 grid h-28 w-full place-items-center sm:h-36">
+              <LogoNeutral className="h-12 w-12" />
+            </footer>
+          )}
+        </motion.div>
       </motion.main>
     </>
   );
