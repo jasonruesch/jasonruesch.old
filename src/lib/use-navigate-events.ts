@@ -18,7 +18,7 @@ export const WillNavigateContext = createContext<WillNavigateValue>({
   slideRight: false,
 });
 
-export const useNavigateContextEvents = () => {
+export const useNavigateEvents = () => {
   const [navigatingValue, setNavigatingValue] = useState<NavigatingValue>({
     navigating: false,
   });

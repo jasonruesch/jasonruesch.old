@@ -10,7 +10,7 @@ export const WindowResizeContext = createContext<WindowResizeValue>({
   xSmallScreen: window.innerWidth < smallScreenWidth,
 });
 
-export const useWindowResizeContextEvent = () => {
+export const useWindowResizeEvent = () => {
   const [windowResizeValue, setWindowResizeValue] = useState<WindowResizeValue>(
     {
       xSmallScreen: window.innerWidth < smallScreenWidth,

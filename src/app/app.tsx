@@ -3,13 +3,13 @@ import {
   NavigatingContext,
   WillNavigateContext,
   WindowResizeContext,
-  useNavigateContextEvents,
-  useWindowResizeContextEvent,
+  useNavigateEvents,
+  useWindowResizeEvent,
 } from '@/lib';
 
 export function App() {
-  const { navigatingValue, willNavigateValue } = useNavigateContextEvents();
-  const windowResizeValue = useWindowResizeContextEvent();
+  const { navigatingValue, willNavigateValue } = useNavigateEvents();
+  const windowResizeValue = useWindowResizeEvent();
 
   return (
     <NavigatingContext.Provider value={navigatingValue}>
