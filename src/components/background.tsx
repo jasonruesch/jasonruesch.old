@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import { useTheme } from 'next-themes';
 import { createPortal } from 'react-dom';
 import styles from './background.module.css';
 
@@ -7,13 +8,14 @@ interface BackgroundProps {
 }
 
 export const Background = ({ fixed }: BackgroundProps) => {
-  const matchMedia = window.matchMedia('(prefers-color-scheme: dark)');
-  const darkMode = matchMedia.matches;
+  const { resolvedTheme } = useTheme();
 
   return createPortal(
     <div
       className={clsx(
-        darkMode ? styles['background-dark'] : styles.background,
+        resolvedTheme === 'dark'
+          ? styles['background-dark']
+          : styles.background,
         fixed ? 'fixed' : 'absolute',
         'inset-0 h-screen w-screen'
       )}

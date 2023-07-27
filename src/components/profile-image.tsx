@@ -1,6 +1,7 @@
 import profileImage from '@/assets/jasonruesch-512.png';
 import profileDarkImage from '@/assets/jasonruesch-dark-512.png';
 import clsx from 'clsx';
+import { useTheme } from 'next-themes';
 
 export interface ProfileImageProps {
   className?: string;
@@ -11,8 +12,7 @@ export const ProfileImage = ({
   className,
   large = false,
 }: ProfileImageProps) => {
-  const matchMedia = window.matchMedia('(prefers-color-scheme: dark)');
-  const darkMode = matchMedia.matches;
+  const { resolvedTheme } = useTheme();
 
   return (
     <figure
@@ -23,7 +23,7 @@ export const ProfileImage = ({
       )}
     >
       <img
-        src={darkMode ? profileDarkImage : profileImage}
+        src={resolvedTheme === 'dark' ? profileDarkImage : profileImage}
         alt="Jason Ruesch"
       />
     </figure>
