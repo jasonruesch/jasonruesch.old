@@ -5,7 +5,7 @@ import {
 } from 'framer-motion';
 
 /** Duration in seconds */
-export const duration = 2.5;
+export const duration = 3;
 
 export const headerAnimations = {
   out: {
@@ -13,7 +13,7 @@ export const headerAnimations = {
     options: {
       y: {
         duration: (2 / 10) * duration,
-        ease: 'easeInOut',
+        ease: 'easeOut',
       },
       opacity: {
         delay: (2 / 10) * duration,
@@ -27,7 +27,7 @@ export const headerAnimations = {
       y: {
         delay: (6 / 10) * duration,
         duration: (2 / 10) * duration,
-        ease: 'easeInOut',
+        ease: 'easeIn',
       },
       opacity: {
         delay: (6 / 10) * duration,
@@ -197,7 +197,7 @@ export const homeVariants: Variants = {
         x: {
           delay: 0.5,
           times: [0, 0.5, 0.675, 1],
-          ease: ['linear', 'linear', 'backOut'],
+          ease: ['easeOut', 'easeInOut', 'backOut'],
           duration: 0.75,
           repeat: Infinity,
           repeatDelay: 0.5,
