@@ -16,6 +16,7 @@ import { Nav } from './nav';
 import { NavMenu } from './nav-menu';
 import { NavMobile } from './nav-mobile';
 import { PageNavLink } from './page-nav-link';
+import { ThemeSelector } from './theme-selector';
 
 export const Header = () => {
   const { pathname } = useLocation();
@@ -119,10 +120,11 @@ export const Header = () => {
                 navItems={primaryNavItems}
               />
 
-              <div className="flex flex-1 justify-end sm:flex-none">
+              <div className="flex flex-1 justify-end gap-1 sm:flex-none sm:gap-3">
+                <ThemeSelector />
                 <GitHubLink />
                 <NavMenu
-                  className="hidden sm:ml-3 sm:block"
+                  className="hidden sm:block"
                   navItems={secondaryNavItems}
                 />
               </div>
