@@ -1,75 +1,46 @@
 import { Page, PageNavLink } from '@/components';
 
 import { ProfileImage } from '@/components';
-import { NavigatingContext, homeVariants, useWindowSize } from '@/lib';
+import { WindowResizeContext, homeVariants } from '@/lib';
 import { ChevronDoubleRightIcon } from '@heroicons/react/20/solid';
 import { motion, useAnimationControls, useReducedMotion } from 'framer-motion';
-import { useCallback, useContext, useEffect, useState } from 'react';
+import { useCallback, useContext, useEffect } from 'react';
 
 export const HomePage = () => {
   const shouldReduceMotion = useReducedMotion();
   const controls = useAnimationControls();
-  const [ready, setReady] = useState(false);
-  const { navigating } = useContext(NavigatingContext);
-  const [xSmallScreen] = useWindowSize();
+  const { xSmallScreen } = useContext(WindowResizeContext);
+
+  const debugLog = useCallback(
+    (name: string) => {
+      console.debug(`[HomePage] ${name}`, {
+        xSmallScreen,
+      });
+    },
+    [xSmallScreen]
+  );
 
   const stopAnimation = useCallback(async () => {
-    console.debug('[HomePage] stopAnimation');
-
+    debugLog('stopAnimation');
     controls.stop();
-    controls.set('initial');
-  }, [controls]);
+    controls.set('stop');
+  }, [debugLog, controls]);
 
   const startAnimation = useCallback(async () => {
-    console.debug('[HomePage] startAnimation');
-
+    debugLog('startAnimation');
     controls.start('animate');
-  }, [controls]);
+  }, [debugLog, controls]);
 
   const resetAnimation = useCallback(async () => {
-    console.debug('[HomePage] resetAnimation');
-
+    debugLog('resetAnimation');
     await stopAnimation();
     await startAnimation();
-  }, [startAnimation, stopAnimation]);
+  }, [debugLog, startAnimation, stopAnimation]);
 
   useEffect(() => {
-    if (!ready) {
-      return;
-    }
-
-    console.debug('[HomePage] navigating', navigating);
-
-    if (navigating) {
-      stopAnimation();
-    } else {
-      startAnimation();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [navigating, startAnimation, stopAnimation]);
-
-  // Reset animation when screen size changes
-  useEffect(() => {
-    if (!ready) {
-      return;
-    }
-
-    console.debug('[HomePage] xSmallScreen', xSmallScreen);
-
+    debugLog('useEffect');
     resetAnimation();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [xSmallScreen, resetAnimation]);
-
-  useEffect(() => {
-    if (!navigating) {
-      startAnimation();
-    }
-
-    console.debug('[HomePage] ready');
-
-    setReady(true);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [startAnimation]);
+  }, [xSmallScreen, resetAnimation, debugLog]);
 
   return (
     <Page hideFooter>
@@ -96,8 +67,14 @@ export const HomePage = () => {
 
         <motion.div
           className="mx-auto w-16 sm:w-24"
-          onHoverStart={() => stopAnimation()}
-          onHoverEnd={() => startAnimation()}
+          onHoverStart={() => {
+            debugLog('onHoverStart');
+            stopAnimation();
+          }}
+          onHoverEnd={() => {
+            debugLog('onHoverEnd');
+            startAnimation();
+          }}
         >
           <PageNavLink
             to="/about"
@@ -105,9 +82,10 @@ export const HomePage = () => {
             className="flex justify-end text-sm font-medium text-cyan-500 hover:text-cyan-600 dark:text-violet-400 dark:hover:text-violet-500"
           >
             <motion.div
-              initial={false}
-              custom={xSmallScreen}
+              initial="initial"
               animate={controls}
+              exit="exit"
+              custom={xSmallScreen}
               variants={shouldReduceMotion ? undefined : homeVariants}
               className="pointer-events-none w-8 -translate-x-3 sm:w-12 sm:-translate-x-6"
             >

@@ -1,4 +1,4 @@
-import { MouseEvent, forwardRef, useCallback } from 'react';
+import { forwardRef, useCallback } from 'react';
 import { NavLink, NavLinkProps, useLocation } from 'react-router-dom';
 
 import { duration, getPage, navigateEventChannel } from '@/lib';
@@ -19,28 +19,38 @@ export const PageNavLink = forwardRef(
     const { pathname } = useLocation();
     const page = getPage(to);
 
+    const debugLog = useCallback(
+      (name: string) => {
+        console.debug(`[PageNavLink] ${name}`, { to, pathname });
+      },
+      [to, pathname]
+    );
+
     const handleMouseOver = useCallback(() => {
+      debugLog('handleMouseOver');
+
       navigateEventChannel.emit('onWillNavigate', {
         page,
         pathname: pathname,
       });
-    }, [page, pathname]);
+    }, [debugLog, page, pathname]);
 
-    const handleClick = useCallback(
-      (e: MouseEvent<HTMLAnchorElement>) => {
-        if (to === pathname) {
-          return;
-        }
+    const handleClick = useCallback(() => {
+      if (to === pathname) {
+        return;
+      }
 
-        navigateEventChannel.emit('onNavigateStart');
+      debugLog('handleClick: onNavigateStart');
 
-        // End navigation after a delay to allow animations to complete
-        setTimeout(() => {
-          navigateEventChannel.emit('onNavigateEnd');
-        }, duration * 1000);
-      },
-      [to, pathname]
-    );
+      navigateEventChannel.emit('onNavigateStart');
+
+      // End navigation after a delay to allow animations to complete
+      setTimeout(() => {
+        debugLog('handleClick: onNavigateEnd');
+
+        navigateEventChannel.emit('onNavigateEnd');
+      }, duration * 1000);
+    }, [debugLog, to, pathname]);
 
     return (
       <NavLink
@@ -51,6 +61,7 @@ export const PageNavLink = forwardRef(
         onMouseOverCapture={handleMouseOver}
         onTouchStartCapture={handleMouseOver}
         onClickCapture={handleClick}
+        onTouchEndCapture={handleClick}
       >
         {props.children}
       </NavLink>

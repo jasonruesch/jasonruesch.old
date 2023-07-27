@@ -1,9 +1,24 @@
-import { useEffect, useState } from 'react';
-import { NavigatingValue, WillNavigateValue } from './navigate-contexts';
+import { createContext, useEffect, useState } from 'react';
 import { navigateEventChannel } from './navigate-event-channel';
 import { getPage } from './page-meta';
 
-export const useNavigateContextsEvents = () => {
+export interface NavigatingValue {
+  navigating: boolean;
+}
+
+export interface WillNavigateValue {
+  slideRight: boolean;
+}
+
+export const NavigatingContext = createContext<NavigatingValue>({
+  navigating: false,
+});
+
+export const WillNavigateContext = createContext<WillNavigateValue>({
+  slideRight: false,
+});
+
+export const useNavigateContextEvents = () => {
   const [navigatingValue, setNavigatingValue] = useState<NavigatingValue>({
     navigating: false,
   });

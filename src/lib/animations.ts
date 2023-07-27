@@ -49,7 +49,7 @@ export const pageVariants: Variants = {
       overflow: 'hidden',
       borderRadius: '2rem',
       boxShadow: transparent
-        ? 'none'
+        ? '0 0 0 0 rgb(0 0 0 / 0), 0 0 0 0 rgb(0 0 0 / 0)'
         : '0 0 0 1px rgb(0 0 0 / 0.5), 0 25px 50px -12px rgb(0 0 0 / 0.75)',
     };
   },
@@ -64,7 +64,7 @@ export const pageVariants: Variants = {
         overflow: 'hidden',
         borderRadius: '2rem',
         boxShadow: transparent
-          ? 'none'
+          ? '0 0 0 0 rgb(0 0 0 / 0), 0 0 0 0 rgb(0 0 0 / 0)'
           : '0 0 0 1px rgb(0 0 0 / 0.5), 0 25px 50px -12px rgb(0 0 0 / 0.75)',
       };
     }
@@ -78,7 +78,7 @@ export const pageVariants: Variants = {
       maxHeight: 'none',
       position: 'static',
       overflow: 'visible',
-      boxShadow: 'none',
+      boxShadow: '0 0 0 0 rgb(0 0 0 / 0), 0 0 0 0 rgb(0 0 0 / 0)',
       borderRadius: '0rem',
       transition: {
         x: {
@@ -116,7 +116,7 @@ export const pageVariants: Variants = {
       overflow: 'hidden',
       borderRadius: '2rem',
       boxShadow: transparent
-        ? 'none'
+        ? '0 0 0 0 rgb(0 0 0 / 0), 0 0 0 0 rgb(0 0 0 / 0)'
         : '0 0 0 1px rgb(0 0 0 / 0.5), 0 25px 50px -12px rgb(0 0 0 / 0.75)',
       transition: {
         x: {
@@ -180,18 +180,38 @@ export const footerVariants: Variants = {
 
 export const homeVariants: Variants = {
   initial: (xSmallScreen: boolean) => {
+    return { opacity: 0, x: !xSmallScreen ? -24 : -16 };
+  },
+  stop: (xSmallScreen: boolean) => {
     return { x: !xSmallScreen ? -24 : -16 };
   },
   animate: (xSmallScreen: boolean) => {
     return {
+      opacity: 1,
       x: !xSmallScreen ? [-24, -48, 0, -24] : [-16, -32, 0, -16],
       transition: {
-        delay: 0.5,
-        times: [0, 0.5, 0.675, 1],
-        ease: ['linear', 'linear', 'backOut'],
-        duration: 0.75,
-        repeat: Infinity,
-        repeatDelay: 0.5,
+        opacity: {
+          delay: duration,
+          duration: 0.5,
+        },
+        x: {
+          delay: 0.5,
+          times: [0, 0.5, 0.675, 1],
+          ease: ['linear', 'linear', 'backOut'],
+          duration: 0.75,
+          repeat: Infinity,
+          repeatDelay: 0.5,
+        },
+      },
+    };
+  },
+  exit: (xSmallScreen: boolean) => {
+    return {
+      opacity: 0,
+      x: !xSmallScreen ? -24 : -16,
+      transition: {
+        opacity: { duration: 0 },
+        x: { duration: 0 },
       },
     };
   },

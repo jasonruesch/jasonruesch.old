@@ -2,20 +2,25 @@ import { AnimatedRoutes, EasterEggLink, Header } from '@/components';
 import {
   NavigatingContext,
   WillNavigateContext,
-  useNavigateContextsEvents,
+  WindowResizeContext,
+  useNavigateContextEvents,
+  useWindowResizeContextEvent,
 } from '@/lib';
 
 export function App() {
-  const { navigatingValue, willNavigateValue } = useNavigateContextsEvents();
+  const { navigatingValue, willNavigateValue } = useNavigateContextEvents();
+  const windowResizeValue = useWindowResizeContextEvent();
 
   return (
     <NavigatingContext.Provider value={navigatingValue}>
       <WillNavigateContext.Provider value={willNavigateValue}>
-        <div className="relative overflow-hidden">
-          <Header />
-          <AnimatedRoutes />
-          <EasterEggLink />
-        </div>
+        <WindowResizeContext.Provider value={windowResizeValue}>
+          <div className="relative overflow-hidden">
+            <Header />
+            <AnimatedRoutes />
+            <EasterEggLink />
+          </div>
+        </WindowResizeContext.Provider>
       </WillNavigateContext.Provider>
     </NavigatingContext.Provider>
   );
