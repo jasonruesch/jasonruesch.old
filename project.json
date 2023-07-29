@@ -42,7 +42,7 @@
       "executor": "nx:run-commands",
       "defaultConfiguration": "development",
       "options": {
-        "command": "vercel dev --listen 4200 --yes"
+        "command": "vercel dev --listen 4200"
       },
       "configurations": {
         "development": {},

@@ -36,6 +36,7 @@ export const NavMenu = ({ className, navItems }: NavMenuProps) => {
                   open ? '!text-neutral-900 dark:!text-neutral-50' : ''
                 )
               }
+              title="Navigation menu"
             >
               <span className="sr-only">Open nav menu</span>
               <EllipsisVerticalIcon

@@ -6,6 +6,7 @@ export interface PageMeta {
   type?: 'primary' | 'secondary';
 }
 
+export const redirectPage: PageMeta = { name: 'Redirect', index: -2 };
 export const easterEggPage: PageMeta = { name: 'Easter Egg', index: -1 };
 export const homePage: PageMeta = {
   name: 'Home',
@@ -25,6 +26,7 @@ export const privacyPage: PageMeta = {
 };
 
 export const pages = new Map<string, PageMeta>([
+  ['/redirect', redirectPage],
   ['/easter-egg', easterEggPage],
   ['/', homePage],
   ['/about', aboutPage],
