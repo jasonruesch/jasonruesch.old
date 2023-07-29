@@ -2,6 +2,7 @@ import { PageMeta, isCurrentPath } from '@/lib';
 import { Disclosure } from '@headlessui/react';
 import clsx from 'clsx';
 import { useLocation } from 'react-router-dom';
+import { GitHubLink } from './github-link';
 import { PageNavLink } from './page-nav-link';
 
 export interface NavMobileProps {
@@ -58,7 +59,7 @@ export const NavMobile = ({
           ))}
         </li>
         <li className="mt-auto space-y-1 pt-2 pb-safe-offset-4">
-          {/* TODO: Add profile avatar or something here */}
+          <GitHubLink className="pl-4" />
         </li>
       </ul>
     </nav>

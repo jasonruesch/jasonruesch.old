@@ -10,10 +10,11 @@ import AppError from './app/app-error';
 import { RouteHandle } from './lib';
 import {
   AboutPage,
-  ContactPageWithFormik,
+  ContactPage,
   EasterEggPage,
   HomePage,
   PrivacyPage,
+  RedirectPage,
 } from './pages';
 import ErrorPage from './pages/error';
 
@@ -28,14 +29,14 @@ const router = createBrowserRouter([
         children: [
           { index: true, element: <HomePage /> },
           { path: 'about', element: <AboutPage /> },
-          // { path: 'contact', element: <ContactPage />, action: contactAction },
-          { path: 'contact', element: <ContactPageWithFormik /> },
+          { path: 'contact', element: <ContactPage /> },
           { path: 'privacy', element: <PrivacyPage /> },
           {
             path: 'easter-egg/:uid',
             element: <EasterEggPage />,
             handle: { transparent: true } satisfies RouteHandle,
           },
+          { path: 'redirect', element: <RedirectPage /> },
           { path: '*', element: <Navigate to="/" /> },
         ],
       },

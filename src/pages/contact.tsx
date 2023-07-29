@@ -1,5 +1,17 @@
-import { Input, MessageImage, Page, Textarea } from '@/components';
-import { Form } from 'react-router-dom';
+import {
+  Input,
+  MessageImage,
+  Notification,
+  NotificationOptions,
+  Page,
+  PuffLoader,
+  Textarea,
+} from '@/components';
+import { useFormik } from 'formik';
+import { useState } from 'react';
+import * as Yup from 'yup';
+
+const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
 interface Contact {
   name: string;
@@ -7,13 +19,10 @@ interface Contact {
   message: string;
 }
 
-export async function action({ request }: { request: Request }) {
-  const formData = await request.formData();
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const updates = Object.fromEntries(formData as any) as Contact;
-  console.log(updates);
-  // const contact = await createContact(updates);
-  // return redirect(`/contacts/${contact.id}`);
+interface FormValues {
+  name: string;
+  email: string;
+  message: string;
 }
 
 interface ContactPageProps {
@@ -21,10 +30,73 @@ interface ContactPageProps {
 }
 
 export const ContactPage = ({ contact }: ContactPageProps) => {
-  const resetForm = () => {
-    const form = document.getElementById('contact-form') as HTMLFormElement;
-    form.reset();
-  };
+  const [notification, setNotification] = useState<NotificationOptions | null>(
+    null
+  );
+  const validationSchema = Yup.object().shape({
+    name: Yup.string().required('Your name is required.'),
+    email: Yup.string()
+      .required('Your email address is required.')
+      .email('Your email address is invalid.'),
+    message: Yup.string().required('Your message is required.'),
+  });
+
+  const {
+    handleSubmit,
+    handleChange,
+    values,
+    errors,
+    touched,
+    isSubmitting,
+    resetForm,
+  } = useFormik<FormValues>({
+    initialValues: {
+      name: '',
+      email: '',
+      message: '',
+    },
+    validationSchema,
+    validateOnBlur: false,
+    onSubmit: async (values: FormValues) => {
+      console.debug(JSON.stringify(values, null, 2));
+
+      await sleep(500);
+
+      try {
+        const response = await fetch('/api/email', {
+          body: JSON.stringify({ ...values, template: 'contact' }),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          method: 'POST',
+        });
+
+        if (response.status !== 200) {
+          throw new Error(response.statusText);
+        }
+
+        const { error } = await response.json();
+
+        if (error) {
+          throw new Error(error);
+        }
+
+        resetForm();
+
+        setNotification({
+          type: 'success',
+          message: 'Thank you for your message!',
+        });
+      } catch (error) {
+        console.error(error);
+
+        setNotification({
+          type: 'error',
+          message: 'Something went wrong. Please try again.',
+        });
+      }
+    },
+  });
 
   return (
     <>
@@ -35,7 +107,7 @@ export const ContactPage = ({ contact }: ContactPageProps) => {
           <h1 className="font-display text-2xl font-medium text-neutral-500 dark:text-neutral-400 sm:text-4xl">
             Get In Touch
           </h1>
-          <Form method="post" id="contact-form">
+          <form noValidate onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 gap-x-6 gap-y-3 sm:grid-cols-2">
               <div className="sm:col-span-1">
                 <Input
@@ -46,10 +118,10 @@ export const ContactPage = ({ contact }: ContactPageProps) => {
                   placeholder="Jane Doe"
                   required
                   defaultValue={contact?.name}
-                  // value={values.name}
-                  // onChange={handleChange}
+                  value={values.name}
+                  onChange={handleChange}
                   labelText="Name"
-                  // errorText={!!errors.name && touched.name ? errors.name : ''}
+                  errorText={!!errors.name && touched.name ? errors.name : ''}
                 />
               </div>
 
@@ -62,10 +134,12 @@ export const ContactPage = ({ contact }: ContactPageProps) => {
                   placeholder="jane.doe@example.com"
                   required
                   defaultValue={contact?.email}
-                  // value={values.email}
-                  // onChange={handleChange}
+                  value={values.email}
+                  onChange={handleChange}
                   labelText="Email address"
-                  // errorText={!!errors.email && touched.email ? errors.email : ''}
+                  errorText={
+                    !!errors.email && touched.email ? errors.email : ''
+                  }
                 />
               </div>
 
@@ -77,12 +151,12 @@ export const ContactPage = ({ contact }: ContactPageProps) => {
                   placeholder="How can I help you?"
                   required
                   defaultValue={contact?.message}
-                  // value={values.message}
-                  // onChange={handleChange}
+                  value={values.message}
+                  onChange={handleChange}
                   labelText="Message"
-                  // errorText={
-                  //   !!errors.message && touched.message ? errors.message : ''
-                  // }
+                  errorText={
+                    !!errors.message && touched.message ? errors.message : ''
+                  }
                 />
               </div>
             </div>
@@ -99,32 +173,31 @@ export const ContactPage = ({ contact }: ContactPageProps) => {
                 <button
                   type="submit"
                   className="btn-primary ml-3 focus:ring-offset-neutral-100 dark:focus:ring-offset-neutral-800"
-                  // disabled={isSubmitting}
+                  disabled={isSubmitting}
                 >
-                  {/* {isSubmitting ? (
-                  <>
-                    <PuffLoader className="mr-3 inline h-4 w-4" />
-                    Sending...
-                  </>
-                ) : (
-                  <>Send</>
-                )} */}
-                  Send
+                  {isSubmitting ? (
+                    <>
+                      <PuffLoader className="mr-3 inline h-4 w-4" />
+                      Sending...
+                    </>
+                  ) : (
+                    <>Send</>
+                  )}
                 </button>
               </div>
             </div>
-          </Form>
+          </form>
         </div>
       </Page>
 
-      {/* {notification && (
+      {notification && (
         <Notification
           type={notification.type}
           onHide={() => setNotification(null)}
         >
           {notification.message}
         </Notification>
-      )} */}
+      )}
     </>
   );
 };

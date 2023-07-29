@@ -1,4 +1,10 @@
-import { WillNavigateContext, innerPageVariants, pageVariants } from '@/lib';
+import {
+  FadePageAnimationVariants,
+  PageAnimationVariants,
+  PageAnimationsContext,
+  SlidePageAnimationVariants,
+  WillNavigateContext,
+} from '@/lib';
 import clsx from 'clsx';
 import { motion } from 'framer-motion';
 import { useContext } from 'react';
@@ -9,13 +15,24 @@ import { PageBackground } from './page-background';
 const stageAnimations = false; // Used for testing what the page looks like during animations
 
 interface PageProps {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   transparent?: boolean;
   hideFooter?: boolean;
 }
 
 export const Page = ({ children, transparent, hideFooter }: PageProps) => {
   const { slideRight } = useContext(WillNavigateContext);
+  const [pageAnimationType] = useContext(PageAnimationsContext);
+  const {
+    pageContentVariants,
+    pageFooterVariants,
+    pageScrollVariants,
+    pageVariants,
+  } = (
+    pageAnimationType === 'slide'
+      ? SlidePageAnimationVariants
+      : FadePageAnimationVariants
+  ) as PageAnimationVariants;
 
   return (
     <>
@@ -37,26 +54,37 @@ export const Page = ({ children, transparent, hideFooter }: PageProps) => {
           initial={false}
           animate="animate"
           exit="exit"
-          variants={innerPageVariants}
+          variants={pageScrollVariants}
           transition={{ duration: 0 }}
         >
           {!transparent && <PageBackground />}
 
-          <div
+          <motion.div
             className={clsx(
               'relative z-10 grid min-h-screen place-items-center pt-safe-offset-16 px-safe-offset-4 supports-[-webkit-touch-callout:none]:box-content sm:pt-safe-offset-20 sm:px-safe-offset-6 lg:pt-safe-offset-24 lg:px-safe-offset-8',
               hideFooter
                 ? 'pb-safe-offset-4 lg:pb-safe-offset-8'
                 : 'pb-safe-offset-32 sm:pb-safe-offset-40'
             )}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            variants={transparent ? undefined : pageContentVariants}
           >
             {children}
-          </div>
+          </motion.div>
 
           {!hideFooter && (
-            <footer className="absolute bottom-0 grid h-28 w-full place-items-center sm:h-36">
+            <motion.footer
+              className="absolute bottom-0 grid h-28 w-full place-items-center sm:h-36"
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              custom={{ stageAnimations }}
+              variants={transparent ? undefined : pageFooterVariants}
+            >
               <LogoNeutral className="h-12 w-12" />
-            </footer>
+            </motion.footer>
           )}
         </motion.div>
       </motion.main>

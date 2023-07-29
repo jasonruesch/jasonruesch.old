@@ -13,7 +13,7 @@ export type PageNavLinkProps = CustomNavLinkProps &
 
 export const PageNavLink = forwardRef(
   (
-    { to, ...props }: PageNavLinkProps,
+    { to, onMouseOver, onTouchStart, onClick, ...props }: PageNavLinkProps,
     forwardedRef: React.ForwardedRef<HTMLAnchorElement>
   ) => {
     const { pathname } = useLocation();
@@ -26,31 +26,49 @@ export const PageNavLink = forwardRef(
       [to, pathname]
     );
 
-    const handleMouseOver = useCallback(() => {
-      debugLog('handleMouseOver');
+    const handleMouseOver = useCallback(
+      (
+        event:
+          | React.MouseEvent<HTMLAnchorElement>
+          | React.TouchEvent<HTMLAnchorElement>
+      ) => {
+        if (event instanceof TouchEvent) {
+          onTouchStart?.(event as React.TouchEvent<HTMLAnchorElement>);
+        } else {
+          onMouseOver?.(event as React.MouseEvent<HTMLAnchorElement>);
+        }
 
-      navigateEventChannel.emit('onWillNavigate', {
-        page,
-        pathname: pathname,
-      });
-    }, [debugLog, page, pathname]);
+        debugLog('handleMouseOver');
 
-    const handleClick = useCallback(() => {
-      if (to === pathname) {
-        return;
-      }
+        navigateEventChannel.emit('onWillNavigate', {
+          page,
+          pathname: pathname,
+        });
+      },
+      [page, pathname, onMouseOver, onTouchStart, debugLog]
+    );
 
-      debugLog('handleClick: onNavigateStart');
+    const handleClick = useCallback(
+      (event: React.MouseEvent<HTMLAnchorElement>) => {
+        onClick?.(event);
 
-      navigateEventChannel.emit('onNavigateStart');
+        if (to === pathname) {
+          return;
+        }
 
-      // End navigation after a delay to allow animations to complete
-      setTimeout(() => {
-        debugLog('handleClick: onNavigateEnd');
+        debugLog('handleClick: onNavigateStart');
 
-        navigateEventChannel.emit('onNavigateEnd');
-      }, duration * 1000);
-    }, [debugLog, to, pathname]);
+        navigateEventChannel.emit('onNavigateStart');
+
+        // End navigation after a delay to allow animations to complete
+        setTimeout(() => {
+          debugLog('handleClick: onNavigateEnd');
+
+          navigateEventChannel.emit('onNavigateEnd');
+        }, duration * 1000);
+      },
+      [to, pathname, onClick, debugLog]
+    );
 
     return (
       <NavLink
@@ -58,10 +76,9 @@ export const PageNavLink = forwardRef(
         {...props}
         to={to}
         end={props.end || to === '/'}
-        onMouseOverCapture={handleMouseOver}
-        onTouchStartCapture={handleMouseOver}
-        onClickCapture={handleClick}
-        onTouchEndCapture={handleClick}
+        onMouseOver={handleMouseOver}
+        onTouchStart={handleMouseOver}
+        onClick={handleClick}
       >
         {props.children}
       </NavLink>

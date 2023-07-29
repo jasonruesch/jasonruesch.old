@@ -1,60 +1,46 @@
+import { PageAnimationType, PageAnimationsContext } from '@/lib';
 import { Menu, Transition } from '@headlessui/react';
-import {
-  MoonIcon as MoonIconOutline,
-  SunIcon as SunIconOutline,
-} from '@heroicons/react/24/outline';
-import {
-  ComputerDesktopIcon,
-  MoonIcon,
-  SunIcon,
-} from '@heroicons/react/24/solid';
 import clsx from 'clsx';
-import { useTheme } from 'next-themes';
-import { Fragment, useEffect } from 'react';
+import { Fragment, useCallback, useContext } from 'react';
+import { FadeIcon, LayersIcon, SlideIcon } from './icons';
 
-const menuItems = [
+interface MenuItem {
+  name: string;
+  type: PageAnimationType;
+  icon: JSX.Element;
+}
+
+const menuItems: MenuItem[] = [
   {
-    name: 'Light',
-    theme: 'light',
-    icon: <SunIcon className="mr-3 h-5 w-5" aria-hidden="true" />,
+    name: 'Fade',
+    type: 'fade',
+    icon: <FadeIcon className="mr-3 h-5 w-5" />,
   },
   {
-    name: 'Dark',
-    theme: 'dark',
-    icon: <MoonIcon className="mr-3 h-5 w-5" aria-hidden="true" />,
-  },
-  {
-    name: 'System',
-    theme: 'system',
-    icon: <ComputerDesktopIcon className="mr-3 h-5 w-5" aria-hidden="true" />,
+    name: 'Slide',
+    type: 'slide',
+    icon: <SlideIcon className="mr-3 h-5 w-5" />,
   },
 ];
 
-export interface ThemeSelectorProps {
+export interface PageAnimationsSelectorProps {
   className?: string;
 }
 
-export const ThemeSelector = ({ className }: ThemeSelectorProps) => {
-  const { theme, resolvedTheme, setTheme } = useTheme();
-
-  useEffect(() => {
-    if (resolvedTheme === 'system') {
-      return;
-    }
-
-    const media = window.matchMedia('(prefers-color-scheme: dark)');
-    const systemTheme = media.matches ? 'dark' : 'light';
-    const themeColor = document.querySelector(
-      `meta[name="theme-color"][media="(prefers-color-scheme: ${systemTheme})"]`
-    ) as HTMLMetaElement | null;
-    if (
-      themeColor &&
-      ((resolvedTheme === 'dark' && themeColor.content !== '#262626') ||
-        (resolvedTheme === 'light' && themeColor.content !== '#f5f5f5'))
-    ) {
-      themeColor.content = `#${resolvedTheme === 'dark' ? '262626' : 'f5f5f5'}`;
-    }
-  }, [resolvedTheme]);
+export const PageAnimationsSelector = ({
+  className,
+}: PageAnimationsSelectorProps) => {
+  const [pageAnimationType, setPageAnimationType] = useContext(
+    PageAnimationsContext
+  );
+  const handleSetPageAnimationType = useCallback(
+    (type: PageAnimationType) => {
+      if (type !== pageAnimationType) {
+        setPageAnimationType(type);
+      }
+    },
+    [pageAnimationType, setPageAnimationType]
+  );
 
   return (
     <Menu
@@ -71,23 +57,13 @@ export const ThemeSelector = ({ className }: ThemeSelectorProps) => {
               className={({ open }) =>
                 clsx(
                   'rounded-md p-2',
-                  theme !== 'system'
-                    ? 'text-cyan-500 hover:text-neutral-700 dark:text-violet-400 dark:hover:text-neutral-200'
-                    : '',
-                  open ? '!text-neutral-900 dark:!text-neutral-50' : ''
+                  open ? 'text-neutral-900 dark:text-neutral-50' : ''
                 )
               }
-              title="Theme"
+              title="Page animations"
             >
-              <span className="sr-only">Open theme menu</span>
-              <SunIconOutline
-                className="h-6 w-6 dark:hidden"
-                aria-hidden="true"
-              />
-              <MoonIconOutline
-                className="hidden h-6 w-6 dark:inline"
-                aria-hidden="true"
-              />
+              <span className="sr-only">Open page animations menu</span>
+              <LayersIcon className="h-6 w-6" />
             </Menu.Button>
           </div>
 
@@ -106,16 +82,17 @@ export const ThemeSelector = ({ className }: ThemeSelectorProps) => {
                   <Menu.Item key={item.name}>
                     {({ active }) => (
                       <button
+                        type="button"
                         className={clsx(
                           'group flex w-full items-center px-4 py-2 text-sm',
                           active ? 'bg-neutral-200 dark:bg-neutral-700' : '',
-                          theme === item.theme
+                          pageAnimationType === item.type
                             ? active
                               ? 'text-neutral-900 dark:text-neutral-50'
                               : 'text-cyan-500 dark:text-violet-400'
                             : 'text-neutral-900 dark:text-neutral-50'
                         )}
-                        onClick={() => setTheme(item.theme)}
+                        onClick={() => handleSetPageAnimationType(item.type)}
                       >
                         {item.icon}
                         {item.name}

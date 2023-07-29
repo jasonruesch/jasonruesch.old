@@ -14,6 +14,7 @@ export const GitHubLink = ({ className }: GitHubLinkProps) => {
       )}
       target="_blank"
       rel="noreferrer"
+      title="GitHub"
     >
       <span className="sr-only">Jason Ruesch on GitHub</span>
       <svg
