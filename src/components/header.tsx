@@ -80,7 +80,7 @@ export const Header = () => {
             ? 'bg-gradient-to-b from-neutral-100 to-neutral-50/75 shadow-sm shadow-black/20 backdrop-blur-sm dark:from-neutral-800 dark:to-neutral-900/75 dark:shadow-black/50'
             : '',
           open ? 'h-full via-neutral-50/75 dark:via-neutral-900/75' : '',
-          'fixed inset-x-0 top-0 z-20 flex flex-col supports-[-webkit-touch-callout:_none]:-mt-px supports-[-webkit-touch-callout:_none]:pt-px'
+          'fixed inset-x-0 top-0 z-20 flex flex-col supports-[-webkit-touch-callout:none]:-mt-px supports-[-webkit-touch-callout:none]:pt-px'
         )
       }
     >

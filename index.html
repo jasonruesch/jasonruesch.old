@@ -215,6 +215,31 @@
       href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC&amp;display=swap"
       rel="stylesheet"
     />
+
+    <script>
+      !(function () {
+        try {
+          var d = document.documentElement,
+            c = d.classList;
+          c.remove('light', 'dark');
+          var e = localStorage.getItem('theme');
+          if ('system' === e || (!e && true)) {
+            var t = '(prefers-color-scheme: dark)',
+              m = window.matchMedia(t);
+            if (m.media !== t || m.matches) {
+              d.style.colorScheme = 'dark';
+              c.add('dark');
+            } else {
+              d.style.colorScheme = 'light';
+              c.add('light');
+            }
+          } else if (e) {
+            c.add(e || '');
+          }
+          if (e === 'light' || e === 'dark') d.style.colorScheme = e;
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body
     class="bg-neutral-100 text-neutral-900 antialiased dark:bg-neutral-800 dark:text-neutral-50"
