@@ -19,7 +19,7 @@ export const RedirectPage = () => {
   return (
     <Page>
       <div>
-        <h1 className="font-display text-2xl font-medium text-neutral-500 dark:text-neutral-400 sm:text-4xl">
+        <h1 className="font-display text-2xl font-medium sm:text-4xl">
           Redirecting...
         </h1>
       </div>

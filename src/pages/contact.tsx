@@ -101,92 +101,94 @@ export const ContactPage = ({ contact }: ContactPageProps) => {
   return (
     <>
       <Page>
-        <div className="mx-auto w-full max-w-xl space-y-4">
+        <div className="mx-auto w-full max-w-xl">
           <MessageImage />
 
-          <h1 className="font-display text-2xl font-medium text-neutral-500 dark:text-neutral-400 sm:text-4xl">
+          <h1 className="font-display text-2xl font-medium sm:text-4xl">
             Get In Touch
           </h1>
-          <form noValidate onSubmit={handleSubmit}>
-            <div className="grid grid-cols-1 gap-x-6 gap-y-3 sm:grid-cols-2">
-              <div className="sm:col-span-1">
-                <Input
-                  type="text"
-                  name="name"
-                  id="name"
-                  autoComplete="name"
-                  placeholder="Jane Doe"
-                  required
-                  defaultValue={contact?.name}
-                  value={values.name}
-                  onChange={handleChange}
-                  labelText="Name"
-                  errorText={!!errors.name && touched.name ? errors.name : ''}
-                />
+          <div className="mt-4 space-y-4 text-neutral-600 dark:text-neutral-400 lg:mt-8">
+            <form noValidate onSubmit={handleSubmit}>
+              <div className="grid grid-cols-1 gap-x-6 gap-y-3 sm:grid-cols-2">
+                <div className="sm:col-span-1">
+                  <Input
+                    type="text"
+                    name="name"
+                    id="name"
+                    autoComplete="name"
+                    placeholder="Jane Doe"
+                    required
+                    defaultValue={contact?.name}
+                    value={values.name}
+                    onChange={handleChange}
+                    labelText="Name"
+                    errorText={!!errors.name && touched.name ? errors.name : ''}
+                  />
+                </div>
+
+                <div className="sm:col-span-1">
+                  <Input
+                    type="email"
+                    name="email"
+                    id="email"
+                    autoComplete="email"
+                    placeholder="jane.doe@example.com"
+                    required
+                    defaultValue={contact?.email}
+                    value={values.email}
+                    onChange={handleChange}
+                    labelText="Email address"
+                    errorText={
+                      !!errors.email && touched.email ? errors.email : ''
+                    }
+                  />
+                </div>
+
+                <div className="sm:col-span-2">
+                  <Textarea
+                    rows={3}
+                    name="message"
+                    id="message"
+                    placeholder="How can I help you?"
+                    required
+                    defaultValue={contact?.message}
+                    value={values.message}
+                    onChange={handleChange}
+                    labelText="Message"
+                    errorText={
+                      !!errors.message && touched.message ? errors.message : ''
+                    }
+                  />
+                </div>
               </div>
 
-              <div className="sm:col-span-1">
-                <Input
-                  type="email"
-                  name="email"
-                  id="email"
-                  autoComplete="email"
-                  placeholder="jane.doe@example.com"
-                  required
-                  defaultValue={contact?.email}
-                  value={values.email}
-                  onChange={handleChange}
-                  labelText="Email address"
-                  errorText={
-                    !!errors.email && touched.email ? errors.email : ''
-                  }
-                />
+              <div className="mt-2">
+                <div className="flex justify-end">
+                  <button
+                    type="button"
+                    className="btn-secondary focus:ring-offset-neutral-100 dark:focus:ring-offset-neutral-800"
+                    onClick={() => resetForm()}
+                  >
+                    Reset
+                  </button>
+                  <button
+                    type="submit"
+                    className="btn-primary ml-3 focus:ring-offset-neutral-100 dark:focus:ring-offset-neutral-800"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <PuffLoader className="mr-3 inline h-4 w-4" />
+                        Sending...
+                      </>
+                    ) : (
+                      <>Send</>
+                    )}
+                  </button>
+                </div>
               </div>
-
-              <div className="sm:col-span-2">
-                <Textarea
-                  rows={3}
-                  name="message"
-                  id="message"
-                  placeholder="How can I help you?"
-                  required
-                  defaultValue={contact?.message}
-                  value={values.message}
-                  onChange={handleChange}
-                  labelText="Message"
-                  errorText={
-                    !!errors.message && touched.message ? errors.message : ''
-                  }
-                />
-              </div>
-            </div>
-
-            <div className="mt-2">
-              <div className="flex justify-end">
-                <button
-                  type="button"
-                  className="btn-secondary focus:ring-offset-neutral-100 dark:focus:ring-offset-neutral-800"
-                  onClick={() => resetForm()}
-                >
-                  Reset
-                </button>
-                <button
-                  type="submit"
-                  className="btn-primary ml-3 focus:ring-offset-neutral-100 dark:focus:ring-offset-neutral-800"
-                  disabled={isSubmitting}
-                >
-                  {isSubmitting ? (
-                    <>
-                      <PuffLoader className="mr-3 inline h-4 w-4" />
-                      Sending...
-                    </>
-                  ) : (
-                    <>Send</>
-                  )}
-                </button>
-              </div>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
       </Page>
 

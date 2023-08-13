@@ -44,10 +44,12 @@ export const HomePage = () => {
 
   return (
     <Page hideFooterLogo>
-      <div className="mx-auto w-full max-w-xl space-y-4 text-center">
-        <ProfileImage large />
+      <div className="mx-auto w-full max-w-xl text-center">
+        <div className="mb-4 lg:mb-8">
+          <ProfileImage large />
+        </div>
 
-        <h1 className="font-display text-2xl font-medium text-neutral-500 dark:text-neutral-400 sm:text-4xl">
+        <h1 className="font-display text-2xl font-medium sm:text-4xl">
           Hi, I&apos;m
           <br />
           <span className="text-cyan-500 dark:text-violet-400">
@@ -66,7 +68,7 @@ export const HomePage = () => {
         </h1>
 
         <motion.div
-          className="mx-auto w-16 sm:w-24"
+          className="mx-auto mt-4 w-16 sm:w-24 lg:mt-8"
           onHoverStart={() => {
             debugLog('onHoverStart');
             stopAnimation();
