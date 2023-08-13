@@ -1,5 +1,7 @@
 import { PageAnimationVariants, duration } from './animations';
 
+const scale = 0.5;
+
 export const SlidePageAnimationVariants = {
   pageVariants: {
     initial: ({ transparent, slideRight }) => {
@@ -8,7 +10,7 @@ export const SlidePageAnimationVariants = {
         ...(transparent
           ? { y: '-100%' }
           : { x: slideRight ? '-100%' : '100%' }),
-        scale: 0.6,
+        scale,
         width: '100vw',
         height: '100vh',
         maxHeight: '-webkit-fill-available',
@@ -23,7 +25,7 @@ export const SlidePageAnimationVariants = {
     animate: ({ transparent, stageAnimations }) => {
       if (stageAnimations) {
         return {
-          scale: 0.6,
+          scale,
           width: '100vw',
           height: '100vh',
           maxHeight: '-webkit-fill-available',
@@ -82,7 +84,7 @@ export const SlidePageAnimationVariants = {
         ...(transparent
           ? { y: '-100%' }
           : { x: slideRight ? '100%' : '-100%' }),
-        scale: 0.6,
+        scale,
         width: '100vw',
         height: '100vh',
         maxHeight: '-webkit-fill-available',

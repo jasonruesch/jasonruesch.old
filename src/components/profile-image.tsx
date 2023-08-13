@@ -1,5 +1,5 @@
-import profileImage from '@/assets/jasonruesch-512.png';
 import profileDarkImage from '@/assets/jasonruesch-dark-512.png';
+import profileLightImage from '@/assets/jasonruesch-light-512.png';
 import clsx from 'clsx';
 import { useTheme } from 'next-themes';
 
@@ -23,7 +23,7 @@ export const ProfileImage = ({
       )}
     >
       <img
-        src={resolvedTheme === 'dark' ? profileDarkImage : profileImage}
+        src={resolvedTheme === 'dark' ? profileDarkImage : profileLightImage}
         alt="Jason Ruesch"
       />
     </figure>

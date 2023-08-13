@@ -1,11 +1,13 @@
 import { PageAnimationVariants, duration } from './animations';
 
+const scale = 0.5;
+
 export const FadePageAnimationVariants = {
   pageVariants: {
     initial: ({ transparent }) => {
       return {
         opacity: 0,
-        scale: 0.6,
+        scale,
         width: '100vw',
         height: '100vh',
         maxHeight: '-webkit-fill-available',
@@ -20,7 +22,7 @@ export const FadePageAnimationVariants = {
     animate: ({ transparent, stageAnimations }) => {
       if (stageAnimations) {
         return {
-          scale: 0.6,
+          scale,
           width: '100vw',
           height: '100vh',
           maxHeight: '-webkit-fill-available',
@@ -65,7 +67,7 @@ export const FadePageAnimationVariants = {
     exit: ({ transparent }) => {
       return {
         opacity: 0,
-        scale: 0.6,
+        scale,
         width: '100vw',
         height: '100vh',
         maxHeight: '-webkit-fill-available',

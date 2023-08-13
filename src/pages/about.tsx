@@ -11,22 +11,31 @@ export const AboutPage = () => {
           About Me
         </h1>
         <p>
-          My name is Jason Ruesch. I am a software engineer, web developer, and
-          designer currently living in Raleigh, NC. I enjoy creating software
-          that not only looks amazing, but is also engaging and easy to use! I
-          have a passion for learning new technologies and building things that
-          are useful to others.
+          Hello, I'm Jason Ruesch, a Senior Frontend Software Engineer with a
+          passion for creating exceptional user experiences. Armed with a
+          Bachelor of Science in Computer Science, I've dedicated my career to
+          the dynamic world of web development, honing my skills in crafting
+          intuitive and visually stunning interfaces.
         </p>
         <p>
-          Outside of work, I like to spend time with my family outdoors, play
-          video games, and watch movies and tv shows. I also spend time tending
-          to my urban farm, which includes chickens, dogs, cats and the constant
-          flow of foster pets!
+          When I'm not immersed in code, I'm often found exploring the virtual
+          realms of video games or catching up on the latest movies and TV
+          shows. My love for technology doesn't end with my profession; I'm
+          always excited to dive into the latest software development
+          technologies, eager to stay at the forefront of this ever-evolving
+          field.
         </p>
         <p>
-          I am always open to connect. If you are interested in learning more
-          about how I can help you with your web development or design needs,
-          please reach out.
+          Beyond my professional pursuits, my family is my anchor, and spending
+          quality time with them is incredibly important to me. Whether it's a
+          weekend adventure or a cozy evening together, their support fuels my
+          drive to excel in both my personal and professional life.
+        </p>
+        <p>
+          Feel free to connect with me to discuss all things frontend
+          development, share recommendations for must-watch shows, or to
+          exchange thoughts on the latest gaming adventures. Let's explore the
+          digital world together!
         </p>
 
         <PageNavLink
