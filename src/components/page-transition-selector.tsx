@@ -1,12 +1,13 @@
-import { PageAnimationType, PageAnimationsContext } from '@/lib';
+import { PageTransitionContext, PageTransitionType } from '@/lib';
 import { Menu, Transition } from '@headlessui/react';
+import { ArrowRightOnRectangleIcon } from '@heroicons/react/24/outline';
 import clsx from 'clsx';
 import { Fragment, useCallback, useContext } from 'react';
-import { FadeIcon, LayersIcon, SlideIcon } from './icons';
+import { FadeIcon, SlideIcon } from './icons';
 
 interface MenuItem {
   name: string;
-  type: PageAnimationType;
+  type: PageTransitionType;
   icon: JSX.Element;
 }
 
@@ -23,23 +24,23 @@ const menuItems: MenuItem[] = [
   },
 ];
 
-export interface PageAnimationsSelectorProps {
+export interface PageTransitionSelectorProps {
   className?: string;
 }
 
-export const PageAnimationsSelector = ({
+export const PageTransitionSelector = ({
   className,
-}: PageAnimationsSelectorProps) => {
-  const [pageAnimationType, setPageAnimationType] = useContext(
-    PageAnimationsContext
+}: PageTransitionSelectorProps) => {
+  const [pageTransitionType, setPageTransitionType] = useContext(
+    PageTransitionContext
   );
-  const handleSetPageAnimationType = useCallback(
-    (type: PageAnimationType) => {
-      if (type !== pageAnimationType) {
-        setPageAnimationType(type);
+  const handleSetPageTransitionType = useCallback(
+    (type: PageTransitionType) => {
+      if (type !== pageTransitionType) {
+        setPageTransitionType(type);
       }
     },
-    [pageAnimationType, setPageAnimationType]
+    [pageTransitionType, setPageTransitionType]
   );
 
   return (
@@ -60,10 +61,10 @@ export const PageAnimationsSelector = ({
                   open ? 'text-neutral-900 dark:text-neutral-50' : ''
                 )
               }
-              title="Page animations"
+              title="Page transition"
             >
-              <span className="sr-only">Open page animations menu</span>
-              <LayersIcon className="h-6 w-6" />
+              <span className="sr-only">Open page transition menu</span>
+              <ArrowRightOnRectangleIcon className="h-6 w-6" />
             </Menu.Button>
           </div>
 
@@ -86,13 +87,13 @@ export const PageAnimationsSelector = ({
                         className={clsx(
                           'group flex w-full items-center px-4 py-2 text-sm',
                           active ? 'bg-neutral-200 dark:bg-neutral-700' : '',
-                          pageAnimationType === item.type
+                          pageTransitionType === item.type
                             ? active
                               ? 'text-neutral-900 dark:text-neutral-50'
                               : 'text-cyan-500 dark:text-violet-400'
                             : 'text-neutral-900 dark:text-neutral-50'
                         )}
-                        onClick={() => handleSetPageAnimationType(item.type)}
+                        onClick={() => handleSetPageTransitionType(item.type)}
                       >
                         {item.icon}
                         {item.name}

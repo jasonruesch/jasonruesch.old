@@ -102,7 +102,9 @@ export const ContactPage = ({ contact }: ContactPageProps) => {
     <>
       <Page>
         <div className="mx-auto w-full max-w-xl">
-          <MessageImage />
+          <div className="mb-4 lg:mb-8">
+            <MessageImage />
+          </div>
 
           <h1 className="font-display text-2xl font-medium sm:text-4xl">
             Get In Touch

@@ -1,4 +1,4 @@
-import { PageAnimationVariants, duration } from './animations';
+import { PageTransitionVariants, duration } from './animations';
 
 const scale = 0.5;
 
@@ -64,8 +64,6 @@ export const SlidePageAnimationVariants = {
             duration: (3 / 10) * duration,
             type: 'spring',
           },
-          width: { delay: duration },
-          height: { delay: duration },
           maxHeight: { delay: duration },
           position: { delay: duration },
           overflow: { delay: duration },
@@ -125,4 +123,4 @@ export const SlidePageAnimationVariants = {
       return { y: `-${window.scrollY}px` };
     },
   },
-} satisfies PageAnimationVariants;
+} satisfies PageTransitionVariants;

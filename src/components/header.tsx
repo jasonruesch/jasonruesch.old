@@ -15,8 +15,8 @@ import { Logo } from './logo';
 import { Nav } from './nav';
 import { NavMenu } from './nav-menu';
 import { NavMobile } from './nav-mobile';
-import { PageAnimationsSelector } from './page-animations-selector';
 import { PageNavLink } from './page-nav-link';
+import { PageTransitionSelector } from './page-transition-selector';
 import { ThemeSelector } from './theme-selector';
 
 export const Header = () => {
@@ -122,7 +122,7 @@ export const Header = () => {
               />
 
               <div className="flex flex-1 justify-end gap-1 sm:flex-none sm:gap-3">
-                <PageAnimationsSelector />
+                <PageTransitionSelector />
                 <ThemeSelector />
                 <GitHubLink className="hidden sm:block" />
                 <NavMenu

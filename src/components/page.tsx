@@ -1,7 +1,7 @@
 import {
   FadePageAnimationVariants,
-  PageAnimationVariants,
-  PageAnimationsContext,
+  PageTransitionContext,
+  PageTransitionVariants,
   SlidePageAnimationVariants,
   WillNavigateContext,
 } from '@/lib';
@@ -22,7 +22,7 @@ interface PageProps {
 
 export const Page = ({ children, transparent, hideFooterLogo }: PageProps) => {
   const { slideRight } = useContext(WillNavigateContext);
-  const [pageAnimationType] = useContext(PageAnimationsContext);
+  const [pageAnimationType] = useContext(PageTransitionContext);
   const {
     pageContentVariants,
     pageFooterVariants,
@@ -32,7 +32,7 @@ export const Page = ({ children, transparent, hideFooterLogo }: PageProps) => {
     pageAnimationType === 'slide'
       ? SlidePageAnimationVariants
       : FadePageAnimationVariants
-  ) as PageAnimationVariants;
+  ) as PageTransitionVariants;
 
   return (
     <>
@@ -80,7 +80,7 @@ export const Page = ({ children, transparent, hideFooterLogo }: PageProps) => {
             <motion.footer
               className={clsx(
                 hideFooterLogo ? 'h-14' : 'h-36 lg:h-44',
-                'absolute bottom-0 flex w-full flex-col items-center justify-end py-4 lg:py-8'
+                'absolute bottom-0 flex w-full flex-col items-center justify-end pt-4 pb-safe-offset-4 lg:pt-8 lg:pb-safe-offset-8'
               )}
               initial="initial"
               animate="animate"

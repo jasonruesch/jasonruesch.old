@@ -76,9 +76,9 @@ export const homeVariants: Variants = {
   },
 };
 
-export type PageAnimationType = 'fade' | 'slide';
+export type PageTransitionType = 'fade' | 'slide';
 
-export interface PageAnimationVariants {
+export interface PageTransitionVariants {
   pageVariants: Variants;
   pageScrollVariants: Variants;
   pageContentVariants?: Variants;

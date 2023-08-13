@@ -1,4 +1,4 @@
-import { PageAnimationVariants, duration } from './animations';
+import { PageTransitionVariants, duration } from './animations';
 
 const scale = 0.5;
 
@@ -50,8 +50,6 @@ export const FadePageAnimationVariants = {
             delay: (5 / 10) * duration,
             duration: 0,
           },
-          width: { delay: duration },
-          height: { delay: duration },
           maxHeight: { delay: duration },
           position: { delay: duration },
           overflow: { delay: duration },
@@ -150,4 +148,4 @@ export const FadePageAnimationVariants = {
       };
     },
   },
-} satisfies PageAnimationVariants;
+} satisfies PageTransitionVariants;

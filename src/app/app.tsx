@@ -1,11 +1,11 @@
 import { AnimatedRoutes, EasterEggLink, Header } from '@/components';
 import {
   NavigatingContext,
-  PageAnimationsContext,
+  PageTransitionContext,
   WillNavigateContext,
   WindowResizeContext,
   useNavigateEvents,
-  usePageAnimationsEvent,
+  usePageTransitionEvent,
   useWindowResizeEvent,
 } from '@/lib';
 import { ThemeProvider } from 'next-themes';
@@ -13,13 +13,13 @@ import { ThemeProvider } from 'next-themes';
 export function App() {
   const { navigatingValue, willNavigateValue } = useNavigateEvents();
   const windowResizeValue = useWindowResizeEvent();
-  const pageAnimations = usePageAnimationsEvent();
+  const pageTransition = usePageTransitionEvent();
 
   return (
     <NavigatingContext.Provider value={navigatingValue}>
       <WillNavigateContext.Provider value={willNavigateValue}>
         <WindowResizeContext.Provider value={windowResizeValue}>
-          <PageAnimationsContext.Provider value={pageAnimations}>
+          <PageTransitionContext.Provider value={pageTransition}>
             <ThemeProvider attribute="class">
               <div className="relative overflow-hidden">
                 <Header />
@@ -27,7 +27,7 @@ export function App() {
                 <EasterEggLink />
               </div>
             </ThemeProvider>
-          </PageAnimationsContext.Provider>
+          </PageTransitionContext.Provider>
         </WindowResizeContext.Provider>
       </WillNavigateContext.Provider>
     </NavigatingContext.Provider>
