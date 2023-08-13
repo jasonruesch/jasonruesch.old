@@ -10,7 +10,7 @@ export const EasterEggPage = () => {
   }
 
   return (
-    <Page transparent hideFooter>
+    <Page transparent>
       <div>
         <img src={easterEgg} alt="Easter Egg" className="h-full max-h-80" />
       </div>

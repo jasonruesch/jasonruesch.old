@@ -43,7 +43,7 @@ export const HomePage = () => {
   }, [xSmallScreen, resetAnimation, debugLog]);
 
   return (
-    <Page hideFooter>
+    <Page hideFooterLogo>
       <div className="mx-auto w-full max-w-xl space-y-4 text-center">
         <ProfileImage large />
 

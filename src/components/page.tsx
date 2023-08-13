@@ -17,10 +17,10 @@ const stageAnimations = false; // Used for testing what the page looks like duri
 interface PageProps {
   children?: React.ReactNode;
   transparent?: boolean;
-  hideFooter?: boolean;
+  hideFooterLogo?: boolean;
 }
 
-export const Page = ({ children, transparent, hideFooter }: PageProps) => {
+export const Page = ({ children, transparent, hideFooterLogo }: PageProps) => {
   const { slideRight } = useContext(WillNavigateContext);
   const [pageAnimationType] = useContext(PageAnimationsContext);
   const {
@@ -61,10 +61,12 @@ export const Page = ({ children, transparent, hideFooter }: PageProps) => {
 
           <motion.div
             className={clsx(
-              'relative z-10 grid min-h-screen place-items-center pt-safe-offset-16 px-safe-offset-4 supports-[-webkit-touch-callout:none]:box-content sm:pt-safe-offset-20 sm:px-safe-offset-6 lg:pt-safe-offset-24 lg:px-safe-offset-8',
-              hideFooter
+              transparent
                 ? 'pb-safe-offset-4 lg:pb-safe-offset-8'
-                : 'pb-safe-offset-32 sm:pb-safe-offset-40'
+                : hideFooterLogo
+                ? 'pb-safe-offset-14'
+                : 'pb-safe-offset-36 lg:pb-safe-offset-44',
+              'relative z-10 grid min-h-screen place-items-center pt-safe-offset-16 px-safe-offset-4 supports-[-webkit-touch-callout:none]:box-content sm:pt-safe-offset-20 sm:px-safe-offset-6 lg:pt-safe-offset-24 lg:px-safe-offset-8'
             )}
             initial="initial"
             animate="animate"
@@ -74,16 +76,24 @@ export const Page = ({ children, transparent, hideFooter }: PageProps) => {
             {children}
           </motion.div>
 
-          {!hideFooter && (
+          {!transparent && (
             <motion.footer
-              className="absolute bottom-0 grid h-28 w-full place-items-center sm:h-36"
+              className={clsx(
+                hideFooterLogo ? 'h-14' : 'h-36 lg:h-44',
+                'absolute bottom-0 flex w-full flex-col items-center justify-end py-4 lg:py-8'
+              )}
               initial="initial"
               animate="animate"
               exit="exit"
               custom={{ stageAnimations }}
               variants={transparent ? undefined : pageFooterVariants}
             >
-              <LogoNeutral className="h-12 w-12" />
+              {!hideFooterLogo && <LogoNeutral className="h-12 w-12 flex-1" />}
+
+              <p className="text-sm text-neutral-400 dark:text-neutral-500">
+                &copy; {new Date().getFullYear()} Jason Ruesch. All rights
+                reserved.
+              </p>
             </motion.footer>
           )}
         </motion.div>
