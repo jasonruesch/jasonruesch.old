@@ -702,12 +702,12 @@ export const PrivacyPage = () => {
           </section>
           <section>
             <a
-              className="flex items-center font-medium text-cyan-500 hover:text-cyan-600 dark:text-violet-400 dark:hover:text-violet-500"
+              className="inline-flex items-center gap-2 font-medium text-cyan-500 hover:text-cyan-600 dark:text-violet-400 dark:hover:text-violet-500"
               href="https://www.vecteezy.com/free-vector/background"
               target="_blank"
               rel="noreferrer"
             >
-              <span className="mr-2">Background Vectors by Vecteezy</span>
+              <span>Background Vectors by Vecteezy</span>
               <ArrowTopRightOnSquareIcon className="h-4 w-4" />
             </a>
           </section>

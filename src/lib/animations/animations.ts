@@ -79,8 +79,8 @@ export const homeVariants: Variants = {
 export type PageTransitionType = 'fade' | 'slide';
 
 export interface PageTransitionVariants {
-  pageVariants: Variants;
-  pageScrollVariants: Variants;
+  pageVariants?: Variants;
+  pageScrollVariants?: Variants;
   pageContentVariants?: Variants;
   pageFooterVariants?: Variants;
 }

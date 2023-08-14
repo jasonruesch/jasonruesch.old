@@ -14,6 +14,8 @@ import {
   EasterEggPage,
   HomePage,
   PrivacyPage,
+  ProjectListPage,
+  ProjectPage,
   RedirectPage,
 } from './pages';
 import ErrorPage from './pages/error';
@@ -29,6 +31,13 @@ const router = createBrowserRouter([
         children: [
           { index: true, element: <HomePage /> },
           { path: 'about', element: <AboutPage /> },
+          {
+            path: 'projects',
+            children: [
+              { index: true, element: <ProjectListPage /> },
+              { path: ':projectId', element: <ProjectPage /> },
+            ],
+          },
           { path: 'contact', element: <ContactPage /> },
           { path: 'privacy', element: <PrivacyPage /> },
           {

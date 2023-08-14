@@ -13,7 +13,10 @@ export const AnimatedRoutes = () => {
   const { pathname } = useLocation();
 
   return (
-    <AnimatePresence initial={false}>
+    <AnimatePresence
+      initial={false}
+      onExitComplete={() => window.scrollTo(0, 0)}
+    >
       <AnimatedOutlet key={pathname} />
     </AnimatePresence>
   );

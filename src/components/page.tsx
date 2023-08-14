@@ -1,7 +1,6 @@
 import {
   FadePageAnimationVariants,
   PageTransitionContext,
-  PageTransitionVariants,
   SlidePageAnimationVariants,
   WillNavigateContext,
 } from '@/lib';
@@ -18,9 +17,15 @@ interface PageProps {
   children?: React.ReactNode;
   transparent?: boolean;
   hideFooterLogo?: boolean;
+  animationType?: string;
 }
 
-export const Page = ({ children, transparent, hideFooterLogo }: PageProps) => {
+export const Page = ({
+  children,
+  transparent,
+  hideFooterLogo,
+  animationType,
+}: PageProps) => {
   const { slideRight } = useContext(WillNavigateContext);
   const [pageAnimationType] = useContext(PageTransitionContext);
   const {
@@ -28,11 +33,12 @@ export const Page = ({ children, transparent, hideFooterLogo }: PageProps) => {
     pageFooterVariants,
     pageScrollVariants,
     pageVariants,
-  } = (
+  } =
+    // animationType === 'simple'
+    //   ? SimpleFadePageAnimationVariants
     pageAnimationType === 'slide'
       ? SlidePageAnimationVariants
-      : FadePageAnimationVariants
-  ) as PageTransitionVariants;
+      : FadePageAnimationVariants;
 
   return (
     <>

@@ -1,9 +1,10 @@
-const { readFileSync } = require('fs');
-const handlebars = require('handlebars');
-const nodemailer = require('nodemailer');
-const { join, resolve } = require('path');
+import type { VercelRequest, VercelResponse } from '@vercel/node';
+import { readFileSync } from 'fs';
+import handlebars from 'handlebars';
+import nodemailer from 'nodemailer';
+import { join, resolve } from 'path';
 
-module.exports = (request, response) => {
+export default (request: VercelRequest, response: VercelResponse) => {
   const body = request.body;
 
   if (!body) {

@@ -2,7 +2,7 @@ import { PageTransitionVariants, duration } from './animations';
 
 const scale = 0.5;
 
-export const SlidePageAnimationVariants = {
+export const SlidePageAnimationVariants: PageTransitionVariants = {
   pageVariants: {
     initial: ({ transparent, slideRight }) => {
       return {
@@ -123,4 +123,4 @@ export const SlidePageAnimationVariants = {
       return { y: `-${window.scrollY}px` };
     },
   },
-} satisfies PageTransitionVariants;
+};

@@ -66,11 +66,6 @@ export const Header = () => {
     }
   }, [navigating, scope, animate]);
 
-  useEffect(() => {
-    // Reset the scrolled status when the route changes
-    setScrolled(false);
-  }, [pathname]);
-
   return (
     <Disclosure
       ref={scope}

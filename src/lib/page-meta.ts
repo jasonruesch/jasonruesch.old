@@ -14,14 +14,19 @@ export const homePage: PageMeta = {
   type: 'primary',
 };
 export const aboutPage: PageMeta = { name: 'About', index: 1, type: 'primary' };
+export const projectsPage: PageMeta = {
+  name: 'Projects',
+  index: 2,
+  type: 'primary',
+};
 export const contactPage: PageMeta = {
   name: 'Contact',
-  index: 2,
+  index: 3,
   type: 'primary',
 };
 export const privacyPage: PageMeta = {
   name: 'Privacy Policy',
-  index: 3,
+  index: 4,
   type: 'secondary',
 };
 
@@ -30,6 +35,7 @@ export const pages = new Map<string, PageMeta>([
   ['/easter-egg', easterEggPage],
   ['/', homePage],
   ['/about', aboutPage],
+  ['/projects', projectsPage],
   ['/contact', contactPage],
   ['/privacy', privacyPage],
 ]);

@@ -16,6 +16,7 @@
     "paths": {
       "@/assets/*": ["src/assets/*"],
       "@/components": ["src/components/index.ts"],
+      "@/data": ["src/data/index.ts"],
       "@/lib": ["src/lib/index.ts"],
       "@/pages": ["src/pages/index.ts"]
     },

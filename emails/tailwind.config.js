@@ -1,14 +1,33 @@
 const { join } = require('path');
-const presets = require('../tailwind/presets');
+// const { presets } = require('../tailwind');
+const colors = require('tailwindcss/colors');
+const defaultTheme = require('tailwindcss/defaultTheme');
 
 /* NOTE: rem values are replaced with pixels to work better with email clients. */
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  presets: [presets],
+  // presets: [presets], // Having trouble getting presets to work from the TypeScript version of the Tailwind config.
   content: [join(__dirname, '**/*.html')],
   theme: {
+    colors: {
+      transparent: colors.transparent,
+      current: colors.current,
+      inherit: colors.inherit,
+      black: colors.black,
+      white: colors.white,
+      cyan: colors.cyan,
+      fuchsia: colors.fuchsia,
+      violet: colors.violet,
+      teal: colors.teal,
+      neutral: colors.neutral,
+      red: colors.red,
+      green: colors.green,
+    },
     extend: {
+      fontFamily: {
+        display: ['Alegreya Sans SC', ...defaultTheme.fontFamily.sans],
+      },
       screens: {
         dark: { raw: '(prefers-color-scheme: dark)' },
       },

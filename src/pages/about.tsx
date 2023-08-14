@@ -41,14 +41,16 @@ export const AboutPage = () => {
             exchange thoughts on the latest gaming adventures. Let's explore the
             digital world together!
           </p>
+        </div>
 
+        <div className="mt-4">
           <PageNavLink
             to="/contact"
-            className="inline-block font-medium text-cyan-500 hover:text-cyan-600 dark:text-violet-400 dark:hover:text-violet-500"
+            className="inline-flex items-center gap-2 font-medium text-cyan-500 hover:text-cyan-600 dark:text-violet-400 dark:hover:text-violet-500"
           >
-            Get in touch
+            <span>Get in touch</span>
             <ArrowRightIcon
-              className="pointer-events-none ml-1 inline-block h-4 w-4"
+              className="pointer-events-none h-4 w-4"
               aria-hidden="true"
             />
           </PageNavLink>
