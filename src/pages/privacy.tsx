@@ -128,7 +128,9 @@ export const PrivacyPage = () => {
             className="space-y-4"
             ref={(el) => el && targetRefs.current.set('summaryofkeypoints', el)}
           >
-            <h2>Summary Of Key Points</h2>
+            <h2 className="text-xl font-medium sm:text-3xl">
+              Summary Of Key Points
+            </h2>
             <p>
               <em>
                 This summary provides key points from our privacy notice, but
@@ -253,7 +255,9 @@ export const PrivacyPage = () => {
             className="space-y-4"
             ref={(el) => el && targetRefs.current.set('toc', el)}
           >
-            <h2>Table Of Contents</h2>
+            <h2 className="text-xl font-medium sm:text-3xl">
+              Table Of Contents
+            </h2>
             <ol className="list-inside list-decimal">
               {navItems.map((item) => (
                 <li key={item.name}>
@@ -273,8 +277,11 @@ export const PrivacyPage = () => {
             className="space-y-4"
             ref={(el) => el && targetRefs.current.set('infocollect', el)}
           >
-            <h2>1. WHAT INFORMATION DO WE COLLECT?</h2>
+            <h2 className="text-xl font-medium sm:text-3xl">
+              1. WHAT INFORMATION DO WE COLLECT?
+            </h2>
             <h3
+              className="text-lg font-medium sm:text-2xl"
               id="personalinfo"
               ref={(el) => el && targetRefs.current.set('personalinfo', el)}
             >
@@ -305,7 +312,7 @@ export const PrivacyPage = () => {
             </ul>
             <h3
               id="sensitiveinfo"
-              className="mt-4"
+              className="mt-4 text-lg font-medium sm:text-2xl"
               ref={(el) => el && targetRefs.current.set('sensitiveinfo', el)}
             >
               Sensitive Information
@@ -349,7 +356,9 @@ export const PrivacyPage = () => {
             className="space-y-4"
             ref={(el) => el && targetRefs.current.set('infouse', el)}
           >
-            <h2>2. HOW DO WE PROCESS YOUR INFORMATION?</h2>
+            <h2 className="text-xl font-medium sm:text-3xl">
+              2. HOW DO WE PROCESS YOUR INFORMATION?
+            </h2>
             <p className="mb-4">
               <em>
                 In Short: We process your information to provide, improve, and
@@ -380,7 +389,7 @@ export const PrivacyPage = () => {
             className="space-y-4"
             ref={(el) => el && targetRefs.current.set('whoshare', el)}
           >
-            <h2>
+            <h2 className="text-xl font-medium sm:text-3xl">
               3. WHEN AND WITH WHOM DO WE SHARE YOUR PERSONAL INFORMATION?
             </h2>
             <p className="mb-4">
@@ -408,7 +417,9 @@ export const PrivacyPage = () => {
             className="space-y-4"
             ref={(el) => el && targetRefs.current.set('inforetain', el)}
           >
-            <h2>4. HOW LONG DO WE KEEP YOUR INFORMATION?</h2>
+            <h2 className="text-xl font-medium sm:text-3xl">
+              4. HOW LONG DO WE KEEP YOUR INFORMATION?
+            </h2>
             <p className="mb-4">
               <em>
                 In Short: We keep your information for as long as necessary to
@@ -438,7 +449,9 @@ export const PrivacyPage = () => {
             className="space-y-4"
             ref={(el) => el && targetRefs.current.set('infosafe', el)}
           >
-            <h2>5. HOW DO WE KEEP YOUR INFORMATION SAFE?</h2>
+            <h2 className="text-xl font-medium sm:text-3xl">
+              5. HOW DO WE KEEP YOUR INFORMATION SAFE?
+            </h2>
             <p className="mb-4">
               <em>
                 In Short: We aim to protect your personal information through a
@@ -466,7 +479,9 @@ export const PrivacyPage = () => {
             className="space-y-4"
             ref={(el) => el && targetRefs.current.set('infominors', el)}
           >
-            <h2>6. DO WE COLLECT INFORMATION FROM MINORS?</h2>
+            <h2 className="text-xl font-medium sm:text-3xl">
+              6. DO WE COLLECT INFORMATION FROM MINORS?
+            </h2>
             <p className="mb-4">
               <em>
                 In Short: We do not knowingly collect data from or market to
@@ -491,7 +506,9 @@ export const PrivacyPage = () => {
             className="space-y-4"
             ref={(el) => el && targetRefs.current.set('privacyrights', el)}
           >
-            <h2>7. WHAT ARE YOUR PRIVACY RIGHTS?</h2>
+            <h2 className="text-xl font-medium sm:text-3xl">
+              7. WHAT ARE YOUR PRIVACY RIGHTS?
+            </h2>
             <p className="mb-4">
               <em>
                 In Short: You may review, change, or terminate your account at
@@ -562,7 +579,9 @@ export const PrivacyPage = () => {
             className="space-y-4"
             ref={(el) => el && targetRefs.current.set('DNT', el)}
           >
-            <h2>8. CONTROLS FOR DO-NOT-TRACK FEATURES</h2>
+            <h2 className="text-xl font-medium sm:text-3xl">
+              8. CONTROLS FOR DO-NOT-TRACK FEATURES
+            </h2>
             <p>
               Most web browsers and some mobile operating systems and mobile
               applications include a Do-Not-Track (&quot;DNT&quot;) feature or
@@ -582,7 +601,9 @@ export const PrivacyPage = () => {
             className="space-y-4"
             ref={(el) => el && targetRefs.current.set('caresidents', el)}
           >
-            <h2>9. DO CALIFORNIA RESIDENTS HAVE SPECIFIC PRIVACY RIGHTS?</h2>
+            <h2 className="text-xl font-medium sm:text-3xl">
+              9. DO CALIFORNIA RESIDENTS HAVE SPECIFIC PRIVACY RIGHTS?
+            </h2>
             <p className="mb-4">
               <em>
                 In Short: Yes, if you are a resident of California, you are
@@ -621,7 +642,9 @@ export const PrivacyPage = () => {
             className="space-y-4"
             ref={(el) => el && targetRefs.current.set('policyupdates', el)}
           >
-            <h2>10. DO WE MAKE UPDATES TO THIS NOTICE?</h2>
+            <h2 className="text-xl font-medium sm:text-3xl">
+              10. DO WE MAKE UPDATES TO THIS NOTICE?
+            </h2>
             <p className="mb-4">
               <em>
                 In Short: Yes, we will update this notice as necessary to stay
@@ -644,7 +667,9 @@ export const PrivacyPage = () => {
             className="space-y-4"
             ref={(el) => el && targetRefs.current.set('contact', el)}
           >
-            <h2>11. HOW CAN YOU CONTACT US ABOUT THIS NOTICE?</h2>
+            <h2 className="text-xl font-medium sm:text-3xl">
+              11. HOW CAN YOU CONTACT US ABOUT THIS NOTICE?
+            </h2>
             <p>
               If you have questions or comments about this notice, you may email
               us at privacy@jasonruesch.dev.
@@ -655,7 +680,7 @@ export const PrivacyPage = () => {
             className="space-y-4"
             ref={(el) => el && targetRefs.current.set('request', el)}
           >
-            <h2>
+            <h2 className="text-xl font-medium sm:text-3xl">
               12. HOW CAN YOU REVIEW, UPDATE, OR DELETE THE DATA WE COLLECT FROM
               YOU?
             </h2>
