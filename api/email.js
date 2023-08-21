@@ -1,16 +1,14 @@
-import { VercelRequest, VercelResponse } from '@vercel/node';
-import { readFileSync } from 'fs';
-import * as handlebars from 'handlebars';
-import * as nodemailer from 'nodemailer';
-import { join, resolve } from 'path';
+const { readFileSync } = require('fs');
+const handlebars = require('handlebars');
+const nodemailer = require('nodemailer');
+const { join, resolve } = require('path');
 
-export default async (request: VercelRequest, response: VercelResponse) => {
+module.exports = (request, response) => {
   const body = request.body;
 
   if (!body) {
-    return response
-      .status(400)
-      .json({ error: 'No email values were provided' });
+    response.status(400).json({ error: 'No email values were provided' });
+    return;
   }
 
   console.debug(
@@ -68,15 +66,14 @@ Message: ${body.message}`;
       html,
     };
 
-    const info = await transport.sendMail(mailOptions);
+    transport.sendMail(mailOptions).then((info) => {
+      console.debug('Message sent: %s', info.messageId);
 
-    console.debug('Message sent: %s', info.messageId);
-
-    return response.status(200).json({ message: 'OK' });
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  } catch (error: any) {
+      response.status(200).json({ message: 'OK' });
+    });
+  } catch (error) {
     console.error(error);
 
-    return response.status(500).json({ error: error.message });
+    response.status(500).json({ error: error.message });
   }
 };

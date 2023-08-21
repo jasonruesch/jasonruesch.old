@@ -44,3 +44,6 @@ Thumbs.db
 # Maizzle
 **/public/emails/*
 !**/public/emails/README.md
+
+# Environment variables
+.env*.local

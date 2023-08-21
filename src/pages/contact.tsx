@@ -19,12 +19,6 @@ interface Contact {
   message: string;
 }
 
-interface FormValues {
-  name: string;
-  email: string;
-  message: string;
-}
-
 interface ContactPageProps {
   contact?: Contact;
 }
@@ -49,15 +43,15 @@ export const ContactPage = ({ contact }: ContactPageProps) => {
     touched,
     isSubmitting,
     resetForm,
-  } = useFormik<FormValues>({
-    initialValues: {
+  } = useFormik<Contact>({
+    initialValues: (contact || {
       name: '',
       email: '',
       message: '',
-    },
+    }) as Contact,
     validationSchema,
     validateOnBlur: false,
-    onSubmit: async (values: FormValues) => {
+    onSubmit: async (values: Contact) => {
       console.debug(JSON.stringify(values, null, 2));
 
       await sleep(500);
@@ -120,7 +114,6 @@ export const ContactPage = ({ contact }: ContactPageProps) => {
                     autoComplete="name"
                     placeholder="Jane Doe"
                     required
-                    defaultValue={contact?.name}
                     value={values.name}
                     onChange={handleChange}
                     labelText="Name"
@@ -136,7 +129,6 @@ export const ContactPage = ({ contact }: ContactPageProps) => {
                     autoComplete="email"
                     placeholder="jane.doe@example.com"
                     required
-                    defaultValue={contact?.email}
                     value={values.email}
                     onChange={handleChange}
                     labelText="Email address"
@@ -153,7 +145,6 @@ export const ContactPage = ({ contact }: ContactPageProps) => {
                     id="message"
                     placeholder="How can I help you?"
                     required
-                    defaultValue={contact?.message}
                     value={values.message}
                     onChange={handleChange}
                     labelText="Message"

@@ -1,13 +1,11 @@
-import { VercelRequest, VercelResponse } from '@vercel/node';
-
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const twilio = require('twilio');
 
-export default async (request: VercelRequest, response: VercelResponse) => {
+module.exports = (request, response) => {
   const body = request.body;
 
   if (!body) {
-    return response.status(400).json({ error: 'No sms values were provided' });
+    response.status(400).json({ error: 'No sms values were provided' });
+    return;
   }
 
   try {
@@ -25,15 +23,14 @@ export default async (request: VercelRequest, response: VercelResponse) => {
       messagingServiceSid: process.env.TWILIO_MESSAGING_SERVICE_SID,
       to: '+18015605930',
     };
-    const info = await client.messages.create(params);
+    client.messages.create(params).then((info) => {
+      console.debug('Message sent: %s', info.sid);
 
-    console.debug('Message sent: %s', info.sid);
-
-    return response.status(200).json({ message: 'OK' });
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  } catch (error: any) {
+      response.status(200).json({ message: 'OK' });
+    });
+  } catch (error) {
     console.error(error);
 
-    return response.status(500).json({ error: error.message });
+    response.status(500).json({ error: error.message });
   }
 };
