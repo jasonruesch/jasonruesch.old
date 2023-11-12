@@ -1,7 +1,7 @@
-import { auth } from './auth';
+import { doAuth } from './auth';
 
 describe('auth', () => {
   it('should work', () => {
-    expect(auth()).toEqual('auth');
+    expect(doAuth()).toEqual({ success: true, name: 'Cheddar' });
   });
 });
