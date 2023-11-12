@@ -1,0 +1,94 @@
+{
+  "version": "6.0",
+  "nxVersion": "17.1.1",
+  "deps": {},
+  "pathMappings": {},
+  "nxJsonPlugins": [],
+  "fileMap": {
+    "projectFileMap": {
+      "portfolio": [
+        {
+          "file": ".eslintrc.json",
+          "hash": "11012487992710232822"
+        },
+        {
+          "file": ".nx/cache/file-map.json",
+          "hash": "14514781151407287774"
+        },
+        {
+          "file": ".nx/cache/project-graph.json",
+          "hash": "5804893776002660907"
+        },
+        {
+          "file": ".nx/cache/terminalOutputs/9129755474555671912",
+          "hash": "15708561270905213876"
+        },
+        {
+          "file": "Dockerfile.dev",
+          "hash": "8613762737563050716"
+        },
+        {
+          "file": "index.html",
+          "hash": "49131497208672700"
+        },
+        {
+          "file": "project.json",
+          "hash": "4609439796252519203"
+        },
+        {
+          "file": "proxy.conf.json",
+          "hash": "11281046345527164812"
+        },
+        {
+          "file": "public/favicon.ico",
+          "hash": "9303420814833116677"
+        },
+        {
+          "file": "src/app/app.module.css",
+          "hash": "8887387885984320532"
+        },
+        {
+          "file": "src/app/app.spec.tsx",
+          "hash": "7925620627089252821"
+        },
+        {
+          "file": "src/app/app.tsx",
+          "hash": "11077783267958382837"
+        },
+        {
+          "file": "src/app/nx-welcome.tsx",
+          "hash": "13758118578713308242"
+        },
+        {
+          "file": "src/assets/.gitkeep",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "src/main.tsx",
+          "hash": "4731961929376199421"
+        },
+        {
+          "file": "src/styles.css",
+          "hash": "5195668842064076916"
+        },
+        {
+          "file": "tsconfig.app.json",
+          "hash": "7232119452847825095"
+        },
+        {
+          "file": "tsconfig.json",
+          "hash": "11166545116916107487"
+        },
+        {
+          "file": "tsconfig.spec.json",
+          "hash": "17874504027954657085"
+        },
+        {
+          "file": "vite.config.ts",
+          "hash": "18145133439380952343"
+        }
+      ]
+    },
+    "nonProjectFiles": []
+  }
+}

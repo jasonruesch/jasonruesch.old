@@ -1,0 +1,14 @@
+  ➜  Local:   http://localhost:4200/
+  ➜  Network: http://192.168.80.3:4200/
+failed to resolve "extends":"../../tsconfig.base.json" in /app/tsconfig.json
+3:30:52 PM [vite] Internal server error: failed to resolve "extends":"../../tsconfig.base.json" in /app/tsconfig.json
+  Plugin: vite:esbuild
+  File: /app/src/main.tsx
+      at resolveExtends (file:///app/node_modules/vite/dist/node/chunks/dep-e8f070e8.js:13543:9)
+      at parseExtends (file:///app/node_modules/vite/dist/node/chunks/dep-e8f070e8.js:13497:28)
+      at parse$f (file:///app/node_modules/vite/dist/node/chunks/dep-e8f070e8.js:13435:24)
+      at async loadTsconfigJsonForFile (file:///app/node_modules/vite/dist/node/chunks/dep-e8f070e8.js:14056:24)
+      at async transformWithEsbuild (file:///app/node_modules/vite/dist/node/chunks/dep-e8f070e8.js:13741:36)
+      at async TransformContext.transform (file:///app/node_modules/vite/dist/node/chunks/dep-e8f070e8.js:13866:32)
+      at async Object.transform (file:///app/node_modules/vite/dist/node/chunks/dep-e8f070e8.js:42919:30)
+      at async loadAndTransform (file:///app/node_modules/vite/dist/node/chunks/dep-e8f070e8.js:53385:29)

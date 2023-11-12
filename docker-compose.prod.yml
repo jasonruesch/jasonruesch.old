@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  portfolio:
+    extends:
+      file: docker-compose.yml
+      service: portfolio
+    image: jasonruesch/portfolio:latest
+    container_name: portfolio
+    build:
+      dockerfile: ./apps/portfolio/Dockerfile.prod
+    ports:
+      - '8080:80'
+    depends_on:
+      - portfolio-api
+
+  portfolio-api:
+    extends:
+      file: docker-compose.yml
+      service: portfolio-api
+    image: jasonruesch/portfolio-api:latest
+    container_name: portfolio-api
+    build:
+      dockerfile: ./apps/portfolio-api/Dockerfile.prod
+    ports:
+      - '3000:3000'

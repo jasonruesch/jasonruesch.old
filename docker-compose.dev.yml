@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  portfolio:
+    extends:
+      file: docker-compose.yml
+      service: portfolio
+    image: jasonruesch/portfolio:latest
+    container_name: portfolio
+    build:
+      dockerfile: ./apps/portfolio/Dockerfile.dev
+    ports:
+      - '4200:4200'
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - CHOKIDAR_USEPOLLING=true # To fix an issue with HMR on Windows machines
+    depends_on:
+      - portfolio-api
+
+  portfolio-api:
+    extends:
+      file: docker-compose.yml
+      service: portfolio-api
+    image: jasonruesch/portfolio-api:latest
+    container_name: portfolio-api
+    build:
+      dockerfile: ./apps/portfolio-api/Dockerfile.dev
+    ports:
+      - '3000:3000'
+    volumes:
+      - .:/app
+      - /app/node_modules

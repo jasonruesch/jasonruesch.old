@@ -24,7 +24,8 @@
       "executor": "@nx/vite:dev-server",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "portfolio:build"
+        "buildTarget": "portfolio:build",
+        "proxyConfig": "apps/portfolio/proxy.conf.json"
       },
       "configurations": {
         "development": {
@@ -72,6 +73,10 @@
       "options": {
         "buildTarget": "portfolio:build"
       }
+    },
+    "docker-build": {
+      "dependsOn": ["build"],
+      "command": "docker build -f apps/portfolio/Dockerfile . -t portfolio"
     }
   },
   "tags": []

@@ -1,0 +1,115 @@
+{
+  "nodes": {
+    "portfolio": {
+      "name": "portfolio",
+      "type": "app",
+      "data": {
+        "root": ".",
+        "name": "portfolio",
+        "$schema": "../../node_modules/nx/schemas/project-schema.json",
+        "sourceRoot": "apps/portfolio/src",
+        "projectType": "application",
+        "targets": {
+          "build": {
+            "executor": "@nx/vite:build",
+            "outputs": [
+              "{options.outputPath}"
+            ],
+            "defaultConfiguration": "production",
+            "options": {
+              "outputPath": "dist/apps/portfolio"
+            },
+            "configurations": {
+              "development": {
+                "mode": "development"
+              },
+              "production": {
+                "mode": "production"
+              }
+            }
+          },
+          "serve": {
+            "executor": "@nx/vite:dev-server",
+            "defaultConfiguration": "development",
+            "options": {
+              "buildTarget": "portfolio:build",
+              "proxyConfig": "apps/portfolio/proxy.conf.json"
+            },
+            "configurations": {
+              "development": {
+                "buildTarget": "portfolio:build:development",
+                "hmr": true
+              },
+              "production": {
+                "buildTarget": "portfolio:build:production",
+                "hmr": false
+              }
+            }
+          },
+          "preview": {
+            "executor": "@nx/vite:preview-server",
+            "defaultConfiguration": "development",
+            "options": {
+              "buildTarget": "portfolio:build"
+            },
+            "configurations": {
+              "development": {
+                "buildTarget": "portfolio:build:development"
+              },
+              "production": {
+                "buildTarget": "portfolio:build:production"
+              }
+            }
+          },
+          "test": {
+            "executor": "@nx/vite:test",
+            "outputs": [
+              "{options.reportsDirectory}"
+            ],
+            "options": {
+              "passWithNoTests": true,
+              "reportsDirectory": "../../coverage/apps/portfolio"
+            },
+            "configurations": {}
+          },
+          "lint": {
+            "executor": "@nx/eslint:lint",
+            "outputs": [
+              "{options.outputFile}"
+            ],
+            "options": {
+              "lintFilePatterns": [
+                "apps/portfolio/**/*.{ts,tsx,js,jsx}"
+              ]
+            },
+            "configurations": {}
+          },
+          "serve-static": {
+            "executor": "@nx/web:file-server",
+            "options": {
+              "buildTarget": "portfolio:build"
+            },
+            "configurations": {}
+          },
+          "docker-build": {
+            "dependsOn": [
+              "build"
+            ],
+            "executor": "nx:run-commands",
+            "options": {
+              "command": "docker build -f apps/portfolio/Dockerfile . -t portfolio"
+            },
+            "configurations": {}
+          }
+        },
+        "tags": [],
+        "implicitDependencies": []
+      }
+    }
+  },
+  "externalNodes": {},
+  "dependencies": {
+    "portfolio": []
+  },
+  "version": "6.0"
+}
