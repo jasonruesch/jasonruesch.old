@@ -77,6 +77,13 @@
     "docker-build": {
       "dependsOn": ["build"],
       "command": "docker build -f apps/portfolio/Dockerfile . -t portfolio"
+    },
+    "release": {
+      "executor": "nx:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "npx semantic-release-plus --extends release.config.js"
+      }
     }
   },
   "tags": []

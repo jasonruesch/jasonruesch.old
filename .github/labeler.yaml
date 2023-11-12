@@ -1,0 +1,31 @@
+---
+area/apps:
+  - 'apps/**/*'
+area/libs:
+  - 'libs/**/*'
+area/k8s:
+  - 'k8s/**/*'
+scope/api:
+  - apps/*api/**/*
+  - apps/*api-e2e/**/*
+  - libs/*api/**/*
+scope/portfolio:
+  - apps/portfolio/**/*
+  - apps/portfolio-e2e/**/*
+  - libs/portfolio/**/*
+scope/shared:
+  - libs/shared/**/*
+type/feature:
+  - libs/**/feature-*/*
+type/data-access:
+  - libs/**/data-access-*/*
+type/util:
+  - libs/**/util*/*
+type/domain:
+  - libs/**/domain*/*
+type/ui:
+  - libs/**/ui-*/*
+dep-updates:
+  - package.json
+  - package-lock.json
+  - .nvmrc
