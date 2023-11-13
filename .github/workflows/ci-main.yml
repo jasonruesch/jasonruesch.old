@@ -6,6 +6,7 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 # Needed for nx-set-shas within nx-cloud-main.yml, when run on the main branch
 permissions:

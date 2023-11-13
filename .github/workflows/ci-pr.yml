@@ -2,6 +2,7 @@ name: Pull Request CI
 
 on:
   pull_request:
+  workflow_dispatch:
 
 # Needed for nx-set-shas within nx-cloud-main.yml, when run on the main branch
 permissions:
