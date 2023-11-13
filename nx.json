@@ -48,9 +48,10 @@
       },
       "library": {
         "style": "css",
-        "linter": "eslint"
+        "linter": "eslint",
+        "unitTestRunner": "vitest"
       }
     }
   },
-  "nxCloudAccessToken": "NmYxNmU4OTQtODQwYy00MzBkLTlmYjUtZGE4ZTRjODQzMGIwfHJlYWQtd3JpdGU="
+  "nxCloudAccessToken": "OTBjOTA1MGQtYTQ5NC00NDIwLWI0NmQtZTVkYTNkNTNmMjI4fHJlYWQtd3JpdGU="
 }

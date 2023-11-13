@@ -7,9 +7,13 @@
   "dependencies": {
     "@swc/helpers": "~0.5.2",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-router-dom": "^6.18.0",
+    "tslib": "^2.3.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.14.5",
+    "@babel/preset-react": "^7.14.5",
     "@nx/cypress": "17.1.1",
     "@nx/eslint": "17.1.1",
     "@nx/eslint-plugin": "17.1.1",
