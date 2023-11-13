@@ -74,7 +74,7 @@
       }
     },
     "deploy": {
-      "dependsOn": ["build"],
+      "dependsOn": ["^build"],
       "command": "echo \"Add your deploy command here\""
     }
   },
