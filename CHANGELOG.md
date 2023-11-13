@@ -16,5 +16,5 @@
 * **repo:** add workflow dispatch for manual triggers ([cf76ed4](https://github.com/jasonruesch/jasonruesch/commit/cf76ed4902997c775c176116d85d878e575781e4))
 * **repo:** disable lint-staged on commit ([df86276](https://github.com/jasonruesch/jasonruesch/commit/df8627655c997fe6d10787ee224f7a58644f8804))
 * **repo:** initial commit ([a3f1914](https://github.com/jasonruesch/jasonruesch/commit/a3f1914b83e328895ce3e8e51024a3419ffe14bf))
-* **repo:** move audit signatures command [skip ci] ([8fd5a38](https://github.com/jasonruesch/jasonruesch/commit/8fd5a38810e5c1d16c38a6aab117262e0115bdda))
+* **repo:** move audit signatures command ([8fd5a38](https://github.com/jasonruesch/jasonruesch/commit/8fd5a38810e5c1d16c38a6aab117262e0115bdda))
 * **repo:** reset releases ([9035837](https://github.com/jasonruesch/jasonruesch/commit/9035837673f153522e596d3d1a08809d04ebf88e))
