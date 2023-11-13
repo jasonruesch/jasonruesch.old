@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+(exec < /dev/tty && node_modules/.bin/cz --hook) || true < /dev/null
+
+# https://github.com/commitizen/cz-cli/issues/661?ref=thefullstack.engineer#issuecomment-518687066
+# npx commitizen init cz-conventional-changelog --save-dev --save-exact

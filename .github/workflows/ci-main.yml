@@ -1,0 +1,53 @@
+name: Main Branch CI
+
+# https://thefullstack.engineer/full-stack-development-series-part-6-application-deployment-and-ci-cd/#cicd-with-github-actions
+
+on:
+  push:
+    branches:
+      - main
+
+# Needed for nx-set-shas within nx-cloud-main.yml, when run on the main branch
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  main:
+    name: Main Job
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # to be able to publish a GitHub release
+      issues: write # to be able to comment on released issues
+      pull-requests: write # to be able to comment on released pull requests
+      id-token: write # to enable use of OIDC for npm provenance
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 'lts/*'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Verify the integrity of provenance attestations and registry signatures for installed dependencies
+        run: npm audit signatures
+
+      - name: Lint
+        run: npx nx affected --target=lint --parallel=3
+      - name: Test
+        run: npx nx affected --target=test --parallel=3 --ci --code-coverage
+      - name: Build
+        run: npx nx affected --target=build --parallel=3
+
+      # https://github.com/semantic-release/semantic-release/blob/master/docs/recipes/ci-configurations/github-actions.md
+      - name: Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: HUSKY=0 npx semantic-release --extends ./release.config.js

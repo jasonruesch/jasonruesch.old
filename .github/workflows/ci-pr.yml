@@ -1,9 +1,6 @@
-name: CI
+name: Pull Request CI
 
 on:
-  push:
-    branches:
-      - main
   pull_request:
 
 # Needed for nx-set-shas within nx-cloud-main.yml, when run on the main branch
@@ -37,16 +34,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
       - name: Setup node
         uses: actions/setup-node@v3
         with:
-          node-version: 20.9.x
+          node-version: 'lts/*'
           cache: npm
 
-      - name: Install
+      - name: Install dependencies
         run: npm ci
+
+      - name: Verify the integrity of provenance attestations and registry signatures for installed dependencies
+        run: npm audit signatures
 
       - name: Lint
         run: npx nx affected --target=lint --parallel=3
