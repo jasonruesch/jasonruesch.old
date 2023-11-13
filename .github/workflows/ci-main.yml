@@ -14,7 +14,32 @@ permissions:
 
 jobs:
   main:
-    name: Main Job
+    name: Nx Cloud - Main Job
+    uses: nrwl/ci/.github/workflows/nx-cloud-main.yml@v0.13.1
+    with:
+      main-branch-name: main
+      number-of-agents: 3
+      init-commands: |
+        npx nx-cloud start-ci-run --stop-agents-after="build" --agent-count=3
+      parallel-commands: |
+        npx nx-cloud record -- npx nx format:check
+      parallel-commands-on-agents: |
+        npm audit signatures
+        npx nx affected --target=lint --parallel=3
+        npx nx affected --target=test --parallel=3 --ci --code-coverage
+        npx nx affected --target=build --parallel=3
+      # The `npm audit signatures` command verifies the integrity of provenance attestations
+      # and registry signatures for installed dependencies
+
+  agents:
+    name: Nx Cloud - Agents
+    uses: nrwl/ci/.github/workflows/nx-cloud-agents.yml@v0.13.1
+    with:
+      number-of-agents: 1
+
+  release:
+    name: Release Job
+    needs: 'main'
     runs-on: ubuntu-latest
     permissions:
       contents: write # to be able to publish a GitHub release
@@ -35,19 +60,6 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
-
-      - name: Verify the integrity of provenance attestations and registry signatures for installed dependencies
-        run: npm audit signatures
-
-      - name: Format
-        # run: npx nx format:check
-        run: npx prettier -c .
-      - name: Lint
-        run: npx nx affected --target=lint --parallel=3
-      - name: Test
-        run: npx nx affected --target=test --parallel=3 --ci --code-coverage
-      - name: Build
-        run: npx nx affected --target=build --parallel=3
 
       # https://github.com/semantic-release/semantic-release/blob/master/docs/recipes/ci-configurations/github-actions.md
       - name: Release
