@@ -23,13 +23,13 @@ jobs:
         npx nx-cloud start-ci-run --stop-agents-after="build" --agent-count=3
       parallel-commands: |
         npx nx-cloud record -- npx nx format:check
-      parallel-commands-on-agents: |
         npm audit signatures
+      # The `npm audit signatures` command verifies the integrity of provenance attestations
+      # and registry signatures for installed dependencies
+      parallel-commands-on-agents: |
         npx nx affected --target=lint --parallel=3
         npx nx affected --target=test --parallel=3 --ci --code-coverage
         npx nx affected --target=build --parallel=3
-      # The `npm audit signatures` command verifies the integrity of provenance attestations
-      # and registry signatures for installed dependencies
 
   agents:
     name: Nx Cloud - Agents
