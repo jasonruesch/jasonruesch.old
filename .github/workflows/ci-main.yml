@@ -39,6 +39,9 @@ jobs:
       - name: Verify the integrity of provenance attestations and registry signatures for installed dependencies
         run: npm audit signatures
 
+      - name: Format
+        # run: npx nx format:check
+        run: npx prettier -c .
       - name: Lint
         run: npx nx affected --target=lint --parallel=3
       - name: Test
