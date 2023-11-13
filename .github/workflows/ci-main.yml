@@ -6,6 +6,7 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 # Needed for nx-set-shas within nx-cloud-main.yml, when run on the main branch
 permissions:
@@ -27,9 +28,9 @@ jobs:
       # The `npm audit signatures` command verifies the integrity of provenance attestations
       # and registry signatures for installed dependencies
       parallel-commands-on-agents: |
-        npx nx affected --target=lint --parallel=3
-        npx nx affected --target=test --parallel=3 --ci --code-coverage
-        npx nx affected --target=build --parallel=3
+        npx nx affected --target=lint --parallel=3 --base=origin/main --head=HEAD
+        npx nx affected --target=test --parallel=3 --ci --code-coverage --base=origin/main --head=HEAD
+        npx nx affected --target=build --parallel=3 --base=origin/main --head=HEAD
 
   agents:
     name: Nx Cloud - Agents
