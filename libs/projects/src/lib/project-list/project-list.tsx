@@ -7,6 +7,7 @@ export function ProjectList(props: ProjectListProps) {
   return (
     <div className={styles['container']}>
       <h1>Welcome to ProjectList!</h1>
+      <p>This is a change.</p>
     </div>
   );
 }

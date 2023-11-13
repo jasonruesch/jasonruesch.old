@@ -72,6 +72,10 @@
       "options": {
         "buildTarget": "portfolio:build"
       }
+    },
+    "deploy": {
+      "dependsOn": ["build"],
+      "command": "echo \"Add your deploy command here\""
     }
   },
   "tags": []
