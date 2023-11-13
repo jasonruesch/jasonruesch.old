@@ -3,8 +3,5 @@ import tailwindcss from 'tailwindcss';
 import tailwindConfig from './tailwind.config';
 
 export default {
-  plugins: [
-    autoprefixer,
-    tailwindcss(tailwindConfig),
-  ],
+  plugins: [autoprefixer, tailwindcss(tailwindConfig)],
 };
