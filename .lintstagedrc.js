@@ -3,6 +3,6 @@ module.exports = {
     'nx affected:lint --uncommitted --fix true',
   ],
   '*.{ts,tsx,js,jsx,html,json,scss,css,md,yaml,yml}': [
-    'nx format:write --base=main --head=HEAD',
+    'nx format:write --uncommitted',
   ],
 };
