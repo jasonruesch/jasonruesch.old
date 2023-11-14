@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  portfolio:
+    image: jasonruesch/portfolio:latest
+    container_name: portfolio
+    build:
+      context: .
+      target: development
+      dockerfile: ./apps/portfolio/Dockerfile
+    ports:
+      - '4201:4200'
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - CHOKIDAR_USEPOLLING=true # To fix an issue with HMR on Windows machines
+
+  admin:
+    image: jasonruesch/admin:latest
+    container_name: admin
+    build:
+      context: .
+      target: development
+      dockerfile: ./apps/admin/Dockerfile
+    ports:
+      - '4202:4200'
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - CHOKIDAR_USEPOLLING=true # To fix an issue with HMR on Windows machines
