@@ -1,3 +1,15 @@
+## [1.1.0](https://github.com/jasonruesch/jasonruesch/compare/v1.0.5...v1.1.0) (2023-11-14)
+
+
+### Features
+
+* **projects:** style paragraph under heading ([1eff9d3](https://github.com/jasonruesch/jasonruesch/commit/1eff9d341005dbf614db4db11edb612f358779fc))
+
+
+### Other
+
+* **repo:** update container project targets ([132d44d](https://github.com/jasonruesch/jasonruesch/commit/132d44d98594e981c9443186cedf2b6df89b7672))
+
 ### [1.0.5](https://github.com/jasonruesch/jasonruesch/compare/v1.0.4...v1.0.5) (2023-11-14)
 
 
