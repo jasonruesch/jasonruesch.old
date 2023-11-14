@@ -1,3 +1,10 @@
+### [1.1.1](https://github.com/jasonruesch/jasonruesch/compare/v1.1.0...v1.1.1) (2023-11-14)
+
+
+### Other
+
+* **repo:** disable container load for ci ([8524863](https://github.com/jasonruesch/jasonruesch/commit/8524863fbee81d2828fd94bcc404050c022d3237))
+
 ## [1.1.0](https://github.com/jasonruesch/jasonruesch/compare/v1.0.5...v1.1.0) (2023-11-14)
 
 
