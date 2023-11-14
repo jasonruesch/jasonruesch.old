@@ -93,7 +93,7 @@
         "ci": {
           "file": "apps/admin/Dockerfile.prod",
           "images": ["ghcr.io/jasonruesch/admin"],
-          "load": true,
+          "load": false,
           "push": true,
           "cache-from": ["type=gha"],
           "cache-to": ["type=gha,mode=max"],

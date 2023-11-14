@@ -93,7 +93,7 @@
         "ci": {
           "file": "apps/portfolio/Dockerfile.prod",
           "images": ["ghcr.io/jasonruesch/portfolio"],
-          "load": true,
+          "load": false,
           "push": true,
           "cache-from": ["type=gha"],
           "cache-to": ["type=gha,mode=max"],
