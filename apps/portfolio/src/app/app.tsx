@@ -9,7 +9,7 @@ export function App() {
         element={
           <>
             <h1 className="text-4xl font-bold">Home</h1>
-            <div className="text-neutral-500">
+            <div className="text-blue-500">
               <Link to="/projects">Projects</Link>
             </div>
           </>
