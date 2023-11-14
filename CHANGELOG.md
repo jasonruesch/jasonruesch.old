@@ -1,3 +1,10 @@
+### [1.0.4](https://github.com/jasonruesch/jasonruesch/compare/v1.0.3...v1.0.4) (2023-11-14)
+
+
+### Other
+
+* **repo:** replace GitHub token with PAT ([49850c9](https://github.com/jasonruesch/jasonruesch/commit/49850c96c66ca99b07d919a1073a9a261f914022))
+
 ### [1.0.3](https://github.com/jasonruesch/jasonruesch/compare/v1.0.2...v1.0.3) (2023-11-14)
 
 
