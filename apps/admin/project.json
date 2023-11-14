@@ -73,9 +73,50 @@
         "buildTarget": "admin:build"
       }
     },
-    "deploy": {
-      "dependsOn": ["^build"],
-      "command": "echo \"Add your deploy command here\""
+    "container": {
+      "executor": "@nx-tools/nx-container:build",
+      "dependsOn": ["build"],
+      "options": {
+        "engine": "docker",
+        "file": "apps/admin/Dockerfile",
+        "metadata": {
+          "images": ["admin"],
+          "load": true,
+          "tags": [
+            "type=schedule",
+            "type=ref,event=branch",
+            "type=ref,event=tag",
+            "type=ref,event=pr",
+            "type=sha,prefix=sha-"
+          ]
+        }
+      },
+      "configurations": {
+        "ci": {
+          "file": "apps/admin/Dockerfile.prod",
+          "metadata": {
+            "images": ["ghcr.io/jasonruesch/admin"],
+            "load": true,
+            "push": true,
+            "cache-from": ["type=gha"],
+            "cache-to": ["type=gha,mode=max"],
+            "tags": [
+              "type=ref,event=branch",
+              "type=ref,event=tag",
+              "type=sha",
+              "type=sha,format=long",
+              "latest"
+            ]
+          }
+        },
+        "local": {
+          "metadata": {
+            "images": ["admin"],
+            "push": false,
+            "tags": ["type=sha,prefix=sha-"]
+          }
+        }
+      }
     }
   },
   "tags": []

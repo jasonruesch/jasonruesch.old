@@ -6,7 +6,6 @@ services:
     container_name: portfolio
     build:
       context: .
-      target: development
       dockerfile: ./apps/portfolio/Dockerfile
     ports:
       - '4201:4200'
@@ -21,7 +20,6 @@ services:
     container_name: admin
     build:
       context: .
-      target: development
       dockerfile: ./apps/admin/Dockerfile
     ports:
       - '4202:4200'

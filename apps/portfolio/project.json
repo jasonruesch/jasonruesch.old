@@ -73,9 +73,50 @@
         "buildTarget": "portfolio:build"
       }
     },
-    "deploy": {
-      "dependsOn": ["^build"],
-      "command": "echo \"Add your deploy command here\""
+    "container": {
+      "executor": "@nx-tools/nx-container:build",
+      "dependsOn": ["build"],
+      "options": {
+        "engine": "docker",
+        "file": "apps/portfolio/Dockerfile",
+        "metadata": {
+          "images": ["portfolio"],
+          "load": true,
+          "tags": [
+            "type=schedule",
+            "type=ref,event=branch",
+            "type=ref,event=tag",
+            "type=ref,event=pr",
+            "type=sha,prefix=sha-"
+          ]
+        }
+      },
+      "configurations": {
+        "ci": {
+          "file": "apps/portfolio/Dockerfile.prod",
+          "metadata": {
+            "images": ["ghcr.io/jasonruesch/portfolio"],
+            "load": true,
+            "push": true,
+            "cache-from": ["type=gha"],
+            "cache-to": ["type=gha,mode=max"],
+            "tags": [
+              "type=ref,event=branch",
+              "type=ref,event=tag",
+              "type=sha",
+              "type=sha,format=long",
+              "latest"
+            ]
+          }
+        },
+        "local": {
+          "metadata": {
+            "images": ["portfolio"],
+            "push": false,
+            "tags": ["type=sha,prefix=sha-"]
+          }
+        }
+      }
     }
   },
   "tags": []

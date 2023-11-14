@@ -6,8 +6,7 @@ services:
     container_name: portfolio
     build:
       context: .
-      target: production
-      dockerfile: ./apps/portfolio/Dockerfile
+      dockerfile: ./apps/portfolio/Dockerfile.prod
     ports:
       - '8081:80'
 
@@ -16,7 +15,6 @@ services:
     container_name: admin
     build:
       context: .
-      target: production
-      dockerfile: ./apps/admin/Dockerfile
+      dockerfile: ./apps/admin/Dockerfile.prod
     ports:
       - '8082:80'
