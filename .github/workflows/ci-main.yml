@@ -32,10 +32,10 @@ jobs:
         npx nx affected --target=e2e --parallel=1 --configuration=ci --base=origin/main --head=HEAD
         npx nx affected --target=test --parallel=3 --configuration=ci --code-coverage --base=origin/main --head=HEAD
         npx nx affected --target=build --parallel=3 --base=origin/main --head=HEAD
-      artifacts-path: |
-        dist/
-        coverage
-      artifacts-name: dist-and-coverage-artifacts
+      # artifacts-path: |
+      #   dist/
+      #   coverage
+      # artifacts-name: dist-and-coverage-artifacts
 
   agents:
     name: Nx Cloud - Agents
@@ -44,28 +44,28 @@ jobs:
     with:
       number-of-agents: 3
 
-  codecoverage:
-    runs-on: ubuntu-latest
-    name: Code Coverage
-    needs:
-      - main
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/download-artifact@v3
-        with:
-          name: dist-and-coverage-artifacts
-          path: coverage
-      - name: Display structure of downloaded files
-        run: ls -R
-      - uses: codecov/codecov-action@v3
-        with:
-          directory: ./coverage/coverage
-          flags: unittests # optional
-          name: codecov-umbrella # optional
-          fail_ci_if_error: false # optional (default = false)
-          verbose: false # optional (default = false)
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+  # codecoverage:
+  #   runs-on: ubuntu-latest
+  #   name: Code Coverage
+  #   needs:
+  #     - main
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - uses: actions/download-artifact@v3
+  #       with:
+  #         name: dist-and-coverage-artifacts
+  #         path: coverage
+  #     - name: Display structure of downloaded files
+  #       run: ls -R
+  #     - uses: codecov/codecov-action@v3
+  #       with:
+  #         directory: ./coverage/coverage
+  #         flags: unittests # optional
+  #         name: codecov-umbrella # optional
+  #         fail_ci_if_error: false # optional (default = false)
+  #         verbose: false # optional (default = false)
+  #       env:
+  #         CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
   release:
     name: Release Job
