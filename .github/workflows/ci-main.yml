@@ -36,7 +36,7 @@ jobs:
     name: Nx Cloud - Agents
     uses: nrwl/ci/.github/workflows/nx-cloud-agents.yml@v0.13.1
     with:
-      number-of-agents: 1
+      number-of-agents: 3
 
   release:
     name: Release Job
