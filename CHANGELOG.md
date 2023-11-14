@@ -1,3 +1,10 @@
+### [1.1.3](https://github.com/jasonruesch/jasonruesch/compare/v1.1.2...v1.1.3) (2023-11-14)
+
+
+### Other
+
+* **repo:** move tags out of metadata and reduce ([fc49b3a](https://github.com/jasonruesch/jasonruesch/commit/fc49b3a32a4ce5ce086a9fde4f84e1e9dae6cd1f))
+
 ### [1.1.2](https://github.com/jasonruesch/jasonruesch/compare/v1.1.1...v1.1.2) (2023-11-14)
 
 
