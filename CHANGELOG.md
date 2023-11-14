@@ -1,10 +1,3 @@
-### [1.0.3](https://github.com/jasonruesch/jasonruesch/compare/v1.0.2...v1.0.3) (2023-11-14)
-
-
-### Other
-
-* **repo:** build docker images after release ([23a94b6](https://github.com/jasonruesch/jasonruesch/commit/23a94b6242ac0dbc7f30833f3035bf43bce2b7c2))
-
 ### [1.0.2](https://github.com/jasonruesch/jasonruesch/compare/v1.0.1...v1.0.2) (2023-11-14)
 
 
