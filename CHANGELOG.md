@@ -1,3 +1,10 @@
+### [1.0.5](https://github.com/jasonruesch/jasonruesch/compare/v1.0.4...v1.0.5) (2023-11-14)
+
+
+### Other
+
+* **repo:** add code coverage reporting ([aacbca1](https://github.com/jasonruesch/jasonruesch/commit/aacbca1d2429ab30ff4cd1f12f982f445f782e15))
+
 ### [1.0.4](https://github.com/jasonruesch/jasonruesch/compare/v1.0.3...v1.0.4) (2023-11-14)
 
 
