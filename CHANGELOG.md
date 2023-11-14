@@ -1,3 +1,10 @@
+### [1.1.4](https://github.com/jasonruesch/jasonruesch/compare/v1.1.3...v1.1.4) (2023-11-14)
+
+
+### Other
+
+* **repo:** update docker/login-action version ([95b8f27](https://github.com/jasonruesch/jasonruesch/commit/95b8f279d324069ea17640c2f8ec1e070a42588a))
+
 ### [1.1.3](https://github.com/jasonruesch/jasonruesch/compare/v1.1.2...v1.1.3) (2023-11-14)
 
 
