@@ -1,3 +1,10 @@
+### [1.0.2](https://github.com/jasonruesch/jasonruesch/compare/v1.0.1...v1.0.2) (2023-11-14)
+
+
+### Other
+
+* **repo:** publish docker images to GitHub registry ([3f3e92e](https://github.com/jasonruesch/jasonruesch/commit/3f3e92ec161975000f90f07086967c9d9f96d816))
+
 ### [1.0.1](https://github.com/jasonruesch/jasonruesch/compare/v1.0.0...v1.0.1) (2023-11-14)
 
 
