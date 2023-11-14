@@ -1,10 +1,18 @@
 import { ProjectList } from '@jasonruesch/projects';
-import { Route, Routes } from 'react-router-dom';
+import { Link, Route, Routes } from 'react-router-dom';
 
 export function App() {
   return (
     <Routes>
-      <Route path="/" element={<h1>Home</h1>} />
+      <Route
+        path="/"
+        element={
+          <>
+            <h1 className="text-4xl font-bold">Home</h1>
+            <Link to="/projects">Projects</Link>
+          </>
+        }
+      />
       <Route path="/projects" element={<ProjectList />} />
     </Routes>
   );
