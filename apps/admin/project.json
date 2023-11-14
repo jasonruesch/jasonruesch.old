@@ -81,15 +81,7 @@
         "file": "apps/admin/Dockerfile",
         "images": ["admin"],
         "load": true,
-        "metadata": {
-          "tags": [
-            "type=schedule",
-            "type=ref,event=branch",
-            "type=ref,event=tag",
-            "type=ref,event=pr",
-            "type=sha,prefix=sha-"
-          ]
-        }
+        "tags": ["type=schedule", "type=sha,prefix=sha-"]
       },
       "configurations": {
         "ci": {
@@ -99,22 +91,12 @@
           "push": true,
           "cache-from": ["type=gha"],
           "cache-to": ["type=gha,mode=max"],
-          "metadata": {
-            "tags": [
-              "type=ref,event=branch",
-              "type=ref,event=tag",
-              "type=sha",
-              "type=sha,format=long",
-              "latest"
-            ]
-          }
+          "tags": ["latest"]
         },
         "local": {
           "images": ["admin"],
           "push": false,
-          "metadata": {
-            "tags": ["type=sha,prefix=sha-"]
-          }
+          "tags": ["type=sha,prefix=sha-"]
         }
       }
     }
