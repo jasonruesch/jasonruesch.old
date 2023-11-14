@@ -1,3 +1,10 @@
+### [1.1.5](https://github.com/jasonruesch/jasonruesch/compare/v1.1.4...v1.1.5) (2023-11-14)
+
+
+### Other
+
+* **repo:** persist credentials in tag workflow ([6a70f20](https://github.com/jasonruesch/jasonruesch/commit/6a70f20088ad106f624496b3d2cce1eacb1821fa))
+
 ### [1.1.4](https://github.com/jasonruesch/jasonruesch/compare/v1.1.3...v1.1.4) (2023-11-14)
 
 
