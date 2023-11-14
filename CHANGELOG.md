@@ -1,3 +1,11 @@
+### [1.0.3](https://github.com/jasonruesch/jasonruesch/compare/v1.0.2...v1.0.3) (2023-11-14)
+
+
+### Other
+
+* **repo:** add tags workflow back ([ff1576a](https://github.com/jasonruesch/jasonruesch/commit/ff1576ae382a6e937a785fbccfbca688ec9ed40a))
+* **repo:** build docker images after release ([43e7033](https://github.com/jasonruesch/jasonruesch/commit/43e70331cd363268191a9bdf9e1e62c67811d4a0))
+
 ### [1.0.2](https://github.com/jasonruesch/jasonruesch/compare/v1.0.1...v1.0.2) (2023-11-14)
 
 
