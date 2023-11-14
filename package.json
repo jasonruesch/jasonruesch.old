@@ -21,6 +21,8 @@
     "@commitlint/config-conventional": "^18.4.0",
     "@commitlint/config-nx-scopes": "^18.4.0",
     "@commitlint/cz-commitlint": "^18.4.1",
+    "@nx-tools/container-metadata": "^5.1.0",
+    "@nx-tools/nx-container": "^5.1.0",
     "@nx/cypress": "^17.1.2",
     "@nx/eslint": "^17.1.2",
     "@nx/eslint-plugin": "17.1.1",
