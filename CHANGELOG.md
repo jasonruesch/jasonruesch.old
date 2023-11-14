@@ -1,3 +1,10 @@
+### [1.1.6](https://github.com/jasonruesch/jasonruesch/compare/v1.1.5...v1.1.6) (2023-11-14)
+
+
+### Other
+
+* **repo:** replace GitHub token with PAT in tag workflow ([3c1577e](https://github.com/jasonruesch/jasonruesch/commit/3c1577e48fc2d1742b6660fa5662ed6bce685abc))
+
 ### [1.1.5](https://github.com/jasonruesch/jasonruesch/compare/v1.1.4...v1.1.5) (2023-11-14)
 
 
