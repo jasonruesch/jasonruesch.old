@@ -22,11 +22,14 @@ jobs:
       number-of-agents: 3
       init-commands: |
         npx nx-cloud start-ci-run --stop-agents-after="build" --agent-count=3
+      # `npx nx format:check` checks prettier formatting
+      # `npx commitlint` validates all commits from PR for compliance with conventional commit format
+      # `npm audit signatures` verifies the integrity of provenance attestations
+      # and registry signatures for installed dependencies
       parallel-commands: |
         npx nx-cloud record -- npx nx format:check
-        npm audit signatures
-      # The `npm audit signatures` command verifies the integrity of provenance attestations
-      # and registry signatures for installed dependencies
+        npx nx-cloud record -- npx commitlint --from ${{ github.sha }} --to ${{ github.sha }} --verbose
+        npx nx-cloud record -- npm audit signatures
       parallel-commands-on-agents: |
         npx nx affected --target=lint --parallel=3 --base=origin/main --head=HEAD
         npx nx affected --target=e2e --parallel=1 --configuration=ci --base=origin/main --head=HEAD
