@@ -1,3 +1,10 @@
+### [1.1.2](https://github.com/jasonruesch/jasonruesch/compare/v1.1.1...v1.1.2) (2023-11-14)
+
+
+### Other
+
+* **repo:** move tags to metadata for container builds ([374ada0](https://github.com/jasonruesch/jasonruesch/commit/374ada00a7bb7de3e7bea2bd22e62ad1967534cb))
+
 ### [1.1.1](https://github.com/jasonruesch/jasonruesch/compare/v1.1.0...v1.1.1) (2023-11-14)
 
 
