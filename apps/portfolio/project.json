@@ -81,13 +81,15 @@
         "file": "apps/portfolio/Dockerfile",
         "images": ["portfolio"],
         "load": true,
-        "tags": [
-          "type=schedule",
-          "type=ref,event=branch",
-          "type=ref,event=tag",
-          "type=ref,event=pr",
-          "type=sha,prefix=sha-"
-        ]
+        "metadata": {
+          "tags": [
+            "type=schedule",
+            "type=ref,event=branch",
+            "type=ref,event=tag",
+            "type=ref,event=pr",
+            "type=sha,prefix=sha-"
+          ]
+        }
       },
       "configurations": {
         "ci": {
@@ -97,18 +99,22 @@
           "push": true,
           "cache-from": ["type=gha"],
           "cache-to": ["type=gha,mode=max"],
-          "tags": [
-            "type=ref,event=branch",
-            "type=ref,event=tag",
-            "type=sha",
-            "type=sha,format=long",
-            "latest"
-          ]
+          "metadata": {
+            "tags": [
+              "type=ref,event=branch",
+              "type=ref,event=tag",
+              "type=sha",
+              "type=sha,format=long",
+              "latest"
+            ]
+          }
         },
         "local": {
           "images": ["portfolio"],
           "push": false,
-          "tags": ["type=sha,prefix=sha-"]
+          "metadata": {
+            "tags": ["type=sha,prefix=sha-"]
+          }
         }
       }
     }
