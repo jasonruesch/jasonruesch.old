@@ -1,3 +1,12 @@
+### [1.0.1](https://github.com/jasonruesch/jasonruesch/compare/v1.0.0...v1.0.1) (2023-11-14)
+
+
+### Other
+
+* **repo:** add docker ([68e2a34](https://github.com/jasonruesch/jasonruesch/commit/68e2a34b6d5496c3264d336970afc28c33b78953))
+* **repo:** increase agents to 3 ([8e11acd](https://github.com/jasonruesch/jasonruesch/commit/8e11acdc9a6eea238154ecb5109e7a2576429868))
+* **repo:** replace node_modules/.bin with npx ([888ee1c](https://github.com/jasonruesch/jasonruesch/commit/888ee1c7e6ffa9985b9d04304a489bcf7a9c7f0b))
+
 ## 1.0.0 (2023-11-13)
 
 
