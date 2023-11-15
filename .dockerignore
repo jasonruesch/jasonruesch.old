@@ -1,0 +1,13 @@
+.git
+.github
+.nx
+.vscode
+coverage
+dist
+node_modules
+tmp
+.dockerignore
+.gitignore
+Dockerfile*
+*.md
+*-e2e

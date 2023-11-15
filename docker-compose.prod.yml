@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  portfolio:
+    image: jasonruesch/portfolio:latest
+    container_name: portfolio
+    build:
+      context: .
+      dockerfile: ./apps/portfolio/Dockerfile.prod
+    ports:
+      - '8081:80'

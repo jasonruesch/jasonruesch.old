@@ -1,4 +1,13 @@
-FROM docker.io/nginx:stable-alpine
-COPY  dist/apps/portfolio/* /usr/share/nginx/html/
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+FROM node:lts-alpine
+
+WORKDIR /app
+
+COPY package*.json .
+
+RUN npm install
+
+COPY . .
+
+EXPOSE 4200
+
+CMD ["npx", "nx", "serve", "portfolio", "--host", "0.0.0.0"]
