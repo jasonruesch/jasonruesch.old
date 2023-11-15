@@ -84,4 +84,4 @@ jobs:
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: HUSKY=0 npx semantic-release --extends ./release.config.js
+        run: HUSKY=0 npx semantic-release-plus --extends ./release.config.js
