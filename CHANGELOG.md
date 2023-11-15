@@ -1,3 +1,12 @@
+## [1.0.5](https://github.com/jasonruesch/jasonruesch/compare/v1.0.4...v1.0.5) (2023-11-15)
+
+
+### Other
+
+* **repo:** add commitlint and audit signatures to main and pr workflows ([93eda90](https://github.com/jasonruesch/jasonruesch/commit/93eda90da046ce6233c15459f2a088de483af8a0))
+* **repo:** ignore changelog when checking format ([698600b](https://github.com/jasonruesch/jasonruesch/commit/698600b1e71a1d4be2d96fd041499224d2cc784b))
+* **repo:** remove audit signatures from workflows ([58b9df3](https://github.com/jasonruesch/jasonruesch/commit/58b9df3483b29883c1c268d846ce29ebb633009c))
+
 ## [1.0.4](https://github.com/jasonruesch/jasonruesch/compare/v1.0.3...v1.0.4) (2023-11-15)
 
 
