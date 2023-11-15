@@ -72,6 +72,57 @@
       "options": {
         "buildTarget": "portfolio:build"
       }
+    },
+    "container": {
+      "dependsOn": ["build"],
+      "executor": "@nx-tools/nx-container:build",
+      "options": {
+        "engine": "docker",
+        "metadata": {
+          "images": ["ghcr.io/jasonruesch/portfolio"],
+          "load": true,
+          "push": true,
+          "tags": [
+            "type=schedule",
+            "type=ref,event=branch",
+            "type=ref,event=tag",
+            "type=ref,event=pr",
+            "type=sha,prefix=sha-"
+          ]
+        }
+      },
+      "configurations": {
+        "ci": {
+          "metadata": {
+            "images": ["ghcr.io/jasonruesch/portfolio"],
+            "load": true,
+            "push": true,
+            "cache-from": ["type=gha"],
+            "cache-to": ["type=gha,mode=max"],
+            "tags": [
+              "type=ref,event=branch",
+              "type=ref,event=tag",
+              "type=sha",
+              "type=sha,format=long",
+              "latest"
+            ]
+          }
+        },
+        "local": {
+          "metadata": {
+            "images": ["portfolio"],
+            "push": false,
+            "tags": ["type=sha,prefix=sha-"]
+          }
+        }
+      }
+    },
+    "release": {
+      "executor": "nx:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "npx semantic-release-plus --extends release.config.js"
+      }
     }
   },
   "tags": []

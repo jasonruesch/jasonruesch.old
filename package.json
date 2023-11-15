@@ -10,6 +10,8 @@
     "react-dom": "18.2.0"
   },
   "devDependencies": {
+    "@nx-tools/container-metadata": "^5.1.0",
+    "@nx-tools/nx-container": "^5.1.0",
     "@nx/cypress": "17.1.2",
     "@nx/eslint": "17.1.2",
     "@nx/eslint-plugin": "17.1.2",
