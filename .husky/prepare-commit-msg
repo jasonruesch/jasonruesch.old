@@ -1,7 +1,29 @@
 #!/bin/sh
+
+#
+# SUMMARY:
+# This hook is invoked by git commit right after preparing the default log message, and before the editor is started.
+# Commitizen's prompt is displayed to guide user through required and optional Git commit conventions.
+#
+
 . "$(dirname "$0")/_/husky.sh"
 
-branch="$(git rev-parse --abbrev-ref HEAD)"
-if [ "$branch" = "main" ]; then
-    (exec < /dev/tty && node_modules/.bin/cz --hook) || true < /dev/null
+# $2 contains the source of the commit message.
+# It can be message, template, merge, squash, or commit (for git commit --amend)
+if [ "$2" = "commit" ]; then
+  echo "Skipping prepare-commit-msg hook due to amend."
+  exit 0
+elif [ "$2" = "message" ]; then
+  echo "Skipping prepare-commit-msg hook due to message already provided."
+  exit 0
 fi
+
+# If we're in the middle of an interactive rebase, GIT_SEQUENCE_EDITOR will be set.
+# We'll skip the hook in this case as well.
+if [ -n "$GIT_SEQUENCE_EDITOR" ]; then
+  echo "Skipping prepare-commit-msg hook due to rebase."
+  exit 0
+fi
+
+# Require Commitizen prompt for all branches, especially feature branches.
+(exec < /dev/tty && node_modules/.bin/cz --hook) || true < /dev/null

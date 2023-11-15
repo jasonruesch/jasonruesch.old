@@ -13,7 +13,6 @@ module.exports = {
           ctx,
           ({ name, projectType }) => !name.includes('e2e')
         )),
-        'k8s',
         'repo',
         'docs',
       ],
