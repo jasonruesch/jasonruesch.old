@@ -13,6 +13,7 @@ on:
 jobs:
   main:
     name: Nx Cloud - Main Job
+    if: contains(github.event.head_commit.message, '(release)') != true
     uses: nrwl/ci/.github/workflows/nx-cloud-main.yml@v0.13.0
     with:
       number-of-agents: 3
@@ -46,10 +47,15 @@ jobs:
   codecoverage:
     runs-on: ubuntu-latest
     name: Code Coverage
+    if: contains(github.event.head_commit.message, '(release)') != true
     needs:
       - main
     steps:
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
       - uses: actions/download-artifact@v3
         with:
           name: dist-and-coverage-artifacts
@@ -66,7 +72,7 @@ jobs:
 
   release:
     name: Release
-    if: contains(github.event.head_commit.message, 'release') != true
+    if: contains(github.event.head_commit.message, '(release)') != true
     needs:
       - codecoverage
     runs-on: ubuntu-latest
@@ -83,5 +89,5 @@ jobs:
         run: npm ci
       - name: Release
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PAT }}
         run: HUSKY=0 npx semantic-release-plus --extends ./release.config.js
