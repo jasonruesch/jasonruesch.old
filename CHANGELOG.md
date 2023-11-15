@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/jasonruesch/jasonruesch/compare/v1.0.1...v1.0.2) (2023-11-15)
+
+
+### Other
+
+* **repo:** use PAT in release job ([c2cef2f](https://github.com/jasonruesch/jasonruesch/commit/c2cef2f46cd57486041fc11e5ea1d7fedc52baf9))
+
 ## [1.0.1](https://github.com/jasonruesch/jasonruesch/compare/v1.0.0...v1.0.1) (2023-11-15)
 
 
