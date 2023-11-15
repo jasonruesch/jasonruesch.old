@@ -75,28 +75,21 @@
     },
     "container": {
       "executor": "@nx-tools/nx-container:build",
-      "dependsOn": ["build"],
       "options": {
         "engine": "docker",
-        "file": "apps/admin/Dockerfile",
-        "images": ["admin"],
-        "load": true,
-        "tags": ["type=schedule", "type=sha,prefix=sha-"]
-      },
-      "configurations": {
-        "ci": {
-          "file": "apps/admin/Dockerfile.prod",
-          "images": ["ghcr.io/jasonruesch/admin"],
-          "load": false,
-          "push": true,
-          "cache-from": ["type=gha"],
-          "cache-to": ["type=gha,mode=max"],
-          "tags": ["latest"]
-        },
-        "local": {
-          "images": ["admin"],
-          "push": false,
-          "tags": ["type=sha,prefix=sha-"]
+        "metadata": {
+          "images": ["jasonruesch/portfolio"],
+          "load": true,
+          "tags": [
+            "type=schedule",
+            "type=ref,event=branch",
+            "type=ref,event=tag",
+            "type=ref,event=pr",
+            "type=semver,pattern={{version}}",
+            "type=semver,pattern={{major}}.{{minor}}",
+            "type=semver,pattern={{major}}",
+            "type=sha,prefix=sha-"
+          ]
         }
       }
     }

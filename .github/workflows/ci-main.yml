@@ -35,10 +35,10 @@ jobs:
         npx nx affected --target=e2e --parallel=1 --configuration=ci --base=origin/main --head=HEAD
         npx nx affected --target=test --parallel=3 --configuration=ci --code-coverage --base=origin/main --head=HEAD
         npx nx affected --target=build --parallel=3 --base=origin/main --head=HEAD
-      # artifacts-path: |
-      #   dist/
-      #   coverage
-      # artifacts-name: dist-and-coverage-artifacts
+      artifacts-path: |
+        dist/
+        coverage
+      artifacts-name: dist-and-coverage-artifacts
 
   agents:
     name: Nx Cloud - Agents
@@ -73,7 +73,7 @@ jobs:
   release:
     name: Release Job
     if: contains(github.event.head_commit.message, '(release)') != true
-    needs: 'main'
+    needs: main
     runs-on: ubuntu-latest
     permissions:
       contents: write # to be able to publish a GitHub release
@@ -101,3 +101,40 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.PAT }}
         run: HUSKY=0 npx semantic-release --extends ./release.config.js
+
+  docker-build:
+    name: Docker Build
+    needs: release
+    runs-on: ubuntu-latest
+    env:
+      INPUT_PUSH: true
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Derive appropriate SHAs for base and head for `nx affected` commands
+        uses: nrwl/nx-set-shas@v3
+      - uses: actions/setup-node@v3
+        with:
+          cache: 'npm'
+          node-version: 'lts/*'
+      - name: 'Downloading artifacts'
+        continue-on-error: true
+        uses: actions/download-artifact@v3
+        with:
+          name: dist-and-coverage-artifacts
+          path: dist
+      - run: npm install
+      - run: npx nx affected --base=$NX_BASE --head=$NX_HEAD --target=container --parallel=2
+        env:
+          INPUT_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          INPUT_APP_IMAGES: ghcr.io/jasonruesch/portfolio
