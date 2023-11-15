@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/jasonruesch/jasonruesch/compare/v1.0.0...v1.0.1) (2023-11-15)
+
+
+### Other
+
+* **repo:** add tag workflow to deploy docker image ([8f37477](https://github.com/jasonruesch/jasonruesch/commit/8f374774544509f6a83f4dc70a24a75b013d051e))
+
 ## 1.0.0 (2023-11-15)
 
 
