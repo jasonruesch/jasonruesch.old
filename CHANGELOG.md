@@ -1,3 +1,10 @@
+### [1.1.7](https://github.com/jasonruesch/jasonruesch/compare/v1.1.6...v1.1.7) (2023-11-15)
+
+
+### Other
+
+* **repo:** replace container build and deploy workflow ([d7aee67](https://github.com/jasonruesch/jasonruesch/commit/d7aee67f66979b63e499e7cdaba1fb00c659c378))
+
 ### [1.1.6](https://github.com/jasonruesch/jasonruesch/compare/v1.1.5...v1.1.6) (2023-11-14)
 
 
