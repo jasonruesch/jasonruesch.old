@@ -59,7 +59,7 @@ jobs:
         run: ls -R
       - uses: codecov/codecov-action@v3
         with:
-          directory: ./coverage/coverage
+          directory: ./coverage
           flags: unittests # optional
           name: codecov-umbrella # optional
           fail_ci_if_error: false # optional (default = false)
