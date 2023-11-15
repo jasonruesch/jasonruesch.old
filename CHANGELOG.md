@@ -1,3 +1,10 @@
+## [1.0.4](https://github.com/jasonruesch/jasonruesch/compare/v1.0.3...v1.0.4) (2023-11-15)
+
+
+### Other
+
+* **repo:** update release version in package.json ([b764221](https://github.com/jasonruesch/jasonruesch/commit/b764221c2cac847dde4f816c4027efc78d63ebf2))
+
 ## [1.0.3](https://github.com/jasonruesch/jasonruesch/compare/v1.0.2...v1.0.3) (2023-11-15)
 
 
