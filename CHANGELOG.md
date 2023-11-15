@@ -1,3 +1,10 @@
+## [1.0.6](https://github.com/jasonruesch/jasonruesch/compare/v1.0.5...v1.0.6) (2023-11-15)
+
+
+### Other
+
+* **repo:** fix main workflow not triggering tag workflow ([bf4ce58](https://github.com/jasonruesch/jasonruesch/commit/bf4ce581429385fc2ce39ce46dd03cb9d0879b6d))
+
 ## [1.0.5](https://github.com/jasonruesch/jasonruesch/compare/v1.0.4...v1.0.5) (2023-11-15)
 
 
