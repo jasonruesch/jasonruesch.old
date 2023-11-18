@@ -1,3 +1,15 @@
+## [1.3.0](https://github.com/jasonruesch/jasonruesch/compare/v1.2.2...v1.3.0) (2023-11-18)
+
+
+### Features
+
+* **portfolio:** add description for self under heading ([1d26b7c](https://github.com/jasonruesch/jasonruesch/commit/1d26b7c5c71a3b82b321b0eed25f41a777c8af13))
+
+
+### Other
+
+* **repo:** rename docker images ([7555103](https://github.com/jasonruesch/jasonruesch/commit/7555103f2490e8ff56cea1a0533395cd34d0e85a))
+
 ## [1.2.2](https://github.com/jasonruesch/jasonruesch/compare/v1.2.1...v1.2.2) (2023-11-18)
 
 
