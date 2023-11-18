@@ -2,6 +2,7 @@ name: Tag CI
 
 env:
   NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
+  BUILDX_NO_DEFAULT_ATTESTATIONS: 1
 
 # This file builds docker images whenever a new tag is pushed
 on:

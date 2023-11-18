@@ -1,7 +1,7 @@
 export function App() {
   return (
     <div>
-      <h1>Welcome portfolio</h1>
+      <h1>Jason Ruesch</h1>
     </div>
   );
 }
