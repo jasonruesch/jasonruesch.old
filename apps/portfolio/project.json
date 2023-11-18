@@ -94,7 +94,7 @@
       "configurations": {
         "ci": {
           "metadata": {
-            "images": ["ghcr.io/jasonruesch/portfolio"],
+            "images": ["ghcr.io/jasonruesch/jasonruesch/portfolio"],
             "load": true,
             "push": true,
             "cache-from": ["type=gha"],
@@ -110,7 +110,7 @@
         },
         "local": {
           "metadata": {
-            "images": ["portfolio"],
+            "images": ["jasonruesch/portfolio"],
             "push": false,
             "tags": ["type=sha,prefix=sha-"]
           }
