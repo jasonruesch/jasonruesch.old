@@ -1,3 +1,10 @@
+## [1.5.0](https://github.com/jasonruesch/jasonruesch/compare/v1.4.0...v1.5.0) (2023-11-18)
+
+
+### Features
+
+* **portfolio:** add Tailwind CSS ([590fcdd](https://github.com/jasonruesch/jasonruesch/commit/590fcdd1f22e7ddb1c72d22f3b30f7d0df0387dd))
+
 ## [1.4.0](https://github.com/jasonruesch/jasonruesch/compare/v1.3.0...v1.4.0) (2023-11-18)
 
 
