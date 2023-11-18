@@ -1,3 +1,15 @@
+## [1.1.0](https://github.com/jasonruesch/jasonruesch/compare/v1.0.6...v1.1.0) (2023-11-18)
+
+
+### Features
+
+* **portfolio:** remove example nx welcome ([2fc1535](https://github.com/jasonruesch/jasonruesch/commit/2fc1535e50748159b7bb436a1dc31b400d1a37a4))
+
+
+### Other
+
+* **repo:** fix coverage generation ([e16d52c](https://github.com/jasonruesch/jasonruesch/commit/e16d52cfa3a62a050346c939e7450e0a0b44f773))
+
 ## [1.0.6](https://github.com/jasonruesch/jasonruesch/compare/v1.0.5...v1.0.6) (2023-11-15)
 
 
