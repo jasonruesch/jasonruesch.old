@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/jasonruesch/jasonruesch/compare/v1.1.0...v1.1.1) (2023-11-18)
+
+
+### Other
+
+* **repo:** always run tests ([cc44af1](https://github.com/jasonruesch/jasonruesch/commit/cc44af144bbe35c63753b0bd9084bde0e67609c9))
+
 ## [1.1.0](https://github.com/jasonruesch/jasonruesch/compare/v1.0.6...v1.1.0) (2023-11-18)
 
 
