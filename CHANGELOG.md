@@ -1,3 +1,10 @@
+## [1.6.0](https://github.com/jasonruesch/jasonruesch/compare/v1.5.0...v1.6.0) (2023-11-18)
+
+
+### Features
+
+* **portfolio:** add home page ([12ff4ab](https://github.com/jasonruesch/jasonruesch/commit/12ff4ab60723373198ac6b760f54f0e7986f316e))
+
 ## [1.5.0](https://github.com/jasonruesch/jasonruesch/compare/v1.4.0...v1.5.0) (2023-11-18)
 
 
