@@ -1,3 +1,10 @@
+## [1.4.0](https://github.com/jasonruesch/jasonruesch/compare/v1.3.0...v1.4.0) (2023-11-18)
+
+
+### Features
+
+* **portfolio:** set Dockerfile on container target ([ad83b4a](https://github.com/jasonruesch/jasonruesch/commit/ad83b4a203638d2e4c278057994db95c9b6d0da3))
+
 ## [1.3.0](https://github.com/jasonruesch/jasonruesch/compare/v1.2.2...v1.3.0) (2023-11-18)
 
 
