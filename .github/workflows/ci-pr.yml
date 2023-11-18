@@ -26,11 +26,11 @@ jobs:
       parallel-commands-on-agents: |
         npx nx affected --target=lint --parallel=3
         npx nx affected --target=e2e --parallel=1 --ci
-        npx nx affected --target=test --parallel=3 --ci --code-coverage
+        npx nx affected --target=test --parallel=3 --ci --coverage
         npx nx affected --target=build --parallel=3
       artifacts-path: |
         dist/
-        coverage
+        coverage/
       artifacts-name: dist-and-coverage-artifacts
     secrets:
       NX_CLOUD_AUTH_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
@@ -54,7 +54,7 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: dist-and-coverage-artifacts
-          path: coverage
+          path: coverage/
       - name: Display structure of downloaded files
         run: ls -R
       - uses: codecov/codecov-action@v3
