@@ -1,3 +1,10 @@
+## [1.2.2](https://github.com/jasonruesch/jasonruesch/compare/v1.2.1...v1.2.2) (2023-11-18)
+
+
+### Other
+
+* **repo:** allow concurrent workflows to run ([2598819](https://github.com/jasonruesch/jasonruesch/commit/259881931eb8739eb70c542a76ba9e16908b15a8))
+
 ## [1.2.1](https://github.com/jasonruesch/jasonruesch/compare/v1.2.0...v1.2.1) (2023-11-18)
 
 
