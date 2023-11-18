@@ -1,3 +1,15 @@
+## [1.2.0](https://github.com/jasonruesch/jasonruesch/compare/v1.1.1...v1.2.0) (2023-11-18)
+
+
+### Features
+
+* **portfolio:** update h1 heading ([9d02cd5](https://github.com/jasonruesch/jasonruesch/commit/9d02cd5efe0048514a11c46cb0da53e42a40890b))
+
+
+### Other
+
+* **repo:** add cancel in progress concurrency ([e251a41](https://github.com/jasonruesch/jasonruesch/commit/e251a41b72bc88f6d06a03232208cf1800031987))
+
 ## [1.1.1](https://github.com/jasonruesch/jasonruesch/compare/v1.1.0...v1.1.1) (2023-11-18)
 
 
