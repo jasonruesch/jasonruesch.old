@@ -27,7 +27,7 @@ jobs:
       parallel-commands-on-agents: |
         npx nx run-many --target=lint --all --parallel=3
         npx nx run-many --target=e2e --all --parallel=1 --ci
-        npx nx run-many --target=test --all --parallel=3 --ci --coverage
+        npx nx run-many --target=test --all --parallel=3 --ci --coverage --skip-nx-cache
         npx nx run-many --target=build --all --parallel=3
       artifacts-path: |
         dist/
