@@ -54,14 +54,22 @@ jobs:
     name: Code Coverage
     needs: ['main']
     steps:
+      - uses: xSAVIKx/artifact-exists-action@v0
+        id: check-artifact-exists
+        with:
+          name: dist-and-coverage-artifacts
       - uses: actions/checkout@v3
+        if: steps.check-artifact-exists.outputs.exists == 'true'
       - uses: actions/download-artifact@v3
+        if: steps.check-artifact-exists.outputs.exists == 'true'
         with:
           name: dist-and-coverage-artifacts
           path: coverage/
       - name: Display structure of downloaded files
+        if: steps.check-artifact-exists.outputs.exists == 'true'
         run: ls -R
       - uses: codecov/codecov-action@v3
+        if: steps.check-artifact-exists.outputs.exists == 'true'
         with:
           directory: ./coverage
           flags: unittests # optional
