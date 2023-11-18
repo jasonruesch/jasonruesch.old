@@ -1,3 +1,11 @@
+## [1.2.1](https://github.com/jasonruesch/jasonruesch/compare/v1.2.0...v1.2.1) (2023-11-18)
+
+
+### Other
+
+* **repo:** skip artifact download and codecoverage if artifact doesn't exist ([2698701](https://github.com/jasonruesch/jasonruesch/commit/26987018ce5e7b5dda9bc29b843f68030999d2eb))
+* **repo:** skip workflow run for release commits ([7717061](https://github.com/jasonruesch/jasonruesch/commit/77170612a83fb20182dba6f75be5c5d5bcd26bef))
+
 ## [1.2.0](https://github.com/jasonruesch/jasonruesch/compare/v1.1.1...v1.2.0) (2023-11-18)
 
 
