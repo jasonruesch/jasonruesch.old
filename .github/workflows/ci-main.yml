@@ -26,12 +26,12 @@ jobs:
         npx nx-cloud record -- npx commitlint --from ${{ github.sha }} --to ${{ github.sha }} --verbose
       parallel-commands-on-agents: |
         npx nx run-many --target=lint --all --parallel=3
-        npx nx run-many --target=e2e --all --ci --parallel=1
-        npx nx run-many --target=test --all --parallel=3 --ci --code-coverage
+        npx nx run-many --target=e2e --all --parallel=1 --ci
+        npx nx run-many --target=test --all --parallel=3 --ci --coverage
         npx nx run-many --target=build --all --parallel=3
       artifacts-path: |
         dist/
-        coverage
+        coverage/
       artifacts-name: dist-and-coverage-artifacts
     secrets:
       NX_CLOUD_AUTH_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
@@ -58,7 +58,7 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: dist-and-coverage-artifacts
-          path: coverage
+          path: coverage/
       - name: Display structure of downloaded files
         run: ls -R
       - uses: codecov/codecov-action@v3
