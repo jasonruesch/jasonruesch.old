@@ -126,5 +126,5 @@
       }
     }
   },
-  "tags": []
+  "tags": ["type:app", "scope:portfolio"]
 }

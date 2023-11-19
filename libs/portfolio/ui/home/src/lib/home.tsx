@@ -1,4 +1,4 @@
-export function Home() {
+export function Component() {
   return (
     <div className="h-full grid place-content-center text-center">
       <h1 className="text-4xl font-bold mb-4">Jason Ruesch</h1>
@@ -9,4 +9,4 @@ export function Home() {
   );
 }
 
-export default Home;
+Component.displayName = 'Home';
