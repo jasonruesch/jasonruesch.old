@@ -15,6 +15,22 @@ const router = createBrowserRouter(
     <Route path="/" element={<App />} errorElement={<ErrorPage />}>
       <Route errorElement={<ErrorPage />}>
         <Route index lazy={() => import('@jasonruesch/portfolio-ui-home')} />
+        <Route
+          path="about"
+          lazy={() => import('@jasonruesch/portfolio-ui-about')}
+        />
+        <Route
+          path="contact"
+          lazy={() => import('@jasonruesch/portfolio-ui-contact')}
+        />
+        <Route
+          path="projects"
+          lazy={() => import('@jasonruesch/portfolio-ui-projects')}
+        />
+        <Route
+          path="privacy"
+          lazy={() => import('@jasonruesch/portfolio-ui-privacy')}
+        />
       </Route>
     </Route>,
   ),

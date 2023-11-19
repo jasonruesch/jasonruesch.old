@@ -13,14 +13,10 @@ scope/portfolio:
   - libs/portfolio/**/*
 scope/shared:
   - libs/shared/**/*
-type/feature:
-  - libs/**/feature-*/*
 type/data-access:
   - libs/**/data-access-*/*
 type/util:
   - libs/**/util*/*
-type/domain:
-  - libs/**/domain*/*
 type/ui:
   - libs/**/ui-*/*
 dep-updates:
