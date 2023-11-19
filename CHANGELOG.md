@@ -1,3 +1,10 @@
+## [1.8.0](https://github.com/jasonruesch/jasonruesch/compare/v1.7.0...v1.8.0) (2023-11-19)
+
+
+### Features
+
+* **repo:** add shared ui library ([2f8254a](https://github.com/jasonruesch/jasonruesch/commit/2f8254ab7f14921437a9bcd66e310632ad940628))
+
 ## [1.7.0](https://github.com/jasonruesch/jasonruesch/compare/v1.6.0...v1.7.0) (2023-11-19)
 
 
