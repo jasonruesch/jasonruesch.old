@@ -9,20 +9,14 @@
   description: >-
     Changes made in the libs directory
 # Scopes
-# - name: scope/server
-#   color: '44b87c'
 - name: scope/portfolio
   color: '44b87c'
 - name: scope/shared
   color: '44b87c'
 # Library Type
-- name: type/feature
-  color: '6344b8'
 - name: type/data-access
   color: '6344b8'
 - name: type/util
-  color: '6344b8'
-- name: type/domain
   color: '6344b8'
 - name: type/ui
   color: '6344b8'

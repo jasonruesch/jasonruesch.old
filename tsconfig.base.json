@@ -15,7 +15,19 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@jasonruesch/portfolio-ui-about": [
+        "libs/portfolio/ui/about/src/index.ts"
+      ],
+      "@jasonruesch/portfolio-ui-contact": [
+        "libs/portfolio/ui/contact/src/index.ts"
+      ],
       "@jasonruesch/portfolio-ui-home": ["libs/portfolio/ui/home/src/index.ts"],
+      "@jasonruesch/portfolio-ui-privacy": [
+        "libs/portfolio/ui/privacy/src/index.ts"
+      ],
+      "@jasonruesch/portfolio-ui-projects": [
+        "libs/portfolio/ui/projects/src/index.ts"
+      ],
       "@jasonruesch/shared-ui": ["libs/shared/ui/src/index.ts"]
     }
   },
