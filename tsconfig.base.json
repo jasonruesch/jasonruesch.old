@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@jasonruesch/portfolio-ui-home": ["libs/portfolio/ui/home/src/index.ts"]
+      "@jasonruesch/portfolio-ui-home": ["libs/portfolio/ui/home/src/index.ts"],
+      "@jasonruesch/shared-ui": ["libs/shared/ui/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
