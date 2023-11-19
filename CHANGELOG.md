@@ -1,3 +1,10 @@
+## [1.7.0](https://github.com/jasonruesch/jasonruesch/compare/v1.6.0...v1.7.0) (2023-11-19)
+
+
+### Features
+
+* **portfolio:** add home page to router ([ef58c4a](https://github.com/jasonruesch/jasonruesch/commit/ef58c4a4a4ff7af99bbdfa2ae5d3723b7d5f4f91))
+
 ## [1.6.0](https://github.com/jasonruesch/jasonruesch/compare/v1.5.0...v1.6.0) (2023-11-18)
 
 
