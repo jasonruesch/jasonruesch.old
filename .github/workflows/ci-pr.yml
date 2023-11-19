@@ -29,9 +29,9 @@ jobs:
         npx nx-cloud record -- npx commitlint --from ${{ github.event.pull_request.base.sha }} --to ${{ github.event.pull_request.head.sha }} --verbose
       parallel-commands-on-agents: |
         npx nx affected --target=lint --parallel=3
-        npx nx affected --target=e2e --parallel=1 --ci
         npx nx affected --target=test --parallel=3 --ci --coverage --skip-nx-cache
         npx nx affected --target=build --parallel=3
+        npx nx affected --target=e2e --parallel=1 --ci
       artifacts-path: |
         dist/
         coverage/
