@@ -1,7 +1,7 @@
-import { Home } from '@jasonruesch/portfolio-ui';
+import { Outlet } from 'react-router';
 
 export function App() {
-  return <Home />;
+  return <Outlet />;
 }
 
 export default App;

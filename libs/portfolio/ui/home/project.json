@@ -1,15 +1,15 @@
 {
-  "name": "portfolio-ui",
-  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/portfolio/ui/src",
+  "name": "portfolio-ui-home",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/portfolio/ui/home/src",
   "projectType": "library",
-  "tags": [],
+  "tags": ["type:ui", "scope:portfolio"],
   "targets": {
     "lint": {
       "executor": "@nx/eslint:lint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["libs/portfolio/ui/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": ["libs/portfolio/ui/home/**/*.{ts,tsx,js,jsx}"]
       }
     },
     "build": {
@@ -17,7 +17,7 @@
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
-        "outputPath": "dist/libs/portfolio/ui"
+        "outputPath": "dist/libs/portfolio/ui/home"
       },
       "configurations": {
         "development": {
@@ -33,7 +33,7 @@
       "outputs": ["{options.reportsDirectory}"],
       "options": {
         "passWithNoTests": true,
-        "reportsDirectory": "../../../coverage/libs/portfolio/ui"
+        "reportsDirectory": "../../../../coverage/libs/portfolio/ui/home"
       }
     }
   }

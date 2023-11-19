@@ -1,5 +1,5 @@
 {
-  "name": "@jasonruesch/portfolio-ui",
+  "name": "@jasonruesch/portfolio-ui-home",
   "version": "0.0.1",
   "main": "./index.js",
   "types": "./index.d.ts",
