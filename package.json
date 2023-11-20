@@ -8,9 +8,12 @@
   "private": true,
   "dependencies": {
     "@swc/helpers": "~0.5.2",
+    "localforage": "^1.10.0",
+    "match-sorter": "^6.3.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-router-dom": "^6.19.0",
+    "sort-by": "^1.2.0",
     "tslib": "^2.3.0"
   },
   "devDependencies": {
@@ -36,6 +39,7 @@
     "@types/node": "^20.9.1",
     "@types/react": "^18.2.37",
     "@types/react-dom": "18.2.14",
+    "@types/sort-by": "^1.2.2",
     "@typescript-eslint/eslint-plugin": "^6.9.1",
     "@typescript-eslint/parser": "^6.9.1",
     "@vitejs/plugin-react": "~4.0.0",
