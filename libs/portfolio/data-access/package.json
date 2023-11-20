@@ -1,7 +1,11 @@
 {
   "name": "@jasonruesch/portfolio-data-access",
   "version": "0.0.1",
-  "dependencies": {},
+  "dependencies": {
+    "localforage": "^1.10.0",
+    "match-sorter": "^6.3.1",
+    "sort-by": "^1.2.0"
+  },
   "main": "./index.js",
   "module": "./index.mjs",
   "typings": "./index.d.ts"
