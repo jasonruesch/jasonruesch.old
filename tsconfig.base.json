@@ -20,8 +20,7 @@
       ],
       "@jasonruesch/portfolio-ui": ["libs/portfolio/ui/src/index.ts"],
       "@jasonruesch/shared-ui": ["libs/shared/ui/src/index.ts"],
-      "@jasonruesch/tailwind": ["libs/tailwind/src/index.ts"],
-      "@jasonruesch/tailwind.bak": ["libs/tailwind/tailwind.config.ts"]
+      "@jasonruesch/tailwind": ["libs/tailwind/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
