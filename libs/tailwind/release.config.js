@@ -1,6 +1,6 @@
 /* eslint-disable no-template-curly-in-string */
 const appName = 'tailwind';
-const appPath = `apps/${appName}`;
+const appPath = `libs/${appName}`;
 const artifactName = appName;
 
 module.exports = {
@@ -8,7 +8,11 @@ module.exports = {
   pkgRoot: `dist/${appPath}`,
   tagFormat: artifactName + '-v${version}',
   commitPaths: ['force-release.md', `${appPath}/*`], // should come from dep-graph and project.json
-  assets: [`${appPath}/README.md`, `${appPath}/CHANGELOG.md`],
+  assets: [
+    `${appPath}/package.json`,
+    `${appPath}/README.md`,
+    `${appPath}/CHANGELOG.md`,
+  ],
   plugins: [
     '@semantic-release/commit-analyzer',
     '@semantic-release/release-notes-generator',

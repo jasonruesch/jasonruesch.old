@@ -1,5 +1,6 @@
 module.exports = {
   extends: 'semantic-release-npm-github-publish',
+  branches: ['main'],
   preset: 'angular',
   presetConfig: {
     types: [
@@ -14,5 +15,10 @@ module.exports = {
       { type: 'test', hidden: true },
     ],
   },
-  releaseRules: [{ type: 'refactor', release: 'patch' }],
+  releaseRules: [
+    { type: 'docs', release: 'patch' },
+    { type: 'refactor', release: 'patch' },
+    { type: 'style', release: 'patch' },
+    { type: 'ci', release: 'patch' },
+  ],
 };

@@ -8,7 +8,7 @@ module.exports = {
   pkgRoot: `dist/${appPath}`,
   tagFormat: artifactName + '-v${version}',
   commitPaths: ['force-release.md', `${appPath}/*`], // should come from dep-graph and project.json
-  assets: [`${appPath}/README.md`, `${appPath}/CHANGELOG.md`],
+  assets: ['package*.json', `${appPath}/README.md`, `${appPath}/CHANGELOG.md`],
   plugins: [
     '@semantic-release/commit-analyzer',
     '@semantic-release/release-notes-generator',
@@ -22,6 +22,7 @@ module.exports = {
       '@semantic-release/npm',
       {
         npmPublish: false,
+        pkgRoot: '.',
       },
     ],
     [
