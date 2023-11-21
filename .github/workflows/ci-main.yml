@@ -99,5 +99,4 @@ jobs:
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.PAT }}
-        # run: HUSKY=0 npx semantic-release-plus --extends ./release.config.js
-        run: npx nx run-many --target=release --all
+        run: HUSKY=0 npx nx run-many --target=semantic-release --all

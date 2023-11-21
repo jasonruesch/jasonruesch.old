@@ -32,14 +32,6 @@
           "libs/tailwind/package.json"
         ]
       }
-    },
-    "release": {
-      "executor": "nx:run-commands",
-      "outputs": [],
-      "dependsOn": ["build"],
-      "options": {
-        "command": "HUSKY=0 npx semantic-release-plus --extends ./libs/tailwind/release.config.js"
-      }
     }
   },
   "tags": ["type:config", "scope:tailwind"]

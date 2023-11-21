@@ -6,7 +6,9 @@
   "targets": {
     "build": {
       "executor": "@nx/vite:build",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "defaultConfiguration": "production",
       "options": {
         "outputPath": "dist/apps/portfolio"
@@ -54,7 +56,9 @@
     },
     "test": {
       "executor": "@nx/vite:test",
-      "outputs": ["{options.reportsDirectory}"],
+      "outputs": [
+        "{options.reportsDirectory}"
+      ],
       "options": {
         "passWithNoTests": true,
         "reportsDirectory": "../../coverage/apps/portfolio"
@@ -62,9 +66,13 @@
     },
     "lint": {
       "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"],
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
-        "lintFilePatterns": ["apps/portfolio/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": [
+          "apps/portfolio/**/*.{ts,tsx,js,jsx}"
+        ]
       }
     },
     "serve-static": {
@@ -78,7 +86,9 @@
       "options": {
         "engine": "docker",
         "metadata": {
-          "images": ["ghcr.io/jasonruesch/portfolio"],
+          "images": [
+            "ghcr.io/jasonruesch/portfolio"
+          ],
           "load": true,
           "push": true,
           "tags": [
@@ -100,8 +110,12 @@
             ],
             "load": true,
             "push": true,
-            "cache-from": ["type=gha"],
-            "cache-to": ["type=gha,mode=max"],
+            "cache-from": [
+              "type=gha"
+            ],
+            "cache-to": [
+              "type=gha,mode=max"
+            ],
             "tags": [
               "type=ref,event=branch",
               "type=ref,event=tag",
@@ -117,20 +131,29 @@
         "local": {
           "file": "apps/portfolio/Dockerfile",
           "metadata": {
-            "images": ["jasonruesch/portfolio"],
+            "images": [
+              "jasonruesch/portfolio"
+            ],
             "push": false,
-            "tags": ["type=sha,prefix=sha-"]
+            "tags": [
+              "type=sha,prefix=sha-"
+            ]
           }
         }
       }
     },
-    "release": {
-      "executor": "nx:run-commands",
-      "outputs": [],
+    "semantic-release": {
+      "executor": "@theunderscorer/nx-semantic-release:semantic-release",
       "options": {
-        "command": "HUSKY=0 npx semantic-release-plus --extends ./apps/portfolio/release.config.js"
+        "github": true,
+        "changelog": true,
+        "npm": false,
+        "tagFormat": "portfolio-v${VERSION}"
       }
     }
   },
-  "tags": ["type:app", "scope:portfolio"]
+  "tags": [
+    "type:app",
+    "scope:portfolio"
+  ]
 }
