@@ -19,7 +19,9 @@
         "libs/portfolio/data-access/src/index.ts"
       ],
       "@jasonruesch/portfolio-ui": ["libs/portfolio/ui/src/index.ts"],
-      "@jasonruesch/shared-ui": ["libs/shared/ui/src/index.ts"]
+      "@jasonruesch/shared-ui": ["libs/shared/ui/src/index.ts"],
+      "@jasonruesch/tailwind": ["libs/tailwind/src/index.ts"],
+      "@jasonruesch/tailwind.bak": ["libs/tailwind/tailwind.config.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
