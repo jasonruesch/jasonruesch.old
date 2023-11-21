@@ -1,5 +1,5 @@
 /* eslint-disable no-template-curly-in-string */
-const appName = 'tailwind';
+const appName = 'portfolio';
 const appPath = `apps/${appName}`;
 const artifactName = appName;
 
@@ -18,7 +18,12 @@ module.exports = {
         changelogFile: `${appPath}/CHANGELOG.md`,
       },
     ],
-    '@semantic-release/npm',
+    [
+      '@semantic-release/npm',
+      {
+        npmPublish: false,
+      },
+    ],
     [
       '@semantic-release/git',
       {
