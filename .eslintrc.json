@@ -18,7 +18,7 @@
               },
               {
                 "sourceTag": "type:app",
-                "onlyDependOnLibsWithTags": ["type:ui"]
+                "onlyDependOnLibsWithTags": ["type:ui", "type:config"]
               },
               {
                 "sourceTag": "type:data-access",
@@ -26,15 +26,31 @@
               },
               {
                 "sourceTag": "type:ui",
-                "onlyDependOnLibsWithTags": ["type:ui", "type:data-access"]
+                "onlyDependOnLibsWithTags": [
+                  "type:ui",
+                  "type:data-access",
+                  "type:config"
+                ]
+              },
+              {
+                "sourceTag": "type:config",
+                "onlyDependOnLibsWithTags": ["type:config"]
               },
               {
                 "sourceTag": "scope:portfolio",
-                "onlyDependOnLibsWithTags": ["scope:portfolio", "scope:shared"]
+                "onlyDependOnLibsWithTags": [
+                  "scope:portfolio",
+                  "scope:shared",
+                  "scope:tailwind"
+                ]
               },
               {
                 "sourceTag": "scope:shared",
                 "onlyDependOnLibsWithTags": ["scope:shared"]
+              },
+              {
+                "sourceTag": "scope:tailwind",
+                "onlyDependOnLibsWithTags": ["scope:tailwind"]
               }
             ]
           }

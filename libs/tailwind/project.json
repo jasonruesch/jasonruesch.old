@@ -1,0 +1,41 @@
+{
+  "name": "tailwind",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/tailwind/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:swc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/tailwind",
+        "main": "libs/tailwind/src/index.ts",
+        "tsConfig": "libs/tailwind/tsconfig.lib.json",
+        "assets": ["libs/tailwind/*.md"]
+      }
+    },
+    "publish": {
+      "command": "node tools/scripts/publish.mjs tailwind {args.ver} {args.tag}",
+      "dependsOn": ["build"]
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/tailwind/**/*.ts",
+          "libs/tailwind/package.json"
+        ]
+      }
+    },
+    "release": {
+      "executor": "nx:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "HUSKY=0 npx semantic-release-plus --extends ./libs/tailwind/release.config.js",
+        "parallel": false
+      }
+    }
+  },
+  "tags": []
+}
