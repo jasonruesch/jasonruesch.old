@@ -94,7 +94,10 @@
         "ci": {
           "file": "apps/portfolio/Dockerfile.prod",
           "metadata": {
-            "images": ["ghcr.io/jasonruesch/portfolio"],
+            "images": [
+              "jasonruesch/portfolio",
+              "ghcr.io/jasonruesch/portfolio"
+            ],
             "load": true,
             "push": true,
             "cache-from": ["type=gha"],
@@ -102,6 +105,9 @@
             "tags": [
               "type=ref,event=branch",
               "type=ref,event=tag",
+              "type=semver,pattern={{version}}",
+              "type=semver,pattern={{major}}.{{minor}}",
+              "type=semver,pattern={{major}}",
               "type=sha",
               "type=sha,format=long",
               "latest"

@@ -12,8 +12,8 @@
       }
     },
     "publish": {
-      "command": "node tools/scripts/publish.mjs tailwind {args.ver} {args.tag}",
-      "dependsOn": ["build"]
+      "dependsOn": ["build"],
+      "command": "node tools/scripts/publish.mjs tailwind {args.ver} {args.tag}"
     },
     "test": {
       "executor": "@nx/vite:test",
@@ -36,6 +36,7 @@
     "release": {
       "executor": "nx:run-commands",
       "outputs": [],
+      "dependsOn": ["build"],
       "options": {
         "command": "HUSKY=0 npx semantic-release-plus --extends ./libs/tailwind/release.config.js"
       }
