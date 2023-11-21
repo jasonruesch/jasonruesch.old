@@ -1,18 +1,10 @@
 {
   "name": "@jasonruesch/tailwind",
-  "version": "0.0.0-semantic-release",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/jasonruesch/jasonruesch.git",
-    "directory": "libs/tailwind"
-  },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
-  },
+  "version": "0.0.1",
   "dependencies": {
-    "@swc/helpers": "~0.5.2"
+    "tailwindcss": "^3.3.5"
   },
-  "type": "commonjs",
-  "main": "./src/index.js",
-  "typings": "./src/index.d.ts"
+  "main": "./index.js",
+  "module": "./index.mjs",
+  "typings": "./index.d.ts"
 }
