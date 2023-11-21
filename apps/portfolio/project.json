@@ -122,7 +122,7 @@
       "executor": "nx:run-commands",
       "outputs": [],
       "options": {
-        "command": "HUSKY=0 npx semantic-release-plus --extends ./release.config.js"
+        "command": "HUSKY=0 npx semantic-release-plus --extends ./apps/portfolio/release.config.js"
       }
     }
   },
