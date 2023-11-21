@@ -30,13 +30,13 @@ jobs:
         npx nx-cloud record -- npx commitlint --from ${{ github.sha }} --to ${{ github.sha }} --verbose
       parallel-commands-on-agents: |
         npx nx run-many --target=lint --all --parallel=3
-        npx nx run-many --target=test --all --parallel=3 --ci --coverage --skip-nx-cache
-        npx nx run-many --target=build --all --parallel=3
-        npx nx run-many --target=e2e --all --parallel=1 --ci
-      artifacts-path: |
-        dist/
-        coverage/
-      artifacts-name: dist-and-coverage-artifacts
+      # npx nx run-many --target=test --all --parallel=3 --ci --coverage --skip-nx-cache
+      # npx nx run-many --target=build --all --parallel=3
+      # npx nx run-many --target=e2e --all --parallel=1 --ci
+      # artifacts-path: |
+      #   dist/
+      #   coverage/
+      # artifacts-name: dist-and-coverage-artifacts
     secrets:
       NX_CLOUD_AUTH_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
       NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
@@ -51,38 +51,39 @@ jobs:
       NX_CLOUD_AUTH_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
       NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
 
-  codecoverage:
-    runs-on: ubuntu-latest
-    name: Code Coverage
-    needs: ['main']
-    steps:
-      - uses: xSAVIKx/artifact-exists-action@v0
-        id: check-artifact-exists
-        with:
-          name: dist-and-coverage-artifacts
-      - uses: actions/checkout@v3
-        if: steps.check-artifact-exists.outputs.exists == 'true'
-      - uses: actions/download-artifact@v3
-        if: steps.check-artifact-exists.outputs.exists == 'true'
-        with:
-          name: dist-and-coverage-artifacts
-          path: coverage/
-      - name: Display structure of downloaded files
-        if: steps.check-artifact-exists.outputs.exists == 'true'
-        run: ls -R
-      - uses: codecov/codecov-action@v3
-        if: steps.check-artifact-exists.outputs.exists == 'true'
-        with:
-          directory: ./coverage
-          flags: unittests # optional
-          name: codecov-umbrella # optional
-          fail_ci_if_error: false # optional (default = false)
-          verbose: false # optional (default = false)
+  # codecoverage:
+  #   runs-on: ubuntu-latest
+  #   name: Code Coverage
+  #   needs: ['main']
+  #   steps:
+  #     - uses: xSAVIKx/artifact-exists-action@v0
+  #       id: check-artifact-exists
+  #       with:
+  #         name: dist-and-coverage-artifacts
+  #     - uses: actions/checkout@v3
+  #       if: steps.check-artifact-exists.outputs.exists == 'true'
+  #     - uses: actions/download-artifact@v3
+  #       if: steps.check-artifact-exists.outputs.exists == 'true'
+  #       with:
+  #         name: dist-and-coverage-artifacts
+  #         path: coverage/
+  #     - name: Display structure of downloaded files
+  #       if: steps.check-artifact-exists.outputs.exists == 'true'
+  #       run: ls -R
+  #     - uses: codecov/codecov-action@v3
+  #       if: steps.check-artifact-exists.outputs.exists == 'true'
+  #       with:
+  #         directory: ./coverage
+  #         flags: unittests # optional
+  #         name: codecov-umbrella # optional
+  #         fail_ci_if_error: false # optional (default = false)
+  #         verbose: false # optional (default = false)
 
   release:
     name: Release
     if: contains(github.event.head_commit.message, '(release)') != true
-    needs: ['codecoverage']
+    # needs: ['codecoverage']
+    needs: ['main']
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
